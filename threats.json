@@ -1,0 +1,114 @@
+[
+    {
+        "date": "31-05-2026 19:56",
+        "message": "URGENT!\r\nVerify your bank account immediately.\r\nClick here n",
+        "risk_score": 90,
+        "risk_level": "High",
+        "indicator_count": 5
+    },
+    {
+        "date": "31-05-2026 19:59",
+        "message": "URGENT!\r\nVerify your bank account immediately.\r\nClick here n",
+        "risk_score": 90,
+        "risk_level": "High",
+        "indicator_count": 5
+    },
+    {
+        "date": "31-05-2026 22:52",
+        "message": "URGENT! Your bank account has been temporarily suspended due",
+        "risk_score": 80,
+        "risk_level": "High",
+        "indicator_count": 4
+    },
+    {
+        "date": "31-05-2026 23:47",
+        "message": "Congratulations! You are our lucky winner. Claim your prize ",
+        "risk_score": 70,
+        "risk_level": "High",
+        "indicator_count": 3
+    },
+    {
+        "date": "01-06-2026 00:10",
+        "message": "Your OTP is required to complete verification. Share your OT",
+        "risk_score": 70,
+        "risk_level": "High",
+        "indicator_count": 2
+    },
+    {
+        "date": "01-06-2026 00:10",
+        "message": "  Your OTP is required to complete verification. Share your ",
+        "risk_score": 70,
+        "risk_level": "High",
+        "indicator_count": 2
+    },
+    {
+        "date": "01-06-2026 00:11",
+        "message": " URGENT! Your bank account has been temporarily suspended. V",
+        "risk_score": 80,
+        "risk_level": "High",
+        "indicator_count": 4
+    },
+    {
+        "date": "01-06-2026 00:11",
+        "message": "Dear Customer, your OTP verification is pending. Share your ",
+        "risk_score": 70,
+        "risk_level": "High",
+        "indicator_count": 2
+    },
+    {
+        "date": "01-06-2026 00:11",
+        "message": "SBI ALERT: Suspicious login detected. Verify your bank accou",
+        "risk_score": 80,
+        "risk_level": "High",
+        "indicator_count": 4
+    },
+    {
+        "date": "01-06-2026 00:11",
+        "message": " Your debit card has been blocked. Login and verify your ban",
+        "risk_score": 80,
+        "risk_level": "High",
+        "indicator_count": 4
+    },
+    {
+        "date": "01-06-2026 00:12",
+        "message": "   URGENT KYC UPDATE REQUIRED. Verify your account details i",
+        "risk_score": 80,
+        "risk_level": "High",
+        "indicator_count": 4
+    },
+    {
+        "date": "01-06-2026 00:12",
+        "message": "Congratulations! You are today's lucky winner. Claim your ca",
+        "risk_score": 90,
+        "risk_level": "High",
+        "indicator_count": 5
+    },
+    {
+        "date": "01-06-2026 00:12",
+        "message": "     RBI Refund Notice: Your account is eligible for a refun",
+        "risk_score": 70,
+        "risk_level": "High",
+        "indicator_count": 3
+    },
+    {
+        "date": "01-06-2026 00:12",
+        "message": "Security Alert! Unauthorized activity detected. Verify your ",
+        "risk_score": 80,
+        "risk_level": "High",
+        "indicator_count": 4
+    },
+    {
+        "date": "01-06-2026 00:12",
+        "message": "        URGENT! Verify your bank account now. Login immediat",
+        "risk_score": 95,
+        "risk_level": "High",
+        "indicator_count": 6
+    },
+    {
+        "date": "01-06-2026 00:13",
+        "message": " URGENT! Your bank account has been suspended. Verify immedi",
+        "risk_score": 95,
+        "risk_level": "High",
+        "indicator_count": 9
+    }
+]

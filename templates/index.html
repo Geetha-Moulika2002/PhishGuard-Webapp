@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PhishGuard</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+<body>
+
+    <div class="main-container">
+
+        <div class="navbar">
+            <h2>🛡️ PhishGuard</h2>
+        </div>
+
+        <div class="hero-section">
+
+            <h1>
+                AI-Powered SMS Phishing Detection
+            </h1>
+
+            <p>
+                Detect suspicious messages, malicious links,
+                urgency tactics, and scam indicators instantly.
+            </p>
+
+            <form method="POST">
+
+    <textarea
+        name="message"
+        placeholder="Paste suspicious SMS or message here..."
+    ></textarea>
+
+    <br>
+
+    <button type="submit">
+        Analyze Message
+    </button>
+
+</form>
+{% if result %}
+
+<div class="result-box">
+
+    <h2>{{ result }}</h2>
+
+    <h3>Risk Score: {{ score }}%</h3>
+
+    <ul>
+        {% for item in indicators %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+
+</div>
+
+{% endif %}
+        </div>
+
+    </div>
+
+</body>
+</html>

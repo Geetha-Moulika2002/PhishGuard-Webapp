@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Threat History</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body>
+
+<div class="dashboard-container">
+
+
+<div class="sidebar">
+    <h2>🛡️ PhishGuard</h2>
+
+    <ul>
+        <li><a href="/">Dashboard</a></li>
+        
+        <li><a href="/threats">Threat History</a></li>
+        <li><a href="/reports">Reports</a></li>
+        <li><a href="/settings">Settings</a></li>
+        <li><a href="/login">Logout</a></li>
+    </ul>
+</div>
+
+<div class="main-content">
+
+    <h1>Threat History</h1>
+
+    <div class="scanner-section">
+
+        <table style="width:100%; color:white; border-collapse:collapse;">
+
+    <tr>
+        <th align="left">Date</th>
+        <th align="left">Message Preview</th>
+        <th align="left">Risk Score</th>
+        <th align="left">Risk Level</th>
+        <th align="left">AI Indicators</th>
+    </tr>
+
+    {% for threat in threats %}
+
+    <tr>
+
+        <td>
+            {{ threat.date }}
+        </td>
+
+        <td>
+            {{ threat.message }}
+        </td>
+
+        <td>
+            {{ threat.risk_score }}%
+        </td>
+
+        <td style="color:#ef4444;">
+            {{ threat.risk_level }}
+        </td>
+
+        <td>
+            {{ threat.indicator_count }}
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+    </div>
+
+</div>
+
+
+</div>
+
+</body>
+</html>

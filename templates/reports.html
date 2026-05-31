@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Security Reports</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body>
+
+<div class="dashboard-container">
+
+
+<div class="sidebar">
+    <h2>🛡️ PhishGuard</h2>
+
+    <ul>
+        <li><a href="/">Dashboard</a></li>
+        
+        <li><a href="/threats">Threat History</a></li>
+        <li><a href="/reports">Reports</a></li>
+        <li><a href="/settings">Settings</a></li>
+        <li><a href="/login">Logout</a></li>
+    </ul>
+</div>
+
+<div class="main-content">
+
+    <h1>Security Reports</h1>
+
+    <div class="stats-container">
+
+        <div class="card">
+            <h3>Total Messages</h3>
+            <p>{{ stats.total_scans }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Threats Detected</h3>
+            <p>{{ stats.threats_detected }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Safe Messages</h3>
+            <p>{{ stats.safe_messages }}</p>
+        </div>
+
+    </div>
+
+    <div class="scanner-section">
+
+        <h2>Model Performance</h2>
+
+        <p>✅ SVM Accuracy : 98.56%</p>
+        <br>
+
+        <p>✅ BiLSTM Accuracy : 99.10%</p>
+        <br>
+
+        <p>✅ Attention Mechanism Enabled</p>
+
+    </div>
+
+</div>
+
+
+</div>
+
+</body>
+</html>

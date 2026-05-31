@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PhishGuard Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <!-- SIDEBAR -->
+
+    <div class="sidebar">
+
+        <h2>🛡️ PhishGuard</h2>
+
+        <ul>
+            <li><a href="/">Dashboard</a></li>
+
+            <li><a href="/threats">Threat History</a></li>
+            <li><a href="/reports">Reports</a></li>
+            <li><a href="/settings">Settings</a></li>
+            <li><a href="/login">Logout</a></li>
+        </ul>
+
+    </div>
+
+    <!-- MAIN CONTENT -->
+
+    <div class="main-content">
+
+        <div class="top-bar">
+
+    <h1>
+        {{ page_title if page_title else 'Cybersecurity Dashboard' }}
+    </h1>
+
+    <p style="
+    color:#94a3b8;
+    margin-top:10px;
+    font-size:16px;">
+    
+</p>
+
+</div>
+
+        <!-- STATS -->
+
+        <div class="stats-container">
+
+            <div class="card">
+                <h3>SVM Accuracy</h3>
+                <p>98.56%</p>
+            </div>
+
+            <div class="card">
+                <h3>BiLSTM Accuracy</h3>
+                <p>99.10%</p>
+            </div>
+
+            <div class="card">
+                <h3>Total Scans</h3>
+                <p>{{ stats.total_scans }}</p>
+            </div>
+
+            <div class="card">
+                <h3>Threats Detected</h3>
+                <p>{{ stats.threats_detected }}</p>
+            </div>
+
+            <div class="card">
+                <h3>Safe Messages</h3>
+                <p>{{ stats.safe_messages }}</p>
+            </div>
+
+        </div>
+
+        <!-- SMS SCANNER -->
+
+        <div class="scanner-section">
+
+            <h2>Analyze Suspicious Message</h2>
+
+            <form method="POST">
+
+                <textarea
+                        name="message"
+                        placeholder="Paste suspicious SMS here..."
+                        required>
+                </textarea>
+
+                <br>
+
+                <button type="submit">
+                    Analyze Now
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- RESULTS -->
+
+        {% if result %}
+
+        <div class="result-box">
+
+            <h2 class="
+            {% if 'High' in result %}
+                high-text
+            {% elif 'Medium' in result %}
+                medium-text
+            {% else %}
+                safe-text
+            {% endif %}
+            ">
+                {{ result }}
+            </h2>
+
+            <h3>Risk Score: {{ score }}%</h3>
+
+            <h3>AI Explanation</h3>
+
+            <p style="color:#cbd5e1; margin-bottom:20px; line-height:1.6;">
+                {{ explanation }}
+            </p>
+
+            <h3>Detected Indicators</h3>
+
+            {% if indicators %}
+
+            <ul>
+
+                {% for item in indicators %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+
+            </ul>
+
+            {% else %}
+
+            <p style="color:#cbd5e1;">
+                No suspicious indicators detected.
+            </p>
+
+            {% endif %}
+
+        </div>
+
+        {% endif %}
+
+        <!-- ANALYTICS -->
+
+        <div class="analytics-section">
+
+            <h2>Threat Analytics</h2>
+
+            <div class="chart-container">
+
+                <canvas id="threatChart"></canvas>
+
+            </div>
+
+        </div>
+
+        <!-- AI ENGINE -->
+
+        <div class="scanner-section">
+
+            <h2>AI Engine Status</h2>
+
+            <p>✅ NLP Preprocessing</p>
+            <p>✅ TF-IDF Vectorization</p>
+            <p>✅ SVM Classification</p>
+            <p>✅ BiLSTM Analysis</p>
+            <p>✅ Attention Mechanism</p>
+
+        </div>
+
+        <!-- ALERTS -->
+
+        <div class="alerts-section">
+
+            <h2>Recent Threat Alerts</h2>
+
+            <div class="alert-card high">
+                ⚠️ Fake Bank Verification SMS Detected
+            </div>
+
+            <div class="alert-card medium">
+                ⚠️ Suspicious Prize Scam Link
+            </div>
+
+            <div class="alert-card safe">
+                ✅ Normal Message Activity
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- CHART.JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+const ctx = document.getElementById('threatChart');
+
+if (ctx) {
+
+    new Chart(ctx, {
+
+        type: 'bar',
+
+        data: {
+
+            labels: [
+                'Safe Messages',
+                'Phishing Messages'
+            ],
+
+            datasets: [{
+
+                label: 'Threat Analysis',
+
+                data: [
+                    {{ stats.safe_messages }},
+                    {{ stats.threats_detected }}
+                ],
+
+                backgroundColor: [
+                    '#22c55e',
+                    '#ef4444'
+                ],
+
+                borderWidth: 1
+
+            }]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            plugins: {
+
+                legend: {
+
+                    labels: {
+                        color: 'white'
+                    }
+
+                }
+
+            },
+
+            scales: {
+
+                x: {
+
+                    ticks: {
+                        color: 'white'
+                    }
+
+                },
+
+                y: {
+
+                    beginAtZero: true,
+
+                    ticks: {
+                        color: 'white'
+                    }
+
+                }
+
+            }
+
+        }
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
