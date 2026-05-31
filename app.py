@@ -21,7 +21,7 @@ vectorizer = joblib.load("vectorizer.pkl")
 def login():
 
     if request.method == 'POST':
-        return redirect('/')
+        return redirect('/dashboard')
 
     return render_template('login.html')
 
@@ -72,8 +72,11 @@ def scanner():
         explanation=""
     )
 
+@app.route('/')
+def index():
+    return redirect('/login')
+@app.route('/dashboard', methods=['GET', 'POST'])
 
-@app.route('/', methods=['GET', 'POST'])
 
 def home():
 
