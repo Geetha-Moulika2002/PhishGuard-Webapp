@@ -1,9 +1,13 @@
 from flask import Flask, render_template, request, redirect
 import joblib
 import json
+from services.user_service import create_user
+from firebase_config import db
 from datetime import datetime
 
 app = Flask(__name__)
+
+
 
 # ==========================================
 # LOAD TRAINED MODEL AND VECTORIZER
@@ -30,29 +34,26 @@ def create_account():
 
     if request.method == 'POST':
 
-        with open("users.json", "r") as file:
-            users = json.load(file)
+        name = request.form["name"]
+        email = request.form["email"]
+        password = request.form["password"]
+        confirm = request.form["confirm_password"]
 
-        users.append({
+        if password != confirm:
+            return "Passwords do not match."
 
-            "name": request.form["name"],
-            "email": request.form["email"],
-            "password": request.form["password"]
+        success, message = create_user(
+            name,
+            email,
+            password
+        )
 
-        })
+        if success:
+            return redirect("/login")
 
-        with open("users.json", "w") as file:
-            json.dump(
-                users,
-                file,
-                indent=4
-            )
+        return message
 
-        return redirect('/login')
-
-    return render_template(
-        "create_account.html"
-    )
+    return render_template("create_account.html")
 # ==========================================
 # DASHBOARD / SMS SCANNER
 # ==========================================
