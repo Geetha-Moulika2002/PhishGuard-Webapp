@@ -1,253 +1,286 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
-
-```
-<meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
-<title>PhishGuard Login</title>
-
-<style>
-
-    *{
-        margin:0;
-        padding:0;
-        box-sizing:border-box;
-    }
-
-    body{
-
-        background:#020617;
-        font-family:Arial, sans-serif;
-
-        display:flex;
-        justify-content:center;
-        align-items:center;
-
-        height:100vh;
-    }
-
-    .login-card{
-
-        width:450px;
-
-        background:#0f172a;
-
-        padding:40px;
-
-        border-radius:20px;
-
-        border:1px solid #1e293b;
-
-        box-shadow:
-        0 0 20px rgba(59,130,246,0.15);
-    }
-
-    .logo{
-
-        text-align:center;
-
-        color:#3b82f6;
-
-        font-size:34px;
-
-        margin-bottom:15px;
-    }
-
-    .title{
-
-        text-align:center;
-
-        color:white;
-
-        font-size:28px;
-
-        margin-bottom:10px;
-    }
-
-    .subtitle{
-
-        text-align:center;
-
-        color:#94a3b8;
-
-        margin-bottom:35px;
-
-        line-height:1.5;
-    }
-
-    label{
-
-        color:white;
-
-        display:block;
-
-        margin-bottom:8px;
-    }
-
-    input[type="email"],
-    input[type="password"]{
-
-        width:100%;
-
-        padding:14px;
-
-        background:#020617;
-
-        border:1px solid #334155;
-
-        border-radius:12px;
-
-        color:white;
-
-        margin-bottom:20px;
-    }
-
-    input:focus{
-
-        outline:none;
-
-        border:1px solid #3b82f6;
-    }
-
-    .options{
-
-        display:flex;
-
-        justify-content:space-between;
-
-        align-items:center;
-
-        color:#94a3b8;
-
-        font-size:14px;
-
-        margin-bottom:25px;
-    }
-
-    button{
-
-        width:100%;
-
-        padding:14px;
-
-        background:#2563eb;
-
-        border:none;
-
-        border-radius:12px;
-
-        color:white;
-
-        font-size:16px;
-
-        cursor:pointer;
-    }
-
-    button:hover{
-
-        background:#1d4ed8;
-    }
-
-    .footer{
-
-        margin-top:25px;
-
-        text-align:center;
-
-        color:#64748b;
-
-        font-size:13px;
-    }
-
-</style>
-```
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhishGuard Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #020617;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(14, 165, 233, 0.1) 0px, transparent 50%);
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            color: #f8fafc;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 450px;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 
+                0 20px 40px -15px rgba(0, 0, 0, 0.5),
+                0 0 30px rgba(59, 130, 246, 0.12);
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 8px;
+            filter: drop-shadow(0 0 12px rgba(59, 130, 246, 0.4));
+        }
+
+        .title {
+            text-align: center;
+            color: #ffffff;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 14px;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .alert-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 14px 16px;
+            border-radius: 12px;
+            margin-bottom: 22px;
+            font-size: 14px;
+            line-height: 1.5;
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid rgba(239, 68, 68, 0.35);
+            color: #fca5a5;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            color: #cbd5e1;
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        input[type="email"],
+        input[type="password"],
+        input[type="text"].password-field {
+            width: 100%;
+            padding: 14px 16px;
+            background: #020617;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            color: #f8fafc;
+            font-size: 14px;
+            font-family: inherit;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+        .password-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .password-wrapper input {
+            padding-right: 48px !important;
+        }
+
+        .toggle-password-btn {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent !important;
+            border: none !important;
+            color: #94a3b8;
+            cursor: pointer;
+            font-size: 18px;
+            padding: 4px;
+            box-shadow: none !important;
+            width: auto !important;
+            line-height: 1;
+            user-select: none;
+        }
+
+        .toggle-password-btn:hover {
+            color: #38bdf8;
+        }
+
+        .options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #94a3b8;
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        .options label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 0;
+            font-weight: 400;
+            cursor: pointer;
+        }
+
+        .options input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: #2563eb;
+            cursor: pointer;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            border: none;
+            border-radius: 12px;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+            transition: all 0.2s ease;
+        }
+
+        button[type="submit"]:hover {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
+            transform: translateY(-1px);
+        }
+
+        .footer {
+            margin-top: 25px;
+            text-align: center;
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        .footer a {
+            color: #38bdf8;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer a:hover {
+            color: #7dd3fc;
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body>
+    <div class="login-card">
+        <div class="logo">🛡️</div>
+        <div class="title">PhishGuard</div>
+        <div class="subtitle">AI-Powered SMS Phishing Detection Platform</div>
 
-<form method="POST">
+        {% if error %}
+        <div class="alert-box" id="error-message" role="alert">
+            <span>⚠️</span>
+            <div>{{ error }}</div>
+        </div>
+        {% endif %}
 
-```
-<div class="login-card">
+        <form method="POST" action="/login" id="loginForm">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" value="{{ email|default('', true) }}" required autocomplete="email">
+            </div>
 
-    <div class="logo">
-        🛡️
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required autocomplete="current-password">
+                    <button type="button" class="toggle-password-btn" id="togglePasswordBtn" onclick="togglePasswordVisibility('password', this)" title="Toggle Password Visibility" aria-label="Toggle Password Visibility">👁️</button>
+                </div>
+            </div>
+
+            <div class="options">
+                <label for="remember">
+                    <input type="checkbox" id="remember" name="remember" value="true">
+                    Remember Me
+                </label>
+                <span style="cursor: pointer; color: #64748b;">Forgot Password?</span>
+            </div>
+
+            <button type="submit" id="loginBtn">Login</button>
+        </form>
+
+        <div class="footer">
+            NLP • TF-IDF • SVM • BiLSTM • Attention
+            <br><br>
+            Don't have an account? <a href="/create-account" id="createAccountLink">Create Account</a>
+        </div>
     </div>
 
-    <div class="title">
-        PhishGuard
-    </div>
-
-    <div class="subtitle">
-
-        AI-Powered SMS Phishing Detection Platform
-
-    </div>
-
-    <label>Email Address</label>
-
-    <input
-        type="email"
-        name="email"
-        placeholder="Enter your email"
-        required>
-
-    <label>Password</label>
-
-    <input
-        type="password"
-        name="password"
-        placeholder="Enter your password"
-        required>
-
-    <div class="options">
-
-        <label>
-
-            <input type="checkbox">
-
-            Remember Me
-
-        </label>
-
-        <span>
-            Forgot Password?
-        </span>
-
-    </div>
-
-    <button type="submit">
-
-        Login
-
-    </button>
-
-    <div class="footer">
-
-    NLP • TF-IDF • SVM • BiLSTM • Attention
-
-    <br><br>
-
-    <a
-        href="/create-account"
-        style="color:#38bdf8;text-decoration:none;">
-
-        Create Account
-
-    </a>
-
-</div>
-
-</div>
-
-
-</form>
-
+    <script>
+        function togglePasswordVisibility(inputId, btn) {
+            const input = document.getElementById(inputId);
+            if (input.type === 'password') {
+                input.type = 'text';
+                btn.textContent = '🙈';
+                btn.title = 'Hide Password';
+            } else {
+                input.type = 'password';
+                btn.textContent = '👁️';
+                btn.title = 'Show Password';
+            }
+        }
+    </script>
 </body>
+
 </html>

@@ -2,162 +2,429 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account - PhishGuard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        body {
+            background: #020617;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(14, 165, 233, 0.1) 0px, transparent 50%);
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            color: #f8fafc;
+        }
 
-<title>Create Account</title>
+        .card {
+            width: 100%;
+            max-width: 480px;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 
+                0 20px 40px -15px rgba(0, 0, 0, 0.5),
+                0 0 30px rgba(59, 130, 246, 0.12);
+            animation: fadeIn 0.4s ease-out;
+        }
 
-<style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+        .header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
 
-body{
-    background:#020617;
-    font-family:Arial,sans-serif;
+        .logo-icon {
+            font-size: 40px;
+            margin-bottom: 8px;
+            display: inline-block;
+            filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.4));
+        }
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
+        h1 {
+            font-size: 26px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+        }
 
-    height:100vh;
-}
+        .subtitle {
+            font-size: 14px;
+            color: #94a3b8;
+        }
 
-.card{
+        .alert-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 14px 16px;
+            border-radius: 12px;
+            margin-bottom: 22px;
+            font-size: 14px;
+            line-height: 1.5;
+            animation: slideDown 0.3s ease-out;
+        }
 
-    width:500px;
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-    background:#0f172a;
+        .alert-error {
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid rgba(239, 68, 68, 0.35);
+            color: #fca5a5;
+        }
 
-    padding:40px;
+        .alert-success {
+            background: rgba(34, 197, 94, 0.12);
+            border: 1px solid rgba(34, 197, 94, 0.35);
+            color: #86efac;
+        }
 
-    border-radius:20px;
+        .alert-icon {
+            font-size: 18px;
+            flex-shrink: 0;
+        }
 
-    border:1px solid #1e293b;
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
 
-    box-shadow:
-    0 0 20px rgba(59,130,246,0.15);
-}
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #cbd5e1;
+            margin-bottom: 8px;
+            letter-spacing: 0.2px;
+        }
 
-h1{
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            background: #020617;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            color: #f8fafc;
+            font-size: 14px;
+            font-family: inherit;
+            outline: none;
+            transition: all 0.2s ease;
+        }
 
-    text-align:center;
-    color:#3b82f6;
+        input::placeholder {
+            color: #64748b;
+        }
 
-    margin-bottom:30px;
-}
+        input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
 
-input{
+        input.input-error {
+            border-color: #ef4444 !important;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2) !important;
+        }
 
-    width:100%;
+        input.input-success {
+            border-color: #22c55e !important;
+        }
 
-    padding:14px;
+        .password-wrapper {
+            position: relative;
+            width: 100%;
+        }
 
-    margin-bottom:18px;
+        .password-wrapper input {
+            padding-right: 48px !important;
+        }
 
-    background:#020617;
+        .toggle-password-btn {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent !important;
+            border: none !important;
+            color: #94a3b8;
+            cursor: pointer;
+            font-size: 18px;
+            padding: 4px;
+            box-shadow: none !important;
+            width: auto !important;
+            line-height: 1;
+            user-select: none;
+        }
 
-    border:1px solid #334155;
+        .toggle-password-btn:hover {
+            color: #38bdf8;
+        }
 
-    border-radius:12px;
+        .field-feedback {
+            font-size: 12px;
+            margin-top: 6px;
+            display: none;
+            line-height: 1.4;
+        }
 
-    color:white;
-}
+        .field-feedback.error {
+            display: block;
+            color: #fca5a5;
+        }
 
-button{
+        .field-feedback.success {
+            display: block;
+            color: #86efac;
+        }
 
-    width:100%;
+        .password-hint {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 6px;
+            line-height: 1.4;
+        }
 
-    padding:14px;
+        button[type="submit"] {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            border: none;
+            border-radius: 12px;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 15px;
+            font-family: inherit;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+            transition: all 0.2s ease;
+        }
 
-    background:#2563eb;
+        button[type="submit"]:hover {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
+            transform: translateY(-1px);
+        }
 
-    border:none;
+        button[type="submit"]:active {
+            transform: translateY(0);
+        }
 
-    border-radius:12px;
+        .login-link {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 14px;
+            color: #94a3b8;
+        }
 
-    color:white;
+        .login-link a {
+            color: #38bdf8;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
 
-    cursor:pointer;
-}
-
-button:hover{
-    background:#1d4ed8;
-}
-
-.login-link{
-
-    text-align:center;
-
-    margin-top:20px;
-}
-
-.login-link a{
-
-    color:#38bdf8;
-
-    text-decoration:none;
-}
-
-</style>
-
+        .login-link a:hover {
+            color: #7dd3fc;
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body>
+    <div class="card">
+        <div class="header">
+            <div class="logo-icon">🛡️</div>
+            <h1>Create PhishGuard Account</h1>
+            <p class="subtitle">Secure AI-Powered SMS Phishing Detection</p>
+        </div>
 
-<form method="POST">
+        {% if error %}
+        <div class="alert-box alert-error" id="error-message" role="alert">
+            <span class="alert-icon">⚠️</span>
+            <div>
+                <strong>Registration Message:</strong><br>
+                {{ error }}
+            </div>
+        </div>
+        {% endif %}
 
-<div class="card">
+        {% if success %}
+        <div class="alert-box alert-success" id="success-message" role="status">
+            <span class="alert-icon">✅</span>
+            <div>
+                <strong>Success!</strong> {{ success }}
+                <br>
+                <a href="/login" style="color: #38bdf8; font-weight: 600; text-decoration: underline; margin-top: 4px; display: inline-block;">Click here to Login</a>
+            </div>
+        </div>
+        {% endif %}
 
-    <h1>🛡️ Create Account</h1>
+        <form method="POST" action="/create-account" id="registerForm">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="John Doe" value="{{ name|default('', true) }}" required autocomplete="name">
+            </div>
 
-    <input
-        type="text"
-        name="name"
-        placeholder="Full Name"
-        required>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="name@example.com" value="{{ email|default('', true) }}" required autocomplete="email">
+                <div id="email-feedback" class="field-feedback"></div>
+            </div>
 
-    <input
-        type="email"
-        name="email"
-        placeholder="Email Address"
-        required>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="password" name="password" placeholder="••••••••" required autocomplete="new-password">
+                    <button type="button" class="toggle-password-btn" onclick="togglePasswordVisibility('password', this)" title="Toggle Password Visibility">👁️</button>
+                </div>
+                <div class="password-hint">Must be at least 8 characters with 1 uppercase, 1 lowercase, 1 number & 1 special character.</div>
+            </div>
 
-    <input
-        type="password"
-        name="password"
-        placeholder="Password"
-        required>
+            <div class="form-group">
+                <label for="confirm_password">Confirm Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="confirm_password" name="confirm_password" placeholder="••••••••" required autocomplete="new-password">
+                    <button type="button" class="toggle-password-btn" onclick="togglePasswordVisibility('confirm_password', this)" title="Toggle Password Visibility">👁️</button>
+                </div>
+                <div id="confirm-feedback" class="field-feedback"></div>
+            </div>
 
-    <input
-        type="password"
-        name="confirm_password"
-        placeholder="Confirm Password"
-        required>
+            <button type="submit" id="submitBtn">Create Account</button>
+        </form>
 
-    <button type="submit">
-
-        Create Account
-
-    </button>
-
-    <div class="login-link">
-
-        <a href="/login">
-
-            Already have an account? Login
-
-        </a>
-
+        <div class="login-link">
+            Already have an account? <a href="/login">Login here</a>
+        </div>
     </div>
 
-</div>
+    <script>
+        function togglePasswordVisibility(inputId, btn) {
+            const input = document.getElementById(inputId);
+            if (input.type === 'password') {
+                input.type = 'text';
+                btn.textContent = '🙈';
+            } else {
+                input.type = 'password';
+                btn.textContent = '👁️';
+            }
+        }
 
-</form>
+        const emailInput = document.getElementById('email');
+        const emailFeedback = document.getElementById('email-feedback');
+        const passwordInput = document.getElementById('password');
+        const confirmInput = document.getElementById('confirm_password');
+        const confirmFeedback = document.getElementById('confirm-feedback');
+        const submitBtn = document.getElementById('submitBtn');
+        let emailDebounceTimer;
+        let isEmailAvailable = true;
 
+        // Real-time email check as the user types
+        emailInput.addEventListener('input', () => {
+            clearTimeout(emailDebounceTimer);
+            const emailVal = emailInput.value.trim();
+
+            if (!emailVal || !emailVal.includes('@')) {
+                emailInput.classList.remove('input-error', 'input-success');
+                emailFeedback.style.display = 'none';
+                isEmailAvailable = true;
+                return;
+            }
+
+            emailDebounceTimer = setTimeout(async () => {
+                try {
+                    const response = await fetch('/check-email', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email: emailVal })
+                    });
+                    const data = await response.json();
+
+                    if (data.exists) {
+                        isEmailAvailable = false;
+                        emailInput.classList.add('input-error');
+                        emailInput.classList.remove('input-success');
+                        emailFeedback.className = 'field-feedback error';
+                        emailFeedback.innerHTML = '⚠️ Email is already registered. <a href="/login" style="color: #38bdf8; text-decoration: underline;">Login here</a>';
+                    } else {
+                        isEmailAvailable = true;
+                        emailInput.classList.remove('input-error');
+                        emailInput.classList.add('input-success');
+                        emailFeedback.className = 'field-feedback success';
+                        emailFeedback.textContent = '✓ Email is available';
+                    }
+                } catch (err) {
+                    console.error('Email check failed:', err);
+                }
+            }, 350);
+        });
+
+        // Live password match feedback
+        function checkPasswordMatch() {
+            if (confirmInput.value.length === 0) {
+                confirmInput.classList.remove('input-error', 'input-success');
+                confirmFeedback.style.display = 'none';
+                return true;
+            }
+
+            if (passwordInput.value !== confirmInput.value) {
+                confirmInput.classList.add('input-error');
+                confirmInput.classList.remove('input-success');
+                confirmFeedback.className = 'field-feedback error';
+                confirmFeedback.textContent = '❌ Passwords do not match';
+                return false;
+            } else {
+                confirmInput.classList.remove('input-error');
+                confirmInput.classList.add('input-success');
+                confirmFeedback.className = 'field-feedback success';
+                confirmFeedback.textContent = '✓ Passwords match';
+                return true;
+            }
+        }
+
+        confirmInput.addEventListener('input', checkPasswordMatch);
+        passwordInput.addEventListener('input', () => {
+            if (confirmInput.value.length > 0) checkPasswordMatch();
+        });
+
+        document.getElementById('registerForm').addEventListener('submit', (e) => {
+            if (!isEmailAvailable) {
+                e.preventDefault();
+                alert('This email is already registered. Please login or use a different email.');
+                emailInput.focus();
+                return false;
+            }
+
+            if (!checkPasswordMatch()) {
+                e.preventDefault();
+                confirmInput.focus();
+                return false;
+            }
+        });
+    </script>
 </body>
+
 </html>

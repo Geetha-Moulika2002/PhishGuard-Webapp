@@ -1,81 +1,411 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 <head>
-    <title>Threat History</title>
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan & Threat History - PhishGuard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <style>
+        .filter-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            color: #94a3b8;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .filter-btn:hover {
+            background: #1e293b;
+            color: #f8fafc;
+        }
+
+        .filter-btn.active {
+            background: #2563eb;
+            color: #ffffff;
+            border-color: #3b82f6;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .history-table-container {
+            background: #0f172a;
+            border-radius: 16px;
+            border: 1px solid #1e293b;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        table.history-table {
+            width: 100%;
+            border-collapse: collapse;
+            color: #f8fafc;
+            font-size: 14px;
+        }
+
+        table.history-table th {
+            background: #020617;
+            color: #94a3b8;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+            padding: 16px 20px;
+            border-bottom: 1px solid #1e293b;
+            text-align: left;
+        }
+
+        table.history-table td {
+            padding: 16px 20px;
+            border-bottom: 1px solid #1e293b;
+            vertical-align: middle;
+        }
+
+        table.history-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        table.history-table tr:hover {
+            background: rgba(30, 41, 59, 0.5);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .badge-safe {
+            background: rgba(34, 197, 94, 0.15);
+            color: #4ade80;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .badge-threat {
+            background: rgba(239, 68, 68, 0.15);
+            color: #fca5a5;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .btn-view {
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: #38bdf8;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-view:hover {
+            background: #38bdf8;
+            color: #020617;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 50px 20px;
+            color: #64748b;
+        }
+
+        /* MODAL STYLING */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(2, 6, 23, 0.85);
+            backdrop-filter: blur(8px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        .modal-card {
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 550px;
+            padding: 30px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            position: relative;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .close-btn {
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+            margin: 0;
+        }
+
+        .close-btn:hover {
+            color: #ffffff;
+        }
+
+        .modal-field {
+            margin-bottom: 18px;
+        }
+
+        .modal-label {
+            font-size: 12px;
+            color: #64748b;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .modal-value {
+            background: #020617;
+            border: 1px solid #334155;
+            padding: 14px;
+            border-radius: 10px;
+            font-size: 14px;
+            color: #f8fafc;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+    </style>
 </head>
 <body>
 
 <div class="dashboard-container">
 
-
-<div class="sidebar">
-    <h2>🛡️ PhishGuard</h2>
-
-    <ul>
-        <li><a href="/">Dashboard</a></li>
-        
-        <li><a href="/threats">Threat History</a></li>
-        <li><a href="/reports">Reports</a></li>
-        <li><a href="/settings">Settings</a></li>
-        <li><a href="/login">Logout</a></li>
-    </ul>
-</div>
-
-<div class="main-content">
-
-    <h1>Threat History</h1>
-
-    <div class="scanner-section">
-
-        <table style="width:100%; color:white; border-collapse:collapse;">
-
-    <tr>
-        <th align="left">Date</th>
-        <th align="left">Message Preview</th>
-        <th align="left">Risk Score</th>
-        <th align="left">Risk Level</th>
-        <th align="left">AI Indicators</th>
-    </tr>
-
-    {% for threat in threats %}
-
-    <tr>
-
-        <td>
-            {{ threat.date }}
-        </td>
-
-        <td>
-            {{ threat.message }}
-        </td>
-
-        <td>
-            {{ threat.risk_score }}%
-        </td>
-
-        <td style="color:#ef4444;">
-            {{ threat.risk_level }}
-        </td>
-
-        <td>
-            {{ threat.indicator_count }}
-        </td>
-
-    </tr>
-
-    {% endfor %}
-
-</table>
-
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <h2>🛡️ PhishGuard</h2>
+        <ul>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/threats" style="color: #38bdf8; font-weight: bold;">Scan History</a></li>
+            <li><a href="/reports">Reports</a></li>
+            <li><a href="/settings">Settings</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
     </div>
 
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <div class="top-bar">
+            <h1>Scan & Threat History</h1>
+            <p style="color: #94a3b8; margin-bottom: 20px;">Inspect historical SMS scans, risk ratings, and detected scam indicators.</p>
+        </div>
+
+        <!-- FILTERS BAR -->
+        <div class="filter-bar">
+            <button class="filter-btn active" onclick="filterScans('all', this)">All</button>
+            <button class="filter-btn" onclick="filterScans('safe', this)">Safe</button>
+            <button class="filter-btn" onclick="filterScans('threat', this)">Threat</button>
+            <button class="filter-btn" onclick="filterScans('today', this)">Today</button>
+            <button class="filter-btn" onclick="filterScans('7days', this)">Last 7 Days</button>
+        </div>
+
+        <!-- TABLE SECTION -->
+        <div class="history-table-container">
+            <table class="history-table">
+                <thead>
+                    <tr>
+                        <th>Date & Time</th>
+                        <th>Message Preview</th>
+                        <th>Prediction</th>
+                        <th>Risk</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="scanTableBody">
+                    {% for item in threats %}
+                    <tr class="scan-row" 
+                        data-prediction="{{ item.prediction|lower }}" 
+                        data-today="{{ 'true' if item.is_today else 'false' }}" 
+                        data-7days="{{ 'true' if item.is_7days else 'false' }}">
+                        
+                        <td style="color: #cbd5e1; font-weight: 500;">
+                            {{ item.date }}
+                        </td>
+                        
+                        <td style="color: #f8fafc; max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                            {{ item.message }}
+                        </td>
+                        
+                        <td>
+                            {% if item.prediction == 'Safe' or item.risk_level == 'Safe' %}
+                                <span class="badge badge-safe">✅ Safe</span>
+                            {% else %}
+                                <span class="badge badge-threat">⚠️ Threat</span>
+                            {% endif %}
+                        </td>
+                        
+                        <td style="font-weight: 700; color: {{ '#ef4444' if (item.prediction == 'Threat' or item.risk_level == 'High') else '#22c55e' }};">
+                            {{ item.risk_score }}%
+                        </td>
+                        
+                        <td>
+                            <button class="btn-view" onclick='openScanModal({{ item|tojson }})'>View</button>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="5" class="empty-state">
+                            📜 No scan logs available yet. Analyze a message on the Dashboard to get started!
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
+<!-- DETAILS MODAL -->
+<div class="modal-overlay" id="scanModal" onclick="closeScanModalOnOverlay(event)">
+    <div class="modal-card">
+        <div class="modal-header">
+            <div class="modal-title">🔍 Scan Inspection Details</div>
+            <button class="close-btn" onclick="closeScanModal()">&times;</button>
+        </div>
 
+        <div class="modal-field">
+            <div class="modal-label">Date & Time</div>
+            <div id="modalDate" style="color: #38bdf8; font-weight: 600;"></div>
+        </div>
+
+        <div class="modal-field">
+            <div class="modal-label">Prediction & Risk Score</div>
+            <div style="display: flex; gap: 12px; align-items: center;">
+                <div id="modalPredictionBadge"></div>
+                <div id="modalRiskScore" style="font-weight: 700; font-size: 16px;"></div>
+            </div>
+        </div>
+
+        <div class="modal-field">
+            <div class="modal-label">Message Content</div>
+            <div class="modal-value" id="modalMessage"></div>
+        </div>
+
+        <div class="modal-field">
+            <div class="modal-label">Detected AI Indicators</div>
+            <div class="modal-value" id="modalIndicators" style="color: #cbd5e1;"></div>
+        </div>
+
+        <div style="text-align: right; margin-top: 20px;">
+            <button onclick="closeScanModal()" style="background: #2563eb; padding: 10px 20px; border: none; border-radius: 10px; color: white; cursor: pointer; font-weight: 600;">Close</button>
+        </div>
+    </div>
 </div>
+
+<script>
+    function filterScans(filterType, btn) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const rows = document.querySelectorAll('.scan-row');
+        let visibleCount = 0;
+
+        rows.forEach(row => {
+            const pred = row.getAttribute('data-prediction');
+            const isToday = row.getAttribute('data-today') === 'true';
+            const is7Days = row.getAttribute('data-7days') === 'true';
+
+            let show = false;
+            if (filterType === 'all') {
+                show = true;
+            } else if (filterType === 'safe') {
+                show = (pred === 'safe');
+            } else if (filterType === 'threat') {
+                show = (pred === 'threat');
+            } else if (filterType === 'today') {
+                show = isToday;
+            } else if (filterType === '7days') {
+                show = is7Days;
+            }
+
+            if (show) {
+                row.style.display = '';
+                visibleCount++;
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }
+
+    function openScanModal(data) {
+        document.getElementById('modalDate').textContent = data.date || 'N/A';
+        document.getElementById('modalMessage').textContent = data.full_message || data.message || '';
+        
+        const badgeElem = document.getElementById('modalPredictionBadge');
+        const scoreElem = document.getElementById('modalRiskScore');
+        
+        const isThreat = (data.prediction === 'Threat' || data.risk_level === 'High');
+        if (isThreat) {
+            badgeElem.innerHTML = '<span class="badge badge-threat">⚠️ Phishing Threat</span>';
+            scoreElem.style.color = '#ef4444';
+        } else {
+            badgeElem.innerHTML = '<span class="badge badge-safe">✅ Safe Message</span>';
+            scoreElem.style.color = '#22c55e';
+        }
+        scoreElem.textContent = `Risk Score: ${data.risk_score}%`;
+
+        const indicatorsElem = document.getElementById('modalIndicators');
+        if (data.indicators && data.indicators.length > 0) {
+            indicatorsElem.innerHTML = '<ul style="padding-left: 18px; margin: 0;">' + 
+                data.indicators.map(ind => `<li style="margin-bottom: 6px;">${ind}</li>`).join('') + 
+                '</ul>';
+        } else {
+            indicatorsElem.textContent = 'No suspicious indicators detected.';
+        }
+
+        document.getElementById('scanModal').style.display = 'flex';
+    }
+
+    function closeScanModal() {
+        document.getElementById('scanModal').style.display = 'none';
+    }
+
+    function closeScanModalOnOverlay(e) {
+        if (e.target.id === 'scanModal') {
+            closeScanModal();
+        }
+    }
+</script>
 
 </body>
 </html>
