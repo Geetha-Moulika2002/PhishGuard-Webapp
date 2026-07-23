@@ -1,0 +1,402 @@
+[
+  {
+    "suite": "Login Validation",
+    "name": "email input type is email",
+    "status": "PASS",
+    "duration": 21,
+    "detail": "type=email",
+    "error": ""
+  },
+  {
+    "suite": "Login Validation",
+    "name": "email input has required attribute",
+    "status": "PASS",
+    "duration": 15,
+    "detail": "required ✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Validation",
+    "name": "password input type is password",
+    "status": "PASS",
+    "duration": 20,
+    "detail": "type=password",
+    "error": ""
+  },
+  {
+    "suite": "Login Validation",
+    "name": "password input has required attribute",
+    "status": "PASS",
+    "duration": 15,
+    "detail": "required ✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Validation",
+    "name": "email input has autocomplete=email",
+    "status": "PASS",
+    "duration": 19,
+    "detail": "autocomplete=email",
+    "error": ""
+  },
+  {
+    "suite": "Login Validation",
+    "name": "password has autocomplete=current-password",
+    "status": "PASS",
+    "duration": 15,
+    "detail": "autocomplete=current-password",
+    "error": ""
+  },
+  {
+    "suite": "Login Validation",
+    "name": "email input placeholder present",
+    "status": "PASS",
+    "duration": 15,
+    "detail": "placeholder: Enter your email",
+    "error": ""
+  },
+  {
+    "suite": "Login Validation",
+    "name": "password input placeholder present",
+    "status": "PASS",
+    "duration": 16,
+    "detail": "placeholder: Enter your password",
+    "error": ""
+  },
+  {
+    "suite": "Login Validation",
+    "name": "Submit button type is submit",
+    "status": "PASS",
+    "duration": 18,
+    "detail": "type=submit",
+    "error": ""
+  },
+  {
+    "suite": "Login Validation",
+    "name": "Empty form click keeps user on /login",
+    "status": "PASS",
+    "duration": 584,
+    "detail": "stayed on /login ✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Validation",
+    "name": "name input type is text",
+    "status": "PASS",
+    "duration": 15,
+    "detail": "type=text",
+    "error": ""
+  },
+  {
+    "suite": "CA Validation",
+    "name": "name input has required attribute",
+    "status": "PASS",
+    "duration": 13,
+    "detail": "required ✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Validation",
+    "name": "name input autocomplete is name",
+    "status": "PASS",
+    "duration": 14,
+    "detail": "autocomplete=name",
+    "error": ""
+  },
+  {
+    "suite": "CA Validation",
+    "name": "email input type is email",
+    "status": "PASS",
+    "duration": 11,
+    "detail": "type=email",
+    "error": ""
+  },
+  {
+    "suite": "CA Validation",
+    "name": "email input has required attribute",
+    "status": "PASS",
+    "duration": 11,
+    "detail": "required ✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Validation",
+    "name": "password input type is password",
+    "status": "PASS",
+    "duration": 13,
+    "detail": "type=password",
+    "error": ""
+  },
+  {
+    "suite": "CA Validation",
+    "name": "password input has required attribute",
+    "status": "PASS",
+    "duration": 10,
+    "detail": "required ✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Validation",
+    "name": "password input autocomplete is new-password",
+    "status": "PASS",
+    "duration": 10,
+    "detail": "autocomplete=new-password",
+    "error": ""
+  },
+  {
+    "suite": "CA Validation",
+    "name": "confirm_password type is password",
+    "status": "PASS",
+    "duration": 15,
+    "detail": "type=password",
+    "error": ""
+  },
+  {
+    "suite": "CA Validation",
+    "name": "confirm_password has required attribute",
+    "status": "PASS",
+    "duration": 10,
+    "detail": "required ✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Validation",
+    "name": "Form action is /create-account",
+    "status": "PASS",
+    "duration": 13,
+    "detail": "action=http://localhost:5000/create-account",
+    "error": ""
+  },
+  {
+    "suite": "CA Validation",
+    "name": "Form method is POST",
+    "status": "PASS",
+    "duration": 11,
+    "detail": "method=post",
+    "error": ""
+  },
+  {
+    "suite": "CA Validation",
+    "name": "submitBtn type is submit",
+    "status": "PASS",
+    "duration": 15,
+    "detail": "type=submit",
+    "error": ""
+  },
+  {
+    "suite": "CA Validation",
+    "name": "Empty form submit stays on /create-account",
+    "status": "PASS",
+    "duration": 565,
+    "detail": "stayed on /create-account ✓",
+    "error": ""
+  },
+  {
+    "suite": "Live Feedback",
+    "name": "confirm-feedback hidden before typing",
+    "status": "PASS",
+    "duration": 11,
+    "detail": "hidden ✓",
+    "error": ""
+  },
+  {
+    "suite": "Live Feedback",
+    "name": "Typing matching passwords shows match feedback",
+    "status": "PASS",
+    "duration": 678,
+    "detail": "feedback: ✓ Passwords match",
+    "error": ""
+  },
+  {
+    "suite": "Live Feedback",
+    "name": "confirm-feedback has class success for matching",
+    "status": "PASS",
+    "duration": 25,
+    "detail": "class: field-feedback success",
+    "error": ""
+  },
+  {
+    "suite": "Live Feedback",
+    "name": "Typing mismatched passwords shows error feedback",
+    "status": "PASS",
+    "duration": 678,
+    "detail": "feedback: ❌ Passwords do not match",
+    "error": ""
+  },
+  {
+    "suite": "Live Feedback",
+    "name": "confirm-feedback has class error for mismatch",
+    "status": "PASS",
+    "duration": 17,
+    "detail": "class: field-feedback error",
+    "error": ""
+  },
+  {
+    "suite": "Live Feedback",
+    "name": "email-feedback hidden before typing",
+    "status": "PASS",
+    "duration": 47,
+    "detail": "hidden ✓",
+    "error": ""
+  },
+  {
+    "suite": "Live Feedback",
+    "name": "Partial email (no @) does not trigger API check",
+    "status": "PASS",
+    "duration": 704,
+    "detail": "no premature feedback ✓",
+    "error": ""
+  },
+  {
+    "suite": "Live Feedback",
+    "name": "Valid new email shows available feedback",
+    "status": "FAIL",
+    "duration": 1439,
+    "detail": "feedback: ",
+    "error": "feedback: "
+  },
+  {
+    "suite": "Live Feedback",
+    "name": "Existing email shows already registered feedback",
+    "status": "FAIL",
+    "duration": 1390,
+    "detail": "feedback: ",
+    "error": "feedback: "
+  },
+  {
+    "suite": "Live Feedback",
+    "name": "Existing email feedback has error class",
+    "status": "PASS",
+    "duration": 25,
+    "detail": "class: field-feedback error",
+    "error": ""
+  },
+  {
+    "suite": "Password Toggle",
+    "name": "Login password initially type=password",
+    "status": "PASS",
+    "duration": 15,
+    "detail": "type=password ✓",
+    "error": ""
+  },
+  {
+    "suite": "Password Toggle",
+    "name": "Login toggle click changes type to text",
+    "status": "PASS",
+    "duration": 457,
+    "detail": "type=text ✓",
+    "error": ""
+  },
+  {
+    "suite": "Password Toggle",
+    "name": "Login toggle click again restores type=password",
+    "status": "PASS",
+    "duration": 419,
+    "detail": "type=password ✓",
+    "error": ""
+  },
+  {
+    "suite": "Password Toggle",
+    "name": "CA page password toggle present",
+    "status": "PASS",
+    "duration": 89,
+    "detail": "2 toggle buttons found",
+    "error": ""
+  },
+  {
+    "suite": "Password Toggle",
+    "name": "CA password toggle changes type to text",
+    "status": "PASS",
+    "duration": 434,
+    "detail": "type=text ✓",
+    "error": ""
+  },
+  {
+    "suite": "Password Toggle",
+    "name": "CA confirm_password toggle changes type to text",
+    "status": "PASS",
+    "duration": 451,
+    "detail": "type=text ✓",
+    "error": ""
+  },
+  {
+    "suite": "Password Toggle",
+    "name": "Toggle button cursor style is pointer",
+    "status": "PASS",
+    "duration": 11,
+    "detail": "cursor: pointer",
+    "error": ""
+  },
+  {
+    "suite": "Password Toggle",
+    "name": "Toggle button has no visible border",
+    "status": "PASS",
+    "duration": 10,
+    "detail": "border: none ✓",
+    "error": ""
+  },
+  {
+    "suite": "Scanner Validation",
+    "name": "textarea has required attribute",
+    "status": "PASS",
+    "duration": 16,
+    "detail": "required ✓",
+    "error": ""
+  },
+  {
+    "suite": "Scanner Validation",
+    "name": "textarea placeholder text present",
+    "status": "PASS",
+    "duration": 10,
+    "detail": "placeholder: Paste suspicious SMS here...",
+    "error": ""
+  },
+  {
+    "suite": "Scanner Validation",
+    "name": "Empty textarea submit stays on /dashboard",
+    "status": "PASS",
+    "duration": 606,
+    "detail": "stayed on /dashboard ✓",
+    "error": ""
+  },
+  {
+    "suite": "Scanner Validation",
+    "name": "textarea accepts multi-line input",
+    "status": "PASS",
+    "duration": 102,
+    "detail": "multi-line accepted ✓",
+    "error": ""
+  },
+  {
+    "suite": "Scanner Validation",
+    "name": "textarea is resizable (resize not none)",
+    "status": "PASS",
+    "duration": 6,
+    "detail": "resize: none",
+    "error": ""
+  },
+  {
+    "suite": "Scanner Validation",
+    "name": "textarea height > 100px",
+    "status": "PASS",
+    "duration": 6,
+    "detail": "height: 180px",
+    "error": ""
+  },
+  {
+    "suite": "Scanner Validation",
+    "name": "Analyze Now button type is submit",
+    "status": "PASS",
+    "duration": 12,
+    "detail": "type=submit",
+    "error": ""
+  },
+  {
+    "suite": "Scanner Validation",
+    "name": "textarea background is dark (not white)",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "bg: rgb(2, 6, 23)",
+    "error": ""
+  }
+]

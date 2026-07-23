@@ -1,0 +1,1090 @@
+[
+  {
+    "suite": "Login",
+    "name": "Root / redirects to /login",
+    "status": "PASS",
+    "duration": 751,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Login",
+    "name": "Page title contains PhishGuard",
+    "status": "PASS",
+    "duration": 351,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Login",
+    "name": "Shield logo emoji visible",
+    "status": "FAIL",
+    "duration": 59,
+    "error": "Logo not found",
+    "screenshot": "Login_Shield_logo_emoji_visible.png"
+  },
+  {
+    "suite": "Login",
+    "name": ".title heading shows PhishGuard",
+    "status": "PASS",
+    "duration": 18,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Login",
+    "name": ".subtitle text is present",
+    "status": "PASS",
+    "duration": 16,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Login",
+    "name": "Email input field exists with id=email",
+    "status": "PASS",
+    "duration": 8,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Login",
+    "name": "Password input field exists with id=password",
+    "status": "PASS",
+    "duration": 12,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Login",
+    "name": "Submit button exists with id=loginBtn",
+    "status": "PASS",
+    "duration": 9,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Login",
+    "name": "Remember Me checkbox is present",
+    "status": "PASS",
+    "duration": 9,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Login",
+    "name": "Create Account link has correct href",
+    "status": "PASS",
+    "duration": 16,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Login",
+    "name": "Footer tech stack text visible",
+    "status": "PASS",
+    "duration": 16,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Login",
+    "name": "Password toggle button id=togglePasswordBtn present",
+    "status": "PASS",
+    "duration": 10,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Login",
+    "name": "Password toggle changes input type to text",
+    "status": "PASS",
+    "duration": 424,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Login",
+    "name": "Password toggle changes emoji to 🙈",
+    "status": "PASS",
+    "duration": 49,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Login",
+    "name": "Password toggle again hides password",
+    "status": "PASS",
+    "duration": 430,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Login",
+    "name": "Wrong credentials shows .alert-box",
+    "status": "PASS",
+    "duration": 522,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Login",
+    "name": "Valid credentials redirect to /dashboard",
+    "status": "PASS",
+    "duration": 1248,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Login",
+    "name": "Already logged-in visit to /login redirects to /dashboard",
+    "status": "PASS",
+    "duration": 736,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Create Account",
+    "name": "Page loads at /create-account",
+    "status": "PASS",
+    "duration": 277,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Create Account",
+    "name": "Page title contains Create",
+    "status": "PASS",
+    "duration": 4,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Create Account",
+    "name": "h1 heading present on page",
+    "status": "PASS",
+    "duration": 15,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Create Account",
+    "name": "id=name input field exists",
+    "status": "PASS",
+    "duration": 8,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Create Account",
+    "name": "id=email input field exists",
+    "status": "PASS",
+    "duration": 6,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Create Account",
+    "name": "id=password input field exists",
+    "status": "PASS",
+    "duration": 5,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Create Account",
+    "name": "id=confirm_password input field exists",
+    "status": "PASS",
+    "duration": 11,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Create Account",
+    "name": "id=submitBtn button exists",
+    "status": "PASS",
+    "duration": 8,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Create Account",
+    "name": "id=email-feedback element exists",
+    "status": "PASS",
+    "duration": 8,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Create Account",
+    "name": "id=confirm-feedback element exists",
+    "status": "PASS",
+    "duration": 9,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Create Account",
+    "name": "Password hint text visible",
+    "status": "PASS",
+    "duration": 14,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Create Account",
+    "name": "Password mismatch shows confirm-feedback error",
+    "status": "PASS",
+    "duration": 773,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Create Account",
+    "name": "Matching passwords shows green success feedback",
+    "status": "PASS",
+    "duration": 658,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Create Account",
+    "name": "Login link navigates to /login",
+    "status": "PASS",
+    "duration": 485,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Dashboard Layout",
+    "name": "Page title is PhishGuard Dashboard",
+    "status": "PASS",
+    "duration": 6,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Dashboard Layout",
+    "name": ".dashboard-container exists",
+    "status": "PASS",
+    "duration": 14,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Dashboard Layout",
+    "name": ".sidebar exists",
+    "status": "PASS",
+    "duration": 15,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Dashboard Layout",
+    "name": ".sidebar h2 shows PhishGuard",
+    "status": "PASS",
+    "duration": 32,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Dashboard Layout",
+    "name": ".main-content exists",
+    "status": "PASS",
+    "duration": 20,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Dashboard Layout",
+    "name": ".stats-container exists",
+    "status": "PASS",
+    "duration": 16,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Dashboard Layout",
+    "name": "At least 5 .card elements present",
+    "status": "PASS",
+    "duration": 14,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Dashboard Layout",
+    "name": "SVM Accuracy card shows 98.56%",
+    "status": "PASS",
+    "duration": 38,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Dashboard Layout",
+    "name": "BiLSTM Accuracy card shows 99.10%",
+    "status": "PASS",
+    "duration": 29,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Dashboard Layout",
+    "name": "Total Scans card label exists",
+    "status": "PASS",
+    "duration": 34,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Dashboard Layout",
+    "name": "Threats Detected card label exists",
+    "status": "PASS",
+    "duration": 32,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Dashboard Layout",
+    "name": "Safe Messages card label exists",
+    "status": "PASS",
+    "duration": 36,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Dashboard Layout",
+    "name": ".scanner-section with Analyze heading exists",
+    "status": "PASS",
+    "duration": 32,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Dashboard Layout",
+    "name": "textarea[name=message] present and accepts input",
+    "status": "PASS",
+    "duration": 110,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Dashboard Layout",
+    "name": "Analyze Now submit button present",
+    "status": "PASS",
+    "duration": 12,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Dashboard Layout",
+    "name": ".analytics-section with canvas#threatChart present",
+    "status": "PASS",
+    "duration": 11,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Dashboard Layout",
+    "name": ".alerts-section heading present",
+    "status": "PASS",
+    "duration": 42,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Dashboard Layout",
+    "name": "Three .alert-card elements exist (high/medium/safe)",
+    "status": "PASS",
+    "duration": 12,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "Phishing message scan shows result-box",
+    "status": "PASS",
+    "duration": 940,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "Phishing scan result h2 contains Phishing",
+    "status": "PASS",
+    "duration": 19,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "Risk score shown with % sign",
+    "status": "PASS",
+    "duration": 15,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "Risk score for phishing is >= 70",
+    "status": "PASS",
+    "duration": 13,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "AI Explanation heading present after phishing scan",
+    "status": "PASS",
+    "duration": 18,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "AI Explanation text is non-empty",
+    "status": "PASS",
+    "duration": 15,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "Detected Indicators section present",
+    "status": "PASS",
+    "duration": 13,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "At least one indicator listed for phishing message",
+    "status": "PASS",
+    "duration": 8,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "Result h2 has high-text or safe-text CSS class",
+    "status": "PASS",
+    "duration": 15,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "Safe message scan shows result-box",
+    "status": "PASS",
+    "duration": 1336,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "Safe message result h2 contains Safe",
+    "status": "PASS",
+    "duration": 24,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "Safe message risk score <= 30",
+    "status": "PASS",
+    "duration": 25,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "Safe message h2 has safe-text class",
+    "status": "PASS",
+    "duration": 24,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "AI Engine Status section shows NLP Preprocessing",
+    "status": "PASS",
+    "duration": 36,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "AI Engine Status shows TF-IDF Vectorization",
+    "status": "PASS",
+    "duration": 33,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "/scanner route also loads dashboard",
+    "status": "PASS",
+    "duration": 355,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Threats",
+    "name": "Page URL is /threats",
+    "status": "PASS",
+    "duration": 8,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Threats",
+    "name": ".top-bar h1 contains History",
+    "status": "PASS",
+    "duration": 26,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Threats",
+    "name": ".filter-bar exists",
+    "status": "PASS",
+    "duration": 13,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Threats",
+    "name": "5 filter buttons present (All/Safe/Threat/Today/7days)",
+    "status": "PASS",
+    "duration": 11,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Threats",
+    "name": "All filter button has .active class by default",
+    "status": "PASS",
+    "duration": 18,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Threats",
+    "name": ".history-table-container exists",
+    "status": "PASS",
+    "duration": 9,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Threats",
+    "name": "table.history-table present",
+    "status": "PASS",
+    "duration": 11,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Threats",
+    "name": "Table header has 5 columns",
+    "status": "PASS",
+    "duration": 10,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Threats",
+    "name": "Table header Date & Time column present",
+    "status": "FAIL",
+    "duration": 32,
+    "error": "No Date header",
+    "screenshot": "Threats_Table_header_Date_&_Time_column_present.png"
+  },
+  {
+    "suite": "Threats",
+    "name": "Table header Prediction column present",
+    "status": "FAIL",
+    "duration": 43,
+    "error": "No Prediction header",
+    "screenshot": "Threats_Table_header_Prediction_column_present.png"
+  },
+  {
+    "suite": "Threats",
+    "name": "Clicking Safe filter changes active button",
+    "status": "PASS",
+    "duration": 393,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Threats",
+    "name": "Clicking All filter resets active button",
+    "status": "PASS",
+    "duration": 416,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Threats",
+    "name": "#scanModal exists in DOM",
+    "status": "PASS",
+    "duration": 18,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Threats",
+    "name": "#scanModal hidden by default",
+    "status": "PASS",
+    "duration": 34,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Threats",
+    "name": "Sidebar shows Scan History as active link",
+    "status": "PASS",
+    "duration": 41,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Threats",
+    "name": "Scan History subtitle paragraph present",
+    "status": "PASS",
+    "duration": 43,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Reports",
+    "name": "URL is /reports",
+    "status": "PASS",
+    "duration": 6,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Reports",
+    "name": "h1 says Security Reports",
+    "status": "PASS",
+    "duration": 21,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Reports",
+    "name": ".stats-container present on reports page",
+    "status": "PASS",
+    "duration": 7,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Reports",
+    "name": "At least 3 stat cards on reports page",
+    "status": "PASS",
+    "duration": 9,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Reports",
+    "name": "Total Messages card label present",
+    "status": "PASS",
+    "duration": 17,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Reports",
+    "name": "Threats Detected card label present",
+    "status": "PASS",
+    "duration": 14,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Reports",
+    "name": "Model Performance section visible",
+    "status": "PASS",
+    "duration": 14,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Reports",
+    "name": "SVM Accuracy 98.56% shown",
+    "status": "PASS",
+    "duration": 12,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Reports",
+    "name": "BiLSTM Accuracy 99.10% shown",
+    "status": "PASS",
+    "duration": 17,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Reports",
+    "name": "Sidebar .sidebar present on reports page",
+    "status": "PASS",
+    "duration": 7,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Settings",
+    "name": "URL is /settings",
+    "status": "PASS",
+    "duration": 7,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Settings",
+    "name": "h1 contains Settings",
+    "status": "PASS",
+    "duration": 21,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Settings",
+    "name": "Security Preferences section present",
+    "status": "PASS",
+    "duration": 29,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Settings",
+    "name": "AI Protection Engine Enabled text present",
+    "status": "PASS",
+    "duration": 27,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Settings",
+    "name": "Application Settings section present",
+    "status": "PASS",
+    "duration": 23,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Settings",
+    "name": "Theme Mode : Dark Mode text present",
+    "status": "PASS",
+    "duration": 26,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Settings",
+    "name": "PhishGuard v1.0 version text present",
+    "status": "PASS",
+    "duration": 23,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Settings",
+    "name": "AI Engine Status section present",
+    "status": "PASS",
+    "duration": 23,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Settings",
+    "name": "TF-IDF Vectorizer listed in AI Engine Status",
+    "status": "PASS",
+    "duration": 23,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Settings",
+    "name": "SVM Classification Model listed",
+    "status": "PASS",
+    "duration": 20,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Logout",
+    "name": "/logout redirects to /login",
+    "status": "PASS",
+    "duration": 345,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Logout",
+    "name": "/dashboard after logout goes to /login",
+    "status": "PASS",
+    "duration": 339,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Logout",
+    "name": "/threats after logout goes to /login",
+    "status": "PASS",
+    "duration": 361,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Logout",
+    "name": "/reports after logout goes to /login",
+    "status": "PASS",
+    "duration": 346,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Logout",
+    "name": "/settings after logout goes to /login",
+    "status": "PASS",
+    "duration": 362,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Logout",
+    "name": "/scanner after logout goes to /login",
+    "status": "PASS",
+    "duration": 350,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Logout",
+    "name": "/ after logout goes to /login",
+    "status": "PASS",
+    "duration": 354,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Logout",
+    "name": "Login form visible after logout redirect",
+    "status": "PASS",
+    "duration": 15,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Navigation",
+    "name": "Sidebar has 5 links",
+    "status": "PASS",
+    "duration": 10,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Navigation",
+    "name": "Dashboard link navigates to /dashboard",
+    "status": "PASS",
+    "duration": 779,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Navigation",
+    "name": "Threats link navigates to /threats",
+    "status": "PASS",
+    "duration": 831,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Navigation",
+    "name": "Reports link navigates to /reports",
+    "status": "PASS",
+    "duration": 991,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Navigation",
+    "name": "Settings link navigates to /settings",
+    "status": "PASS",
+    "duration": 1487,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Navigation",
+    "name": "Logout link navigates to /login",
+    "status": "PASS",
+    "duration": 792,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Navigation",
+    "name": "Browser back after logout stays at login",
+    "status": "PASS",
+    "duration": 1412,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Navigation",
+    "name": "Reports sidebar also has Threat History link",
+    "status": "FAIL",
+    "duration": 5375,
+    "error": "no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\".sidebar\"}",
+    "screenshot": "Navigation_Reports_sidebar_also_has_Threat_History_link.png"
+  },
+  {
+    "suite": "Navigation",
+    "name": "Settings sidebar has logout link",
+    "status": "FAIL",
+    "duration": 5375,
+    "error": "Logout link not in sidebar",
+    "screenshot": "Navigation_Settings_sidebar_has_logout_link.png"
+  },
+  {
+    "suite": "Navigation",
+    "name": "Threats sidebar has Reports link",
+    "status": "FAIL",
+    "duration": 5397,
+    "error": "Reports link missing from threats sidebar",
+    "screenshot": "Navigation_Threats_sidebar_has_Reports_link.png"
+  },
+  {
+    "suite": "UI",
+    "name": "Login card background is dark (not white)",
+    "status": "PASS",
+    "duration": 369,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "UI",
+    "name": "Login page has no horizontal scrollbar at 1400px",
+    "status": "PASS",
+    "duration": 35,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "UI",
+    "name": "Dashboard sidebar width is 250px",
+    "status": "PASS",
+    "duration": 1131,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "UI",
+    "name": "Stats cards use flex layout",
+    "status": "PASS",
+    "duration": 5,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "UI",
+    "name": "Body background color is dark blue",
+    "status": "PASS",
+    "duration": 5,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "UI",
+    "name": "Chart.js canvas has non-zero dimensions",
+    "status": "PASS",
+    "duration": 4,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "UI",
+    "name": "Sidebar links have no underline decoration",
+    "status": "PASS",
+    "duration": 4,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "UI",
+    "name": "Result box not present before any scan",
+    "status": "PASS",
+    "duration": 5406,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Multiple Scans",
+    "name": "Scan: \"Your OTP is 4523. Verify your bank accou...\" → Phishing",
+    "status": "PASS",
+    "duration": 1214,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Multiple Scans",
+    "name": "Scan: \"Winner! Click here to claim your prize m...\" → Phishing",
+    "status": "PASS",
+    "duration": 1127,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Multiple Scans",
+    "name": "Scan: \"Please login to your account urgently. V...\" → Phishing",
+    "status": "PASS",
+    "duration": 1179,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Multiple Scans",
+    "name": "Scan: \"Hey, how are you? Let me know if you are...\" → Safe",
+    "status": "PASS",
+    "duration": 1126,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Multiple Scans",
+    "name": "Scan: \"Reminder: your dentist appointment is at...\" → Safe",
+    "status": "PASS",
+    "duration": 1091,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Multiple Scans",
+    "name": "Scan: \"Your Amazon package has been delivered t...\" → Safe",
+    "status": "PASS",
+    "duration": 1140,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Multiple Scans",
+    "name": "Stats total_scans counter increments after scan",
+    "status": "PASS",
+    "duration": 501,
+    "error": "",
+    "screenshot": ""
+  },
+  {
+    "suite": "Multiple Scans",
+    "name": "Threats page shows at least one row after scans",
+    "status": "PASS",
+    "duration": 353,
+    "error": "",
+    "screenshot": ""
+  }
+]

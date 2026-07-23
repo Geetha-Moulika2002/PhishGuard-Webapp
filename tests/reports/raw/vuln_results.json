@@ -1,0 +1,302 @@
+[
+  {
+    "suite": "Auth Enforcement",
+    "name": "/dashboard without session returns 302",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "HTTP 302 ✓",
+    "recommendation": "",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/dashboard 302 Location points to /login",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 5,
+    "detail": "→ /login ✓",
+    "recommendation": "",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/threats without session returns 302",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 3,
+    "detail": "HTTP 302 ✓",
+    "recommendation": "",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/threats 302 Location points to /login",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 3,
+    "detail": "→ /login ✓",
+    "recommendation": "",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/reports without session returns 302",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 3,
+    "detail": "HTTP 302 ✓",
+    "recommendation": "",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/reports 302 Location points to /login",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 5,
+    "detail": "→ /login ✓",
+    "recommendation": "",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/settings without session returns 302",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 5,
+    "detail": "HTTP 302 ✓",
+    "recommendation": "",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/settings 302 Location points to /login",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 3,
+    "detail": "→ /login ✓",
+    "recommendation": "",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/scanner without session returns 302",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "HTTP 302 ✓",
+    "recommendation": "",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/scanner 302 Location points to /login",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "→ /login ✓",
+    "recommendation": "",
+    "error": ""
+  },
+  {
+    "suite": "Sensitive Data",
+    "name": "Login error response does not echo password back",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 169,
+    "detail": "password not reflected ✓",
+    "recommendation": "",
+    "error": ""
+  },
+  {
+    "suite": "Sensitive Data",
+    "name": "Login error response does not expose stack trace",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 102,
+    "detail": "no stack trace ✓",
+    "recommendation": "",
+    "error": ""
+  },
+  {
+    "suite": "Sensitive Data",
+    "name": "GET /login response does not contain firebase-key",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 8,
+    "detail": "no private keys ✓",
+    "recommendation": "",
+    "error": ""
+  },
+  {
+    "suite": "Sensitive Data",
+    "name": "GET /dashboard (unauth) body does not expose user data",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 10,
+    "detail": "no user data exposed ✓",
+    "recommendation": "",
+    "error": ""
+  },
+  {
+    "suite": "Sensitive Data",
+    "name": "GET /login body does not expose secret_key",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 9,
+    "detail": "no secret key ✓",
+    "recommendation": "",
+    "error": ""
+  },
+  {
+    "suite": "Sensitive Data",
+    "name": "GET /create-account does not expose any Firestore credentials",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 10,
+    "detail": "no credentials ✓",
+    "recommendation": "",
+    "error": ""
+  },
+  {
+    "suite": "Sensitive Data",
+    "name": "POST /login response has Set-Cookie with HttpOnly-compatible session",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 392,
+    "detail": "session cookie present ✓",
+    "recommendation": "",
+    "error": ""
+  },
+  {
+    "suite": "Sensitive Data",
+    "name": "Wrong login does not reveal if email exists or not in generic msg",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 173,
+    "detail": "handled gracefully ✓",
+    "recommendation": "",
+    "error": ""
+  },
+  {
+    "suite": "Sensitive Data",
+    "name": "GET /threats (unauth) does not return user scan history",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 8,
+    "detail": "protected ✓",
+    "recommendation": "",
+    "error": ""
+  },
+  {
+    "suite": "Sensitive Data",
+    "name": "Server does not return 500 on empty login POST",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 11,
+    "detail": "HTTP 200 ✓",
+    "recommendation": "",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "GET / always redirects to /login not external",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 9,
+    "detail": "redirect to: /login ✓",
+    "recommendation": "",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "GET /logout always redirects to /login not external",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 9,
+    "detail": "redirect to: /login ✓",
+    "recommendation": "",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "POST /check-email with garbage input returns 200 not 500",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 71,
+    "detail": "HTTP 200 ✓",
+    "recommendation": "",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "Very long email in /check-email does not crash server",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 109,
+    "detail": "HTTP 200 ✓",
+    "recommendation": "",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "POST /login with very long email does not crash server",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 103,
+    "detail": "HTTP 200 ✓",
+    "recommendation": "",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "POST /login with numeric-only password does not crash",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 101,
+    "detail": "HTTP 200 ✓",
+    "recommendation": "",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "POST /check-email with null body does not crash",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 8,
+    "detail": "HTTP 200 ✓",
+    "recommendation": "",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "GET /login body contains no Python import statements",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 9,
+    "detail": "no Python imports ✓",
+    "recommendation": "",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "GET /create-account body does not contain app.secret_key",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 8,
+    "detail": "no secret_key ✓",
+    "recommendation": "",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "Protected pages with invalid cookie still return 302",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 6,
+    "detail": "HTTP 302 ✓",
+    "recommendation": "",
+    "error": ""
+  }
+]

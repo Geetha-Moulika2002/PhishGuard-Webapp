@@ -1,0 +1,160 @@
+# ============================================================
+# PhishGuard — Artillery Load Test Configuration
+# Tests: All major routes under realistic & spike load
+# ============================================================
+
+config:
+  target: "http://localhost:5000"
+  phases:
+    # Phase 1 — Warm up (gentle ramp)
+    - name: "Warm Up"
+      duration: 20
+      arrivalRate: 2
+      rampTo: 5
+
+    # Phase 2 — Sustained load
+    - name: "Sustained Load"
+      duration: 40
+      arrivalRate: 10
+
+    # Phase 3 — Spike test
+    - name: "Spike"
+      duration: 15
+      arrivalRate: 30
+
+    # Phase 4 — Cool down
+    - name: "Cool Down"
+      duration: 15
+      arrivalRate: 2
+
+  defaults:
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+      Accept: "text/html,application/json"
+
+  # Thresholds — test fails if these are breached
+  ensure:
+    p99: 3000       # 99th percentile response < 3s
+    maxErrorRate: 10 # error rate < 10%
+
+  plugins:
+    expect: {}
+
+scenarios:
+  # ── Scenario 1: Public pages (no auth) ──────────────────
+  - name: "Public Pages Load"
+    weight: 20
+    flow:
+      - get:
+          url: "/login"
+          expect:
+            - statusCode: 200
+      - think: 1
+      - get:
+          url: "/create-account"
+          expect:
+            - statusCode: 200
+      - think: 1
+
+  # ── Scenario 2: Login flow ───────────────────────────────
+  - name: "Login Flow"
+    weight: 25
+    flow:
+      - get:
+          url: "/login"
+      - think: 1
+      - post:
+          url: "/login"
+          form:
+            email: "testuser@phishguard.com"
+            password: "Test@1234"
+          expect:
+            - statusCode:
+                - 200
+                - 302
+
+  # ── Scenario 3: Failed login (wrong creds) ───────────────
+  - name: "Failed Login Attempts"
+    weight: 10
+    flow:
+      - post:
+          url: "/login"
+          form:
+            email: "wrong@test.com"
+            password: "wrongpassword"
+          expect:
+            - statusCode: 200
+
+  # ── Scenario 4: Create account page load ────────────────
+  - name: "Create Account Page"
+    weight: 10
+    flow:
+      - get:
+          url: "/create-account"
+          expect:
+            - statusCode: 200
+      - think: 2
+      - post:
+          url: "/check-email"
+          json:
+            email: "loadtest@phishguard.com"
+          expect:
+            - statusCode: 200
+
+  # ── Scenario 5: check-email API hammering ───────────────
+  - name: "Check Email API"
+    weight: 15
+    flow:
+      - post:
+          url: "/check-email"
+          json:
+            email: "testuser@phishguard.com"
+          expect:
+            - statusCode: 200
+      - think: 0.5
+      - post:
+          url: "/check-email"
+          json:
+            email: "nonexistent@fake.com"
+          expect:
+            - statusCode: 200
+
+  # ── Scenario 6: Protected routes without session ────────
+  - name: "Unauthenticated Protected Routes"
+    weight: 10
+    flow:
+      - get:
+          url: "/dashboard"
+          expect:
+            - statusCode:
+                - 302
+                - 200
+      - get:
+          url: "/threats"
+          expect:
+            - statusCode:
+                - 302
+                - 200
+      - get:
+          url: "/reports"
+          expect:
+            - statusCode:
+                - 302
+                - 200
+
+  # ── Scenario 7: Root and logout ─────────────────────────
+  - name: "Root and Logout"
+    weight: 10
+    flow:
+      - get:
+          url: "/"
+          expect:
+            - statusCode:
+                - 302
+                - 200
+      - get:
+          url: "/logout"
+          expect:
+            - statusCode:
+                - 302
+                - 200

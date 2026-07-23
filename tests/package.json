@@ -1,0 +1,26 @@
+{
+  "name": "phishguard-tests",
+  "version": "2.0.0",
+  "description": "Complete 300-test suite for PhishGuard — E2E, Unit, Validation, Load Time, Vulnerability, Artillery",
+  "main": "run_all_tests.js",
+  "scripts": {
+    "test":          "node run_all_tests.js",
+    "test:all":      "node run_all_tests.js",
+    "test:e2e":      "node selenium/e2e_tests.js",
+    "test:unit":     "node unit/unit_tests.js",
+    "test:validate": "node validation/validation_tests.js",
+    "test:loadtime": "node loadtime/loadtime_tests.js",
+    "test:vuln":     "node vulnerability/vuln_tests.js",
+    "test:load":     "npx artillery run load/load_test.yml --output reports/raw/load_results.json",
+    "report":        "node reports/generate_report.js"
+  },
+  "dependencies": {
+    "selenium-webdriver": "^4.18.1",
+    "exceljs":            "^4.4.0",
+    "axios":              "^1.7.2",
+    "artillery":          "^2.0.15",
+    "chromedriver":       "^124.0.1",
+    "chalk":              "^4.1.2",
+    "fs-extra":           "^11.2.0"
+  }
+}

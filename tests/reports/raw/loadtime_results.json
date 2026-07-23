@@ -1,0 +1,322 @@
+[
+  {
+    "suite": "Response Time",
+    "name": "GET /login responds within 3000ms",
+    "status": "PASS",
+    "duration": 6,
+    "detail": "6ms",
+    "error": ""
+  },
+  {
+    "suite": "Response Time",
+    "name": "GET /create-account responds within 3000ms",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "5ms",
+    "error": ""
+  },
+  {
+    "suite": "Response Time",
+    "name": "GET / (root redirect) within 1500ms",
+    "status": "PASS",
+    "duration": 9,
+    "detail": "8ms",
+    "error": ""
+  },
+  {
+    "suite": "Response Time",
+    "name": "GET /dashboard (unauth) redirect within 1500ms",
+    "status": "PASS",
+    "duration": 10,
+    "detail": "9ms",
+    "error": ""
+  },
+  {
+    "suite": "Response Time",
+    "name": "GET /logout redirect within 1500ms",
+    "status": "PASS",
+    "duration": 7,
+    "detail": "7ms",
+    "error": ""
+  },
+  {
+    "suite": "Response Time",
+    "name": "GET /dashboard (auth) within 3000ms",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "No session",
+    "error": "No session"
+  },
+  {
+    "suite": "Response Time",
+    "name": "GET /threats (auth) within 3000ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "No session",
+    "error": "No session"
+  },
+  {
+    "suite": "Response Time",
+    "name": "GET /reports (auth) within 3000ms",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "No session",
+    "error": "No session"
+  },
+  {
+    "suite": "Response Time",
+    "name": "GET /settings (auth) within 3000ms",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "No session",
+    "error": "No session"
+  },
+  {
+    "suite": "Response Time",
+    "name": "POST /check-email within 3000ms",
+    "status": "PASS",
+    "duration": 97,
+    "detail": "97ms",
+    "error": ""
+  },
+  {
+    "suite": "Response Time",
+    "name": "POST /login (wrong creds) within 3000ms",
+    "status": "PASS",
+    "duration": 82,
+    "detail": "82ms",
+    "error": ""
+  },
+  {
+    "suite": "Response Time",
+    "name": "POST /dashboard scan within 5000ms",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "No session",
+    "error": "No session"
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/login TTFB < 2000ms",
+    "status": "PASS",
+    "duration": 664,
+    "detail": "TTFB: 307ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/login DOM Content Loaded < 5000ms",
+    "status": "PASS",
+    "duration": 38,
+    "detail": "DCL: 11ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/login Page Load < 8000ms",
+    "status": "PASS",
+    "duration": 303,
+    "detail": "Load: 281ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/create-account TTFB < 2000ms",
+    "status": "PASS",
+    "duration": 44,
+    "detail": "TTFB: 4ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/create-account DOM Content Loaded < 5000ms",
+    "status": "PASS",
+    "duration": 307,
+    "detail": "DCL: 279ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/dashboard DOM Interactive < 5000ms",
+    "status": "PASS",
+    "duration": 421,
+    "detail": "domInteractive: 378ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/dashboard Page Load < 8000ms",
+    "status": "PASS",
+    "duration": 401,
+    "detail": "Load: 366ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/threats Page Load < 8000ms",
+    "status": "PASS",
+    "duration": 379,
+    "detail": "Load: 345ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/reports Page Load < 8000ms",
+    "status": "PASS",
+    "duration": 360,
+    "detail": "Load: 321ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/settings Page Load < 8000ms",
+    "status": "PASS",
+    "duration": 547,
+    "detail": "Load: 461ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/dashboard DOM load is positive (page actually loaded)",
+    "status": "PASS",
+    "duration": 427,
+    "detail": "domLoad: 399ms > 0 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "navigationStart is a valid timestamp",
+    "status": "PASS",
+    "duration": 792,
+    "detail": "navigationStart: 1784819723292",
+    "error": ""
+  },
+  {
+    "suite": "Concurrency",
+    "name": "5 concurrent GET /login requests all return 200",
+    "status": "PASS",
+    "duration": 13,
+    "detail": "5/5 returned 200 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Concurrency",
+    "name": "10 concurrent GET /login all return 200",
+    "status": "PASS",
+    "duration": 32,
+    "detail": "10/10 returned 200 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Concurrency",
+    "name": "5 concurrent /check-email calls all return 200",
+    "status": "PASS",
+    "duration": 148,
+    "detail": "5/5 returned 200 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Concurrency",
+    "name": "5 concurrent GET /dashboard (unauth) all return 302",
+    "status": "FAIL",
+    "duration": 36,
+    "detail": "5 non-302",
+    "error": "5 non-302"
+  },
+  {
+    "suite": "Concurrency",
+    "name": "3 concurrent auth dashboard requests return 200",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "No session",
+    "error": "No session"
+  },
+  {
+    "suite": "Concurrency",
+    "name": "5 concurrent GET /reports all respond",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "No session",
+    "error": "No session"
+  },
+  {
+    "suite": "Concurrency",
+    "name": "10 concurrent /check-email all return valid JSON",
+    "status": "PASS",
+    "duration": 120,
+    "detail": "10/10 returned valid JSON ✓",
+    "error": ""
+  },
+  {
+    "suite": "Concurrency",
+    "name": "No 500 errors across 20 mixed concurrent requests",
+    "status": "PASS",
+    "duration": 77,
+    "detail": "20/20 no 5xx ✓",
+    "error": ""
+  },
+  {
+    "suite": "Resource Size",
+    "name": "GET /login response body < 100KB",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "8.3KB",
+    "error": ""
+  },
+  {
+    "suite": "Resource Size",
+    "name": "GET /create-account response body < 100KB",
+    "status": "PASS",
+    "duration": 8,
+    "detail": "13.5KB",
+    "error": ""
+  },
+  {
+    "suite": "Resource Size",
+    "name": "GET /login response body > 1KB (not empty)",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "8.3KB > 1KB ✓",
+    "error": ""
+  },
+  {
+    "suite": "Resource Size",
+    "name": "GET /create-account response body > 2KB",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "13.5KB > 2KB ✓",
+    "error": ""
+  },
+  {
+    "suite": "Resource Size",
+    "name": "POST /check-email response < 200 bytes",
+    "status": "PASS",
+    "duration": 107,
+    "detail": "16 bytes",
+    "error": ""
+  },
+  {
+    "suite": "Resource Size",
+    "name": "GET /login includes Chart.js CDN link",
+    "status": "PASS",
+    "duration": 431,
+    "detail": "skipped — no session",
+    "error": ""
+  },
+  {
+    "suite": "Resource Size",
+    "name": "GET /login HTML contains DOCTYPE declaration",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "DOCTYPE ✓",
+    "error": ""
+  },
+  {
+    "suite": "Resource Size",
+    "name": "GET /create-account HTML contains DOCTYPE declaration",
+    "status": "PASS",
+    "duration": 4,
+    "detail": "DOCTYPE ✓",
+    "error": ""
+  }
+]

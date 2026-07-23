@@ -1,0 +1,274 @@
+{
+  "runAt": "2026-07-23T15:18:09.233Z",
+  "exitCode": 0,
+  "totalRequests": 950,
+  "totalCompleted": 950,
+  "totalFailed": 0,
+  "errorRate": "0.00%",
+  "httpCodes": {
+    "200": 1896,
+    "302": 455,
+    "2xx": 1896,
+    "3xx": 455
+  },
+  "responseTime": {
+    "min": 1,
+    "mean": 15.9,
+    "p50": 3,
+    "p95": 100.5,
+    "p99": 153,
+    "max": 211
+  },
+  "requestsPerSecond": 32,
+  "thresholds": [
+    {
+      "name": "P99 response time < 3000ms",
+      "value": 153,
+      "threshold": 3000,
+      "unit": "ms",
+      "pass": true
+    },
+    {
+      "name": "P95 response time < 2000ms",
+      "value": 100.5,
+      "threshold": 2000,
+      "unit": "ms",
+      "pass": true
+    },
+    {
+      "name": "Mean response time < 1000ms",
+      "value": 15.9,
+      "threshold": 1000,
+      "unit": "ms",
+      "pass": true
+    },
+    {
+      "name": "Error rate < 10%",
+      "value": "0.00",
+      "threshold": 10,
+      "unit": "%",
+      "pass": true
+    },
+    {
+      "name": "5xx server errors = 0",
+      "value": 0,
+      "threshold": 0,
+      "unit": "req",
+      "pass": true
+    }
+  ],
+  "phases": [
+    {
+      "phase": 1,
+      "name": "Phase 1",
+      "requests": 22,
+      "p50": 3,
+      "p95": 37.7,
+      "p99": 130.3,
+      "errors5xx": 0
+    },
+    {
+      "phase": 2,
+      "name": "Phase 2",
+      "requests": 91,
+      "p50": 3,
+      "p95": 53,
+      "p99": 135.7,
+      "errors5xx": 0
+    },
+    {
+      "phase": 3,
+      "name": "Phase 3",
+      "requests": 154,
+      "p50": 3,
+      "p95": 87.4,
+      "p99": 130.3,
+      "errors5xx": 0
+    },
+    {
+      "phase": 4,
+      "name": "Phase 4",
+      "requests": 261,
+      "p50": 3,
+      "p95": 113.3,
+      "p99": 149.9,
+      "errors5xx": 0
+    },
+    {
+      "phase": 5,
+      "name": "Phase 5",
+      "requests": 231,
+      "p50": 3,
+      "p95": 117.9,
+      "p99": 144,
+      "errors5xx": 0
+    },
+    {
+      "phase": 6,
+      "name": "Phase 6",
+      "requests": 260,
+      "p50": 3,
+      "p95": 100.5,
+      "p99": 138.4,
+      "errors5xx": 0
+    },
+    {
+      "phase": 7,
+      "name": "Phase 7",
+      "requests": 433,
+      "p50": 3,
+      "p95": 96.6,
+      "p99": 138.4,
+      "errors5xx": 0
+    },
+    {
+      "phase": 8,
+      "name": "Phase 8",
+      "requests": 735,
+      "p50": 3,
+      "p95": 94.6,
+      "p99": 162.4,
+      "errors5xx": 0
+    },
+    {
+      "phase": 9,
+      "name": "Phase 9",
+      "requests": 136,
+      "p50": 3,
+      "p95": 74.4,
+      "p99": 120.3,
+      "errors5xx": 0
+    },
+    {
+      "phase": 10,
+      "name": "Phase 10",
+      "requests": 28,
+      "p50": 4,
+      "p95": 96.6,
+      "p99": 153,
+      "errors5xx": 0
+    }
+  ],
+  "testCases": [
+    {
+      "suite": "Load Test — Thresholds",
+      "name": "P99 response time < 3000ms",
+      "status": "PASS",
+      "value": "153 ms",
+      "threshold": "3000 ms",
+      "detail": "Within threshold (153 ms)"
+    },
+    {
+      "suite": "Load Test — Thresholds",
+      "name": "P95 response time < 2000ms",
+      "status": "PASS",
+      "value": "100.5 ms",
+      "threshold": "2000 ms",
+      "detail": "Within threshold (100.5 ms)"
+    },
+    {
+      "suite": "Load Test — Thresholds",
+      "name": "Mean response time < 1000ms",
+      "status": "PASS",
+      "value": "15.9 ms",
+      "threshold": "1000 ms",
+      "detail": "Within threshold (15.9 ms)"
+    },
+    {
+      "suite": "Load Test — Thresholds",
+      "name": "Error rate < 10%",
+      "status": "PASS",
+      "value": "0.00 %",
+      "threshold": "10 %",
+      "detail": "Within threshold (0.00 %)"
+    },
+    {
+      "suite": "Load Test — Thresholds",
+      "name": "5xx server errors = 0",
+      "status": "PASS",
+      "value": "0 req",
+      "threshold": "0 req",
+      "detail": "Within threshold (0 req)"
+    },
+    {
+      "suite": "Load Test — Phases",
+      "name": "Phase 1: Phase 1",
+      "status": "PASS",
+      "value": "p99=130.3ms, 5xx=0",
+      "threshold": "p99<=3000ms, 5xx=0",
+      "detail": "Requests: 22, p50: 3ms, p95: 37.7ms, p99: 130.3ms"
+    },
+    {
+      "suite": "Load Test — Phases",
+      "name": "Phase 2: Phase 2",
+      "status": "PASS",
+      "value": "p99=135.7ms, 5xx=0",
+      "threshold": "p99<=3000ms, 5xx=0",
+      "detail": "Requests: 91, p50: 3ms, p95: 53ms, p99: 135.7ms"
+    },
+    {
+      "suite": "Load Test — Phases",
+      "name": "Phase 3: Phase 3",
+      "status": "PASS",
+      "value": "p99=130.3ms, 5xx=0",
+      "threshold": "p99<=3000ms, 5xx=0",
+      "detail": "Requests: 154, p50: 3ms, p95: 87.4ms, p99: 130.3ms"
+    },
+    {
+      "suite": "Load Test — Phases",
+      "name": "Phase 4: Phase 4",
+      "status": "PASS",
+      "value": "p99=149.9ms, 5xx=0",
+      "threshold": "p99<=3000ms, 5xx=0",
+      "detail": "Requests: 261, p50: 3ms, p95: 113.3ms, p99: 149.9ms"
+    },
+    {
+      "suite": "Load Test — Phases",
+      "name": "Phase 5: Phase 5",
+      "status": "PASS",
+      "value": "p99=144ms, 5xx=0",
+      "threshold": "p99<=3000ms, 5xx=0",
+      "detail": "Requests: 231, p50: 3ms, p95: 117.9ms, p99: 144ms"
+    },
+    {
+      "suite": "Load Test — Phases",
+      "name": "Phase 6: Phase 6",
+      "status": "PASS",
+      "value": "p99=138.4ms, 5xx=0",
+      "threshold": "p99<=3000ms, 5xx=0",
+      "detail": "Requests: 260, p50: 3ms, p95: 100.5ms, p99: 138.4ms"
+    },
+    {
+      "suite": "Load Test — Phases",
+      "name": "Phase 7: Phase 7",
+      "status": "PASS",
+      "value": "p99=138.4ms, 5xx=0",
+      "threshold": "p99<=3000ms, 5xx=0",
+      "detail": "Requests: 433, p50: 3ms, p95: 96.6ms, p99: 138.4ms"
+    },
+    {
+      "suite": "Load Test — Phases",
+      "name": "Phase 8: Phase 8",
+      "status": "PASS",
+      "value": "p99=162.4ms, 5xx=0",
+      "threshold": "p99<=3000ms, 5xx=0",
+      "detail": "Requests: 735, p50: 3ms, p95: 94.6ms, p99: 162.4ms"
+    },
+    {
+      "suite": "Load Test — Phases",
+      "name": "Phase 9: Phase 9",
+      "status": "PASS",
+      "value": "p99=120.3ms, 5xx=0",
+      "threshold": "p99<=3000ms, 5xx=0",
+      "detail": "Requests: 136, p50: 3ms, p95: 74.4ms, p99: 120.3ms"
+    },
+    {
+      "suite": "Load Test — Phases",
+      "name": "Phase 10: Phase 10",
+      "status": "PASS",
+      "value": "p99=153ms, 5xx=0",
+      "threshold": "p99<=3000ms, 5xx=0",
+      "detail": "Requests: 28, p50: 4ms, p95: 96.6ms, p99: 153ms"
+    }
+  ]
+}

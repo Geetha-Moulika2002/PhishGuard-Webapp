@@ -1,0 +1,204 @@
+# ============================================================
+# PhishGuard — GitHub Actions CI/CD Test Workflow
+# Runs on every push and pull request to main/master
+# Steps:
+#   1. Start Flask app (Python)
+#   2. Install Node.js test dependencies
+#   3. Run Unit Tests
+#   4. Run Validation Tests  (Selenium headless Chrome)
+#   5. Run Load Time Tests
+#   6. Run Vulnerability Tests
+#   7. Run E2E Tests          (Selenium headless Chrome)
+#   8. Run Artillery Load Tests
+#   9. Generate Excel Report
+#  10. Upload report as artifact
+# ============================================================
+
+name: PhishGuard Full Test Suite
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:       # allow manual trigger from GitHub UI
+
+jobs:
+  test:
+    name: Run All Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    # ── environment variables ──────────────────────────────
+    env:
+      FLASK_ENV: testing
+      PYTHONDONTWRITEBYTECODE: 1
+      BASE_URL: http://localhost:5000
+
+    steps:
+
+      # ── 1. Checkout code ───────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── 2. Set up Python ───────────────────────────────────
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      # ── 3. Install Python dependencies ────────────────────
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      # ── 4. Create Firebase key placeholder ────────────────
+      #       (real key must be stored as a GitHub Secret)
+      - name: Write Firebase key from secret
+        env:
+          FIREBASE_KEY: ${{ secrets.FIREBASE_KEY }}
+        run: |
+          if [ -n "$FIREBASE_KEY" ]; then
+            echo "$FIREBASE_KEY" > firebase-key.json
+            echo "Firebase key written from secret"
+          else
+            echo "⚠️  FIREBASE_KEY secret not set — Firebase-dependent tests may fail"
+            echo '{"type":"service_account","project_id":"placeholder"}' > firebase-key.json
+          fi
+
+      # ── 5. Start Flask app in background ──────────────────
+      - name: Start Flask application
+        run: |
+          python app.py &
+          echo "Flask PID: $!"
+          # wait up to 30s for the server to become ready
+          for i in $(seq 1 30); do
+            if curl -s http://localhost:5000/login > /dev/null; then
+              echo "✅ Flask is up after ${i}s"
+              break
+            fi
+            echo "Waiting for Flask... (${i}s)"
+            sleep 1
+          done
+
+      # ── 6. Set up Node.js ──────────────────────────────────
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: tests/package.json
+
+      # ── 7. Install Node dependencies ──────────────────────
+      - name: Install Node.js test dependencies
+        working-directory: tests
+        run: npm install
+
+      # ── 8. Set up Chrome for Selenium ─────────────────────
+      - name: Set up Chrome browser
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+
+      - name: Verify Chrome installation
+        run: |
+          google-chrome --version || chromium-browser --version || echo "Chrome version check done"
+
+      # ── 9. Run Unit Tests ──────────────────────────────────
+      - name: Run Unit Tests (60 tests)
+        working-directory: tests
+        run: node unit/unit_tests.js
+        continue-on-error: true      # collect results even if some fail
+
+      # ── 10. Run Validation Tests ───────────────────────────
+      - name: Run Validation Tests (50 tests)
+        working-directory: tests
+        run: node validation/validation_tests.js
+        continue-on-error: true
+
+      # ── 11. Run Load Time Tests ────────────────────────────
+      - name: Run Load Time Tests (40 tests)
+        working-directory: tests
+        run: node loadtime/loadtime_tests.js
+        continue-on-error: true
+
+      # ── 12. Run Vulnerability Tests ────────────────────────
+      - name: Run Vulnerability Tests (30 tests)
+        working-directory: tests
+        run: node vulnerability/vuln_tests.js
+        continue-on-error: true
+
+      # ── 13. Run Selenium E2E Tests ─────────────────────────
+      - name: Run Selenium E2E Tests (120 tests)
+        working-directory: tests
+        run: node selenium/e2e_tests.js
+        continue-on-error: true
+        env:
+          DISPLAY: :99          # headless Chrome needs a display
+
+      # ── 14. Run Artillery Load Tests ───────────────────────
+      - name: Run Artillery Load Tests
+        working-directory: tests
+        run: npm run test:load
+        continue-on-error: true
+
+      # ── 15. Generate Excel Report ──────────────────────────
+      - name: Generate Excel Test Report
+        working-directory: tests
+        run: node reports/generate_report.js
+
+      # ── 16. Upload Excel report as artifact ───────────────
+      - name: Upload Test Report
+        uses: actions/upload-artifact@v4
+        if: always()             # upload even if tests fail
+        with:
+          name: PhishGuard-Test-Report-${{ github.run_number }}
+          path: |
+            tests/reports/PhishGuard_Test_Report.xlsx
+            tests/reports/raw/*.json
+            tests/reports/raw/screenshots/
+          retention-days: 30
+
+      # ── 17. Upload raw JSON results ────────────────────────
+      - name: Upload Raw JSON Results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: raw-test-results-${{ github.run_number }}
+          path: tests/reports/raw/
+          retention-days: 14
+
+      # ── 18. Print summary to Actions log ──────────────────
+      - name: Print Test Summary
+        if: always()
+        working-directory: tests
+        run: |
+          echo "================================================"
+          echo "  PhishGuard Test Suite — Run #${{ github.run_number }}"
+          echo "  Branch : ${{ github.ref_name }}"
+          echo "  Commit : ${{ github.sha }}"
+          echo "================================================"
+          node -e "
+            const fs = require('fs');
+            const files = {
+              'Unit':        'reports/raw/unit_results.json',
+              'Validation':  'reports/raw/validation_results.json',
+              'Load Time':   'reports/raw/loadtime_results.json',
+              'Vuln':        'reports/raw/vuln_results.json',
+              'E2E':         'reports/raw/e2e_results.json',
+            };
+            let gPass = 0, gFail = 0;
+            for (const [name, file] of Object.entries(files)) {
+              if (!fs.existsSync(file)) { console.log(name + ': no results file'); continue; }
+              const data = JSON.parse(fs.readFileSync(file));
+              const pass = data.filter(r => r.status === 'PASS').length;
+              const fail = data.filter(r => r.status === 'FAIL').length;
+              gPass += pass; gFail += fail;
+              const rate = data.length > 0 ? ((pass / data.length) * 100).toFixed(1) : 0;
+              console.log(name.padEnd(12) + ': ' + pass + ' PASS | ' + fail + ' FAIL | ' + rate + '%');
+            }
+            const total = gPass + gFail;
+            const rate = total > 0 ? ((gPass / total) * 100).toFixed(1) : 0;
+            console.log('------------------------------------------------');
+            console.log('TOTAL       : ' + gPass + ' PASS | ' + gFail + ' FAIL | ' + rate + '%');
+          "

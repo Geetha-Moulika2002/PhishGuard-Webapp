@@ -1,0 +1,498 @@
+[
+  {
+    "suite": "Routes",
+    "name": "GET /login returns HTTP 200",
+    "status": "PASS",
+    "duration": 10,
+    "detail": "HTTP 200",
+    "error": ""
+  },
+  {
+    "suite": "Routes",
+    "name": "GET /create-account returns HTTP 200",
+    "status": "PASS",
+    "duration": 9,
+    "detail": "HTTP 200",
+    "error": ""
+  },
+  {
+    "suite": "Routes",
+    "name": "GET / returns HTTP 302",
+    "status": "PASS",
+    "duration": 7,
+    "detail": "HTTP 302",
+    "error": ""
+  },
+  {
+    "suite": "Routes",
+    "name": "GET / Location header points to /login",
+    "status": "PASS",
+    "duration": 7,
+    "detail": "Location: /login",
+    "error": ""
+  },
+  {
+    "suite": "Routes",
+    "name": "GET /dashboard without auth returns 302",
+    "status": "PASS",
+    "duration": 7,
+    "detail": "HTTP 302",
+    "error": ""
+  },
+  {
+    "suite": "Routes",
+    "name": "GET /threats without auth returns 302",
+    "status": "PASS",
+    "duration": 6,
+    "detail": "HTTP 302",
+    "error": ""
+  },
+  {
+    "suite": "Routes",
+    "name": "GET /reports without auth returns 302",
+    "status": "PASS",
+    "duration": 6,
+    "detail": "HTTP 302",
+    "error": ""
+  },
+  {
+    "suite": "Routes",
+    "name": "GET /settings without auth returns 302",
+    "status": "PASS",
+    "duration": 7,
+    "detail": "HTTP 302",
+    "error": ""
+  },
+  {
+    "suite": "Routes",
+    "name": "GET /scanner without auth returns 302",
+    "status": "PASS",
+    "duration": 7,
+    "detail": "HTTP 302",
+    "error": ""
+  },
+  {
+    "suite": "Routes",
+    "name": "GET /logout returns 302",
+    "status": "PASS",
+    "duration": 6,
+    "detail": "HTTP 302",
+    "error": ""
+  },
+  {
+    "suite": "Routes",
+    "name": "GET /logout Location header points to /login",
+    "status": "PASS",
+    "duration": 6,
+    "detail": "Location: /login",
+    "error": ""
+  },
+  {
+    "suite": "Routes",
+    "name": "GET unknown route returns 404 or 302",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "HTTP 404",
+    "error": ""
+  },
+  {
+    "suite": "Headers",
+    "name": "GET /login Content-Type is text/html",
+    "status": "PASS",
+    "duration": 4,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Headers",
+    "name": "GET /create-account Content-Type is text/html",
+    "status": "PASS",
+    "duration": 6,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Headers",
+    "name": "POST /check-email returns Content-Type application/json",
+    "status": "PASS",
+    "duration": 582,
+    "detail": "application/json",
+    "error": ""
+  },
+  {
+    "suite": "Headers",
+    "name": "GET /login response body > 1KB",
+    "status": "PASS",
+    "duration": 7,
+    "detail": "8.3KB",
+    "error": ""
+  },
+  {
+    "suite": "Headers",
+    "name": "GET /create-account body contains <form tag",
+    "status": "PASS",
+    "duration": 13,
+    "detail": "form tag found",
+    "error": ""
+  },
+  {
+    "suite": "Headers",
+    "name": "GET /login body contains PhishGuard",
+    "status": "PASS",
+    "duration": 8,
+    "detail": "PhishGuard text found",
+    "error": ""
+  },
+  {
+    "suite": "Headers",
+    "name": "GET /login body contains id=\"email\"",
+    "status": "PASS",
+    "duration": 11,
+    "detail": "email input found",
+    "error": ""
+  },
+  {
+    "suite": "Headers",
+    "name": "GET /login body contains id=\"password\"",
+    "status": "PASS",
+    "duration": 8,
+    "detail": "password input found",
+    "error": ""
+  },
+  {
+    "suite": "Headers",
+    "name": "GET /login HTML has <!DOCTYPE html>",
+    "status": "PASS",
+    "duration": 9,
+    "detail": "DOCTYPE found",
+    "error": ""
+  },
+  {
+    "suite": "Headers",
+    "name": "GET /create-account HTML has <!DOCTYPE html>",
+    "status": "PASS",
+    "duration": 8,
+    "detail": "DOCTYPE found",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "POST returns HTTP 200",
+    "status": "PASS",
+    "duration": 138,
+    "detail": "HTTP 200",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "Response is valid JSON object",
+    "status": "PASS",
+    "duration": 88,
+    "detail": "valid JSON object",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "Response has exists boolean field",
+    "status": "PASS",
+    "duration": 118,
+    "detail": "exists: false",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "Non-existent email returns exists:false",
+    "status": "PASS",
+    "duration": 204,
+    "detail": "exists:false ✓",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "Registered email returns exists:true",
+    "status": "PASS",
+    "duration": 104,
+    "detail": "exists:true ✓",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "Empty email returns exists:false",
+    "status": "PASS",
+    "duration": 6,
+    "detail": "exists:false for empty ✓",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "Missing email field returns exists:false",
+    "status": "PASS",
+    "duration": 8,
+    "detail": "exists:false for missing ✓",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "Accepts form-encoded body",
+    "status": "PASS",
+    "duration": 95,
+    "detail": "HTTP 200",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "Uppercase email is handled without 500",
+    "status": "PASS",
+    "duration": 103,
+    "detail": "HTTP 200, exists:true",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "Does not return 500 for any input",
+    "status": "PASS",
+    "duration": 135,
+    "detail": "HTTP 200",
+    "error": ""
+  },
+  {
+    "suite": "Login API",
+    "name": "Wrong creds POST returns HTTP 200",
+    "status": "PASS",
+    "duration": 95,
+    "detail": "HTTP 200",
+    "error": ""
+  },
+  {
+    "suite": "Login API",
+    "name": "Wrong creds response contains login form",
+    "status": "PASS",
+    "duration": 130,
+    "detail": "login form present",
+    "error": ""
+  },
+  {
+    "suite": "Login API",
+    "name": "Wrong creds does not echo password back",
+    "status": "PASS",
+    "duration": 97,
+    "detail": "password not reflected ✓",
+    "error": ""
+  },
+  {
+    "suite": "Login API",
+    "name": "Valid login POST returns 302",
+    "status": "PASS",
+    "duration": 274,
+    "detail": "HTTP 302",
+    "error": ""
+  },
+  {
+    "suite": "Login API",
+    "name": "Valid login 302 Location is /dashboard",
+    "status": "PASS",
+    "duration": 379,
+    "detail": "Location: /dashboard",
+    "error": ""
+  },
+  {
+    "suite": "Login API",
+    "name": "Valid login sets session cookie",
+    "status": "PASS",
+    "duration": 375,
+    "detail": "session cookie set ✓",
+    "error": ""
+  },
+  {
+    "suite": "Login API",
+    "name": "Empty credentials POST returns 200 not 500",
+    "status": "PASS",
+    "duration": 4,
+    "detail": "HTTP 200",
+    "error": ""
+  },
+  {
+    "suite": "Login API",
+    "name": "GET /login body has id=loginForm",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "loginForm found",
+    "error": ""
+  },
+  {
+    "suite": "Login API",
+    "name": "GET /login body has id=createAccountLink",
+    "status": "PASS",
+    "duration": 3,
+    "detail": "createAccountLink found",
+    "error": ""
+  },
+  {
+    "suite": "Login API",
+    "name": "GET /login body has remember checkbox",
+    "status": "PASS",
+    "duration": 4,
+    "detail": "remember checkbox found",
+    "error": ""
+  },
+  {
+    "suite": "Authenticated Routes",
+    "name": "GET /dashboard with auth returns 200",
+    "status": "PASS",
+    "duration": 168,
+    "detail": "HTTP 200",
+    "error": ""
+  },
+  {
+    "suite": "Authenticated Routes",
+    "name": "GET /threats with auth returns 200",
+    "status": "PASS",
+    "duration": 104,
+    "detail": "HTTP 200",
+    "error": ""
+  },
+  {
+    "suite": "Authenticated Routes",
+    "name": "GET /reports with auth returns 200",
+    "status": "PASS",
+    "duration": 57,
+    "detail": "HTTP 200",
+    "error": ""
+  },
+  {
+    "suite": "Authenticated Routes",
+    "name": "GET /settings with auth returns 200",
+    "status": "PASS",
+    "duration": 412,
+    "detail": "HTTP 200",
+    "error": ""
+  },
+  {
+    "suite": "Authenticated Routes",
+    "name": "GET /scanner with auth returns 200",
+    "status": "PASS",
+    "duration": 94,
+    "detail": "HTTP 200",
+    "error": ""
+  },
+  {
+    "suite": "Authenticated Routes",
+    "name": "/dashboard body contains stats-container",
+    "status": "PASS",
+    "duration": 103,
+    "detail": "stats-container found",
+    "error": ""
+  },
+  {
+    "suite": "Authenticated Routes",
+    "name": "/threats body contains history-table",
+    "status": "PASS",
+    "duration": 116,
+    "detail": "history-table found",
+    "error": ""
+  },
+  {
+    "suite": "Authenticated Routes",
+    "name": "/reports body contains Security Reports",
+    "status": "PASS",
+    "duration": 87,
+    "detail": "Security Reports found",
+    "error": ""
+  },
+  {
+    "suite": "Authenticated Routes",
+    "name": "/settings body contains Settings",
+    "status": "PASS",
+    "duration": 219,
+    "detail": "Settings heading found",
+    "error": ""
+  },
+  {
+    "suite": "Authenticated Routes",
+    "name": "POST /dashboard with message returns 200",
+    "status": "PASS",
+    "duration": 296,
+    "detail": "HTTP 200",
+    "error": ""
+  },
+  {
+    "suite": "Scanner Logic",
+    "name": "Phishing message detected in response body",
+    "status": "PASS",
+    "duration": 407,
+    "detail": "Phishing detected ✓",
+    "error": ""
+  },
+  {
+    "suite": "Scanner Logic",
+    "name": "Safe message detected in response body",
+    "status": "PASS",
+    "duration": 408,
+    "detail": "Safe detected ✓",
+    "error": ""
+  },
+  {
+    "suite": "Scanner Logic",
+    "name": "Phishing scan body has result-box",
+    "status": "PASS",
+    "duration": 413,
+    "detail": "result-box found",
+    "error": ""
+  },
+  {
+    "suite": "Scanner Logic",
+    "name": "Phishing scan body has Risk Score",
+    "status": "PASS",
+    "duration": 409,
+    "detail": "Risk Score found",
+    "error": ""
+  },
+  {
+    "suite": "Scanner Logic",
+    "name": "Safe scan body has Safe text",
+    "status": "PASS",
+    "duration": 409,
+    "detail": "Safe text found",
+    "error": ""
+  },
+  {
+    "suite": "Scanner Logic",
+    "name": "Phishing scan body has AI Explanation",
+    "status": "PASS",
+    "duration": 369,
+    "detail": "Explanation found",
+    "error": ""
+  },
+  {
+    "suite": "Scanner Logic",
+    "name": "Scan response has stats-container",
+    "status": "PASS",
+    "duration": 352,
+    "detail": "stats-container found",
+    "error": ""
+  },
+  {
+    "suite": "Scanner Logic",
+    "name": "POST /dashboard does not return 500",
+    "status": "PASS",
+    "duration": 407,
+    "detail": "HTTP 200",
+    "error": ""
+  },
+  {
+    "suite": "Scanner Logic",
+    "name": "Prize/winner message flagged as Phishing",
+    "status": "PASS",
+    "duration": 529,
+    "detail": "Phishing for prize/winner ✓",
+    "error": ""
+  },
+  {
+    "suite": "Scanner Logic",
+    "name": "Friendly message stays Safe",
+    "status": "PASS",
+    "duration": 395,
+    "detail": "Safe for friendly ✓",
+    "error": ""
+  }
+]
