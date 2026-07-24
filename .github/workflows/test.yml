@@ -105,31 +105,31 @@ jobs:
           google-chrome --version || chromium-browser --version || echo "Chrome version check done"
 
       # ── 9. Run Unit Tests ──────────────────────────────────
-      - name: Run Unit Tests (60 tests)
+      - name: Run Unit Tests (300 tests)
         working-directory: tests
         run: node unit/unit_tests.js
         continue-on-error: true      # collect results even if some fail
 
       # ── 10. Run Validation Tests ───────────────────────────
-      - name: Run Validation Tests (50 tests)
+      - name: Run Validation Tests (300 tests)
         working-directory: tests
         run: node validation/validation_tests.js
         continue-on-error: true
 
       # ── 11. Run Load Time Tests ────────────────────────────
-      - name: Run Load Time Tests (40 tests)
+      - name: Run Load Time & Performance Tests (300 tests)
         working-directory: tests
         run: node loadtime/loadtime_tests.js
         continue-on-error: true
 
       # ── 12. Run Vulnerability Tests ────────────────────────
-      - name: Run Vulnerability Tests (30 tests)
+      - name: Run Vulnerability & Security Tests (300 tests)
         working-directory: tests
         run: node vulnerability/vuln_tests.js
         continue-on-error: true
 
       # ── 13. Run Selenium E2E Tests ─────────────────────────
-      - name: Run Selenium E2E Tests (120 tests)
+      - name: Run Selenium Web UI E2E Tests (300 tests)
         working-directory: tests
         run: node selenium/e2e_tests.js
         continue-on-error: true
@@ -137,7 +137,7 @@ jobs:
           DISPLAY: :99          # headless Chrome needs a display
 
       # ── 14. Run Artillery Load Tests ───────────────────────
-      - name: Run Artillery Load Tests
+      - name: Run Artillery Baseline Load Tests (300 VUs - 300 scenarios)
         working-directory: tests
         run: npm run test:load
         continue-on-error: true
