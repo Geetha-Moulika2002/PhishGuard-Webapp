@@ -1,302 +1,2954 @@
 [
   {
     "suite": "Auth Enforcement",
-    "name": "/dashboard without session returns 302",
+    "name": "/dashboard unauth → 302 (run1)",
     "status": "PASS",
     "severity": "HIGH",
-    "duration": 4,
-    "detail": "HTTP 302 ✓",
-    "recommendation": "",
+    "duration": 29,
+    "detail": "302 ✓",
     "error": ""
   },
   {
     "suite": "Auth Enforcement",
-    "name": "/dashboard 302 Location points to /login",
-    "status": "PASS",
-    "severity": "HIGH",
-    "duration": 5,
-    "detail": "→ /login ✓",
-    "recommendation": "",
-    "error": ""
-  },
-  {
-    "suite": "Auth Enforcement",
-    "name": "/threats without session returns 302",
-    "status": "PASS",
-    "severity": "HIGH",
-    "duration": 3,
-    "detail": "HTTP 302 ✓",
-    "recommendation": "",
-    "error": ""
-  },
-  {
-    "suite": "Auth Enforcement",
-    "name": "/threats 302 Location points to /login",
-    "status": "PASS",
-    "severity": "HIGH",
-    "duration": 3,
-    "detail": "→ /login ✓",
-    "recommendation": "",
-    "error": ""
-  },
-  {
-    "suite": "Auth Enforcement",
-    "name": "/reports without session returns 302",
-    "status": "PASS",
-    "severity": "HIGH",
-    "duration": 3,
-    "detail": "HTTP 302 ✓",
-    "recommendation": "",
-    "error": ""
-  },
-  {
-    "suite": "Auth Enforcement",
-    "name": "/reports 302 Location points to /login",
-    "status": "PASS",
-    "severity": "HIGH",
-    "duration": 5,
-    "detail": "→ /login ✓",
-    "recommendation": "",
-    "error": ""
-  },
-  {
-    "suite": "Auth Enforcement",
-    "name": "/settings without session returns 302",
-    "status": "PASS",
-    "severity": "HIGH",
-    "duration": 5,
-    "detail": "HTTP 302 ✓",
-    "recommendation": "",
-    "error": ""
-  },
-  {
-    "suite": "Auth Enforcement",
-    "name": "/settings 302 Location points to /login",
-    "status": "PASS",
-    "severity": "HIGH",
-    "duration": 3,
-    "detail": "→ /login ✓",
-    "recommendation": "",
-    "error": ""
-  },
-  {
-    "suite": "Auth Enforcement",
-    "name": "/scanner without session returns 302",
-    "status": "PASS",
-    "severity": "HIGH",
-    "duration": 4,
-    "detail": "HTTP 302 ✓",
-    "recommendation": "",
-    "error": ""
-  },
-  {
-    "suite": "Auth Enforcement",
-    "name": "/scanner 302 Location points to /login",
-    "status": "PASS",
-    "severity": "HIGH",
-    "duration": 4,
-    "detail": "→ /login ✓",
-    "recommendation": "",
-    "error": ""
-  },
-  {
-    "suite": "Sensitive Data",
-    "name": "Login error response does not echo password back",
-    "status": "PASS",
-    "severity": "HIGH",
-    "duration": 169,
-    "detail": "password not reflected ✓",
-    "recommendation": "",
-    "error": ""
-  },
-  {
-    "suite": "Sensitive Data",
-    "name": "Login error response does not expose stack trace",
-    "status": "PASS",
-    "severity": "HIGH",
-    "duration": 102,
-    "detail": "no stack trace ✓",
-    "recommendation": "",
-    "error": ""
-  },
-  {
-    "suite": "Sensitive Data",
-    "name": "GET /login response does not contain firebase-key",
-    "status": "PASS",
-    "severity": "CRITICAL",
-    "duration": 8,
-    "detail": "no private keys ✓",
-    "recommendation": "",
-    "error": ""
-  },
-  {
-    "suite": "Sensitive Data",
-    "name": "GET /dashboard (unauth) body does not expose user data",
-    "status": "PASS",
-    "severity": "HIGH",
-    "duration": 10,
-    "detail": "no user data exposed ✓",
-    "recommendation": "",
-    "error": ""
-  },
-  {
-    "suite": "Sensitive Data",
-    "name": "GET /login body does not expose secret_key",
-    "status": "PASS",
-    "severity": "CRITICAL",
-    "duration": 9,
-    "detail": "no secret key ✓",
-    "recommendation": "",
-    "error": ""
-  },
-  {
-    "suite": "Sensitive Data",
-    "name": "GET /create-account does not expose any Firestore credentials",
-    "status": "PASS",
-    "severity": "CRITICAL",
-    "duration": 10,
-    "detail": "no credentials ✓",
-    "recommendation": "",
-    "error": ""
-  },
-  {
-    "suite": "Sensitive Data",
-    "name": "POST /login response has Set-Cookie with HttpOnly-compatible session",
-    "status": "PASS",
-    "severity": "MEDIUM",
-    "duration": 392,
-    "detail": "session cookie present ✓",
-    "recommendation": "",
-    "error": ""
-  },
-  {
-    "suite": "Sensitive Data",
-    "name": "Wrong login does not reveal if email exists or not in generic msg",
-    "status": "PASS",
-    "severity": "MEDIUM",
-    "duration": 173,
-    "detail": "handled gracefully ✓",
-    "recommendation": "",
-    "error": ""
-  },
-  {
-    "suite": "Sensitive Data",
-    "name": "GET /threats (unauth) does not return user scan history",
-    "status": "PASS",
-    "severity": "HIGH",
-    "duration": 8,
-    "detail": "protected ✓",
-    "recommendation": "",
-    "error": ""
-  },
-  {
-    "suite": "Sensitive Data",
-    "name": "Server does not return 500 on empty login POST",
-    "status": "PASS",
-    "severity": "MEDIUM",
-    "duration": 11,
-    "detail": "HTTP 200 ✓",
-    "recommendation": "",
-    "error": ""
-  },
-  {
-    "suite": "Redirect Safety",
-    "name": "GET / always redirects to /login not external",
-    "status": "PASS",
-    "severity": "MEDIUM",
-    "duration": 9,
-    "detail": "redirect to: /login ✓",
-    "recommendation": "",
-    "error": ""
-  },
-  {
-    "suite": "Redirect Safety",
-    "name": "GET /logout always redirects to /login not external",
-    "status": "PASS",
-    "severity": "MEDIUM",
-    "duration": 9,
-    "detail": "redirect to: /login ✓",
-    "recommendation": "",
-    "error": ""
-  },
-  {
-    "suite": "Redirect Safety",
-    "name": "POST /check-email with garbage input returns 200 not 500",
-    "status": "PASS",
-    "severity": "LOW",
-    "duration": 71,
-    "detail": "HTTP 200 ✓",
-    "recommendation": "",
-    "error": ""
-  },
-  {
-    "suite": "Redirect Safety",
-    "name": "Very long email in /check-email does not crash server",
-    "status": "PASS",
-    "severity": "LOW",
-    "duration": 109,
-    "detail": "HTTP 200 ✓",
-    "recommendation": "",
-    "error": ""
-  },
-  {
-    "suite": "Redirect Safety",
-    "name": "POST /login with very long email does not crash server",
-    "status": "PASS",
-    "severity": "LOW",
-    "duration": 103,
-    "detail": "HTTP 200 ✓",
-    "recommendation": "",
-    "error": ""
-  },
-  {
-    "suite": "Redirect Safety",
-    "name": "POST /login with numeric-only password does not crash",
-    "status": "PASS",
-    "severity": "LOW",
-    "duration": 101,
-    "detail": "HTTP 200 ✓",
-    "recommendation": "",
-    "error": ""
-  },
-  {
-    "suite": "Redirect Safety",
-    "name": "POST /check-email with null body does not crash",
-    "status": "PASS",
-    "severity": "LOW",
-    "duration": 8,
-    "detail": "HTTP 200 ✓",
-    "recommendation": "",
-    "error": ""
-  },
-  {
-    "suite": "Redirect Safety",
-    "name": "GET /login body contains no Python import statements",
-    "status": "PASS",
-    "severity": "MEDIUM",
-    "duration": 9,
-    "detail": "no Python imports ✓",
-    "recommendation": "",
-    "error": ""
-  },
-  {
-    "suite": "Redirect Safety",
-    "name": "GET /create-account body does not contain app.secret_key",
-    "status": "PASS",
-    "severity": "CRITICAL",
-    "duration": 8,
-    "detail": "no secret_key ✓",
-    "recommendation": "",
-    "error": ""
-  },
-  {
-    "suite": "Redirect Safety",
-    "name": "Protected pages with invalid cookie still return 302",
+    "name": "/threats unauth → 302 (run1)",
     "status": "PASS",
     "severity": "HIGH",
     "duration": 6,
-    "detail": "HTTP 302 ✓",
-    "recommendation": "",
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/reports unauth → 302 (run1)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 6,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/settings unauth → 302 (run1)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/scanner unauth → 302 (run1)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 5,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/dashboard unauth → 302 (run2)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 7,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/threats unauth → 302 (run2)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/reports unauth → 302 (run2)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 3,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/settings unauth → 302 (run2)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 5,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/scanner unauth → 302 (run2)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 6,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/dashboard unauth → 302 (run3)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 3,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/threats unauth → 302 (run3)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/reports unauth → 302 (run3)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/settings unauth → 302 (run3)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/scanner unauth → 302 (run3)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/dashboard unauth → 302 (run4)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 3,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/threats unauth → 302 (run4)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/reports unauth → 302 (run4)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 5,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/settings unauth → 302 (run4)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/scanner unauth → 302 (run4)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 3,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/dashboard unauth → 302 (run5)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/threats unauth → 302 (run5)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 5,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/reports unauth → 302 (run5)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/settings unauth → 302 (run5)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 3,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/scanner unauth → 302 (run5)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/dashboard unauth → 302 (run6)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/threats unauth → 302 (run6)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/reports unauth → 302 (run6)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/settings unauth → 302 (run6)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 3,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/scanner unauth → 302 (run6)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 5,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/dashboard unauth → 302 (run7)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/threats unauth → 302 (run7)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/reports unauth → 302 (run7)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 5,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/settings unauth → 302 (run7)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 5,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/scanner unauth → 302 (run7)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 5,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/dashboard unauth → 302 (run8)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 3,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/threats unauth → 302 (run8)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 5,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/reports unauth → 302 (run8)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 5,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/settings unauth → 302 (run8)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/scanner unauth → 302 (run8)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 3,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/dashboard unauth → 302 (run9)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 5,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/threats unauth → 302 (run9)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 5,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/reports unauth → 302 (run9)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/settings unauth → 302 (run9)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/scanner unauth → 302 (run9)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 6,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/dashboard unauth → 302 (run10)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/threats unauth → 302 (run10)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/reports unauth → 302 (run10)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/settings unauth → 302 (run10)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 5,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/scanner unauth → 302 (run10)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 5,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/dashboard unauth → 302 (run11)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/threats unauth → 302 (run11)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 5,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/reports unauth → 302 (run11)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 5,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/settings unauth → 302 (run11)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 5,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/scanner unauth → 302 (run11)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/dashboard unauth → 302 (run12)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 5,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/threats unauth → 302 (run12)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 5,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/reports unauth → 302 (run12)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/settings unauth → 302 (run12)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 5,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/scanner unauth → 302 (run12)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 5,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/dashboard unauth → 302 (run13)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/threats unauth → 302 (run13)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 3,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/reports unauth → 302 (run13)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/settings unauth → 302 (run13)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 5,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/scanner unauth → 302 (run13)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/dashboard unauth → 302 (run14)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 3,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/threats unauth → 302 (run14)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 6,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/reports unauth → 302 (run14)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/settings unauth → 302 (run14)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Enforcement",
+    "name": "/scanner unauth → 302 (run14)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 3,
+    "detail": "302 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Auth Redirect",
+    "name": "/dashboard Location → /login (run1)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 5,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Auth Redirect",
+    "name": "/threats Location → /login (run1)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 6,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Auth Redirect",
+    "name": "/reports Location → /login (run1)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 3,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Auth Redirect",
+    "name": "/settings Location → /login (run1)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 3,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Auth Redirect",
+    "name": "/scanner Location → /login (run1)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 5,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Auth Redirect",
+    "name": "/dashboard Location → /login (run2)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Auth Redirect",
+    "name": "/threats Location → /login (run2)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Auth Redirect",
+    "name": "/reports Location → /login (run2)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Auth Redirect",
+    "name": "/settings Location → /login (run2)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 3,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Auth Redirect",
+    "name": "/scanner Location → /login (run2)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 5,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Auth Redirect",
+    "name": "/dashboard Location → /login (run3)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Auth Redirect",
+    "name": "/threats Location → /login (run3)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 3,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Auth Redirect",
+    "name": "/reports Location → /login (run3)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Auth Redirect",
+    "name": "/settings Location → /login (run3)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Auth Redirect",
+    "name": "/scanner Location → /login (run3)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Auth Redirect",
+    "name": "/dashboard Location → /login (run4)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Auth Redirect",
+    "name": "/threats Location → /login (run4)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 3,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Auth Redirect",
+    "name": "/reports Location → /login (run4)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 5,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Auth Redirect",
+    "name": "/settings Location → /login (run4)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Auth Redirect",
+    "name": "/scanner Location → /login (run4)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Auth Redirect",
+    "name": "/dashboard Location → /login (run5)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 3,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Auth Redirect",
+    "name": "/threats Location → /login (run5)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 5,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Auth Redirect",
+    "name": "/reports Location → /login (run5)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Auth Redirect",
+    "name": "/settings Location → /login (run5)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Auth Redirect",
+    "name": "/scanner Location → /login (run5)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 3,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Auth Redirect",
+    "name": "/dashboard Location → /login (run6)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Auth Redirect",
+    "name": "/threats Location → /login (run6)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Auth Redirect",
+    "name": "/reports Location → /login (run6)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Auth Redirect",
+    "name": "/settings Location → /login (run6)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 3,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Auth Redirect",
+    "name": "/scanner Location → /login (run6)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 3,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Auth Redirect",
+    "name": "/dashboard Location → /login (run7)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 3,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Auth Redirect",
+    "name": "/threats Location → /login (run7)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 5,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Auth Redirect",
+    "name": "/reports Location → /login (run7)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 4,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Auth Redirect",
+    "name": "/settings Location → /login (run7)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 3,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Auth Redirect",
+    "name": "/scanner Location → /login (run7)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 3,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/login no \"private_key\" in body",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 6,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/login no \"client_secret\" in body",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 5,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/login no \"firebase_admin\" in body",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 5,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/login no \"serviceAccountKey\" in body",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 6,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/login no \"phishguard_secret_key\" in body",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 5,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/login no \"import flask\" in body",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 5,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/login no \"from flask\" in body",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 6,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/login no \"SECRET_KEY\" in body",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 5,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/login no \"db.collection\" in body",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 5,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/login no \"password_hash\" in body",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 6,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/login no \"os.environ\" in body",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 7,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/login no \"api_key\" in body",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 5,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/login no \"GOOGLE_APPLICATION\" in body",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 8,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/login no \"project_id\" in body",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 5,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/login no \"auth_uri\" in body",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 5,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/login no \"token_uri\" in body",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 7,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/create-account no \"private_key\" in body",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 5,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/create-account no \"client_secret\" in body",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 5,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/create-account no \"firebase_admin\" in body",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 6,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/create-account no \"serviceAccountKey\" in body",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 5,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/create-account no \"phishguard_secret_key\" in body",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 4,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/create-account no \"import flask\" in body",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 6,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/create-account no \"from flask\" in body",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 6,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/create-account no \"SECRET_KEY\" in body",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 5,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/create-account no \"db.collection\" in body",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 5,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/create-account no \"password_hash\" in body",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 6,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/create-account no \"os.environ\" in body",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 5,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/create-account no \"api_key\" in body",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 42,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/create-account no \"GOOGLE_APPLICATION\" in body",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 5,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/create-account no \"project_id\" in body",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 10,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/create-account no \"auth_uri\" in body",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 4,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/create-account no \"token_uri\" in body",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 3,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/login no \"private_key\" (recheck1)",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 3,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/login no \"client_secret\" (recheck1)",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 4,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/login no \"phishguard_secret_key\" (recheck1)",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 4,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/login no \"firebase_admin\" (recheck1)",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 3,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/create-account no \"private_key\" (recheck1)",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 4,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/create-account no \"client_secret\" (recheck1)",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 4,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/create-account no \"phishguard_secret_key\" (recheck1)",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 5,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/create-account no \"firebase_admin\" (recheck1)",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 5,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/login no \"private_key\" (recheck2)",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 4,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/login no \"client_secret\" (recheck2)",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 6,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/login no \"phishguard_secret_key\" (recheck2)",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 7,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/login no \"firebase_admin\" (recheck2)",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 7,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/create-account no \"private_key\" (recheck2)",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 7,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/create-account no \"client_secret\" (recheck2)",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 5,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/create-account no \"phishguard_secret_key\" (recheck2)",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 8,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Sensitive Data",
+    "name": "/create-account no \"firebase_admin\" (recheck2)",
+    "status": "PASS",
+    "severity": "CRITICAL",
+    "duration": 7,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "/login no \"Traceback\" in body",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 8,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "/login no \"File \"\" in body",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 8,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "/login no \"line \" in body",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 8,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "/login no \"module \" in body",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 9,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "/login no \"ImportError\" in body",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 17,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "/login no \"AttributeError\" in body",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 7,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "/login no \"NameError\" in body",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 7,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "/login no \"KeyError\" in body",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 8,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "/login no \"TypeError\" in body",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 8,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "/login no \"ValueError\" in body",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 6,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "/create-account no \"Traceback\" in body",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 8,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "/create-account no \"File \"\" in body",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 7,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "/create-account no \"line \" in body",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 8,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "/create-account no \"module \" in body",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 7,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "/create-account no \"ImportError\" in body",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 9,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "/create-account no \"AttributeError\" in body",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 7,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "/create-account no \"NameError\" in body",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 9,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "/create-account no \"KeyError\" in body",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 9,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "/create-account no \"TypeError\" in body",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 9,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "/create-account no \"ValueError\" in body",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 7,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "GET /login no traceback (run1)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 8,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "GET /login no traceback (run2)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 8,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "GET /login no traceback (run3)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 7,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "GET /login no traceback (run4)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 8,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "GET /login no traceback (run5)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 8,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "GET /login no traceback (run6)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 8,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "GET /login no traceback (run7)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 8,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "GET /login no traceback (run8)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 8,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "GET /login no traceback (run9)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 7,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "GET /login no traceback (run10)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 8,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "GET /create-account no traceback (run1)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 7,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "GET /create-account no traceback (run2)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 7,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "GET /create-account no traceback (run3)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 7,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "GET /create-account no traceback (run4)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 9,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "GET /create-account no traceback (run5)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 9,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "GET /create-account no traceback (run6)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 8,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "GET /create-account no traceback (run7)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 8,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "GET /create-account no traceback (run8)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 7,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "GET /create-account no traceback (run9)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 7,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "No Error Leakage",
+    "name": "GET /create-account no traceback (run10)",
+    "status": "PASS",
+    "severity": "HIGH",
+    "duration": 6,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"\" run1",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 9,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"null\" run1",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 425,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"undefined\" run1",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 288,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"true\" run1",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 116,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"1234\" run1",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 100,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"aaaaaaaaaaaaaaaaaaaa\" run1",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 321,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"@@@\" run1",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 476,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"test@test.com\" run1",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 946,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \" \" run1",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 8,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"test\" run1",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 298,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"\" run2",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 8,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"null\" run2",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 241,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"undefined\" run2",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 371,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"true\" run2",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 202,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"1234\" run2",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 410,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"aaaaaaaaaaaaaaaaaaaa\" run2",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 106,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"@@@\" run2",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 108,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"test@test.com\" run2",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 137,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \" \" run2",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 9,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"test\" run2",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 317,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"\" run3",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 7,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"null\" run3",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 333,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"undefined\" run3",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 198,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"true\" run3",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 112,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"1234\" run3",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 250,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"aaaaaaaaaaaaaaaaaaaa\" run3",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 474,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"@@@\" run3",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 197,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"test@test.com\" run3",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 313,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \" \" run3",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 9,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"test\" run3",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 196,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"\" run4",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 8,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"null\" run4",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 301,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"undefined\" run4",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 306,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"true\" run4",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 202,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"1234\" run4",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 310,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"aaaaaaaaaaaaaaaaaaaa\" run4",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 306,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"@@@\" run4",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 309,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"test@test.com\" run4",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 659,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \" \" run4",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 8,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"test\" run4",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 352,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"\" run5",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 7,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"null\" run5",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 195,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"undefined\" run5",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 320,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"true\" run5",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 298,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"1234\" run5",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 306,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"aaaaaaaaaaaaaaaaaaaa\" run5",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 317,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"@@@\" run5",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 194,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"test@test.com\" run5",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 324,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \" \" run5",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 7,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Input Safety",
+    "name": "/check-email edge \"test\" run5",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 392,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "/ redirect not external (run1)",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 8,
+    "detail": "internal ✓",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "/logout redirect not external (run1)",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 9,
+    "detail": "internal ✓",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "/dashboard redirect not external (run1)",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 8,
+    "detail": "internal ✓",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "/threats redirect not external (run1)",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 7,
+    "detail": "internal ✓",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "/reports redirect not external (run1)",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 8,
+    "detail": "internal ✓",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "/settings redirect not external (run1)",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 8,
+    "detail": "internal ✓",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "/scanner redirect not external (run1)",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 7,
+    "detail": "internal ✓",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "/ redirect not external (run2)",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 8,
+    "detail": "internal ✓",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "/logout redirect not external (run2)",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 7,
+    "detail": "internal ✓",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "/dashboard redirect not external (run2)",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 8,
+    "detail": "internal ✓",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "/threats redirect not external (run2)",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 7,
+    "detail": "internal ✓",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "/reports redirect not external (run2)",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 8,
+    "detail": "internal ✓",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "/settings redirect not external (run2)",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 8,
+    "detail": "internal ✓",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "/scanner redirect not external (run2)",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 5,
+    "detail": "internal ✓",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "/ redirect not external (run3)",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 9,
+    "detail": "internal ✓",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "/logout redirect not external (run3)",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 5,
+    "detail": "internal ✓",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "/dashboard redirect not external (run3)",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 7,
+    "detail": "internal ✓",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "/threats redirect not external (run3)",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 6,
+    "detail": "internal ✓",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "/reports redirect not external (run3)",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 7,
+    "detail": "internal ✓",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "/settings redirect not external (run3)",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 7,
+    "detail": "internal ✓",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "/scanner redirect not external (run3)",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 6,
+    "detail": "internal ✓",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "/ redirect not external (run4)",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 6,
+    "detail": "internal ✓",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "/logout redirect not external (run4)",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 6,
+    "detail": "internal ✓",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "/dashboard redirect not external (run4)",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 6,
+    "detail": "internal ✓",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "/threats redirect not external (run4)",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 7,
+    "detail": "internal ✓",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "/reports redirect not external (run4)",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 6,
+    "detail": "internal ✓",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "/settings redirect not external (run4)",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 7,
+    "detail": "internal ✓",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "/scanner redirect not external (run4)",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 7,
+    "detail": "internal ✓",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "/ redirect not external (run5)",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 5,
+    "detail": "internal ✓",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "/logout redirect not external (run5)",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 7,
+    "detail": "internal ✓",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "/dashboard redirect not external (run5)",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 7,
+    "detail": "internal ✓",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "/threats redirect not external (run5)",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 7,
+    "detail": "internal ✓",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "/reports redirect not external (run5)",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 7,
+    "detail": "internal ✓",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "/settings redirect not external (run5)",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 7,
+    "detail": "internal ✓",
+    "error": ""
+  },
+  {
+    "suite": "Redirect Safety",
+    "name": "/scanner redirect not external (run5)",
+    "status": "PASS",
+    "severity": "MEDIUM",
+    "duration": 7,
+    "detail": "internal ✓",
+    "error": ""
+  },
+  {
+    "suite": "Response Headers",
+    "name": "/login Content-Type=text/html (run1)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 7,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Response Headers",
+    "name": "/login Content-Type=text/html (run2)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 9,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Response Headers",
+    "name": "/login Content-Type=text/html (run3)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 7,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Response Headers",
+    "name": "/login Content-Type=text/html (run4)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 8,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Response Headers",
+    "name": "/login Content-Type=text/html (run5)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 9,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Response Headers",
+    "name": "/login Content-Type=text/html (run6)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 9,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Response Headers",
+    "name": "/login Content-Type=text/html (run7)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 8,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Response Headers",
+    "name": "/login Content-Type=text/html (run8)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 9,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Response Headers",
+    "name": "/login Content-Type=text/html (run9)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 7,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Response Headers",
+    "name": "/login Content-Type=text/html (run10)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 7,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Response Headers",
+    "name": "/create-account Content-Type=text/html (run1)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 6,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Response Headers",
+    "name": "/create-account Content-Type=text/html (run2)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 7,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Response Headers",
+    "name": "/create-account Content-Type=text/html (run3)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 8,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Response Headers",
+    "name": "/create-account Content-Type=text/html (run4)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 6,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Response Headers",
+    "name": "/create-account Content-Type=text/html (run5)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 7,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Response Headers",
+    "name": "/create-account Content-Type=text/html (run6)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 8,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Response Headers",
+    "name": "/create-account Content-Type=text/html (run7)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 6,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Response Headers",
+    "name": "/create-account Content-Type=text/html (run8)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 7,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Response Headers",
+    "name": "/create-account Content-Type=text/html (run9)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 6,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Response Headers",
+    "name": "/create-account Content-Type=text/html (run10)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 8,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Response Headers",
+    "name": "POST /check-email Content-Type=application/json (run1)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 710,
+    "detail": "application/json",
+    "error": ""
+  },
+  {
+    "suite": "Response Headers",
+    "name": "POST /check-email Content-Type=application/json (run2)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 375,
+    "detail": "application/json",
+    "error": ""
+  },
+  {
+    "suite": "Response Headers",
+    "name": "POST /check-email Content-Type=application/json (run3)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 254,
+    "detail": "application/json",
+    "error": ""
+  },
+  {
+    "suite": "Response Headers",
+    "name": "POST /check-email Content-Type=application/json (run4)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 313,
+    "detail": "application/json",
+    "error": ""
+  },
+  {
+    "suite": "Response Headers",
+    "name": "POST /check-email Content-Type=application/json (run5)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 415,
+    "detail": "application/json",
+    "error": ""
+  },
+  {
+    "suite": "Response Headers",
+    "name": "POST /check-email Content-Type=application/json (run6)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 194,
+    "detail": "application/json",
+    "error": ""
+  },
+  {
+    "suite": "Response Headers",
+    "name": "POST /check-email Content-Type=application/json (run7)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 105,
+    "detail": "application/json",
+    "error": ""
+  },
+  {
+    "suite": "Response Headers",
+    "name": "POST /check-email Content-Type=application/json (run8)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 317,
+    "detail": "application/json",
+    "error": ""
+  },
+  {
+    "suite": "Response Headers",
+    "name": "POST /check-email Content-Type=application/json (run9)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 300,
+    "detail": "application/json",
+    "error": ""
+  },
+  {
+    "suite": "Response Headers",
+    "name": "POST /check-email Content-Type=application/json (run10)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 343,
+    "detail": "application/json",
+    "error": ""
+  },
+  {
+    "suite": "Server Stability",
+    "name": "Server responds to /login (run1)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 8,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Server Stability",
+    "name": "Server responds to /login (run2)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 8,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Server Stability",
+    "name": "Server responds to /login (run3)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 9,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Server Stability",
+    "name": "Server responds to /login (run4)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 9,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Server Stability",
+    "name": "Server responds to /login (run5)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 9,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Server Stability",
+    "name": "Server responds to /login (run6)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 9,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Server Stability",
+    "name": "Server responds to /login (run7)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 9,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Server Stability",
+    "name": "Server responds to /login (run8)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 9,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Server Stability",
+    "name": "Server responds to /login (run9)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 9,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Server Stability",
+    "name": "Server responds to /login (run10)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 8,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Server Stability",
+    "name": "Server responds to /check-email (run1)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 383,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Server Stability",
+    "name": "Server responds to /check-email (run2)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 251,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Server Stability",
+    "name": "Server responds to /check-email (run3)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 370,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Server Stability",
+    "name": "Server responds to /check-email (run4)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 314,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Server Stability",
+    "name": "Server responds to /check-email (run5)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 452,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Server Stability",
+    "name": "Server responds to /check-email (run6)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 463,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Server Stability",
+    "name": "Server responds to /check-email (run7)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 199,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Server Stability",
+    "name": "Server responds to /check-email (run8)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 234,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Server Stability",
+    "name": "Server responds to /check-email (run9)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 591,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Server Stability",
+    "name": "Server responds to /check-email (run10)",
+    "status": "PASS",
+    "severity": "LOW",
+    "duration": 306,
+    "detail": "200",
     "error": ""
   }
 ]

@@ -1,498 +1,2730 @@
 [
   {
-    "suite": "Routes",
-    "name": "GET /login returns HTTP 200",
+    "suite": "Route Status",
+    "name": "GET /login → 200 (run1)",
     "status": "PASS",
-    "duration": 10,
-    "detail": "HTTP 200",
+    "duration": 31,
+    "detail": "200",
     "error": ""
   },
   {
-    "suite": "Routes",
-    "name": "GET /create-account returns HTTP 200",
-    "status": "PASS",
-    "duration": 9,
-    "detail": "HTTP 200",
-    "error": ""
-  },
-  {
-    "suite": "Routes",
-    "name": "GET / returns HTTP 302",
-    "status": "PASS",
-    "duration": 7,
-    "detail": "HTTP 302",
-    "error": ""
-  },
-  {
-    "suite": "Routes",
-    "name": "GET / Location header points to /login",
-    "status": "PASS",
-    "duration": 7,
-    "detail": "Location: /login",
-    "error": ""
-  },
-  {
-    "suite": "Routes",
-    "name": "GET /dashboard without auth returns 302",
-    "status": "PASS",
-    "duration": 7,
-    "detail": "HTTP 302",
-    "error": ""
-  },
-  {
-    "suite": "Routes",
-    "name": "GET /threats without auth returns 302",
-    "status": "PASS",
-    "duration": 6,
-    "detail": "HTTP 302",
-    "error": ""
-  },
-  {
-    "suite": "Routes",
-    "name": "GET /reports without auth returns 302",
-    "status": "PASS",
-    "duration": 6,
-    "detail": "HTTP 302",
-    "error": ""
-  },
-  {
-    "suite": "Routes",
-    "name": "GET /settings without auth returns 302",
-    "status": "PASS",
-    "duration": 7,
-    "detail": "HTTP 302",
-    "error": ""
-  },
-  {
-    "suite": "Routes",
-    "name": "GET /scanner without auth returns 302",
-    "status": "PASS",
-    "duration": 7,
-    "detail": "HTTP 302",
-    "error": ""
-  },
-  {
-    "suite": "Routes",
-    "name": "GET /logout returns 302",
-    "status": "PASS",
-    "duration": 6,
-    "detail": "HTTP 302",
-    "error": ""
-  },
-  {
-    "suite": "Routes",
-    "name": "GET /logout Location header points to /login",
-    "status": "PASS",
-    "duration": 6,
-    "detail": "Location: /login",
-    "error": ""
-  },
-  {
-    "suite": "Routes",
-    "name": "GET unknown route returns 404 or 302",
+    "suite": "Route Status",
+    "name": "GET /create-account → 200 (run1)",
     "status": "PASS",
     "duration": 5,
-    "detail": "HTTP 404",
+    "detail": "200",
     "error": ""
   },
   {
-    "suite": "Headers",
-    "name": "GET /login Content-Type is text/html",
+    "suite": "Route Status",
+    "name": "GET /login → 200 (run2)",
+    "status": "PASS",
+    "duration": 6,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Route Status",
+    "name": "GET /create-account → 200 (run2)",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Route Status",
+    "name": "GET /login → 200 (run3)",
+    "status": "PASS",
+    "duration": 4,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Route Status",
+    "name": "GET /create-account → 200 (run3)",
+    "status": "PASS",
+    "duration": 4,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Route Status",
+    "name": "GET /login → 200 (run4)",
+    "status": "PASS",
+    "duration": 7,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Route Status",
+    "name": "GET /create-account → 200 (run4)",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Route Status",
+    "name": "GET /login → 200 (run5)",
+    "status": "PASS",
+    "duration": 4,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Route Status",
+    "name": "GET /create-account → 200 (run5)",
+    "status": "PASS",
+    "duration": 6,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Route Status",
+    "name": "GET / → 302 (run1)",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "302",
+    "error": ""
+  },
+  {
+    "suite": "Route Status",
+    "name": "GET /dashboard → 302 (run1)",
+    "status": "PASS",
+    "duration": 4,
+    "detail": "302",
+    "error": ""
+  },
+  {
+    "suite": "Route Status",
+    "name": "GET /threats → 302 (run1)",
+    "status": "PASS",
+    "duration": 3,
+    "detail": "302",
+    "error": ""
+  },
+  {
+    "suite": "Route Status",
+    "name": "GET /reports → 302 (run1)",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "302",
+    "error": ""
+  },
+  {
+    "suite": "Route Status",
+    "name": "GET /settings → 302 (run1)",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "302",
+    "error": ""
+  },
+  {
+    "suite": "Route Status",
+    "name": "GET /scanner → 302 (run1)",
+    "status": "PASS",
+    "duration": 3,
+    "detail": "302",
+    "error": ""
+  },
+  {
+    "suite": "Route Status",
+    "name": "GET /logout → 302 (run1)",
+    "status": "PASS",
+    "duration": 4,
+    "detail": "302",
+    "error": ""
+  },
+  {
+    "suite": "Route Status",
+    "name": "GET / → 302 (run2)",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "302",
+    "error": ""
+  },
+  {
+    "suite": "Route Status",
+    "name": "GET /dashboard → 302 (run2)",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "302",
+    "error": ""
+  },
+  {
+    "suite": "Route Status",
+    "name": "GET /threats → 302 (run2)",
+    "status": "PASS",
+    "duration": 4,
+    "detail": "302",
+    "error": ""
+  },
+  {
+    "suite": "Route Status",
+    "name": "GET /reports → 302 (run2)",
+    "status": "PASS",
+    "duration": 3,
+    "detail": "302",
+    "error": ""
+  },
+  {
+    "suite": "Route Status",
+    "name": "GET /settings → 302 (run2)",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "302",
+    "error": ""
+  },
+  {
+    "suite": "Route Status",
+    "name": "GET /scanner → 302 (run2)",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "302",
+    "error": ""
+  },
+  {
+    "suite": "Route Status",
+    "name": "GET /logout → 302 (run2)",
+    "status": "PASS",
+    "duration": 3,
+    "detail": "302",
+    "error": ""
+  },
+  {
+    "suite": "Route Status",
+    "name": "GET / → 302 (run3)",
+    "status": "PASS",
+    "duration": 4,
+    "detail": "302",
+    "error": ""
+  },
+  {
+    "suite": "Route Status",
+    "name": "GET /dashboard → 302 (run3)",
+    "status": "PASS",
+    "duration": 6,
+    "detail": "302",
+    "error": ""
+  },
+  {
+    "suite": "Route Status",
+    "name": "GET /threats → 302 (run3)",
+    "status": "PASS",
+    "duration": 3,
+    "detail": "302",
+    "error": ""
+  },
+  {
+    "suite": "Route Status",
+    "name": "GET /reports → 302 (run3)",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "302",
+    "error": ""
+  },
+  {
+    "suite": "Route Status",
+    "name": "GET /settings → 302 (run3)",
+    "status": "PASS",
+    "duration": 4,
+    "detail": "302",
+    "error": ""
+  },
+  {
+    "suite": "Route Status",
+    "name": "GET /scanner → 302 (run3)",
+    "status": "PASS",
+    "duration": 6,
+    "detail": "302",
+    "error": ""
+  },
+  {
+    "suite": "Route Status",
+    "name": "GET /logout → 302 (run3)",
+    "status": "PASS",
+    "duration": 4,
+    "detail": "302",
+    "error": ""
+  },
+  {
+    "suite": "Route Status",
+    "name": "GET /login not 5xx",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "ok",
+    "error": ""
+  },
+  {
+    "suite": "Route Status",
+    "name": "GET /create-account not 5xx",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "ok",
+    "error": ""
+  },
+  {
+    "suite": "Route Status",
+    "name": "GET / not 200",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "302",
+    "error": ""
+  },
+  {
+    "suite": "Route Status",
+    "name": "GET /dashboard not 200 (unauth)",
+    "status": "PASS",
+    "duration": 4,
+    "detail": "302",
+    "error": ""
+  },
+  {
+    "suite": "Redirects",
+    "name": "/ Location → /login (run1)",
+    "status": "PASS",
+    "duration": 4,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Redirects",
+    "name": "/dashboard Location → /login (run1)",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Redirects",
+    "name": "/threats Location → /login (run1)",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Redirects",
+    "name": "/reports Location → /login (run1)",
+    "status": "PASS",
+    "duration": 4,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Redirects",
+    "name": "/settings Location → /login (run1)",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Redirects",
+    "name": "/scanner Location → /login (run1)",
+    "status": "PASS",
+    "duration": 6,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Redirects",
+    "name": "/logout Location → /login (run1)",
+    "status": "PASS",
+    "duration": 3,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Redirects",
+    "name": "/ Location → /login (run2)",
+    "status": "PASS",
+    "duration": 4,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Redirects",
+    "name": "/dashboard Location → /login (run2)",
+    "status": "PASS",
+    "duration": 6,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Redirects",
+    "name": "/threats Location → /login (run2)",
+    "status": "PASS",
+    "duration": 4,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Redirects",
+    "name": "/reports Location → /login (run2)",
+    "status": "PASS",
+    "duration": 4,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Redirects",
+    "name": "/settings Location → /login (run2)",
+    "status": "PASS",
+    "duration": 4,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Redirects",
+    "name": "/scanner Location → /login (run2)",
+    "status": "PASS",
+    "duration": 6,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Redirects",
+    "name": "/logout Location → /login (run2)",
+    "status": "PASS",
+    "duration": 4,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Redirects",
+    "name": "/ Location → /login (run3)",
+    "status": "PASS",
+    "duration": 3,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Redirects",
+    "name": "/dashboard Location → /login (run3)",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Redirects",
+    "name": "/threats Location → /login (run3)",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Redirects",
+    "name": "/reports Location → /login (run3)",
+    "status": "PASS",
+    "duration": 4,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Redirects",
+    "name": "/settings Location → /login (run3)",
+    "status": "PASS",
+    "duration": 4,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Redirects",
+    "name": "/scanner Location → /login (run3)",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Redirects",
+    "name": "/logout Location → /login (run3)",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Redirects",
+    "name": "/ Location → /login (run4)",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Redirects",
+    "name": "/dashboard Location → /login (run4)",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Redirects",
+    "name": "/threats Location → /login (run4)",
+    "status": "PASS",
+    "duration": 4,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Redirects",
+    "name": "/reports Location → /login (run4)",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Redirects",
+    "name": "/settings Location → /login (run4)",
+    "status": "PASS",
+    "duration": 3,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Redirects",
+    "name": "/scanner Location → /login (run4)",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Redirects",
+    "name": "/logout Location → /login (run4)",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "/login",
+    "error": ""
+  },
+  {
+    "suite": "Redirects",
+    "name": "/ redirect not external",
+    "status": "PASS",
+    "duration": 4,
+    "detail": "internal ✓",
+    "error": ""
+  },
+  {
+    "suite": "Redirects",
+    "name": "/logout redirect not null",
+    "status": "PASS",
+    "duration": 4,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Content-Type",
+    "name": "GET /login → text/html (run1)",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Content-Type",
+    "name": "GET /login → text/html (run2)",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Content-Type",
+    "name": "GET /login → text/html (run3)",
     "status": "PASS",
     "duration": 4,
     "detail": "text/html; charset=utf-8",
     "error": ""
   },
   {
-    "suite": "Headers",
-    "name": "GET /create-account Content-Type is text/html",
+    "suite": "Content-Type",
+    "name": "GET /login → text/html (run4)",
     "status": "PASS",
-    "duration": 6,
+    "duration": 4,
     "detail": "text/html; charset=utf-8",
     "error": ""
   },
   {
-    "suite": "Headers",
-    "name": "POST /check-email returns Content-Type application/json",
+    "suite": "Content-Type",
+    "name": "GET /login → text/html (run5)",
     "status": "PASS",
-    "duration": 582,
+    "duration": 5,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Content-Type",
+    "name": "GET /login → text/html (run6)",
+    "status": "PASS",
+    "duration": 4,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Content-Type",
+    "name": "GET /login → text/html (run7)",
+    "status": "PASS",
+    "duration": 4,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Content-Type",
+    "name": "GET /login → text/html (run8)",
+    "status": "PASS",
+    "duration": 4,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Content-Type",
+    "name": "GET /login → text/html (run9)",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Content-Type",
+    "name": "GET /login → text/html (run10)",
+    "status": "PASS",
+    "duration": 4,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Content-Type",
+    "name": "GET /create-account → text/html (run1)",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Content-Type",
+    "name": "GET /create-account → text/html (run2)",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Content-Type",
+    "name": "GET /create-account → text/html (run3)",
+    "status": "PASS",
+    "duration": 4,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Content-Type",
+    "name": "GET /create-account → text/html (run4)",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Content-Type",
+    "name": "GET /create-account → text/html (run5)",
+    "status": "PASS",
+    "duration": 4,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Content-Type",
+    "name": "GET /create-account → text/html (run6)",
+    "status": "PASS",
+    "duration": 4,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Content-Type",
+    "name": "GET /create-account → text/html (run7)",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Content-Type",
+    "name": "GET /create-account → text/html (run8)",
+    "status": "PASS",
+    "duration": 3,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Content-Type",
+    "name": "GET /create-account → text/html (run9)",
+    "status": "PASS",
+    "duration": 4,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Content-Type",
+    "name": "GET /create-account → text/html (run10)",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "text/html; charset=utf-8",
+    "error": ""
+  },
+  {
+    "suite": "Content-Type",
+    "name": "POST /check-email → application/json (run1)",
+    "status": "PASS",
+    "duration": 1364,
     "detail": "application/json",
     "error": ""
   },
   {
-    "suite": "Headers",
-    "name": "GET /login response body > 1KB",
+    "suite": "Content-Type",
+    "name": "POST /check-email → application/json (run2)",
+    "status": "PASS",
+    "duration": 198,
+    "detail": "application/json",
+    "error": ""
+  },
+  {
+    "suite": "Content-Type",
+    "name": "POST /check-email → application/json (run3)",
+    "status": "PASS",
+    "duration": 307,
+    "detail": "application/json",
+    "error": ""
+  },
+  {
+    "suite": "Content-Type",
+    "name": "POST /check-email → application/json (run4)",
+    "status": "PASS",
+    "duration": 351,
+    "detail": "application/json",
+    "error": ""
+  },
+  {
+    "suite": "Content-Type",
+    "name": "POST /check-email → application/json (run5)",
+    "status": "PASS",
+    "duration": 362,
+    "detail": "application/json",
+    "error": ""
+  },
+  {
+    "suite": "Content-Type",
+    "name": "POST /check-email → application/json (run6)",
+    "status": "PASS",
+    "duration": 311,
+    "detail": "application/json",
+    "error": ""
+  },
+  {
+    "suite": "Content-Type",
+    "name": "POST /check-email → application/json (run7)",
+    "status": "PASS",
+    "duration": 312,
+    "detail": "application/json",
+    "error": ""
+  },
+  {
+    "suite": "Content-Type",
+    "name": "POST /check-email → application/json (run8)",
+    "status": "PASS",
+    "duration": 610,
+    "detail": "application/json",
+    "error": ""
+  },
+  {
+    "suite": "Content-Type",
+    "name": "POST /check-email → application/json (run9)",
+    "status": "PASS",
+    "duration": 372,
+    "detail": "application/json",
+    "error": ""
+  },
+  {
+    "suite": "Content-Type",
+    "name": "POST /check-email → application/json (run10)",
+    "status": "PASS",
+    "duration": 248,
+    "detail": "application/json",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body has: <!DOCTYPE html",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body has: <html",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body has: <head>",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body has: <body",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body has: </html>",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body has: </body>",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body has: <title>",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body has: <style",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body has: <script",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body has: PhishGuard",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body has: id=\"email\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body has: id=\"password\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body has: id=\"loginBtn\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body has: id=\"loginForm\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body has: id=\"createAccountLink\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body has: id=\"togglePasswordBtn\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body has: id=\"remember\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body has: type=\"email\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body has: type=\"password\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body has: type=\"submit\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body has: /create-account",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body has: method=\"POST\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body has: action=\"/login\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body has: SVM",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body has: NLP",
+    "status": "PASS",
+    "duration": 1,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body has: BiLSTM",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body has: TF-IDF",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body has: Attention",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body has: autocomplete",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body has: viewport",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body re-check login-card (run1)",
+    "status": "PASS",
+    "duration": 9,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body re-check title (run1)",
+    "status": "PASS",
+    "duration": 7,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body re-check subtitle (run1)",
+    "status": "PASS",
+    "duration": 10,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body re-check form-group (run1)",
+    "status": "PASS",
+    "duration": 8,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body re-check footer (run1)",
+    "status": "PASS",
+    "duration": 11,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body re-check options (run1)",
+    "status": "PASS",
+    "duration": 12,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body re-check password-wrapper (run1)",
+    "status": "PASS",
+    "duration": 9,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body re-check toggle (run1)",
+    "status": "PASS",
+    "duration": 10,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body re-check class= (run1)",
+    "status": "PASS",
+    "duration": 9,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body re-check href= (run1)",
+    "status": "PASS",
+    "duration": 9,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body re-check login-card (run2)",
+    "status": "PASS",
+    "duration": 9,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body re-check title (run2)",
+    "status": "PASS",
+    "duration": 9,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body re-check subtitle (run2)",
+    "status": "PASS",
+    "duration": 8,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body re-check form-group (run2)",
+    "status": "PASS",
+    "duration": 9,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body re-check footer (run2)",
+    "status": "PASS",
+    "duration": 11,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body re-check options (run2)",
+    "status": "PASS",
+    "duration": 8,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body re-check password-wrapper (run2)",
+    "status": "PASS",
+    "duration": 9,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body re-check toggle (run2)",
+    "status": "PASS",
+    "duration": 8,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body re-check class= (run2)",
+    "status": "PASS",
+    "duration": 10,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Body",
+    "name": "Body re-check href= (run2)",
+    "status": "PASS",
+    "duration": 9,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: <!DOCTYPE html",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: <html",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: <head>",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: <body",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: </html>",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: <title>",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: <style",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: <script",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: PhishGuard",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: id=\"name\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: id=\"email\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: id=\"password\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: id=\"confirm_password\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: id=\"submitBtn\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: id=\"registerForm\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: id=\"email-feedback\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: id=\"confirm-feedback\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: action=\"/create-account\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: method=\"POST\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: /login",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: name=\"name\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: name=\"email\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: name=\"password\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: name=\"confirm_password\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: type=\"text\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: type=\"email\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: type=\"password\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: type=\"submit\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: autocomplete=\"email\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: autocomplete=\"new-password\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: password-hint",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: login-link",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: toggle-password-btn",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: field-feedback",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: password-wrapper",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: check-email",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: setTimeout",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: logo-icon",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: subtitle",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: Create PhishGuard Account",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body has: header",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body extra: card",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body extra: form-group",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body extra: alert-box",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body extra: lang=\"en\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body extra: viewport",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body extra: charset",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body extra: </body>",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body extra: </html>",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Body",
+    "name": "Body extra: PhishGuard",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "POST → HTTP 200 (run1)",
+    "status": "PASS",
+    "duration": 295,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "POST → HTTP 200 (run2)",
+    "status": "PASS",
+    "duration": 104,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "POST → HTTP 200 (run3)",
+    "status": "PASS",
+    "duration": 163,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "POST → HTTP 200 (run4)",
+    "status": "PASS",
+    "duration": 251,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "POST → HTTP 200 (run5)",
+    "status": "PASS",
+    "duration": 409,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "POST → HTTP 200 (run6)",
+    "status": "PASS",
+    "duration": 306,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "POST → HTTP 200 (run7)",
+    "status": "PASS",
+    "duration": 215,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "POST → HTTP 200 (run8)",
+    "status": "PASS",
+    "duration": 192,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "POST → HTTP 200 (run9)",
+    "status": "PASS",
+    "duration": 110,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "POST → HTTP 200 (run10)",
+    "status": "PASS",
+    "duration": 157,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "Response has exists boolean (run1)",
+    "status": "PASS",
+    "duration": 201,
+    "detail": "boolean",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "Response has exists boolean (run2)",
+    "status": "PASS",
+    "duration": 151,
+    "detail": "boolean",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "Response has exists boolean (run3)",
+    "status": "PASS",
+    "duration": 208,
+    "detail": "boolean",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "Response has exists boolean (run4)",
+    "status": "PASS",
+    "duration": 206,
+    "detail": "boolean",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "Response has exists boolean (run5)",
+    "status": "PASS",
+    "duration": 1160,
+    "detail": "boolean",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "Response has exists boolean (run6)",
+    "status": "PASS",
+    "duration": 372,
+    "detail": "boolean",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "Response has exists boolean (run7)",
+    "status": "PASS",
+    "duration": 204,
+    "detail": "boolean",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "Response has exists boolean (run8)",
+    "status": "PASS",
+    "duration": 306,
+    "detail": "boolean",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "Response has exists boolean (run9)",
+    "status": "PASS",
+    "duration": 109,
+    "detail": "boolean",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "Response has exists boolean (run10)",
+    "status": "PASS",
+    "duration": 199,
+    "detail": "boolean",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "Unknown email → exists:false (run1)",
+    "status": "PASS",
+    "duration": 112,
+    "detail": "false ✓",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "Unknown email → exists:false (run2)",
+    "status": "PASS",
+    "duration": 298,
+    "detail": "false ✓",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "Unknown email → exists:false (run3)",
+    "status": "PASS",
+    "duration": 271,
+    "detail": "false ✓",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "Unknown email → exists:false (run4)",
+    "status": "PASS",
+    "duration": 348,
+    "detail": "false ✓",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "Unknown email → exists:false (run5)",
+    "status": "PASS",
+    "duration": 315,
+    "detail": "false ✓",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "Empty email → exists:false (run1)",
+    "status": "PASS",
+    "duration": 8,
+    "detail": "false ✓",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "Empty email → exists:false (run2)",
+    "status": "PASS",
+    "duration": 8,
+    "detail": "false ✓",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "Empty email → exists:false (run3)",
+    "status": "PASS",
+    "duration": 7,
+    "detail": "false ✓",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "Empty email → exists:false (run4)",
+    "status": "PASS",
+    "duration": 9,
+    "detail": "false ✓",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "Empty email → exists:false (run5)",
+    "status": "PASS",
+    "duration": 7,
+    "detail": "false ✓",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "Missing field → exists:false (run1)",
+    "status": "PASS",
+    "duration": 9,
+    "detail": "false ✓",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "Missing field → exists:false (run2)",
+    "status": "PASS",
+    "duration": 8,
+    "detail": "false ✓",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "Missing field → exists:false (run3)",
+    "status": "PASS",
+    "duration": 8,
+    "detail": "false ✓",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "Missing field → exists:false (run4)",
+    "status": "PASS",
+    "duration": 8,
+    "detail": "false ✓",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "Missing field → exists:false (run5)",
+    "status": "PASS",
+    "duration": 9,
+    "detail": "false ✓",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "No 5xx for any input (run1)",
+    "status": "PASS",
+    "duration": 219,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "No 5xx for any input (run2)",
+    "status": "PASS",
+    "duration": 209,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "No 5xx for any input (run3)",
+    "status": "PASS",
+    "duration": 303,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "No 5xx for any input (run4)",
+    "status": "PASS",
+    "duration": 356,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Check-Email API",
+    "name": "No 5xx for any input (run5)",
+    "status": "PASS",
+    "duration": 193,
+    "detail": "200",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "/login body > 2KB (run1)",
     "status": "PASS",
     "duration": 7,
     "detail": "8.3KB",
     "error": ""
   },
   {
-    "suite": "Headers",
-    "name": "GET /create-account body contains <form tag",
-    "status": "PASS",
-    "duration": 13,
-    "detail": "form tag found",
-    "error": ""
-  },
-  {
-    "suite": "Headers",
-    "name": "GET /login body contains PhishGuard",
-    "status": "PASS",
-    "duration": 8,
-    "detail": "PhishGuard text found",
-    "error": ""
-  },
-  {
-    "suite": "Headers",
-    "name": "GET /login body contains id=\"email\"",
-    "status": "PASS",
-    "duration": 11,
-    "detail": "email input found",
-    "error": ""
-  },
-  {
-    "suite": "Headers",
-    "name": "GET /login body contains id=\"password\"",
-    "status": "PASS",
-    "duration": 8,
-    "detail": "password input found",
-    "error": ""
-  },
-  {
-    "suite": "Headers",
-    "name": "GET /login HTML has <!DOCTYPE html>",
+    "suite": "Response Size",
+    "name": "/login body > 2KB (run2)",
     "status": "PASS",
     "duration": 9,
-    "detail": "DOCTYPE found",
+    "detail": "8.3KB",
     "error": ""
   },
   {
-    "suite": "Headers",
-    "name": "GET /create-account HTML has <!DOCTYPE html>",
+    "suite": "Response Size",
+    "name": "/login body > 2KB (run3)",
     "status": "PASS",
     "duration": 8,
-    "detail": "DOCTYPE found",
+    "detail": "8.3KB",
     "error": ""
   },
   {
-    "suite": "Check-Email API",
-    "name": "POST returns HTTP 200",
+    "suite": "Response Size",
+    "name": "/login body > 2KB (run4)",
     "status": "PASS",
-    "duration": 138,
-    "detail": "HTTP 200",
+    "duration": 10,
+    "detail": "8.3KB",
     "error": ""
   },
   {
-    "suite": "Check-Email API",
-    "name": "Response is valid JSON object",
+    "suite": "Response Size",
+    "name": "/login body > 2KB (run5)",
     "status": "PASS",
-    "duration": 88,
-    "detail": "valid JSON object",
+    "duration": 8,
+    "detail": "8.3KB",
     "error": ""
   },
   {
-    "suite": "Check-Email API",
-    "name": "Response has exists boolean field",
+    "suite": "Response Size",
+    "name": "/login body > 2KB (run6)",
     "status": "PASS",
-    "duration": 118,
-    "detail": "exists: false",
+    "duration": 8,
+    "detail": "8.3KB",
     "error": ""
   },
   {
-    "suite": "Check-Email API",
-    "name": "Non-existent email returns exists:false",
+    "suite": "Response Size",
+    "name": "/login body > 2KB (run7)",
+    "status": "PASS",
+    "duration": 8,
+    "detail": "8.3KB",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "/login body > 2KB (run8)",
+    "status": "PASS",
+    "duration": 9,
+    "detail": "8.3KB",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "/login body > 2KB (run9)",
+    "status": "PASS",
+    "duration": 8,
+    "detail": "8.3KB",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "/login body > 2KB (run10)",
+    "status": "PASS",
+    "duration": 8,
+    "detail": "8.3KB",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "/create-account body > 5KB (run1)",
+    "status": "PASS",
+    "duration": 9,
+    "detail": "13.5KB",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "/create-account body > 5KB (run2)",
+    "status": "PASS",
+    "duration": 9,
+    "detail": "13.5KB",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "/create-account body > 5KB (run3)",
+    "status": "PASS",
+    "duration": 8,
+    "detail": "13.5KB",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "/create-account body > 5KB (run4)",
+    "status": "PASS",
+    "duration": 7,
+    "detail": "13.5KB",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "/create-account body > 5KB (run5)",
+    "status": "PASS",
+    "duration": 8,
+    "detail": "13.5KB",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "/create-account body > 5KB (run6)",
+    "status": "PASS",
+    "duration": 7,
+    "detail": "13.5KB",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "/create-account body > 5KB (run7)",
+    "status": "PASS",
+    "duration": 8,
+    "detail": "13.5KB",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "/create-account body > 5KB (run8)",
+    "status": "PASS",
+    "duration": 10,
+    "detail": "13.5KB",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "/create-account body > 5KB (run9)",
+    "status": "PASS",
+    "duration": 9,
+    "detail": "13.5KB",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "/create-account body > 5KB (run10)",
+    "status": "PASS",
+    "duration": 9,
+    "detail": "13.5KB",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "/check-email response < 200B (run1)",
+    "status": "PASS",
+    "duration": 415,
+    "detail": "16B",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "/check-email response < 200B (run2)",
+    "status": "PASS",
+    "duration": 89,
+    "detail": "16B",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "/check-email response < 200B (run3)",
+    "status": "PASS",
+    "duration": 103,
+    "detail": "16B",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "/check-email response < 200B (run4)",
+    "status": "PASS",
+    "duration": 306,
+    "detail": "16B",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "/check-email response < 200B (run5)",
+    "status": "PASS",
+    "duration": 312,
+    "detail": "16B",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "/check-email response < 200B (run6)",
     "status": "PASS",
     "duration": 204,
-    "detail": "exists:false ✓",
+    "detail": "16B",
     "error": ""
   },
   {
-    "suite": "Check-Email API",
-    "name": "Registered email returns exists:true",
+    "suite": "Response Size",
+    "name": "/check-email response < 200B (run7)",
     "status": "PASS",
-    "duration": 104,
-    "detail": "exists:true ✓",
+    "duration": 560,
+    "detail": "16B",
     "error": ""
   },
   {
-    "suite": "Check-Email API",
-    "name": "Empty email returns exists:false",
+    "suite": "Response Size",
+    "name": "/check-email response < 200B (run8)",
     "status": "PASS",
-    "duration": 6,
-    "detail": "exists:false for empty ✓",
+    "duration": 264,
+    "detail": "16B",
     "error": ""
   },
   {
-    "suite": "Check-Email API",
-    "name": "Missing email field returns exists:false",
+    "suite": "Response Size",
+    "name": "/check-email response < 200B (run9)",
     "status": "PASS",
-    "duration": 8,
-    "detail": "exists:false for missing ✓",
+    "duration": 342,
+    "detail": "16B",
     "error": ""
   },
   {
-    "suite": "Check-Email API",
-    "name": "Accepts form-encoded body",
+    "suite": "Response Size",
+    "name": "/check-email response < 200B (run10)",
     "status": "PASS",
-    "duration": 95,
-    "detail": "HTTP 200",
+    "duration": 174,
+    "detail": "16B",
     "error": ""
   },
   {
-    "suite": "Check-Email API",
-    "name": "Uppercase email is handled without 500",
+    "suite": "Concurrent",
+    "name": "3× GET /login → all 200",
     "status": "PASS",
-    "duration": 103,
-    "detail": "HTTP 200, exists:true",
+    "duration": 19,
+    "detail": "3/3 ✓",
     "error": ""
   },
   {
-    "suite": "Check-Email API",
-    "name": "Does not return 500 for any input",
+    "suite": "Concurrent",
+    "name": "3× GET /create-account → all 200",
     "status": "PASS",
-    "duration": 135,
-    "detail": "HTTP 200",
+    "duration": 25,
+    "detail": "3/3 ✓",
     "error": ""
   },
   {
-    "suite": "Login API",
-    "name": "Wrong creds POST returns HTTP 200",
+    "suite": "Concurrent",
+    "name": "3× GET /dashboard (unauth) → all 302",
     "status": "PASS",
-    "duration": 95,
-    "detail": "HTTP 200",
+    "duration": 21,
+    "detail": "3/3 ✓",
     "error": ""
   },
   {
-    "suite": "Login API",
-    "name": "Wrong creds response contains login form",
+    "suite": "Concurrent",
+    "name": "3× POST /check-email → no 5xx",
     "status": "PASS",
-    "duration": 130,
-    "detail": "login form present",
+    "duration": 346,
+    "detail": "3/3 ✓",
     "error": ""
   },
   {
-    "suite": "Login API",
-    "name": "Wrong creds does not echo password back",
+    "suite": "Concurrent",
+    "name": "3× GET /logout → all 302",
     "status": "PASS",
-    "duration": 97,
-    "detail": "password not reflected ✓",
+    "duration": 18,
+    "detail": "3/3 ✓",
     "error": ""
   },
   {
-    "suite": "Login API",
-    "name": "Valid login POST returns 302",
+    "suite": "Concurrent",
+    "name": "3× GET / → all 302",
     "status": "PASS",
-    "duration": 274,
-    "detail": "HTTP 302",
+    "duration": 13,
+    "detail": "3/3 ✓",
     "error": ""
   },
   {
-    "suite": "Login API",
-    "name": "Valid login 302 Location is /dashboard",
+    "suite": "Concurrent",
+    "name": "5× GET /login → all 200",
     "status": "PASS",
-    "duration": 379,
-    "detail": "Location: /dashboard",
+    "duration": 21,
+    "detail": "5/5 ✓",
     "error": ""
   },
   {
-    "suite": "Login API",
-    "name": "Valid login sets session cookie",
+    "suite": "Concurrent",
+    "name": "5× GET /create-account → all 200",
     "status": "PASS",
-    "duration": 375,
-    "detail": "session cookie set ✓",
+    "duration": 17,
+    "detail": "5/5 ✓",
     "error": ""
   },
   {
-    "suite": "Login API",
-    "name": "Empty credentials POST returns 200 not 500",
+    "suite": "Concurrent",
+    "name": "5× GET /dashboard (unauth) → all 302",
+    "status": "PASS",
+    "duration": 14,
+    "detail": "5/5 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Concurrent",
+    "name": "5× POST /check-email → no 5xx",
+    "status": "PASS",
+    "duration": 535,
+    "detail": "5/5 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Concurrent",
+    "name": "5× GET /logout → all 302",
+    "status": "PASS",
+    "duration": 26,
+    "detail": "5/5 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Concurrent",
+    "name": "5× GET / → all 302",
+    "status": "PASS",
+    "duration": 20,
+    "detail": "5/5 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Concurrent",
+    "name": "10× GET /login → all 200",
+    "status": "PASS",
+    "duration": 36,
+    "detail": "10/10 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Concurrent",
+    "name": "10× GET /create-account → all 200",
+    "status": "PASS",
+    "duration": 31,
+    "detail": "10/10 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Concurrent",
+    "name": "10× GET /dashboard (unauth) → all 302",
+    "status": "PASS",
+    "duration": 25,
+    "detail": "10/10 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Concurrent",
+    "name": "10× POST /check-email → no 5xx",
+    "status": "PASS",
+    "duration": 329,
+    "detail": "10/10 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Concurrent",
+    "name": "10× GET /logout → all 302",
+    "status": "PASS",
+    "duration": 46,
+    "detail": "10/10 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Concurrent",
+    "name": "10× GET / → all 302",
+    "status": "PASS",
+    "duration": 43,
+    "detail": "10/10 ✓",
+    "error": ""
+  },
+  {
+    "suite": "Response Time",
+    "name": "GET /login < 3000ms (run1)",
     "status": "PASS",
     "duration": 4,
-    "detail": "HTTP 200",
+    "detail": "4ms",
     "error": ""
   },
   {
-    "suite": "Login API",
-    "name": "GET /login body has id=loginForm",
+    "suite": "Response Time",
+    "name": "GET /login < 3000ms (run2)",
     "status": "PASS",
     "duration": 5,
-    "detail": "loginForm found",
+    "detail": "5ms",
     "error": ""
   },
   {
-    "suite": "Login API",
-    "name": "GET /login body has id=createAccountLink",
-    "status": "PASS",
-    "duration": 3,
-    "detail": "createAccountLink found",
-    "error": ""
-  },
-  {
-    "suite": "Login API",
-    "name": "GET /login body has remember checkbox",
+    "suite": "Response Time",
+    "name": "GET /login < 3000ms (run3)",
     "status": "PASS",
     "duration": 4,
-    "detail": "remember checkbox found",
+    "detail": "4ms",
     "error": ""
   },
   {
-    "suite": "Authenticated Routes",
-    "name": "GET /dashboard with auth returns 200",
+    "suite": "Response Time",
+    "name": "GET /create-account < 3000ms (run1)",
     "status": "PASS",
-    "duration": 168,
-    "detail": "HTTP 200",
+    "duration": 4,
+    "detail": "4ms",
     "error": ""
   },
   {
-    "suite": "Authenticated Routes",
-    "name": "GET /threats with auth returns 200",
+    "suite": "Response Time",
+    "name": "GET /create-account < 3000ms (run2)",
     "status": "PASS",
-    "duration": 104,
-    "detail": "HTTP 200",
+    "duration": 4,
+    "detail": "4ms",
     "error": ""
   },
   {
-    "suite": "Authenticated Routes",
-    "name": "GET /reports with auth returns 200",
+    "suite": "Response Time",
+    "name": "GET /create-account < 3000ms (run3)",
     "status": "PASS",
-    "duration": 57,
-    "detail": "HTTP 200",
+    "duration": 6,
+    "detail": "6ms",
     "error": ""
   },
   {
-    "suite": "Authenticated Routes",
-    "name": "GET /settings with auth returns 200",
+    "suite": "Response Time",
+    "name": "GET / < 3000ms (run1)",
     "status": "PASS",
-    "duration": 412,
-    "detail": "HTTP 200",
+    "duration": 3,
+    "detail": "3ms",
     "error": ""
   },
   {
-    "suite": "Authenticated Routes",
-    "name": "GET /scanner with auth returns 200",
+    "suite": "Response Time",
+    "name": "GET / < 3000ms (run2)",
     "status": "PASS",
-    "duration": 94,
-    "detail": "HTTP 200",
+    "duration": 3,
+    "detail": "3ms",
     "error": ""
   },
   {
-    "suite": "Authenticated Routes",
-    "name": "/dashboard body contains stats-container",
+    "suite": "Response Time",
+    "name": "GET / < 3000ms (run3)",
     "status": "PASS",
-    "duration": 103,
-    "detail": "stats-container found",
+    "duration": 3,
+    "detail": "3ms",
     "error": ""
   },
   {
-    "suite": "Authenticated Routes",
-    "name": "/threats body contains history-table",
+    "suite": "Response Time",
+    "name": "GET /logout < 3000ms (run1)",
     "status": "PASS",
-    "duration": 116,
-    "detail": "history-table found",
+    "duration": 5,
+    "detail": "5ms",
     "error": ""
   },
   {
-    "suite": "Authenticated Routes",
-    "name": "/reports body contains Security Reports",
+    "suite": "Response Time",
+    "name": "GET /logout < 3000ms (run2)",
     "status": "PASS",
-    "duration": 87,
-    "detail": "Security Reports found",
+    "duration": 4,
+    "detail": "4ms",
     "error": ""
   },
   {
-    "suite": "Authenticated Routes",
-    "name": "/settings body contains Settings",
+    "suite": "Response Time",
+    "name": "GET /logout < 3000ms (run3)",
     "status": "PASS",
-    "duration": 219,
-    "detail": "Settings heading found",
+    "duration": 3,
+    "detail": "3ms",
     "error": ""
   },
   {
-    "suite": "Authenticated Routes",
-    "name": "POST /dashboard with message returns 200",
+    "suite": "Response Time",
+    "name": "GET /dashboard < 3000ms (run1)",
     "status": "PASS",
-    "duration": 296,
-    "detail": "HTTP 200",
+    "duration": 3,
+    "detail": "3ms",
     "error": ""
   },
   {
-    "suite": "Scanner Logic",
-    "name": "Phishing message detected in response body",
+    "suite": "Response Time",
+    "name": "GET /dashboard < 3000ms (run2)",
     "status": "PASS",
-    "duration": 407,
-    "detail": "Phishing detected ✓",
+    "duration": 4,
+    "detail": "4ms",
     "error": ""
   },
   {
-    "suite": "Scanner Logic",
-    "name": "Safe message detected in response body",
+    "suite": "Response Time",
+    "name": "GET /dashboard < 3000ms (run3)",
     "status": "PASS",
-    "duration": 408,
-    "detail": "Safe detected ✓",
+    "duration": 5,
+    "detail": "5ms",
     "error": ""
   },
   {
-    "suite": "Scanner Logic",
-    "name": "Phishing scan body has result-box",
+    "suite": "Response Time",
+    "name": "GET /threats < 3000ms (run1)",
     "status": "PASS",
-    "duration": 413,
-    "detail": "result-box found",
+    "duration": 4,
+    "detail": "4ms",
     "error": ""
   },
   {
-    "suite": "Scanner Logic",
-    "name": "Phishing scan body has Risk Score",
+    "suite": "Response Time",
+    "name": "GET /threats < 3000ms (run2)",
     "status": "PASS",
-    "duration": 409,
-    "detail": "Risk Score found",
+    "duration": 3,
+    "detail": "3ms",
     "error": ""
   },
   {
-    "suite": "Scanner Logic",
-    "name": "Safe scan body has Safe text",
+    "suite": "Response Time",
+    "name": "GET /threats < 3000ms (run3)",
     "status": "PASS",
-    "duration": 409,
-    "detail": "Safe text found",
+    "duration": 3,
+    "detail": "3ms",
     "error": ""
   },
   {
-    "suite": "Scanner Logic",
-    "name": "Phishing scan body has AI Explanation",
+    "suite": "Response Time",
+    "name": "GET /reports < 3000ms (run1)",
     "status": "PASS",
-    "duration": 369,
-    "detail": "Explanation found",
+    "duration": 5,
+    "detail": "5ms",
     "error": ""
   },
   {
-    "suite": "Scanner Logic",
-    "name": "Scan response has stats-container",
+    "suite": "Response Time",
+    "name": "GET /reports < 3000ms (run2)",
     "status": "PASS",
-    "duration": 352,
-    "detail": "stats-container found",
+    "duration": 4,
+    "detail": "4ms",
     "error": ""
   },
   {
-    "suite": "Scanner Logic",
-    "name": "POST /dashboard does not return 500",
+    "suite": "Response Time",
+    "name": "GET /reports < 3000ms (run3)",
     "status": "PASS",
-    "duration": 407,
-    "detail": "HTTP 200",
+    "duration": 4,
+    "detail": "4ms",
     "error": ""
   },
   {
-    "suite": "Scanner Logic",
-    "name": "Prize/winner message flagged as Phishing",
+    "suite": "Response Time",
+    "name": "GET /settings < 3000ms (run1)",
     "status": "PASS",
-    "duration": 529,
-    "detail": "Phishing for prize/winner ✓",
+    "duration": 3,
+    "detail": "3ms",
     "error": ""
   },
   {
-    "suite": "Scanner Logic",
-    "name": "Friendly message stays Safe",
+    "suite": "Response Time",
+    "name": "GET /settings < 3000ms (run2)",
     "status": "PASS",
-    "duration": 395,
-    "detail": "Safe for friendly ✓",
+    "duration": 4,
+    "detail": "4ms",
+    "error": ""
+  },
+  {
+    "suite": "Response Time",
+    "name": "GET /settings < 3000ms (run3)",
+    "status": "PASS",
+    "duration": 4,
+    "detail": "4ms",
+    "error": ""
+  },
+  {
+    "suite": "Response Time",
+    "name": "POST /check-email < 5000ms (run1)",
+    "status": "PASS",
+    "duration": 364,
+    "detail": "363ms",
+    "error": ""
+  },
+  {
+    "suite": "Response Time",
+    "name": "POST /check-email < 5000ms (run2)",
+    "status": "PASS",
+    "duration": 267,
+    "detail": "267ms",
+    "error": ""
+  },
+  {
+    "suite": "Response Time",
+    "name": "POST /check-email < 5000ms (run3)",
+    "status": "PASS",
+    "duration": 450,
+    "detail": "450ms",
+    "error": ""
+  },
+  {
+    "suite": "Response Time",
+    "name": "POST /check-email < 5000ms (run4)",
+    "status": "PASS",
+    "duration": 302,
+    "detail": "302ms",
+    "error": ""
+  },
+  {
+    "suite": "Response Time",
+    "name": "POST /check-email < 5000ms (run5)",
+    "status": "PASS",
+    "duration": 354,
+    "detail": "354ms",
+    "error": ""
+  },
+  {
+    "suite": "Response Time",
+    "name": "5× /login avg < 3000ms",
+    "status": "PASS",
+    "duration": 44,
+    "detail": "avg 9ms",
+    "error": ""
+  },
+  {
+    "suite": "Security Checks",
+    "name": "/login body has no \"private_key\"",
+    "status": "PASS",
+    "duration": 8,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Security Checks",
+    "name": "/login body has no \"client_secret\"",
+    "status": "PASS",
+    "duration": 10,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Security Checks",
+    "name": "/login body has no \"firebase_admin\"",
+    "status": "PASS",
+    "duration": 8,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Security Checks",
+    "name": "/login body has no \"serviceAccountKey\"",
+    "status": "PASS",
+    "duration": 9,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Security Checks",
+    "name": "/login body has no \"phishguard_secret_ke\"",
+    "status": "PASS",
+    "duration": 8,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Security Checks",
+    "name": "/login body has no \"import flask\"",
+    "status": "PASS",
+    "duration": 8,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Security Checks",
+    "name": "/login body has no \"from flask\"",
+    "status": "PASS",
+    "duration": 8,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Security Checks",
+    "name": "/login body has no \".env\"",
+    "status": "PASS",
+    "duration": 9,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Security Checks",
+    "name": "/login body has no \"SECRET_KEY\"",
+    "status": "PASS",
+    "duration": 8,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Security Checks",
+    "name": "/login body has no \"password=\"",
+    "status": "PASS",
+    "duration": 10,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Security Checks",
+    "name": "/login body has no \"db.collection\"",
+    "status": "PASS",
+    "duration": 8,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Security Checks",
+    "name": "/create-account body has no \"private_key\"",
+    "status": "PASS",
+    "duration": 9,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Security Checks",
+    "name": "/create-account body has no \"client_secret\"",
+    "status": "PASS",
+    "duration": 8,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Security Checks",
+    "name": "/create-account body has no \"firebase_admin\"",
+    "status": "PASS",
+    "duration": 9,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Security Checks",
+    "name": "/create-account body has no \"serviceAccountKey\"",
+    "status": "PASS",
+    "duration": 7,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Security Checks",
+    "name": "/create-account body has no \"phishguard_secret_ke\"",
+    "status": "PASS",
+    "duration": 9,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Security Checks",
+    "name": "/create-account body has no \"import flask\"",
+    "status": "PASS",
+    "duration": 8,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Security Checks",
+    "name": "/create-account body has no \"from flask\"",
+    "status": "PASS",
+    "duration": 10,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Security Checks",
+    "name": "/create-account body has no \".env\"",
+    "status": "PASS",
+    "duration": 8,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Security Checks",
+    "name": "/create-account body has no \"SECRET_KEY\"",
+    "status": "PASS",
+    "duration": 9,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Security Checks",
+    "name": "/create-account body has no \"password=\"",
+    "status": "PASS",
+    "duration": 10,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Security Checks",
+    "name": "/create-account body has no \"db.collection\"",
+    "status": "PASS",
+    "duration": 10,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Security Checks",
+    "name": "/login no Traceback in body",
+    "status": "PASS",
+    "duration": 13,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Security Checks",
+    "name": "/create-account no Traceback",
+    "status": "PASS",
+    "duration": 9,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Security Checks",
+    "name": "POST /check-email no Traceback",
+    "status": "PASS",
+    "duration": 316,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Security Checks",
+    "name": "/login no File path in body",
+    "status": "PASS",
+    "duration": 9,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Security Checks",
+    "name": "/create-account no File path",
+    "status": "PASS",
+    "duration": 11,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Security Checks",
+    "name": "GET /api/settings-data (unauth) → 401 or 302",
+    "status": "PASS",
+    "duration": 9,
+    "detail": "401",
     "error": ""
   }
 ]

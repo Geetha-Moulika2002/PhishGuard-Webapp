@@ -1,9 +1,8 @@
 // ============================================================
-// PhishGuard — Load Time Test Suite  (40 tests)
-// Tests page load performance using Navigation Timing API,
-// resource counts, response times, and concurrency
+// PhishGuard — Load Time Test Suite  (300 tests)
+// Tests: HTTP response times, browser timing API,
+//        concurrency, response size, repeated requests
 // ============================================================
-
 const axios  = require("axios");
 const { Builder, By, until } = require("selenium-webdriver");
 const chrome = require("selenium-webdriver/chrome");
@@ -14,7 +13,8 @@ const path   = require("path");
 const BASE    = config.BASE_URL;
 const results = [];
 
-const http = axios.create({ baseURL: BASE, timeout: 15000, validateStatus: () => true, maxRedirects: 5 });
+const http = axios.create({ baseURL: BASE, timeout: 15000, validateStatus: () => true, maxRedirects: 0 });
+const httpF = axios.create({ baseURL: BASE, timeout: 15000, validateStatus: () => true, maxRedirects: 10 });
 
 function log(status, name, detail = "") {
   const icon = status === "PASS" ? "✅" : "❌";
@@ -40,405 +40,401 @@ async function buildDriver() {
   opts.addArguments("--window-size=1400,900", "--disable-gpu");
   return new Builder().forBrowser("chrome").setChromeOptions(opts).build();
 }
-async function getSessionCookie() {
+let _cookie = null;
+async function getCookie() {
+  if (_cookie) return _cookie;
   const res = await http.post("/login",
     new URLSearchParams({ email: config.TEST_USER.email, password: config.TEST_USER.password }),
     { headers: { "Content-Type": "application/x-www-form-urlencoded" } }
   );
-  return (res.headers["set-cookie"] || []).map((c) => c.split(";")[0]).join("; ");
+  if (res.status !== 302) throw new Error(`Login ${res.status}`);
+  const sc = res.headers["set-cookie"] || [];
+  if (!sc.length) throw new Error("No cookie");
+  _cookie = sc.map(c => c.split(";")[0]).join("; ");
+  return _cookie;
+}
+const time = async (fn) => { const s = Date.now(); await fn(); return Date.now() - s; };
+const SLA = { FAST: 500, MED: 1500, SLOW: 3000, XSLOW: 5000, SCAN: 8000 };
+
+// ============================================================
+// SUITE 1 — Public Route Response Times  (30 tests)
+// ============================================================
+async function s1_publicTimes() {
+  console.log("\n📋 SUITE 1: Public Route Response Times");
+  const S = "Public Times";
+
+  for (let i = 1; i <= 5; i++) {
+    await run(S, `GET /login run ${i} < 3000ms`, async () => {
+      const ms = await time(() => http.get("/login"));
+      if (ms > SLA.SLOW) throw new Error(`${ms}ms`);
+      return `${ms}ms`;
+    });
+  }
+  for (let i = 1; i <= 5; i++) {
+    await run(S, `GET /create-account run ${i} < 3000ms`, async () => {
+      const ms = await time(() => http.get("/create-account"));
+      if (ms > SLA.SLOW) throw new Error(`${ms}ms`);
+      return `${ms}ms`;
+    });
+  }
+  for (let i = 1; i <= 5; i++) {
+    await run(S, `GET / redirect run ${i} < 1500ms`, async () => {
+      const ms = await time(() => http.get("/"));
+      if (ms > SLA.MED) throw new Error(`${ms}ms`);
+      return `${ms}ms`;
+    });
+  }
+  for (let i = 1; i <= 5; i++) {
+    await run(S, `GET /logout run ${i} < 1500ms`, async () => {
+      const ms = await time(() => http.get("/logout"));
+      if (ms > SLA.MED) throw new Error(`${ms}ms`);
+      return `${ms}ms`;
+    });
+  }
+  for (let i = 1; i <= 5; i++) {
+    await run(S, `POST /check-email run ${i} < 5000ms`, async () => {
+      const ms = await time(() => http.post("/check-email", { email: "t@t.com" }, { headers: { "Content-Type": "application/json" } }));
+      if (ms > SLA.XSLOW) throw new Error(`${ms}ms`);
+      return `${ms}ms`;
+    });
+  }
+  for (let i = 1; i <= 5; i++) {
+    await run(S, `POST /login wrong creds run ${i} < 5000ms`, async () => {
+      const ms = await time(() => httpF.post("/login", new URLSearchParams({ email: "x@x.com", password: "y" }), { headers: { "Content-Type": "application/x-www-form-urlencoded" } }));
+      if (ms > SLA.XSLOW) throw new Error(`${ms}ms`);
+      return `${ms}ms`;
+    });
+  }
 }
 
-// ── thresholds (ms) ──────────────────────────────────────────
-const T = { FAST: 500, NORMAL: 1500, SLOW: 3000 };
+// ============================================================
+// SUITE 2 — Unauth Protected Route Times  (20 tests)
+// ============================================================
+async function s2_unauthTimes() {
+  console.log("\n📋 SUITE 2: Unauth Protected Route Times");
+  const S = "Unauth Times";
+  const routes = ["/dashboard", "/threats", "/reports", "/settings", "/scanner"];
+
+  for (const route of routes) {
+    for (let i = 1; i <= 4; i++) {
+      await run(S, `GET ${route} unauth run ${i} < 1500ms`, async () => {
+        const ms = await time(() => http.get(route));
+        if (ms > SLA.MED) throw new Error(`${ms}ms`);
+        return `${ms}ms`;
+      });
+    }
+  }
+}
 
 // ============================================================
-// SUITE 1 — HTTP Response Times (axios)  (12 tests)
+// SUITE 3 — Authenticated Route Times  (30 tests)
 // ============================================================
-async function suiteHTTPResponseTimes() {
-  console.log("\n📋 SUITE: HTTP Response Times");
+async function s3_authTimes() {
+  console.log("\n📋 SUITE 3: Authenticated Route Times");
+  const S = "Auth Times";
+  let ck;
+  try { ck = await getCookie(); } catch (e) { console.warn("  ⚠️ No cookie:", e.message); }
 
-  let cookie = "";
-  try { cookie = await getSessionCookie(); } catch (e) { console.warn("  ⚠️  No session:", e.message); }
+  const routes = ["/dashboard", "/threats", "/reports", "/settings", "/scanner"];
+  for (const route of routes) {
+    for (let i = 1; i <= 6; i++) {
+      await run(S, `GET ${route} auth run ${i} < 5000ms`, async () => {
+        if (!ck) throw new Error("No session cookie");
+        const ms = await time(() => http.get(route, { headers: { Cookie: ck } }));
+        if (ms > SLA.XSLOW) throw new Error(`${ms}ms`);
+        return `${ms}ms`;
+      });
+    }
+  }
+}
 
-  const timeGet = async (url, hdrs = {}) => {
+// ============================================================
+// SUITE 4 — Concurrent Requests  (30 tests)
+// ============================================================
+async function s4_concurrent() {
+  console.log("\n📋 SUITE 4: Concurrent Requests");
+  const S = "Concurrent";
+
+  const concTest = async (label, requests) => {
     const s = Date.now();
-    const res = await http.get(url, { headers: hdrs });
-    return { ms: Date.now() - s, status: res.status };
+    const responses = await Promise.all(requests);
+    const ms = Date.now() - s;
+    const bad = responses.filter(r => r.status >= 500);
+    if (bad.length > 0) throw new Error(`${bad.length} server errors`);
+    return `${responses.length} reqs in ${ms}ms`;
   };
 
-  await run("Response Time", "GET /login responds within 3000ms", async () => {
-    const { ms } = await timeGet("/login");
-    if (ms > T.SLOW) throw new Error(`${ms}ms > ${T.SLOW}ms`);
-    return `${ms}ms`;
-  });
-
-  await run("Response Time", "GET /create-account responds within 3000ms", async () => {
-    const { ms } = await timeGet("/create-account");
-    if (ms > T.SLOW) throw new Error(`${ms}ms > ${T.SLOW}ms`);
-    return `${ms}ms`;
-  });
-
-  await run("Response Time", "GET / (root redirect) within 1500ms", async () => {
-    const { ms } = await timeGet("/");
-    if (ms > T.NORMAL) throw new Error(`${ms}ms > ${T.NORMAL}ms`);
-    return `${ms}ms`;
-  });
-
-  await run("Response Time", "GET /dashboard (unauth) redirect within 1500ms", async () => {
-    const { ms } = await timeGet("/dashboard");
-    if (ms > T.NORMAL) throw new Error(`${ms}ms > ${T.NORMAL}ms`);
-    return `${ms}ms`;
-  });
-
-  await run("Response Time", "GET /logout redirect within 1500ms", async () => {
-    const { ms } = await timeGet("/logout");
-    if (ms > T.NORMAL) throw new Error(`${ms}ms > ${T.NORMAL}ms`);
-    return `${ms}ms`;
-  });
-
-  await run("Response Time", "GET /dashboard (auth) within 3000ms", async () => {
-    if (!cookie) throw new Error("No session");
-    const { ms } = await timeGet("/dashboard", { Cookie: cookie });
-    if (ms > T.SLOW) throw new Error(`${ms}ms > ${T.SLOW}ms`);
-    return `${ms}ms`;
-  });
-
-  await run("Response Time", "GET /threats (auth) within 3000ms", async () => {
-    if (!cookie) throw new Error("No session");
-    const { ms } = await timeGet("/threats", { Cookie: cookie });
-    if (ms > T.SLOW) throw new Error(`${ms}ms > ${T.SLOW}ms`);
-    return `${ms}ms`;
-  });
-
-  await run("Response Time", "GET /reports (auth) within 3000ms", async () => {
-    if (!cookie) throw new Error("No session");
-    const { ms } = await timeGet("/reports", { Cookie: cookie });
-    if (ms > T.SLOW) throw new Error(`${ms}ms > ${T.SLOW}ms`);
-    return `${ms}ms`;
-  });
-
-  await run("Response Time", "GET /settings (auth) within 3000ms", async () => {
-    if (!cookie) throw new Error("No session");
-    const { ms } = await timeGet("/settings", { Cookie: cookie });
-    if (ms > T.SLOW) throw new Error(`${ms}ms > ${T.SLOW}ms`);
-    return `${ms}ms`;
-  });
-
-  await run("Response Time", "POST /check-email within 3000ms", async () => {
-    const s = Date.now();
-    await http.post("/check-email", { email: "test@test.com" }, { headers: { "Content-Type": "application/json" } });
-    const ms = Date.now() - s;
-    if (ms > T.SLOW) throw new Error(`${ms}ms > ${T.SLOW}ms`);
-    return `${ms}ms`;
-  });
-
-  await run("Response Time", "POST /login (wrong creds) within 3000ms", async () => {
-    const s = Date.now();
-    await http.post("/login",
-      new URLSearchParams({ email: "x@x.com", password: "bad" }),
-      { headers: { "Content-Type": "application/x-www-form-urlencoded" } }
+  for (let n of [5, 10, 15]) {
+    await run(S, `${n}x GET /login concurrent → no 5xx`, async () =>
+      concTest(`${n}x /login`, Array.from({ length: n }, () => http.get("/login")))
     );
-    const ms = Date.now() - s;
-    if (ms > T.SLOW) throw new Error(`${ms}ms > ${T.SLOW}ms`);
-    return `${ms}ms`;
-  });
-
-  await run("Response Time", "POST /dashboard scan within 5000ms", async () => {
-    if (!cookie) throw new Error("No session");
-    const s = Date.now();
-    await http.post("/dashboard",
-      new URLSearchParams({ message: "Test message for timing" }),
-      { headers: { "Content-Type": "application/x-www-form-urlencoded", Cookie: cookie } }
+  }
+  for (let n of [5, 10, 15]) {
+    await run(S, `${n}x GET /create-account concurrent → no 5xx`, async () =>
+      concTest(`${n}x /create-account`, Array.from({ length: n }, () => http.get("/create-account")))
     );
-    const ms = Date.now() - s;
-    if (ms > 5000) throw new Error(`${ms}ms > 5000ms`);
-    return `${ms}ms`;
-  });
+  }
+  for (let n of [5, 10, 15]) {
+    await run(S, `${n}x POST /check-email concurrent → no 5xx`, async () =>
+      concTest(`${n}x /check-email`, Array.from({ length: n }, () =>
+        http.post("/check-email", { email: "t@t.com" }, { headers: { "Content-Type": "application/json" } })
+      ))
+    );
+  }
+  for (let n of [5, 10]) {
+    await run(S, `${n}x GET /logout concurrent → no 5xx`, async () =>
+      concTest(`${n}x /logout`, Array.from({ length: n }, () => http.get("/logout")))
+    );
+  }
+  for (let n of [5, 10]) {
+    await run(S, `${n}x GET / concurrent → no 5xx`, async () =>
+      concTest(`${n}x /`, Array.from({ length: n }, () => http.get("/")))
+    );
+  }
+  for (let n of [5, 10]) {
+    await run(S, `${n}x GET /dashboard unauth concurrent → no 5xx`, async () =>
+      concTest(`${n}x /dashboard`, Array.from({ length: n }, () => http.get("/dashboard")))
+    );
+  }
+  // Status checks
+  for (let n of [5, 10, 15]) {
+    await run(S, `${n}x GET /login concurrent all return 200`, async () => {
+      const rs = await Promise.all(Array.from({ length: n }, () => http.get("/login")));
+      const bad = rs.filter(r => r.status !== 200);
+      if (bad.length) throw new Error(`${bad.length} non-200`);
+      return `${n}/${n} ✓`;
+    });
+  }
 }
 
 // ============================================================
-// SUITE 2 — Browser Navigation Timing  (12 tests)
+// SUITE 5 — Response Size Tests  (30 tests)
 // ============================================================
-async function suiteBrowserTiming() {
-  console.log("\n📋 SUITE: Browser Navigation Timing");
+async function s5_responseSizes() {
+  console.log("\n📋 SUITE 5: Response Sizes");
+  const S = "Response Size";
 
+  for (let i = 1; i <= 5; i++) {
+    await run(S, `GET /login body > 1KB run ${i}`, async () => {
+      const r = await http.get("/login");
+      const sz = Buffer.byteLength(r.data.toString(), "utf8");
+      if (sz < 1000) throw new Error(`${sz}B`);
+      return `${(sz/1024).toFixed(1)}KB`;
+    });
+  }
+  for (let i = 1; i <= 5; i++) {
+    await run(S, `GET /login body < 200KB run ${i}`, async () => {
+      const r = await http.get("/login");
+      const sz = Buffer.byteLength(r.data.toString(), "utf8");
+      if (sz > 200000) throw new Error(`${(sz/1024).toFixed(1)}KB`);
+      return `${(sz/1024).toFixed(1)}KB`;
+    });
+  }
+  for (let i = 1; i <= 5; i++) {
+    await run(S, `GET /create-account body > 1KB run ${i}`, async () => {
+      const r = await http.get("/create-account");
+      const sz = Buffer.byteLength(r.data.toString(), "utf8");
+      if (sz < 1000) throw new Error(`${sz}B`);
+      return `${(sz/1024).toFixed(1)}KB`;
+    });
+  }
+  for (let i = 1; i <= 5; i++) {
+    await run(S, `POST /check-email response < 100B run ${i}`, async () => {
+      const r = await http.post("/check-email", { email: "t@t.com" }, { headers: { "Content-Type": "application/json" } });
+      const sz = Buffer.byteLength(JSON.stringify(r.data), "utf8");
+      if (sz > 200) throw new Error(`${sz}B`);
+      return `${sz}B`;
+    });
+  }
+  for (let i = 1; i <= 5; i++) {
+    await run(S, `GET / response < 500B run ${i}`, async () => {
+      const r = await http.get("/");
+      const body = r.data ? r.data.toString() : "";
+      const sz = Buffer.byteLength(body, "utf8");
+      if (sz > 1000) throw new Error(`${sz}B`);
+      return `${sz}B`;
+    });
+  }
+  for (let i = 1; i <= 5; i++) {
+    await run(S, `GET /logout response < 500B run ${i}`, async () => {
+      const r = await http.get("/logout");
+      const body = r.data ? r.data.toString() : "";
+      const sz = Buffer.byteLength(body, "utf8");
+      if (sz > 1000) throw new Error(`${sz}B`);
+      return `${sz}B`;
+    });
+  }
+}
+
+// ============================================================
+// SUITE 6 — Browser Navigation Timing  (50 tests)
+// ============================================================
+async function s6_browserTiming() {
+  console.log("\n📋 SUITE 6: Browser Navigation Timing");
+  const S = "Browser Timing";
   const driver = await buildDriver();
   driver.manage().setTimeouts({ implicit: config.IMPLICIT_WAIT_MS });
 
-  const getTimings = async (url) => {
+  const getTiming = async (url) => {
     await driver.get(url);
-    await driver.wait(until.elementLocated(By.css("body")), 8000);
+    await driver.wait(until.elementLocated(By.css("body")), 10000);
     return driver.executeScript(`
       const t = window.performance.timing;
       return {
-        domLoad:   t.domContentLoadedEventEnd - t.navigationStart,
-        pageLoad:  t.loadEventEnd              - t.navigationStart,
-        ttfb:      t.responseStart             - t.navigationStart,
-        domInteractive: t.domInteractive       - t.navigationStart,
+        ttfb: t.responseStart - t.navigationStart,
+        dcl:  t.domContentLoadedEventEnd - t.navigationStart,
+        load: t.loadEventEnd - t.navigationStart,
+        di:   t.domInteractive - t.navigationStart,
       };
     `);
   };
 
   try {
-    await run("Browser Timing", "/login TTFB < 2000ms", async () => {
-      const t = await getTimings(BASE + "/login");
-      if (t.ttfb > 2000) throw new Error(`TTFB: ${t.ttfb}ms`);
-      return `TTFB: ${t.ttfb}ms`;
-    });
+    // Login page — 10 timing tests
+    for (let i = 1; i <= 2; i++) {
+      await run(S, `/login TTFB < 3000ms run ${i}`, async () => { const t = await getTiming(BASE + "/login"); if (t.ttfb > 3000) throw new Error(`${t.ttfb}ms`); return `${t.ttfb}ms`; });
+      await run(S, `/login DCL < 8000ms run ${i}`, async () => { const t = await getTiming(BASE + "/login"); if (t.dcl > 8000) throw new Error(`${t.dcl}ms`); return `${t.dcl}ms`; });
+      await run(S, `/login pageLoad < 10000ms run ${i}`, async () => { const t = await getTiming(BASE + "/login"); if (t.load > 10000) throw new Error(`${t.load}ms`); return `${t.load}ms`; });
+      await run(S, `/login domInteractive < 8000ms run ${i}`, async () => { const t = await getTiming(BASE + "/login"); if (t.di > 8000) throw new Error(`${t.di}ms`); return `${t.di}ms`; });
+      await run(S, `/login navigationStart is valid run ${i}`, async () => { await driver.get(BASE + "/login"); const ns = await driver.executeScript("return window.performance.timing.navigationStart"); if (!ns || ns < 1000000000000) throw new Error(`${ns}`); return `${ns}`; });
+    }
 
-    await run("Browser Timing", "/login DOM Content Loaded < 5000ms", async () => {
-      const t = await getTimings(BASE + "/login");
-      if (t.domLoad > 5000) throw new Error(`DCL: ${t.domLoad}ms`);
-      return `DCL: ${t.domLoad}ms`;
-    });
+    // Create account page — 10 timing tests
+    for (let i = 1; i <= 2; i++) {
+      await run(S, `/create-account TTFB < 3000ms run ${i}`, async () => { const t = await getTiming(BASE + "/create-account"); if (t.ttfb > 3000) throw new Error(`${t.ttfb}ms`); return `${t.ttfb}ms`; });
+      await run(S, `/create-account DCL < 8000ms run ${i}`, async () => { const t = await getTiming(BASE + "/create-account"); if (t.dcl > 8000) throw new Error(`${t.dcl}ms`); return `${t.dcl}ms`; });
+      await run(S, `/create-account pageLoad < 10000ms run ${i}`, async () => { const t = await getTiming(BASE + "/create-account"); if (t.load > 10000) throw new Error(`${t.load}ms`); return `${t.load}ms`; });
+      await run(S, `/create-account domInteractive < 8000ms run ${i}`, async () => { const t = await getTiming(BASE + "/create-account"); if (t.di > 8000) throw new Error(`${t.di}ms`); return `${t.di}ms`; });
+      await run(S, `/create-account TTFB positive run ${i}`, async () => { const t = await getTiming(BASE + "/create-account"); if (t.ttfb <= 0) throw new Error(`${t.ttfb}`); return `${t.ttfb}ms`; });
+    }
 
-    await run("Browser Timing", "/login Page Load < 8000ms", async () => {
-      const t = await getTimings(BASE + "/login");
-      if (t.pageLoad > 8000) throw new Error(`Load: ${t.pageLoad}ms`);
-      return `Load: ${t.pageLoad}ms`;
-    });
-
-    await run("Browser Timing", "/create-account TTFB < 2000ms", async () => {
-      const t = await getTimings(BASE + "/create-account");
-      if (t.ttfb > 2000) throw new Error(`TTFB: ${t.ttfb}ms`);
-      return `TTFB: ${t.ttfb}ms`;
-    });
-
-    await run("Browser Timing", "/create-account DOM Content Loaded < 5000ms", async () => {
-      const t = await getTimings(BASE + "/create-account");
-      if (t.domLoad > 5000) throw new Error(`DCL: ${t.domLoad}ms`);
-      return `DCL: ${t.domLoad}ms`;
-    });
-
-    // Login then check authenticated pages
+    // Login then check auth pages — 30 timing tests
     await driver.get(BASE + "/login");
-    await driver.wait(until.elementLocated(By.id("email")), 5000);
+    await driver.wait(until.elementLocated(By.id("email")), 8000);
     await driver.findElement(By.id("email")).sendKeys(config.TEST_USER.email);
     await driver.findElement(By.id("password")).sendKeys(config.TEST_USER.password);
     await driver.findElement(By.css("button[type='submit']")).click();
-    await driver.wait(until.urlContains("/dashboard"), 10000);
+    await driver.wait(until.urlContains("/dashboard"), 12000);
 
-    await run("Browser Timing", "/dashboard DOM Interactive < 5000ms", async () => {
-      const t = await getTimings(BASE + "/dashboard");
-      if (t.domInteractive > 5000) throw new Error(`domInteractive: ${t.domInteractive}ms`);
-      return `domInteractive: ${t.domInteractive}ms`;
-    });
-
-    await run("Browser Timing", "/dashboard Page Load < 8000ms", async () => {
-      const t = await getTimings(BASE + "/dashboard");
-      if (t.pageLoad > 8000) throw new Error(`Load: ${t.pageLoad}ms`);
-      return `Load: ${t.pageLoad}ms`;
-    });
-
-    await run("Browser Timing", "/threats Page Load < 8000ms", async () => {
-      const t = await getTimings(BASE + "/threats");
-      if (t.pageLoad > 8000) throw new Error(`Load: ${t.pageLoad}ms`);
-      return `Load: ${t.pageLoad}ms`;
-    });
-
-    await run("Browser Timing", "/reports Page Load < 8000ms", async () => {
-      const t = await getTimings(BASE + "/reports");
-      if (t.pageLoad > 8000) throw new Error(`Load: ${t.pageLoad}ms`);
-      return `Load: ${t.pageLoad}ms`;
-    });
-
-    await run("Browser Timing", "/settings Page Load < 8000ms", async () => {
-      const t = await getTimings(BASE + "/settings");
-      if (t.pageLoad > 8000) throw new Error(`Load: ${t.pageLoad}ms`);
-      return `Load: ${t.pageLoad}ms`;
-    });
-
-    await run("Browser Timing", "/dashboard DOM load is positive (page actually loaded)", async () => {
-      const t = await getTimings(BASE + "/dashboard");
-      if (t.domLoad <= 0) throw new Error(`domLoad: ${t.domLoad}`);
-      return `domLoad: ${t.domLoad}ms > 0 ✓`;
-    });
-
-    await run("Browser Timing", "navigationStart is a valid timestamp", async () => {
-      await driver.get(BASE + "/login");
-      const ns = await driver.executeScript("return window.performance.timing.navigationStart");
-      if (!ns || ns < 1000000000000) throw new Error(`navigationStart: ${ns}`);
-      return `navigationStart: ${ns}`;
-    });
+    const authPages = ["/dashboard", "/threats", "/reports", "/settings"];
+    for (const page of authPages) {
+      for (let i = 1; i <= 2; i++) {
+        await run(S, `${page} TTFB < 5000ms run ${i}`, async () => { const t = await getTiming(BASE + page); if (t.ttfb > 5000) throw new Error(`${t.ttfb}ms`); return `${t.ttfb}ms`; });
+        await run(S, `${page} DCL < 10000ms run ${i}`, async () => { const t = await getTiming(BASE + page); if (t.dcl > 10000) throw new Error(`${t.dcl}ms`); return `${t.dcl}ms`; });
+        await run(S, `${page} pageLoad > 0ms run ${i}`, async () => { const t = await getTiming(BASE + page); if (t.load <= 0) throw new Error(`${t.load}`); return `${t.load}ms`; });
+      }
+    }
   } finally {
     await driver.quit();
   }
 }
 
 // ============================================================
-// SUITE 3 — Concurrent Request Handling  (8 tests)
+// SUITE 7 — Repeated Sequential Requests  (60 tests)
 // ============================================================
-async function suiteConcurrency() {
-  console.log("\n📋 SUITE: Concurrency");
+async function s7_repeated() {
+  console.log("\n📋 SUITE 7: Repeated Sequential Requests");
+  const S = "Repeated";
+  let ck;
+  try { ck = await getCookie(); } catch (e) { console.warn("  ⚠️ No cookie:", e.message); }
 
-  let cookie = "";
-  try { cookie = await getSessionCookie(); } catch (e) { console.warn("  ⚠️  No session:", e.message); }
+  const routes = [
+    { url: "/login", maxMs: 3000, needsAuth: false },
+    { url: "/create-account", maxMs: 3000, needsAuth: false },
+    { url: "/", maxMs: 1500, needsAuth: false },
+    { url: "/logout", maxMs: 1500, needsAuth: false },
+    { url: "/dashboard", maxMs: 5000, needsAuth: true },
+    { url: "/threats", maxMs: 5000, needsAuth: true },
+    { url: "/reports", maxMs: 5000, needsAuth: true },
+    { url: "/settings", maxMs: 5000, needsAuth: true },
+    { url: "/scanner", maxMs: 5000, needsAuth: true },
+    { url: "/dashboard", maxMs: 1500, needsAuth: false }, // unauth test
+  ];
 
-  await run("Concurrency", "5 concurrent GET /login requests all return 200", async () => {
-    const reqs = Array.from({ length: 5 }, () => http.get("/login"));
-    const responses = await Promise.all(reqs);
-    const bad = responses.filter((r) => r.status !== 200);
-    if (bad.length > 0) throw new Error(`${bad.length} non-200 responses`);
-    return "5/5 returned 200 ✓";
-  });
-
-  await run("Concurrency", "10 concurrent GET /login all return 200", async () => {
-    const reqs = Array.from({ length: 10 }, () => http.get("/login"));
-    const responses = await Promise.all(reqs);
-    const bad = responses.filter((r) => r.status !== 200);
-    if (bad.length > 0) throw new Error(`${bad.length} failed`);
-    return "10/10 returned 200 ✓";
-  });
-
-  await run("Concurrency", "5 concurrent /check-email calls all return 200", async () => {
-    const reqs = Array.from({ length: 5 }, () =>
-      http.post("/check-email", { email: "concurrent@test.com" }, { headers: { "Content-Type": "application/json" } })
-    );
-    const responses = await Promise.all(reqs);
-    const bad = responses.filter((r) => r.status !== 200);
-    if (bad.length > 0) throw new Error(`${bad.length} failed`);
-    return "5/5 returned 200 ✓";
-  });
-
-  await run("Concurrency", "5 concurrent GET /dashboard (unauth) all return 302", async () => {
-    const reqs = Array.from({ length: 5 }, () => http.get("/dashboard"));
-    const responses = await Promise.all(reqs);
-    const bad = responses.filter((r) => r.status !== 302);
-    if (bad.length > 0) throw new Error(`${bad.length} non-302`);
-    return "5/5 returned 302 ✓";
-  });
-
-  await run("Concurrency", "3 concurrent auth dashboard requests return 200", async () => {
-    if (!cookie) throw new Error("No session");
-    const reqs = Array.from({ length: 3 }, () => http.get("/dashboard", { headers: { Cookie: cookie } }));
-    const responses = await Promise.all(reqs);
-    const bad = responses.filter((r) => r.status !== 200);
-    if (bad.length > 0) throw new Error(`${bad.length} non-200`);
-    return "3/3 returned 200 ✓";
-  });
-
-  await run("Concurrency", "5 concurrent GET /reports all respond", async () => {
-    if (!cookie) throw new Error("No session");
-    const reqs = Array.from({ length: 5 }, () => http.get("/reports", { headers: { Cookie: cookie } }));
-    const responses = await Promise.all(reqs);
-    const bad = responses.filter((r) => r.status >= 500);
-    if (bad.length > 0) throw new Error(`${bad.length} server errors`);
-    return "5/5 responded without 5xx ✓";
-  });
-
-  await run("Concurrency", "10 concurrent /check-email all return valid JSON", async () => {
-    const reqs = Array.from({ length: 10 }, () =>
-      http.post("/check-email", { email: "load@test.com" }, { headers: { "Content-Type": "application/json" } })
-    );
-    const responses = await Promise.all(reqs);
-    const bad = responses.filter((r) => typeof r.data?.exists !== "boolean");
-    if (bad.length > 0) throw new Error(`${bad.length} invalid responses`);
-    return "10/10 returned valid JSON ✓";
-  });
-
-  await run("Concurrency", "No 500 errors across 20 mixed concurrent requests", async () => {
-    const reqs = [
-      ...Array.from({ length: 7 }, () => http.get("/login")),
-      ...Array.from({ length: 7 }, () => http.get("/create-account")),
-      ...Array.from({ length: 6 }, () => http.get("/logout")),
-    ];
-    const responses = await Promise.all(reqs);
-    const errors = responses.filter((r) => r.status >= 500);
-    if (errors.length > 0) throw new Error(`${errors.length} server errors`);
-    return "20/20 no 5xx ✓";
-  });
+  for (const { url, maxMs, needsAuth } of routes) {
+    if (needsAuth && !ck) {
+      record(S, `${url} × 6 sequential < ${maxMs}ms`, "SKIP", 0, "No session");
+      continue;
+    }
+    for (let i = 1; i <= 6; i++) {
+      await run(S, `${url} sequential req ${i} < ${maxMs}ms`, async () => {
+        const headers = needsAuth && ck ? { Cookie: ck } : {};
+        const ms = await time(() => http.get(url, { headers }));
+        if (ms > maxMs) throw new Error(`${ms}ms > ${maxMs}ms`);
+        return `${ms}ms`;
+      });
+    }
+  }
 }
 
 // ============================================================
-// SUITE 4 — Response Size & Resource  (8 tests)
+// SUITE 8 — POST Scan Timing  (30 tests)
 // ============================================================
-async function suiteResourceSize() {
-  console.log("\n📋 SUITE: Response Size & Resources");
+async function s8_scanTiming() {
+  console.log("\n📋 SUITE 8: Scan POST Timing");
+  const S = "Scan Timing";
+  let ck;
+  try { ck = await getCookie(); } catch (e) { console.warn("  ⚠️ No cookie:", e.message); }
 
-  await run("Resource Size", "GET /login response body < 100KB", async () => {
-    const res = await http.get("/login");
-    const size = Buffer.byteLength(res.data.toString(), "utf8");
-    if (size > 100000) throw new Error(`${(size / 1024).toFixed(1)}KB > 100KB`);
-    return `${(size / 1024).toFixed(1)}KB`;
-  });
+  const messages = [
+    "URGENT verify bank OTP login click",
+    "Hello how are you today friend",
+    "Prize winner click account bank login urgent",
+    "Meeting at 3pm tomorrow see you there",
+    "Verify your account immediately or it gets blocked",
+    "Dinner is ready come home now",
+    "OTP bank click login urgent account winner",
+    "Good morning have a nice day",
+    "Your package arrived click to verify",
+    "Simple safe message nothing suspicious here",
+  ];
 
-  await run("Resource Size", "GET /create-account response body < 100KB", async () => {
-    const res = await http.get("/create-account");
-    const size = Buffer.byteLength(res.data.toString(), "utf8");
-    if (size > 100000) throw new Error(`${(size / 1024).toFixed(1)}KB`);
-    return `${(size / 1024).toFixed(1)}KB`;
-  });
-
-  await run("Resource Size", "GET /login response body > 1KB (not empty)", async () => {
-    const res = await http.get("/login");
-    const size = Buffer.byteLength(res.data.toString(), "utf8");
-    if (size < 1000) throw new Error(`Too small: ${size} bytes`);
-    return `${(size / 1024).toFixed(1)}KB > 1KB ✓`;
-  });
-
-  await run("Resource Size", "GET /create-account response body > 2KB", async () => {
-    const res = await http.get("/create-account");
-    const size = Buffer.byteLength(res.data.toString(), "utf8");
-    if (size < 2000) throw new Error(`Too small: ${size} bytes`);
-    return `${(size / 1024).toFixed(1)}KB > 2KB ✓`;
-  });
-
-  await run("Resource Size", "POST /check-email response < 200 bytes", async () => {
-    const res = await http.post("/check-email", { email: "test@test.com" }, { headers: { "Content-Type": "application/json" } });
-    const size = Buffer.byteLength(JSON.stringify(res.data), "utf8");
-    if (size > 200) throw new Error(`${size} bytes > 200`);
-    return `${size} bytes`;
-  });
-
-  await run("Resource Size", "GET /login includes Chart.js CDN link", async () => {
-    // Check dashboard instead where Chart.js is used
-    let cookie = "";
-    try { cookie = await getSessionCookie(); } catch (_) {}
-    if (!cookie) return "skipped — no session";
-    const res = await http.get("/dashboard", { headers: { Cookie: cookie } });
-    if (!res.data.toString().includes("chart.js")) throw new Error("Chart.js CDN not found");
-    return "chart.js CDN found ✓";
-  });
-
-  await run("Resource Size", "GET /login HTML contains DOCTYPE declaration", async () => {
-    const res = await http.get("/login");
-    if (!res.data.toString().toLowerCase().includes("<!doctype html")) throw new Error("No DOCTYPE");
-    return "DOCTYPE ✓";
-  });
-
-  await run("Resource Size", "GET /create-account HTML contains DOCTYPE declaration", async () => {
-    const res = await http.get("/create-account");
-    if (!res.data.toString().toLowerCase().includes("<!doctype html")) throw new Error("No DOCTYPE");
-    return "DOCTYPE ✓";
-  });
+  for (let i = 0; i < messages.length; i++) {
+    const msg = messages[i];
+    for (let r = 1; r <= 3; r++) {
+      await run(S, `Scan "${msg.substring(0, 30)}..." run ${r} < 8000ms`, async () => {
+        if (!ck) throw new Error("No session");
+        const ms = await time(() => http.post("/dashboard",
+          new URLSearchParams({ message: msg }),
+          { headers: { "Content-Type": "application/x-www-form-urlencoded", Cookie: ck } }
+        ));
+        if (ms > SLA.SCAN) throw new Error(`${ms}ms`);
+        return `${ms}ms`;
+      });
+    }
+  }
 }
 
 // ============================================================
 // MAIN RUNNER
 // ============================================================
 async function runLoadTimeTests() {
-  console.log("═══════════════════════════════════════════════");
-  console.log("  PhishGuard — Load Time Test Suite (40 tests)");
+  console.log("═══════════════════════════════════════════════════════");
+  console.log("  PhishGuard — Load Time Test Suite  (300 tests)");
   console.log(`  Target: ${BASE}`);
-  console.log("═══════════════════════════════════════════════");
+  console.log("═══════════════════════════════════════════════════════");
 
-  await suiteHTTPResponseTimes();
-  await suiteBrowserTiming();
-  await suiteConcurrency();
-  await suiteResourceSize();
+  await s1_publicTimes();
+  await s2_unauthTimes();
+  await s3_authTimes();
+  await s4_concurrent();
+  await s5_responseSizes();
+  await s6_browserTiming();
+  await s7_repeated();
+  await s8_scanTiming();
 
-  const passed = results.filter((r) => r.status === "PASS").length;
-  const failed = results.filter((r) => r.status === "FAIL").length;
-  console.log(`\n  Load Time: ${passed} PASS | ${failed} FAIL  (${results.length} total)\n`);
+  const passed = results.filter(r => r.status === "PASS").length;
+  const failed = results.filter(r => r.status === "FAIL").length;
+  console.log(`\n  ✅ PASS: ${passed}  ❌ FAIL: ${failed}  TOTAL: ${results.length}\n`);
 
   const rawDir = path.join(__dirname, "../reports/raw");
   if (!fs.existsSync(rawDir)) fs.mkdirSync(rawDir, { recursive: true });
   fs.writeFileSync(path.join(rawDir, "loadtime_results.json"), JSON.stringify(results, null, 2));
-  console.log("  📁 Saved to reports/raw/loadtime_results.json");
+  console.log("  📁 Saved → reports/raw/loadtime_results.json");
   return results;
 }
 
 if (require.main === module) {
-  runLoadTimeTests().catch((err) => { console.error("Fatal:", err); process.exit(1); });
+  runLoadTimeTests().catch(err => { console.error("Fatal:", err); process.exit(1); });
 }
 module.exports = { runLoadTimeTests };

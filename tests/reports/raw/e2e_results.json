@@ -1,1090 +1,1619 @@
 [
   {
-    "suite": "Login",
-    "name": "Root / redirects to /login",
+    "suite": "Login Elements",
+    "name": "/ redirects to /login",
     "status": "PASS",
-    "duration": 751,
-    "error": "",
-    "screenshot": ""
+    "duration": 695,
+    "error": ""
   },
   {
-    "suite": "Login",
+    "suite": "Login Elements",
     "name": "Page title contains PhishGuard",
     "status": "PASS",
-    "duration": 351,
-    "error": "",
-    "screenshot": ""
+    "duration": 337,
+    "error": ""
   },
   {
-    "suite": "Login",
-    "name": "Shield logo emoji visible",
-    "status": "FAIL",
-    "duration": 59,
-    "error": "Logo not found",
-    "screenshot": "Login_Shield_logo_emoji_visible.png"
-  },
-  {
-    "suite": "Login",
-    "name": ".title heading shows PhishGuard",
+    "suite": "Login Elements",
+    "name": ".login-card exists",
     "status": "PASS",
-    "duration": 18,
-    "error": "",
-    "screenshot": ""
+    "duration": 23,
+    "error": ""
   },
   {
-    "suite": "Login",
-    "name": ".subtitle text is present",
+    "suite": "Login Elements",
+    "name": ".logo exists",
     "status": "PASS",
-    "duration": 16,
-    "error": "",
-    "screenshot": ""
+    "duration": 11,
+    "error": ""
   },
   {
-    "suite": "Login",
-    "name": "Email input field exists with id=email",
+    "suite": "Login Elements",
+    "name": ".title exists",
     "status": "PASS",
-    "duration": 8,
-    "error": "",
-    "screenshot": ""
+    "duration": 14,
+    "error": ""
   },
   {
-    "suite": "Login",
-    "name": "Password input field exists with id=password",
+    "suite": "Login Elements",
+    "name": ".title text is PhishGuard",
     "status": "PASS",
-    "duration": 12,
-    "error": "",
-    "screenshot": ""
+    "duration": 19,
+    "error": ""
   },
   {
-    "suite": "Login",
-    "name": "Submit button exists with id=loginBtn",
-    "status": "PASS",
-    "duration": 9,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Login",
-    "name": "Remember Me checkbox is present",
-    "status": "PASS",
-    "duration": 9,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Login",
-    "name": "Create Account link has correct href",
-    "status": "PASS",
-    "duration": 16,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Login",
-    "name": "Footer tech stack text visible",
-    "status": "PASS",
-    "duration": 16,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Login",
-    "name": "Password toggle button id=togglePasswordBtn present",
+    "suite": "Login Elements",
+    "name": ".subtitle exists",
     "status": "PASS",
     "duration": 10,
-    "error": "",
-    "screenshot": ""
+    "error": ""
   },
   {
-    "suite": "Login",
-    "name": "Password toggle changes input type to text",
+    "suite": "Login Elements",
+    "name": ".subtitle is not empty",
     "status": "PASS",
-    "duration": 424,
-    "error": "",
-    "screenshot": ""
+    "duration": 21,
+    "error": ""
   },
   {
-    "suite": "Login",
-    "name": "Password toggle changes emoji to 🙈",
+    "suite": "Login Elements",
+    "name": "id=email input exists",
     "status": "PASS",
-    "duration": 49,
-    "error": "",
-    "screenshot": ""
+    "duration": 10,
+    "error": ""
   },
   {
-    "suite": "Login",
-    "name": "Password toggle again hides password",
+    "suite": "Login Elements",
+    "name": "id=password input exists",
     "status": "PASS",
-    "duration": 430,
-    "error": "",
-    "screenshot": ""
+    "duration": 8,
+    "error": ""
   },
   {
-    "suite": "Login",
+    "suite": "Login Elements",
+    "name": "id=loginBtn exists",
+    "status": "PASS",
+    "duration": 9,
+    "error": ""
+  },
+  {
+    "suite": "Login Elements",
+    "name": "id=loginForm exists",
+    "status": "PASS",
+    "duration": 7,
+    "error": ""
+  },
+  {
+    "suite": "Login Elements",
+    "name": "id=createAccountLink exists",
+    "status": "PASS",
+    "duration": 9,
+    "error": ""
+  },
+  {
+    "suite": "Login Elements",
+    "name": "id=togglePasswordBtn exists",
+    "status": "PASS",
+    "duration": 35,
+    "error": ""
+  },
+  {
+    "suite": "Login Elements",
+    "name": "id=remember checkbox exists",
+    "status": "PASS",
+    "duration": 7,
+    "error": ""
+  },
+  {
+    "suite": "Login Elements",
+    "name": ".footer exists",
+    "status": "PASS",
+    "duration": 10,
+    "error": ""
+  },
+  {
+    "suite": "Login Elements",
+    "name": ".footer has SVM text",
+    "status": "PASS",
+    "duration": 10,
+    "error": ""
+  },
+  {
+    "suite": "Login Elements",
+    "name": ".footer has NLP text",
+    "status": "PASS",
+    "duration": 11,
+    "error": ""
+  },
+  {
+    "suite": "Login Elements",
+    "name": ".footer has BiLSTM text",
+    "status": "PASS",
+    "duration": 13,
+    "error": ""
+  },
+  {
+    "suite": "Login Elements",
+    "name": "email input type=email",
+    "status": "PASS",
+    "duration": 13,
+    "error": ""
+  },
+  {
+    "suite": "Login Elements",
+    "name": "password input type=password",
+    "status": "PASS",
+    "duration": 11,
+    "error": ""
+  },
+  {
+    "suite": "Login Elements",
+    "name": "email input required",
+    "status": "PASS",
+    "duration": 13,
+    "error": ""
+  },
+  {
+    "suite": "Login Elements",
+    "name": "password input required",
+    "status": "PASS",
+    "duration": 12,
+    "error": ""
+  },
+  {
+    "suite": "Login Elements",
+    "name": "loginBtn type=submit",
+    "status": "PASS",
+    "duration": 14,
+    "error": ""
+  },
+  {
+    "suite": "Login Elements",
+    "name": "createAccountLink href contains /create-account",
+    "status": "PASS",
+    "duration": 11,
+    "error": ""
+  },
+  {
+    "suite": "Login Elements",
+    "name": "loginForm action contains /login",
+    "status": "PASS",
+    "duration": 11,
+    "error": ""
+  },
+  {
+    "suite": "Login Elements",
+    "name": "loginForm method is POST",
+    "status": "PASS",
+    "duration": 9,
+    "error": ""
+  },
+  {
+    "suite": "Login Elements",
+    "name": "email placeholder present",
+    "status": "PASS",
+    "duration": 10,
+    "error": ""
+  },
+  {
+    "suite": "Login Elements",
+    "name": "password placeholder present",
+    "status": "PASS",
+    "duration": 11,
+    "error": ""
+  },
+  {
+    "suite": "Login Elements",
+    "name": ".options div exists",
+    "status": "PASS",
+    "duration": 7,
+    "error": ""
+  },
+  {
+    "suite": "Login Functionality",
+    "name": "Password toggle changes type to text",
+    "status": "PASS",
+    "duration": 435,
+    "error": ""
+  },
+  {
+    "suite": "Login Functionality",
+    "name": "Password toggle emoji changes to 🙈",
+    "status": "PASS",
+    "duration": 10,
+    "error": ""
+  },
+  {
+    "suite": "Login Functionality",
+    "name": "Password toggle again restores type=password",
+    "status": "PASS",
+    "duration": 372,
+    "error": ""
+  },
+  {
+    "suite": "Login Functionality",
+    "name": "Wrong credentials stays on /login",
+    "status": "PASS",
+    "duration": 1719,
+    "error": ""
+  },
+  {
+    "suite": "Login Functionality",
     "name": "Wrong credentials shows .alert-box",
-    "status": "PASS",
-    "duration": 522,
-    "error": "",
-    "screenshot": ""
+    "status": "FAIL",
+    "duration": 10347,
+    "error": "Waiting for element to be located By(css selector, .alert-box)"
   },
   {
-    "suite": "Login",
-    "name": "Valid credentials redirect to /dashboard",
-    "status": "PASS",
-    "duration": 1248,
-    "error": "",
-    "screenshot": ""
+    "suite": "Login Functionality",
+    "name": "alert-box is visible",
+    "status": "FAIL",
+    "duration": 5111,
+    "error": "no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\".alert-box\"}"
   },
   {
-    "suite": "Login",
-    "name": "Already logged-in visit to /login redirects to /dashboard",
+    "suite": "Login Functionality",
+    "name": "Valid credentials redirects to /dashboard",
+    "status": "FAIL",
+    "duration": 12255,
+    "error": "Waiting for URL to contain \"/dashboard\""
+  },
+  {
+    "suite": "Login Functionality",
+    "name": "Logged-in visit to /login redirects to /dashboard",
+    "status": "FAIL",
+    "duration": 6397,
+    "error": "Waiting for URL to contain \"/dashboard\""
+  },
+  {
+    "suite": "Login Functionality",
+    "name": "createAccountLink navigates to /create-account",
     "status": "PASS",
-    "duration": 736,
-    "error": "",
-    "screenshot": ""
+    "duration": 366,
+    "error": ""
+  },
+  {
+    "suite": "s2_loginFunctionality",
+    "name": "Suite-level crash",
+    "status": "FAIL",
+    "duration": 0,
+    "error": "Waiting for URL to contain \"/dashboard\""
   },
   {
     "suite": "Create Account",
     "name": "Page loads at /create-account",
     "status": "PASS",
-    "duration": 277,
-    "error": "",
-    "screenshot": ""
+    "duration": 4,
+    "error": ""
   },
   {
     "suite": "Create Account",
     "name": "Page title contains Create",
     "status": "PASS",
     "duration": 4,
-    "error": "",
-    "screenshot": ""
+    "error": ""
   },
   {
     "suite": "Create Account",
-    "name": "h1 heading present on page",
-    "status": "PASS",
-    "duration": 15,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Create Account",
-    "name": "id=name input field exists",
-    "status": "PASS",
-    "duration": 8,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Create Account",
-    "name": "id=email input field exists",
-    "status": "PASS",
-    "duration": 6,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Create Account",
-    "name": "id=password input field exists",
-    "status": "PASS",
-    "duration": 5,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Create Account",
-    "name": "id=confirm_password input field exists",
-    "status": "PASS",
-    "duration": 11,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Create Account",
-    "name": "id=submitBtn button exists",
-    "status": "PASS",
-    "duration": 8,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Create Account",
-    "name": "id=email-feedback element exists",
-    "status": "PASS",
-    "duration": 8,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Create Account",
-    "name": "id=confirm-feedback element exists",
-    "status": "PASS",
-    "duration": 9,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Create Account",
-    "name": "Password hint text visible",
-    "status": "PASS",
-    "duration": 14,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Create Account",
-    "name": "Password mismatch shows confirm-feedback error",
-    "status": "PASS",
-    "duration": 773,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Create Account",
-    "name": "Matching passwords shows green success feedback",
-    "status": "PASS",
-    "duration": 658,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Create Account",
-    "name": "Login link navigates to /login",
-    "status": "PASS",
-    "duration": 485,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Dashboard Layout",
-    "name": "Page title is PhishGuard Dashboard",
-    "status": "PASS",
-    "duration": 6,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Dashboard Layout",
-    "name": ".dashboard-container exists",
-    "status": "PASS",
-    "duration": 14,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Dashboard Layout",
-    "name": ".sidebar exists",
-    "status": "PASS",
-    "duration": 15,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Dashboard Layout",
-    "name": ".sidebar h2 shows PhishGuard",
-    "status": "PASS",
-    "duration": 32,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Dashboard Layout",
-    "name": ".main-content exists",
-    "status": "PASS",
-    "duration": 20,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Dashboard Layout",
-    "name": ".stats-container exists",
+    "name": "h1 heading present",
     "status": "PASS",
     "duration": 16,
-    "error": "",
-    "screenshot": ""
+    "error": ""
   },
   {
-    "suite": "Dashboard Layout",
-    "name": "At least 5 .card elements present",
-    "status": "PASS",
-    "duration": 14,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Dashboard Layout",
-    "name": "SVM Accuracy card shows 98.56%",
-    "status": "PASS",
-    "duration": 38,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Dashboard Layout",
-    "name": "BiLSTM Accuracy card shows 99.10%",
-    "status": "PASS",
-    "duration": 29,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Dashboard Layout",
-    "name": "Total Scans card label exists",
-    "status": "PASS",
-    "duration": 34,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Dashboard Layout",
-    "name": "Threats Detected card label exists",
-    "status": "PASS",
-    "duration": 32,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Dashboard Layout",
-    "name": "Safe Messages card label exists",
-    "status": "PASS",
-    "duration": 36,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Dashboard Layout",
-    "name": ".scanner-section with Analyze heading exists",
-    "status": "PASS",
-    "duration": 32,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Dashboard Layout",
-    "name": "textarea[name=message] present and accepts input",
-    "status": "PASS",
-    "duration": 110,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Dashboard Layout",
-    "name": "Analyze Now submit button present",
-    "status": "PASS",
-    "duration": 12,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Dashboard Layout",
-    "name": ".analytics-section with canvas#threatChart present",
-    "status": "PASS",
-    "duration": 11,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Dashboard Layout",
-    "name": ".alerts-section heading present",
-    "status": "PASS",
-    "duration": 42,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Dashboard Layout",
-    "name": "Three .alert-card elements exist (high/medium/safe)",
-    "status": "PASS",
-    "duration": 12,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "SMS Scanner",
-    "name": "Phishing message scan shows result-box",
-    "status": "PASS",
-    "duration": 940,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "SMS Scanner",
-    "name": "Phishing scan result h2 contains Phishing",
-    "status": "PASS",
-    "duration": 19,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "SMS Scanner",
-    "name": "Risk score shown with % sign",
-    "status": "PASS",
-    "duration": 15,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "SMS Scanner",
-    "name": "Risk score for phishing is >= 70",
-    "status": "PASS",
-    "duration": 13,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "SMS Scanner",
-    "name": "AI Explanation heading present after phishing scan",
-    "status": "PASS",
-    "duration": 18,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "SMS Scanner",
-    "name": "AI Explanation text is non-empty",
-    "status": "PASS",
-    "duration": 15,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "SMS Scanner",
-    "name": "Detected Indicators section present",
-    "status": "PASS",
-    "duration": 13,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "SMS Scanner",
-    "name": "At least one indicator listed for phishing message",
-    "status": "PASS",
-    "duration": 8,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "SMS Scanner",
-    "name": "Result h2 has high-text or safe-text CSS class",
-    "status": "PASS",
-    "duration": 15,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "SMS Scanner",
-    "name": "Safe message scan shows result-box",
-    "status": "PASS",
-    "duration": 1336,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "SMS Scanner",
-    "name": "Safe message result h2 contains Safe",
-    "status": "PASS",
-    "duration": 24,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "SMS Scanner",
-    "name": "Safe message risk score <= 30",
-    "status": "PASS",
-    "duration": 25,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "SMS Scanner",
-    "name": "Safe message h2 has safe-text class",
-    "status": "PASS",
-    "duration": 24,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "SMS Scanner",
-    "name": "AI Engine Status section shows NLP Preprocessing",
-    "status": "PASS",
-    "duration": 36,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "SMS Scanner",
-    "name": "AI Engine Status shows TF-IDF Vectorization",
-    "status": "PASS",
-    "duration": 33,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "SMS Scanner",
-    "name": "/scanner route also loads dashboard",
-    "status": "PASS",
-    "duration": 355,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Threats",
-    "name": "Page URL is /threats",
-    "status": "PASS",
-    "duration": 8,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Threats",
-    "name": ".top-bar h1 contains History",
-    "status": "PASS",
-    "duration": 26,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Threats",
-    "name": ".filter-bar exists",
-    "status": "PASS",
-    "duration": 13,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Threats",
-    "name": "5 filter buttons present (All/Safe/Threat/Today/7days)",
-    "status": "PASS",
-    "duration": 11,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Threats",
-    "name": "All filter button has .active class by default",
-    "status": "PASS",
-    "duration": 18,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Threats",
-    "name": ".history-table-container exists",
+    "suite": "Create Account",
+    "name": ".card exists",
     "status": "PASS",
     "duration": 9,
-    "error": "",
-    "screenshot": ""
+    "error": ""
   },
   {
-    "suite": "Threats",
-    "name": "table.history-table present",
+    "suite": "Create Account",
+    "name": ".header exists",
+    "status": "PASS",
+    "duration": 12,
+    "error": ""
+  },
+  {
+    "suite": "Create Account",
+    "name": ".logo-icon exists",
+    "status": "PASS",
+    "duration": 9,
+    "error": ""
+  },
+  {
+    "suite": "Create Account",
+    "name": "id=name input exists",
+    "status": "PASS",
+    "duration": 12,
+    "error": ""
+  },
+  {
+    "suite": "Create Account",
+    "name": "id=email input exists",
+    "status": "PASS",
+    "duration": 7,
+    "error": ""
+  },
+  {
+    "suite": "Create Account",
+    "name": "id=password input exists",
+    "status": "PASS",
+    "duration": 8,
+    "error": ""
+  },
+  {
+    "suite": "Create Account",
+    "name": "id=confirm_password exists",
+    "status": "PASS",
+    "duration": 9,
+    "error": ""
+  },
+  {
+    "suite": "Create Account",
+    "name": "id=submitBtn exists",
     "status": "PASS",
     "duration": 11,
-    "error": "",
-    "screenshot": ""
+    "error": ""
   },
   {
-    "suite": "Threats",
-    "name": "Table header has 5 columns",
+    "suite": "Create Account",
+    "name": "id=registerForm exists",
+    "status": "PASS",
+    "duration": 13,
+    "error": ""
+  },
+  {
+    "suite": "Create Account",
+    "name": "id=email-feedback exists",
+    "status": "PASS",
+    "duration": 9,
+    "error": ""
+  },
+  {
+    "suite": "Create Account",
+    "name": "id=confirm-feedback exists",
+    "status": "PASS",
+    "duration": 9,
+    "error": ""
+  },
+  {
+    "suite": "Create Account",
+    "name": ".password-hint exists",
+    "status": "PASS",
+    "duration": 9,
+    "error": ""
+  },
+  {
+    "suite": "Create Account",
+    "name": ".login-link exists",
+    "status": "PASS",
+    "duration": 9,
+    "error": ""
+  },
+  {
+    "suite": "Create Account",
+    "name": "name input type=text",
+    "status": "PASS",
+    "duration": 12,
+    "error": ""
+  },
+  {
+    "suite": "Create Account",
+    "name": "email input type=email",
+    "status": "PASS",
+    "duration": 9,
+    "error": ""
+  },
+  {
+    "suite": "Create Account",
+    "name": "password input type=password",
+    "status": "PASS",
+    "duration": 11,
+    "error": ""
+  },
+  {
+    "suite": "Create Account",
+    "name": "confirm_password type=password",
+    "status": "PASS",
+    "duration": 12,
+    "error": ""
+  },
+  {
+    "suite": "Create Account",
+    "name": "name input required",
+    "status": "PASS",
+    "duration": 9,
+    "error": ""
+  },
+  {
+    "suite": "Create Account",
+    "name": "email input required",
     "status": "PASS",
     "duration": 10,
-    "error": "",
-    "screenshot": ""
+    "error": ""
   },
   {
-    "suite": "Threats",
-    "name": "Table header Date & Time column present",
-    "status": "FAIL",
-    "duration": 32,
-    "error": "No Date header",
-    "screenshot": "Threats_Table_header_Date_&_Time_column_present.png"
-  },
-  {
-    "suite": "Threats",
-    "name": "Table header Prediction column present",
-    "status": "FAIL",
-    "duration": 43,
-    "error": "No Prediction header",
-    "screenshot": "Threats_Table_header_Prediction_column_present.png"
-  },
-  {
-    "suite": "Threats",
-    "name": "Clicking Safe filter changes active button",
-    "status": "PASS",
-    "duration": 393,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Threats",
-    "name": "Clicking All filter resets active button",
-    "status": "PASS",
-    "duration": 416,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Threats",
-    "name": "#scanModal exists in DOM",
-    "status": "PASS",
-    "duration": 18,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Threats",
-    "name": "#scanModal hidden by default",
-    "status": "PASS",
-    "duration": 34,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Threats",
-    "name": "Sidebar shows Scan History as active link",
-    "status": "PASS",
-    "duration": 41,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Threats",
-    "name": "Scan History subtitle paragraph present",
-    "status": "PASS",
-    "duration": 43,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Reports",
-    "name": "URL is /reports",
-    "status": "PASS",
-    "duration": 6,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Reports",
-    "name": "h1 says Security Reports",
-    "status": "PASS",
-    "duration": 21,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Reports",
-    "name": ".stats-container present on reports page",
-    "status": "PASS",
-    "duration": 7,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Reports",
-    "name": "At least 3 stat cards on reports page",
+    "suite": "Create Account",
+    "name": "password input required",
     "status": "PASS",
     "duration": 9,
-    "error": "",
-    "screenshot": ""
+    "error": ""
   },
   {
-    "suite": "Reports",
-    "name": "Total Messages card label present",
-    "status": "PASS",
-    "duration": 17,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Reports",
-    "name": "Threats Detected card label present",
+    "suite": "Create Account",
+    "name": "login-link href contains /login",
     "status": "PASS",
     "duration": 14,
-    "error": "",
-    "screenshot": ""
+    "error": ""
   },
   {
-    "suite": "Reports",
-    "name": "Model Performance section visible",
+    "suite": "Create Account",
+    "name": "Two .toggle-password-btn buttons present",
     "status": "PASS",
-    "duration": 14,
-    "error": "",
-    "screenshot": ""
+    "duration": 9,
+    "error": ""
   },
   {
-    "suite": "Reports",
-    "name": "SVM Accuracy 98.56% shown",
+    "suite": "CA Feedback",
+    "name": "confirm-feedback hidden initially",
     "status": "PASS",
-    "duration": 12,
-    "error": "",
-    "screenshot": ""
+    "duration": 4,
+    "error": ""
   },
   {
-    "suite": "Reports",
-    "name": "BiLSTM Accuracy 99.10% shown",
+    "suite": "CA Feedback",
+    "name": "Matching passwords → confirm-feedback shows match",
     "status": "PASS",
-    "duration": 17,
-    "error": "",
-    "screenshot": ""
+    "duration": 780,
+    "error": ""
   },
   {
-    "suite": "Reports",
-    "name": "Sidebar .sidebar present on reports page",
-    "status": "PASS",
-    "duration": 7,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Settings",
-    "name": "URL is /settings",
-    "status": "PASS",
-    "duration": 7,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Settings",
-    "name": "h1 contains Settings",
-    "status": "PASS",
-    "duration": 21,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Settings",
-    "name": "Security Preferences section present",
-    "status": "PASS",
-    "duration": 29,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Settings",
-    "name": "AI Protection Engine Enabled text present",
-    "status": "PASS",
-    "duration": 27,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Settings",
-    "name": "Application Settings section present",
-    "status": "PASS",
-    "duration": 23,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Settings",
-    "name": "Theme Mode : Dark Mode text present",
+    "suite": "CA Feedback",
+    "name": "Matching → confirm-feedback class=success",
     "status": "PASS",
     "duration": 26,
-    "error": "",
-    "screenshot": ""
+    "error": ""
   },
   {
-    "suite": "Settings",
-    "name": "PhishGuard v1.0 version text present",
+    "suite": "CA Feedback",
+    "name": "Mismatching passwords → error feedback",
     "status": "PASS",
-    "duration": 23,
-    "error": "",
-    "screenshot": ""
+    "duration": 728,
+    "error": ""
   },
   {
-    "suite": "Settings",
-    "name": "AI Engine Status section present",
+    "suite": "CA Feedback",
+    "name": "Mismatch → confirm-feedback class=error",
     "status": "PASS",
-    "duration": 23,
-    "error": "",
-    "screenshot": ""
+    "duration": 12,
+    "error": ""
   },
   {
-    "suite": "Settings",
-    "name": "TF-IDF Vectorizer listed in AI Engine Status",
+    "suite": "CA Feedback",
+    "name": "email-feedback hidden initially",
     "status": "PASS",
-    "duration": 23,
-    "error": "",
-    "screenshot": ""
+    "duration": 83,
+    "error": ""
   },
   {
-    "suite": "Settings",
-    "name": "SVM Classification Model listed",
+    "suite": "CA Feedback",
+    "name": "Existing email shows already-registered feedback",
+    "status": "FAIL",
+    "duration": 1802,
+    "error": ""
+  },
+  {
+    "suite": "CA Feedback",
+    "name": "Existing email feedback has error class",
+    "status": "FAIL",
+    "duration": 180,
+    "error": "field-feedback"
+  },
+  {
+    "suite": "CA Feedback",
+    "name": "Unknown email shows available feedback",
+    "status": "FAIL",
+    "duration": 1814,
+    "error": ""
+  },
+  {
+    "suite": "CA Feedback",
+    "name": "Unknown email feedback has success class",
     "status": "PASS",
-    "duration": 20,
-    "error": "",
-    "screenshot": ""
+    "duration": 8,
+    "error": ""
+  },
+  {
+    "suite": "CA Feedback",
+    "name": "CA password toggle changes type to text",
+    "status": "PASS",
+    "duration": 770,
+    "error": ""
+  },
+  {
+    "suite": "CA Feedback",
+    "name": "CA confirm toggle changes type to text",
+    "status": "PASS",
+    "duration": 419,
+    "error": ""
+  },
+  {
+    "suite": "CA Feedback",
+    "name": "Login link navigates to /login",
+    "status": "PASS",
+    "duration": 132,
+    "error": ""
+  },
+  {
+    "suite": "CA Feedback",
+    "name": "Empty form submit stays on /create-account",
+    "status": "PASS",
+    "duration": 983,
+    "error": ""
+  },
+  {
+    "suite": "CA Feedback",
+    "name": "submitBtn is enabled",
+    "status": "PASS",
+    "duration": 21,
+    "error": ""
+  },
+  {
+    "suite": "s5_dashboardLayout",
+    "name": "Suite-level crash",
+    "status": "FAIL",
+    "duration": 0,
+    "error": "Waiting for URL to contain \"/dashboard\""
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "Phishing scan shows .result-box",
+    "status": "FAIL",
+    "duration": 10778,
+    "error": "Waiting for element to be located By(css selector, textarea[name='message'])"
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "Phishing result h2 contains Phishing",
+    "status": "FAIL",
+    "duration": 5191,
+    "error": "no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\".result-box h2\"}"
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "Phishing result h2 has high-text class",
+    "status": "FAIL",
+    "duration": 5168,
+    "error": "no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\".result-box h2\"}"
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "Phishing risk score shows %",
+    "status": "FAIL",
+    "duration": 5185,
+    "error": "no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\".result-box h3\"}"
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "Phishing risk score >= 70",
+    "status": "FAIL",
+    "duration": 5202,
+    "error": "no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\".result-box h3\"}"
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "AI Explanation heading present",
+    "status": "FAIL",
+    "duration": 5189,
+    "error": "no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\".result-box\"}"
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "AI Explanation paragraph not empty",
+    "status": "FAIL",
+    "duration": 5186,
+    "error": "no para"
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "Detected Indicators heading present",
+    "status": "FAIL",
+    "duration": 5225,
+    "error": "no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\".result-box\"}"
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "At least 1 indicator <li> for phishing",
+    "status": "FAIL",
+    "duration": 5172,
+    "error": "no li"
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "Safe scan shows .result-box",
+    "status": "FAIL",
+    "duration": 10825,
+    "error": "Waiting for element to be located By(css selector, textarea[name='message'])"
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "Safe result h2 contains Safe",
+    "status": "FAIL",
+    "duration": 5175,
+    "error": "no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\".result-box h2\"}"
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "Safe result h2 has safe-text class",
+    "status": "FAIL",
+    "duration": 5210,
+    "error": "no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\".result-box h2\"}"
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "Safe risk score <= 30",
+    "status": "FAIL",
+    "duration": 5173,
+    "error": "no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\".result-box h3\"}"
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "Prize/winner message is Phishing",
+    "status": "FAIL",
+    "duration": 10810,
+    "error": "Waiting for element to be located By(css selector, textarea[name='message'])"
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "OTP/urgent message is Phishing",
+    "status": "FAIL",
+    "duration": 10723,
+    "error": "Waiting for element to be located By(css selector, textarea[name='message'])"
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "Friendly message is Safe",
+    "status": "FAIL",
+    "duration": 10788,
+    "error": "Waiting for element to be located By(css selector, textarea[name='message'])"
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "Appointment reminder is Safe",
+    "status": "FAIL",
+    "duration": 10839,
+    "error": "Waiting for element to be located By(css selector, textarea[name='message'])"
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "Family message is Safe",
+    "status": "FAIL",
+    "duration": 10872,
+    "error": "Waiting for element to be located By(css selector, textarea[name='message'])"
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "After scan stats-container still visible",
+    "status": "FAIL",
+    "duration": 5227,
+    "error": "no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\".stats-container\"}"
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "After scan sidebar still visible",
+    "status": "FAIL",
+    "duration": 5229,
+    "error": "no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\".sidebar\"}"
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "After scan scanner-section still visible",
+    "status": "FAIL",
+    "duration": 5174,
+    "error": "no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\".scanner-section\"}"
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "textarea accepts input",
+    "status": "FAIL",
+    "duration": 10762,
+    "error": "Waiting for element to be located By(css selector, textarea[name='message'])"
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "Empty textarea submit stays on /dashboard",
+    "status": "FAIL",
+    "duration": 5175,
+    "error": "no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\"textarea[name='message']\"}"
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "/scanner route loads dashboard",
+    "status": "FAIL",
+    "duration": 10842,
+    "error": "Waiting for element to be located By(css selector, .stats-container)"
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "After phishing scan total scans card shows number",
+    "status": "FAIL",
+    "duration": 10782,
+    "error": "Waiting for element to be located By(css selector, textarea[name='message'])"
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "Phishing scan body has 98.56",
+    "status": "FAIL",
+    "duration": 117,
+    "error": "missing"
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "Phishing scan body has 99.10",
+    "status": "FAIL",
+    "duration": 127,
+    "error": "missing"
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "Bank+OTP+click+login in msg = Phishing",
+    "status": "FAIL",
+    "duration": 10813,
+    "error": "Waiting for element to be located By(css selector, textarea[name='message'])"
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "No result-box shown before first scan",
+    "status": "FAIL",
+    "duration": 10849,
+    "error": "Waiting for element to be located By(css selector, .stats-container)"
+  },
+  {
+    "suite": "SMS Scanner",
+    "name": "Analyze Now button is enabled",
+    "status": "FAIL",
+    "duration": 5215,
+    "error": "no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\".scanner-section button[type='submit']\"}"
+  },
+  {
+    "suite": "s7_threats",
+    "name": "Suite-level crash",
+    "status": "FAIL",
+    "duration": 0,
+    "error": "Waiting for element to be located By(css selector, .history-table-container)"
+  },
+  {
+    "suite": "s8_reports",
+    "name": "Suite-level crash",
+    "status": "FAIL",
+    "duration": 0,
+    "error": "Waiting for element to be located By(css selector, .main-content)"
+  },
+  {
+    "suite": "s9_settings",
+    "name": "Suite-level crash",
+    "status": "FAIL",
+    "duration": 0,
+    "error": "Waiting for element to be located By(css selector, .main-content)"
   },
   {
     "suite": "Logout",
     "name": "/logout redirects to /login",
     "status": "PASS",
-    "duration": 345,
-    "error": "",
-    "screenshot": ""
+    "duration": 390,
+    "error": ""
   },
   {
     "suite": "Logout",
-    "name": "/dashboard after logout goes to /login",
+    "name": "/dashboard after logout → /login",
+    "status": "PASS",
+    "duration": 351,
+    "error": ""
+  },
+  {
+    "suite": "Logout",
+    "name": "/threats after logout → /login",
+    "status": "PASS",
+    "duration": 365,
+    "error": ""
+  },
+  {
+    "suite": "Logout",
+    "name": "/reports after logout → /login",
+    "status": "PASS",
+    "duration": 351,
+    "error": ""
+  },
+  {
+    "suite": "Logout",
+    "name": "/settings after logout → /login",
     "status": "PASS",
     "duration": 339,
-    "error": "",
-    "screenshot": ""
+    "error": ""
   },
   {
     "suite": "Logout",
-    "name": "/threats after logout goes to /login",
+    "name": "/scanner after logout → /login",
     "status": "PASS",
-    "duration": 361,
-    "error": "",
-    "screenshot": ""
+    "duration": 363,
+    "error": ""
   },
   {
     "suite": "Logout",
-    "name": "/reports after logout goes to /login",
+    "name": "/ after logout → /login",
     "status": "PASS",
-    "duration": 346,
-    "error": "",
-    "screenshot": ""
+    "duration": 353,
+    "error": ""
   },
   {
     "suite": "Logout",
-    "name": "/settings after logout goes to /login",
+    "name": "Login form visible after logout",
     "status": "PASS",
-    "duration": 362,
-    "error": "",
-    "screenshot": ""
+    "duration": 24,
+    "error": ""
   },
   {
     "suite": "Logout",
-    "name": "/scanner after logout goes to /login",
+    "name": "Login page title after logout",
     "status": "PASS",
-    "duration": 350,
-    "error": "",
-    "screenshot": ""
+    "duration": 5,
+    "error": ""
   },
   {
-    "suite": "Logout",
-    "name": "/ after logout goes to /login",
-    "status": "PASS",
-    "duration": 354,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Logout",
-    "name": "Login form visible after logout redirect",
-    "status": "PASS",
-    "duration": 15,
-    "error": "",
-    "screenshot": ""
+    "suite": "s10_logout",
+    "name": "Suite-level crash",
+    "status": "FAIL",
+    "duration": 0,
+    "error": "Waiting for URL to contain \"/dashboard\""
   },
   {
     "suite": "Navigation",
-    "name": "Sidebar has 5 links",
-    "status": "PASS",
-    "duration": 10,
-    "error": "",
-    "screenshot": ""
+    "name": "Dashboard sidebar has 5+ links",
+    "status": "FAIL",
+    "duration": 10750,
+    "error": "Waiting for element to be located By(css selector, .sidebar)"
   },
   {
     "suite": "Navigation",
     "name": "Dashboard link navigates to /dashboard",
-    "status": "PASS",
-    "duration": 779,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Navigation",
-    "name": "Threats link navigates to /threats",
-    "status": "PASS",
-    "duration": 831,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Navigation",
-    "name": "Reports link navigates to /reports",
-    "status": "PASS",
-    "duration": 991,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Navigation",
-    "name": "Settings link navigates to /settings",
-    "status": "PASS",
-    "duration": 1487,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Navigation",
-    "name": "Logout link navigates to /login",
-    "status": "PASS",
-    "duration": 792,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Navigation",
-    "name": "Browser back after logout stays at login",
-    "status": "PASS",
-    "duration": 1412,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "Navigation",
-    "name": "Reports sidebar also has Threat History link",
     "status": "FAIL",
-    "duration": 5375,
-    "error": "no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\".sidebar\"}",
-    "screenshot": "Navigation_Reports_sidebar_also_has_Threat_History_link.png"
+    "duration": 11734,
+    "error": "Waiting for URL to contain \"/dashboard\""
   },
   {
     "suite": "Navigation",
-    "name": "Settings sidebar has logout link",
+    "name": "Scan History link → /threats",
     "status": "FAIL",
-    "duration": 5375,
-    "error": "Logout link not in sidebar",
-    "screenshot": "Navigation_Settings_sidebar_has_logout_link.png"
+    "duration": 11619,
+    "error": "Waiting for URL to contain \"/threats\""
+  },
+  {
+    "suite": "Navigation",
+    "name": "Reports link → /reports",
+    "status": "FAIL",
+    "duration": 11597,
+    "error": "Waiting for URL to contain \"/reports\""
+  },
+  {
+    "suite": "Navigation",
+    "name": "Settings link → /settings",
+    "status": "FAIL",
+    "duration": 11563,
+    "error": "Waiting for URL to contain \"/settings\""
+  },
+  {
+    "suite": "Navigation",
+    "name": "Threats sidebar → Reports works",
+    "status": "FAIL",
+    "duration": 11522,
+    "error": "Waiting for URL to contain \"/reports\""
+  },
+  {
+    "suite": "Navigation",
+    "name": "Reports sidebar → Settings works",
+    "status": "FAIL",
+    "duration": 11239,
+    "error": "Waiting for URL to contain \"/settings\""
+  },
+  {
+    "suite": "Navigation",
+    "name": "Settings sidebar → Dashboard works",
+    "status": "FAIL",
+    "duration": 11228,
+    "error": "Waiting for URL to contain \"/dashboard\""
   },
   {
     "suite": "Navigation",
     "name": "Threats sidebar has Reports link",
     "status": "FAIL",
-    "duration": 5397,
-    "error": "Reports link missing from threats sidebar",
-    "screenshot": "Navigation_Threats_sidebar_has_Reports_link.png"
+    "duration": 5491,
+    "error": "missing"
   },
   {
-    "suite": "UI",
-    "name": "Login card background is dark (not white)",
+    "suite": "Navigation",
+    "name": "Reports sidebar has Threats link",
+    "status": "FAIL",
+    "duration": 5508,
+    "error": "missing"
+  },
+  {
+    "suite": "Navigation",
+    "name": "Settings sidebar has Reports link",
+    "status": "FAIL",
+    "duration": 5581,
+    "error": "missing"
+  },
+  {
+    "suite": "Navigation",
+    "name": "All pages: sidebar h2 has PhishGuard",
+    "status": "FAIL",
+    "duration": 10816,
+    "error": "Waiting for element to be located By(css selector, .sidebar h2)"
+  },
+  {
+    "suite": "Navigation",
+    "name": "Sidebar links are not underlined",
+    "status": "FAIL",
+    "duration": 598,
+    "error": "javascript error: Failed to execute 'getComputedStyle' on 'Window': parameter 1 is not of type 'Element'."
+  },
+  {
+    "suite": "Navigation",
+    "name": "Sidebar is visible",
+    "status": "FAIL",
+    "duration": 5232,
+    "error": "no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\".sidebar\"}"
+  },
+  {
+    "suite": "Navigation",
+    "name": "Sidebar background is dark",
+    "status": "FAIL",
+    "duration": 141,
+    "error": "javascript error: Failed to execute 'getComputedStyle' on 'Window': parameter 1 is not of type 'Element'."
+  },
+  {
+    "suite": "Navigation",
+    "name": "Direct URL /threats works",
+    "status": "FAIL",
+    "duration": 10827,
+    "error": "Waiting for element to be located By(css selector, .history-table-container)"
+  },
+  {
+    "suite": "Navigation",
+    "name": "Direct URL /reports works",
+    "status": "FAIL",
+    "duration": 10815,
+    "error": "Waiting for element to be located By(css selector, .stats-container)"
+  },
+  {
+    "suite": "Navigation",
+    "name": "Direct URL /settings works",
+    "status": "FAIL",
+    "duration": 10767,
+    "error": "Waiting for element to be located By(css selector, .main-content)"
+  },
+  {
+    "suite": "Navigation",
+    "name": "Direct URL /dashboard works",
+    "status": "FAIL",
+    "duration": 10834,
+    "error": "Waiting for element to be located By(css selector, .stats-container)"
+  },
+  {
+    "suite": "Navigation",
+    "name": "Direct URL /scanner works",
+    "status": "FAIL",
+    "duration": 10830,
+    "error": "Waiting for element to be located By(css selector, .stats-container)"
+  },
+  {
+    "suite": "UI CSS",
+    "name": "Body background is dark (login)",
     "status": "PASS",
-    "duration": 369,
-    "error": "",
-    "screenshot": ""
+    "duration": 374,
+    "error": ""
   },
   {
-    "suite": "UI",
-    "name": "Login page has no horizontal scrollbar at 1400px",
+    "suite": "UI CSS",
+    "name": "Body background is dark (dashboard)",
+    "status": "FAIL",
+    "duration": 12319,
+    "error": "Waiting for URL to contain \"/dashboard\""
+  },
+  {
+    "suite": "UI CSS",
+    "name": "stats-container display is flex",
+    "status": "FAIL",
+    "duration": 74,
+    "error": "javascript error: Failed to execute 'getComputedStyle' on 'Window': parameter 1 is not of type 'Element'."
+  },
+  {
+    "suite": "UI CSS",
+    "name": "Sidebar width >= 200px",
+    "status": "FAIL",
+    "duration": 87,
+    "error": "javascript error: Cannot read properties of null (reading 'offsetWidth')"
+  },
+  {
+    "suite": "UI CSS",
+    "name": "canvas#threatChart has non-zero width",
+    "status": "FAIL",
+    "duration": 81,
+    "error": "0px"
+  },
+  {
+    "suite": "UI CSS",
+    "name": "No horizontal scroll at 1400px (login)",
     "status": "PASS",
-    "duration": 35,
-    "error": "",
-    "screenshot": ""
+    "duration": 54,
+    "error": ""
   },
   {
-    "suite": "UI",
-    "name": "Dashboard sidebar width is 250px",
-    "status": "PASS",
-    "duration": 1131,
-    "error": "",
-    "screenshot": ""
-  },
-  {
-    "suite": "UI",
-    "name": "Stats cards use flex layout",
+    "suite": "UI CSS",
+    "name": "Login card background is not white",
     "status": "PASS",
     "duration": 5,
-    "error": "",
-    "screenshot": ""
+    "error": ""
   },
   {
-    "suite": "UI",
-    "name": "Body background color is dark blue",
+    "suite": "UI CSS",
+    "name": "loginBtn has non-zero width",
     "status": "PASS",
-    "duration": 5,
-    "error": "",
-    "screenshot": ""
+    "duration": 6,
+    "error": ""
   },
   {
-    "suite": "UI",
-    "name": "Chart.js canvas has non-zero dimensions",
+    "suite": "UI CSS",
+    "name": "loginBtn is visible",
+    "status": "PASS",
+    "duration": 15,
+    "error": ""
+  },
+  {
+    "suite": "UI CSS",
+    "name": "email input is visible",
+    "status": "PASS",
+    "duration": 13,
+    "error": ""
+  },
+  {
+    "suite": "UI CSS",
+    "name": "password input is visible",
+    "status": "PASS",
+    "duration": 13,
+    "error": ""
+  },
+  {
+    "suite": "UI CSS",
+    "name": "Toggle button cursor is pointer",
+    "status": "PASS",
+    "duration": 257,
+    "error": ""
+  },
+  {
+    "suite": "UI CSS",
+    "name": "textarea height > 100px",
+    "status": "FAIL",
+    "duration": 12354,
+    "error": "Waiting for URL to contain \"/dashboard\""
+  },
+  {
+    "suite": "UI CSS",
+    "name": "textarea background is dark",
+    "status": "FAIL",
+    "duration": 81,
+    "error": "javascript error: Failed to execute 'getComputedStyle' on 'Window': parameter 1 is not of type 'Element'."
+  },
+  {
+    "suite": "UI CSS",
+    "name": "card border-radius > 0",
+    "status": "PASS",
+    "duration": 40,
+    "error": ""
+  },
+  {
+    "suite": "UI CSS",
+    "name": "submitBtn (CA) has non-zero width",
+    "status": "PASS",
+    "duration": 698,
+    "error": ""
+  },
+  {
+    "suite": "UI CSS",
+    "name": ".card elements have non-zero height",
+    "status": "FAIL",
+    "duration": 12325,
+    "error": "Waiting for URL to contain \"/dashboard\""
+  },
+  {
+    "suite": "UI CSS",
+    "name": "alert-card.high is visible",
+    "status": "FAIL",
+    "duration": 5086,
+    "error": "no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\".alert-card.high\"}"
+  },
+  {
+    "suite": "UI CSS",
+    "name": "alert-card.safe is visible",
+    "status": "FAIL",
+    "duration": 5089,
+    "error": "no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\".alert-card.safe\"}"
+  },
+  {
+    "suite": "UI CSS",
+    "name": "main-content has non-zero width",
+    "status": "FAIL",
+    "duration": 75,
+    "error": "javascript error: Cannot read properties of null (reading 'offsetWidth')"
+  },
+  {
+    "suite": "Multi Scans",
+    "name": "\"URGENT bank OTP verify click login ...\" → Phishing",
+    "status": "FAIL",
+    "duration": 10783,
+    "error": "Waiting for element to be located By(css selector, textarea[name='message'])"
+  },
+  {
+    "suite": "Multi Scans",
+    "name": "\"Winner! Prize bank account click cl...\" → Phishing",
+    "status": "FAIL",
+    "duration": 10739,
+    "error": "Waiting for element to be located By(css selector, textarea[name='message'])"
+  },
+  {
+    "suite": "Multi Scans",
+    "name": "\"Verify your account OTP urgent bank...\" → Phishing",
+    "status": "FAIL",
+    "duration": 10802,
+    "error": "Waiting for element to be located By(css selector, textarea[name='message'])"
+  },
+  {
+    "suite": "Multi Scans",
+    "name": "\"Hi, how are you doing? See you at t...\" → Safe",
+    "status": "FAIL",
+    "duration": 10772,
+    "error": "Waiting for element to be located By(css selector, textarea[name='message'])"
+  },
+  {
+    "suite": "Multi Scans",
+    "name": "\"Your package has been delivered to ...\" → Safe",
+    "status": "FAIL",
+    "duration": 10752,
+    "error": "Waiting for element to be located By(css selector, textarea[name='message'])"
+  },
+  {
+    "suite": "Multi Scans",
+    "name": "\"Reminder: school pickup at 3pm toda...\" → Safe",
+    "status": "FAIL",
+    "duration": 10763,
+    "error": "Waiting for element to be located By(css selector, textarea[name='message'])"
+  },
+  {
+    "suite": "Multi Scans",
+    "name": "\"Please verify your bank login OTP i...\" → Phishing",
+    "status": "FAIL",
+    "duration": 10737,
+    "error": "Waiting for element to be located By(css selector, textarea[name='message'])"
+  },
+  {
+    "suite": "Multi Scans",
+    "name": "\"Good evening! Dinner is ready....\" → Safe",
+    "status": "FAIL",
+    "duration": 10738,
+    "error": "Waiting for element to be located By(css selector, textarea[name='message'])"
+  },
+  {
+    "suite": "Multi Scans",
+    "name": "\"Click here urgently to secure your ...\" → Phishing",
+    "status": "FAIL",
+    "duration": 10758,
+    "error": "Waiting for element to be located By(css selector, textarea[name='message'])"
+  },
+  {
+    "suite": "Multi Scans",
+    "name": "\"Happy birthday! Wishing you all the...\" → Safe",
+    "status": "FAIL",
+    "duration": 10786,
+    "error": "Waiting for element to be located By(css selector, textarea[name='message'])"
+  },
+  {
+    "suite": "Multi Scans",
+    "name": "Stats container still present after 10 scans",
+    "status": "FAIL",
+    "duration": 5171,
+    "error": "no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\".stats-container\"}"
+  },
+  {
+    "suite": "Multi Scans",
+    "name": "Sidebar still present after 10 scans",
+    "status": "FAIL",
+    "duration": 5172,
+    "error": "no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\".sidebar\"}"
+  },
+  {
+    "suite": "Multi Scans",
+    "name": "Threats page has scan rows after scans",
+    "status": "FAIL",
+    "duration": 10803,
+    "error": "Waiting for element to be located By(css selector, .history-table-container)"
+  },
+  {
+    "suite": "Multi Scans",
+    "name": "Filter All button still works after scans",
+    "status": "FAIL",
+    "duration": 5157,
+    "error": "no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"//button[normalize-space()='All']\"}"
+  },
+  {
+    "suite": "Multi Scans",
+    "name": "Stats total_scans is numeric",
+    "status": "FAIL",
+    "duration": 10832,
+    "error": "Waiting for element to be located By(css selector, .stats-container)"
+  },
+  {
+    "suite": "Multi Scans",
+    "name": "Scanner section still usable after multiple scans",
+    "status": "FAIL",
+    "duration": 5200,
+    "error": "no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\"textarea[name='message']\"}"
+  },
+  {
+    "suite": "Multi Scans",
+    "name": "Dashboard page not crashed after 10 scans",
+    "status": "FAIL",
+    "duration": 177,
+    "error": "http://localhost:5000/login"
+  },
+  {
+    "suite": "Multi Scans",
+    "name": "Dashboard title still correct after scans",
     "status": "PASS",
     "duration": 4,
-    "error": "",
-    "screenshot": ""
+    "error": ""
   },
   {
-    "suite": "UI",
-    "name": "Sidebar links have no underline decoration",
-    "status": "PASS",
-    "duration": 4,
-    "error": "",
-    "screenshot": ""
+    "suite": "Multi Scans",
+    "name": "result-box shown after last scan",
+    "status": "FAIL",
+    "duration": 10825,
+    "error": "Waiting for element to be located By(css selector, textarea[name='message'])"
   },
   {
-    "suite": "UI",
-    "name": "Result box not present before any scan",
-    "status": "PASS",
-    "duration": 5406,
-    "error": "",
-    "screenshot": ""
+    "suite": "Multi Scans",
+    "name": "Threats page accessible after scans",
+    "status": "FAIL",
+    "duration": 10765,
+    "error": "Waiting for element to be located By(css selector, .history-table-container)"
   },
   {
-    "suite": "Multiple Scans",
-    "name": "Scan: \"Your OTP is 4523. Verify your bank accou...\" → Phishing",
-    "status": "PASS",
-    "duration": 1214,
-    "error": "",
-    "screenshot": ""
+    "suite": "s14_threatsModal",
+    "name": "Suite-level crash",
+    "status": "FAIL",
+    "duration": 0,
+    "error": "Waiting for element to be located By(css selector, .history-table-container)"
   },
   {
-    "suite": "Multiple Scans",
-    "name": "Scan: \"Winner! Click here to claim your prize m...\" → Phishing",
+    "suite": "Accessibility",
+    "name": "Login page has lang=en attribute",
     "status": "PASS",
-    "duration": 1127,
-    "error": "",
-    "screenshot": ""
+    "duration": 362,
+    "error": ""
   },
   {
-    "suite": "Multiple Scans",
-    "name": "Scan: \"Please login to your account urgently. V...\" → Phishing",
+    "suite": "Accessibility",
+    "name": "CA page has lang=en attribute",
     "status": "PASS",
-    "duration": 1179,
-    "error": "",
-    "screenshot": ""
+    "duration": 602,
+    "error": ""
   },
   {
-    "suite": "Multiple Scans",
-    "name": "Scan: \"Hey, how are you? Let me know if you are...\" → Safe",
-    "status": "PASS",
-    "duration": 1126,
-    "error": "",
-    "screenshot": ""
+    "suite": "Accessibility",
+    "name": "Login email label has for=email",
+    "status": "FAIL",
+    "duration": 280,
+    "error": "empty label"
   },
   {
-    "suite": "Multiple Scans",
-    "name": "Scan: \"Reminder: your dentist appointment is at...\" → Safe",
+    "suite": "Accessibility",
+    "name": "Login password label has for=password",
     "status": "PASS",
-    "duration": 1091,
-    "error": "",
-    "screenshot": ""
+    "duration": 17,
+    "error": ""
   },
   {
-    "suite": "Multiple Scans",
-    "name": "Scan: \"Your Amazon package has been delivered t...\" → Safe",
-    "status": "PASS",
-    "duration": 1140,
-    "error": "",
-    "screenshot": ""
+    "suite": "Accessibility",
+    "name": "CA name label has for=name",
+    "status": "FAIL",
+    "duration": 321,
+    "error": "empty"
   },
   {
-    "suite": "Multiple Scans",
-    "name": "Stats total_scans counter increments after scan",
+    "suite": "Accessibility",
+    "name": "CA email label has for=email",
     "status": "PASS",
-    "duration": 501,
-    "error": "",
-    "screenshot": ""
+    "duration": 19,
+    "error": ""
   },
   {
-    "suite": "Multiple Scans",
-    "name": "Threats page shows at least one row after scans",
+    "suite": "Accessibility",
+    "name": "CA password label has for=password",
     "status": "PASS",
-    "duration": 353,
-    "error": "",
-    "screenshot": ""
+    "duration": 17,
+    "error": ""
+  },
+  {
+    "suite": "Accessibility",
+    "name": "Login alert-box has role=alert",
+    "status": "FAIL",
+    "duration": 10527,
+    "error": "Waiting for element to be located By(css selector, .alert-box)"
+  },
+  {
+    "suite": "Accessibility",
+    "name": "togglePasswordBtn has title attribute",
+    "status": "PASS",
+    "duration": 61,
+    "error": ""
+  },
+  {
+    "suite": "Accessibility",
+    "name": "togglePasswordBtn has aria-label",
+    "status": "PASS",
+    "duration": 15,
+    "error": ""
+  },
+  {
+    "suite": "Accessibility",
+    "name": "Login page has <title> tag",
+    "status": "PASS",
+    "duration": 6,
+    "error": ""
+  },
+  {
+    "suite": "Accessibility",
+    "name": "CA page has <title> tag",
+    "status": "PASS",
+    "duration": 277,
+    "error": ""
+  },
+  {
+    "suite": "Accessibility",
+    "name": "Dashboard has <title> tag",
+    "status": "FAIL",
+    "duration": 12377,
+    "error": "Waiting for URL to contain \"/dashboard\""
+  },
+  {
+    "suite": "Accessibility",
+    "name": "email input has autocomplete attribute",
+    "status": "PASS",
+    "duration": 47,
+    "error": ""
+  },
+  {
+    "suite": "Accessibility",
+    "name": "password has autocomplete=current-password",
+    "status": "PASS",
+    "duration": 17,
+    "error": ""
+  },
+  {
+    "suite": "Page Load",
+    "name": "Login page loads without JS errors",
+    "status": "PASS",
+    "duration": 298,
+    "error": ""
+  },
+  {
+    "suite": "Page Load",
+    "name": "CA page loads without JS errors",
+    "status": "PASS",
+    "duration": 708,
+    "error": ""
+  },
+  {
+    "suite": "Page Load",
+    "name": "Dashboard page loads without JS errors",
+    "status": "FAIL",
+    "duration": 12253,
+    "error": "Waiting for URL to contain \"/dashboard\""
+  },
+  {
+    "suite": "Page Load",
+    "name": "Threats page loads without JS errors",
+    "status": "FAIL",
+    "duration": 10722,
+    "error": "Waiting for element to be located By(css selector, .history-table-container)"
+  },
+  {
+    "suite": "Page Load",
+    "name": "Reports page loads without JS errors",
+    "status": "FAIL",
+    "duration": 10863,
+    "error": "Waiting for element to be located By(css selector, .main-content)"
+  },
+  {
+    "suite": "Page Load",
+    "name": "Settings page loads without JS errors",
+    "status": "FAIL",
+    "duration": 10765,
+    "error": "Waiting for element to be located By(css selector, .main-content)"
+  },
+  {
+    "suite": "Page Load",
+    "name": "Login DOM loaded within 8s",
+    "status": "PASS",
+    "duration": 352,
+    "error": ""
+  },
+  {
+    "suite": "Page Load",
+    "name": "Dashboard DOM loaded within 10s",
+    "status": "FAIL",
+    "duration": 12647,
+    "error": "Waiting for URL to contain \"/dashboard\""
+  },
+  {
+    "suite": "Page Load",
+    "name": "Threats DOM loaded within 8s",
+    "status": "FAIL",
+    "duration": 10796,
+    "error": "Waiting for element to be located By(css selector, .filter-bar)"
+  },
+  {
+    "suite": "Page Load",
+    "name": "Browser back from dashboard works",
+    "status": "PASS",
+    "duration": 1422,
+    "error": ""
+  },
+  {
+    "suite": "Page Load",
+    "name": "Page refresh on dashboard stays on dashboard",
+    "status": "FAIL",
+    "duration": 10827,
+    "error": "Waiting for element to be located By(css selector, .stats-container)"
+  },
+  {
+    "suite": "Page Load",
+    "name": "Page refresh on threats stays on threats",
+    "status": "FAIL",
+    "duration": 10881,
+    "error": "Waiting for element to be located By(css selector, .history-table-container)"
+  },
+  {
+    "suite": "Page Load",
+    "name": "Page refresh on reports stays on reports",
+    "status": "FAIL",
+    "duration": 10857,
+    "error": "Waiting for element to be located By(css selector, .main-content)"
+  },
+  {
+    "suite": "Page Load",
+    "name": "Page refresh on settings stays on settings",
+    "status": "FAIL",
+    "duration": 10811,
+    "error": "Waiting for element to be located By(css selector, .main-content)"
+  },
+  {
+    "suite": "Page Load",
+    "name": "Window title updates on navigation",
+    "status": "PASS",
+    "duration": 407,
+    "error": ""
+  },
+  {
+    "suite": "Extra Elements",
+    "name": "Dashboard: h1 heading present",
+    "status": "FAIL",
+    "duration": 10823,
+    "error": "Waiting for element to be located By(css selector, .top-bar)"
+  },
+  {
+    "suite": "Extra Elements",
+    "name": "Dashboard: .top-bar exists",
+    "status": "FAIL",
+    "duration": 5188,
+    "error": "no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\".top-bar\"}"
+  },
+  {
+    "suite": "Extra Elements",
+    "name": "Dashboard: textarea placeholder present",
+    "status": "FAIL",
+    "duration": 5159,
+    "error": "no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\"textarea[name='message']\"}"
+  },
+  {
+    "suite": "Extra Elements",
+    "name": "Dashboard: textarea required attribute",
+    "status": "FAIL",
+    "duration": 5198,
+    "error": "no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\"textarea[name='message']\"}"
+  },
+  {
+    "suite": "Extra Elements",
+    "name": "Dashboard: .result-box not present initially",
+    "status": "FAIL",
+    "duration": 10808,
+    "error": "Waiting for element to be located By(css selector, .stats-container)"
+  },
+  {
+    "suite": "Extra Elements",
+    "name": "Threats: h1 heading present",
+    "status": "FAIL",
+    "duration": 10741,
+    "error": "Waiting for element to be located By(css selector, .top-bar h1)"
+  },
+  {
+    "suite": "Extra Elements",
+    "name": "Threats: subtitle paragraph present",
+    "status": "FAIL",
+    "duration": 5155,
+    "error": "no p"
+  },
+  {
+    "suite": "Extra Elements",
+    "name": "Reports: h1 not empty",
+    "status": "FAIL",
+    "duration": 10803,
+    "error": "Waiting for element to be located By(css selector, h1)"
+  },
+  {
+    "suite": "Extra Elements",
+    "name": "Settings: h1 not empty",
+    "status": "FAIL",
+    "duration": 10797,
+    "error": "Waiting for element to be located By(css selector, h1)"
+  },
+  {
+    "suite": "Extra Elements",
+    "name": "Dashboard: Analyze Suspicious Message h2",
+    "status": "FAIL",
+    "duration": 10757,
+    "error": "Waiting for element to be located By(css selector, .scanner-section)"
+  },
+  {
+    "suite": "Extra Elements",
+    "name": "Dashboard: Recent Threat Alerts h2",
+    "status": "FAIL",
+    "duration": 175,
+    "error": "missing"
+  },
+  {
+    "suite": "Extra Elements",
+    "name": "Dashboard: Threat Analytics h2",
+    "status": "FAIL",
+    "duration": 228,
+    "error": "missing"
+  },
+  {
+    "suite": "Extra Elements",
+    "name": "Dashboard: AI Engine Status h2",
+    "status": "FAIL",
+    "duration": 208,
+    "error": "missing"
+  },
+  {
+    "suite": "Extra Elements",
+    "name": "CA: subtitle present",
+    "status": "PASS",
+    "duration": 761,
+    "error": ""
+  },
+  {
+    "suite": "Extra Elements",
+    "name": "Login: .logo emoji visible",
+    "status": "FAIL",
+    "duration": 280,
+    "error": ""
+  },
+  {
+    "suite": "Extra Elements",
+    "name": "CA: .logo-icon emoji visible",
+    "status": "FAIL",
+    "duration": 259,
+    "error": ""
   }
 ]

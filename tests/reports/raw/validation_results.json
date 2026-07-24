@@ -1,402 +1,2354 @@
 [
   {
-    "suite": "Login Validation",
-    "name": "email input type is email",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has email id (run1)",
     "status": "PASS",
-    "duration": 21,
-    "detail": "type=email",
+    "duration": 31,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "Login Validation",
-    "name": "email input has required attribute",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has email name (run1)",
     "status": "PASS",
-    "duration": 15,
-    "detail": "required ✓",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "Login Validation",
-    "name": "password input type is password",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has email type (run1)",
     "status": "PASS",
-    "duration": 20,
-    "detail": "type=password",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "Login Validation",
-    "name": "password input has required attribute",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has email required (run1)",
     "status": "PASS",
-    "duration": 15,
-    "detail": "required ✓",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "Login Validation",
-    "name": "email input has autocomplete=email",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has email autocomplete (run1)",
     "status": "PASS",
-    "duration": 19,
-    "detail": "autocomplete=email",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "Login Validation",
-    "name": "password has autocomplete=current-password",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has email placeholder (run1)",
     "status": "PASS",
-    "duration": 15,
-    "detail": "autocomplete=current-password",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "Login Validation",
-    "name": "email input placeholder present",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has password id (run1)",
     "status": "PASS",
-    "duration": 15,
-    "detail": "placeholder: Enter your email",
+    "duration": 1,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "Login Validation",
-    "name": "password input placeholder present",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has password name (run1)",
     "status": "PASS",
-    "duration": 16,
-    "detail": "placeholder: Enter your password",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "Login Validation",
-    "name": "Submit button type is submit",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has password type (run1)",
     "status": "PASS",
-    "duration": 18,
-    "detail": "type=submit",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "Login Validation",
-    "name": "Empty form click keeps user on /login",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has password autocomplete (run1)",
     "status": "PASS",
-    "duration": 584,
-    "detail": "stayed on /login ✓",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "CA Validation",
-    "name": "name input type is text",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has loginBtn id (run1)",
     "status": "PASS",
-    "duration": 15,
-    "detail": "type=text",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "CA Validation",
-    "name": "name input has required attribute",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has submit type (run1)",
     "status": "PASS",
-    "duration": 13,
-    "detail": "required ✓",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "CA Validation",
-    "name": "name input autocomplete is name",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has loginForm id (run1)",
     "status": "PASS",
-    "duration": 14,
-    "detail": "autocomplete=name",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "CA Validation",
-    "name": "email input type is email",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has form method POST (run1)",
     "status": "PASS",
-    "duration": 11,
-    "detail": "type=email",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "CA Validation",
-    "name": "email input has required attribute",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has form action /login (run1)",
     "status": "PASS",
-    "duration": 11,
-    "detail": "required ✓",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "CA Validation",
-    "name": "password input type is password",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has createAccountLink id (run1)",
     "status": "PASS",
-    "duration": 13,
-    "detail": "type=password",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "CA Validation",
-    "name": "password input has required attribute",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has createAccountLink href (run1)",
     "status": "PASS",
-    "duration": 10,
-    "detail": "required ✓",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "CA Validation",
-    "name": "password input autocomplete is new-password",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has toggleBtn id (run1)",
     "status": "PASS",
-    "duration": 10,
-    "detail": "autocomplete=new-password",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "CA Validation",
-    "name": "confirm_password type is password",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has remember id (run1)",
     "status": "PASS",
-    "duration": 15,
-    "detail": "type=password",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "CA Validation",
-    "name": "confirm_password has required attribute",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has remember type (run1)",
     "status": "PASS",
-    "duration": 10,
-    "detail": "required ✓",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "CA Validation",
-    "name": "Form action is /create-account",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has remember name (run1)",
     "status": "PASS",
-    "duration": 13,
-    "detail": "action=http://localhost:5000/create-account",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "CA Validation",
-    "name": "Form method is POST",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has remember value (run1)",
     "status": "PASS",
-    "duration": 11,
-    "detail": "method=post",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "CA Validation",
-    "name": "submitBtn type is submit",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has password autocomplete (2) (run1)",
     "status": "PASS",
-    "duration": 15,
-    "detail": "type=submit",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "CA Validation",
-    "name": "Empty form submit stays on /create-account",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has email label for (run1)",
     "status": "PASS",
-    "duration": 565,
-    "detail": "stayed on /create-account ✓",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "Live Feedback",
-    "name": "confirm-feedback hidden before typing",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has password label for (run1)",
     "status": "PASS",
-    "duration": 11,
-    "detail": "hidden ✓",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "Live Feedback",
-    "name": "Typing matching passwords shows match feedback",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has label elements (run1)",
     "status": "PASS",
-    "duration": 678,
-    "detail": "feedback: ✓ Passwords match",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "Live Feedback",
-    "name": "confirm-feedback has class success for matching",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has form-group class (run1)",
     "status": "PASS",
-    "duration": 25,
-    "detail": "class: field-feedback success",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "Live Feedback",
-    "name": "Typing mismatched passwords shows error feedback",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has options class (run1)",
     "status": "PASS",
-    "duration": 678,
-    "detail": "feedback: ❌ Passwords do not match",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "Live Feedback",
-    "name": "confirm-feedback has class error for mismatch",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has footer class (run1)",
     "status": "PASS",
-    "duration": 17,
-    "detail": "class: field-feedback error",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "Live Feedback",
-    "name": "email-feedback hidden before typing",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has login-card class (run1)",
     "status": "PASS",
-    "duration": 47,
-    "detail": "hidden ✓",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "Live Feedback",
-    "name": "Partial email (no @) does not trigger API check",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has title class (run1)",
     "status": "PASS",
-    "duration": 704,
-    "detail": "no premature feedback ✓",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "Live Feedback",
-    "name": "Valid new email shows available feedback",
-    "status": "FAIL",
-    "duration": 1439,
-    "detail": "feedback: ",
-    "error": "feedback: "
-  },
-  {
-    "suite": "Live Feedback",
-    "name": "Existing email shows already registered feedback",
-    "status": "FAIL",
-    "duration": 1390,
-    "detail": "feedback: ",
-    "error": "feedback: "
-  },
-  {
-    "suite": "Live Feedback",
-    "name": "Existing email feedback has error class",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has subtitle class (run1)",
     "status": "PASS",
-    "duration": 25,
-    "detail": "class: field-feedback error",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "Password Toggle",
-    "name": "Login password initially type=password",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has password-wrapper (run1)",
     "status": "PASS",
-    "duration": 15,
-    "detail": "type=password ✓",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "Password Toggle",
-    "name": "Login toggle click changes type to text",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has toggle function (run1)",
     "status": "PASS",
-    "duration": 457,
-    "detail": "type=text ✓",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "Password Toggle",
-    "name": "Login toggle click again restores type=password",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has PhishGuard brand (run1)",
     "status": "PASS",
-    "duration": 419,
-    "detail": "type=password ✓",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "Password Toggle",
-    "name": "CA page password toggle present",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has email id (run2)",
     "status": "PASS",
-    "duration": 89,
-    "detail": "2 toggle buttons found",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "Password Toggle",
-    "name": "CA password toggle changes type to text",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has email name (run2)",
     "status": "PASS",
-    "duration": 434,
-    "detail": "type=text ✓",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "Password Toggle",
-    "name": "CA confirm_password toggle changes type to text",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has email type (run2)",
     "status": "PASS",
-    "duration": 451,
-    "detail": "type=text ✓",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "Password Toggle",
-    "name": "Toggle button cursor style is pointer",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has email required (run2)",
     "status": "PASS",
-    "duration": 11,
-    "detail": "cursor: pointer",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "Password Toggle",
-    "name": "Toggle button has no visible border",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has email autocomplete (run2)",
     "status": "PASS",
-    "duration": 10,
-    "detail": "border: none ✓",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "Scanner Validation",
-    "name": "textarea has required attribute",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has email placeholder (run2)",
     "status": "PASS",
-    "duration": 16,
-    "detail": "required ✓",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "Scanner Validation",
-    "name": "textarea placeholder text present",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has password id (run2)",
     "status": "PASS",
-    "duration": 10,
-    "detail": "placeholder: Paste suspicious SMS here...",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "Scanner Validation",
-    "name": "Empty textarea submit stays on /dashboard",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has password name (run2)",
     "status": "PASS",
-    "duration": 606,
-    "detail": "stayed on /dashboard ✓",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "Scanner Validation",
-    "name": "textarea accepts multi-line input",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has password type (run2)",
     "status": "PASS",
-    "duration": 102,
-    "detail": "multi-line accepted ✓",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "Scanner Validation",
-    "name": "textarea is resizable (resize not none)",
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has password autocomplete (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has loginBtn id (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has submit type (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has loginForm id (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has form method POST (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has form action /login (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has createAccountLink id (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has createAccountLink href (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has toggleBtn id (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has remember id (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has remember type (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has remember name (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has remember value (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has password autocomplete (2) (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has email label for (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has password label for (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has label elements (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has form-group class (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has options class (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has footer class (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has login-card class (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has title class (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has subtitle class (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has password-wrapper (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has toggle function (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Login Field Attrs",
+    "name": "Login HTML has PhishGuard brand (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has id=\"name\" (run1)",
     "status": "PASS",
     "duration": 6,
-    "detail": "resize: none",
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "Scanner Validation",
-    "name": "textarea height > 100px",
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has name=\"name\" (run1)",
     "status": "PASS",
-    "duration": 6,
-    "detail": "height: 180px",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "Scanner Validation",
-    "name": "Analyze Now button type is submit",
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has type=\"text\" (run1)",
     "status": "PASS",
-    "duration": 12,
-    "detail": "type=submit",
+    "duration": 0,
+    "detail": "✓",
     "error": ""
   },
   {
-    "suite": "Scanner Validation",
-    "name": "textarea background is dark (not white)",
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has autocomplete=\"name\" (run1)",
     "status": "PASS",
-    "duration": 5,
-    "detail": "bg: rgb(2, 6, 23)",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has id=\"email\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has name=\"email\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has type=\"email\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has autocomplete=\"email\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has id=\"password\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has name=\"password\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has type=\"password\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has autocomplete=\"new-password\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has id=\"confirm_password\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has name=\"confirm_password\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has id=\"submitBtn\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has type=\"submit\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has id=\"registerForm\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has method=\"POST\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has action=\"/create-account\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has id=\"email-feedback\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has id=\"confirm-feedback\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has for=\"name\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has for=\"email\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has for=\"password\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has for=\"confirm_password\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has class=\"field-feedback\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has class=\"password-wrapper\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has class=\"password-hint\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has class=\"login-link\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has class=\"toggle-password-btn\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has href=\"/login\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has class=\"card\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has class=\"header\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has togglePasswordVisibility (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has check-email (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has id=\"name\" (run2)",
+    "status": "PASS",
+    "duration": 1,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has name=\"name\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has type=\"text\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has autocomplete=\"name\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has id=\"email\" (run2)",
+    "status": "PASS",
+    "duration": 2,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has name=\"email\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has type=\"email\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has autocomplete=\"email\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has id=\"password\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has name=\"password\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has type=\"password\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has autocomplete=\"new-password\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has id=\"confirm_password\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has name=\"confirm_password\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has id=\"submitBtn\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has type=\"submit\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has id=\"registerForm\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has method=\"POST\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has action=\"/create-account\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has id=\"email-feedback\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has id=\"confirm-feedback\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has for=\"name\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has for=\"email\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has for=\"password\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has for=\"confirm_password\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has class=\"field-feedback\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has class=\"password-wrapper\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has class=\"password-hint\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has class=\"login-link\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has class=\"toggle-password-btn\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has href=\"/login\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has class=\"card\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has class=\"header\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has togglePasswordVisibility (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CA Field Attrs",
+    "name": "CA HTML has check-email (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "Login form structure: <form (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "Login form structure: </form> (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "Login form structure: <input (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "Login form structure: <button (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "Login form structure: <label (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "Login form structure: <div class=\"form-group\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "Login form structure: <div class=\"options\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "Login form structure: <div class=\"footer\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "Login form structure: type=\"email\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "Login form structure: type=\"password\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "Login form structure: type=\"submit\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "Login form structure: type=\"checkbox\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "Login form structure: method=\"POST\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "Login form structure: action=\"/login\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "Login form structure: <form (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "Login form structure: </form> (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "Login form structure: <input (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "Login form structure: <button (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "Login form structure: <label (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "Login form structure: <div class=\"form-group\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "Login form structure: <div class=\"options\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "Login form structure: <div class=\"footer\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "Login form structure: type=\"email\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "Login form structure: type=\"password\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "Login form structure: type=\"submit\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "Login form structure: type=\"checkbox\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "Login form structure: method=\"POST\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "Login form structure: action=\"/login\" (run2)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "CA form structure: <form (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "CA form structure: </form> (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "CA form structure: <input (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "CA form structure: <button (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "CA form structure: <label (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "CA form structure: <div class=\"form-group\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "CA form structure: class=\"password-wrapper\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "CA form structure: class=\"field-feedback\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "CA form structure: class=\"password-hint\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "CA form structure: method=\"POST\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "CA form structure: action=\"/create-account\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Form Structure",
+    "name": "CA form structure: id=\"registerForm\" (run1)",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Input Completeness",
+    "name": "Login id=\"email\" has required",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Input Completeness",
+    "name": "Login id=\"email\" has type=\"email\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Input Completeness",
+    "name": "Login id=\"email\" has autocomplete=\"email\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Input Completeness",
+    "name": "Login id=\"email\" has placeholder",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Input Completeness",
+    "name": "Login id=\"password\" has type=\"password\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Input Completeness",
+    "name": "Login id=\"password\" has autocomplete=\"current-password\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Input Completeness",
+    "name": "Login id=\"password\" has placeholder",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Input Completeness",
+    "name": "Login id=\"loginBtn\" has type=\"submit\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Input Completeness",
+    "name": "Login id=\"remember\" has type=\"checkbox\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Input Completeness",
+    "name": "Login id=\"remember\" has name=\"remember\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Input Completeness",
+    "name": "Login id=\"remember\" has value=\"true\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Input Completeness",
+    "name": "CA id=\"name\" has type=\"text\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Input Completeness",
+    "name": "CA id=\"name\" has autocomplete=\"name\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Input Completeness",
+    "name": "CA id=\"name\" has required",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Input Completeness",
+    "name": "CA id=\"email\" has type=\"email\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Input Completeness",
+    "name": "CA id=\"email\" has autocomplete=\"email\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Input Completeness",
+    "name": "CA id=\"email\" has required",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Input Completeness",
+    "name": "CA id=\"password\" has type=\"password\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Input Completeness",
+    "name": "CA id=\"password\" has autocomplete=\"new-password\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Input Completeness",
+    "name": "CA id=\"password\" has required",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Input Completeness",
+    "name": "CA id=\"confirm_pas has type=\"password\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Input Completeness",
+    "name": "CA id=\"confirm_pas has required",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Input Completeness",
+    "name": "CA id=\"submitBtn\" has type=\"submit\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "JS Validation Logic",
+    "name": "Login JS has: togglePasswordVisibility",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "JS Validation Logic",
+    "name": "Login JS has: getElementById",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "JS Validation Logic",
+    "name": "Login JS has: type = 'text'",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "JS Validation Logic",
+    "name": "Login JS has: type = 'password'",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "JS Validation Logic",
+    "name": "Login JS has: function toggle",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "JS Validation Logic",
+    "name": "Login JS has: btn.textContent",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "JS Validation Logic",
+    "name": "Login JS has: input.type",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "JS Validation Logic",
+    "name": "Login JS has: title = ",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "JS Validation Logic",
+    "name": "CA JS has: togglePasswordVisibility",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "JS Validation Logic",
+    "name": "CA JS has: fetch",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "JS Validation Logic",
+    "name": "CA JS has: check-email",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "JS Validation Logic",
+    "name": "CA JS has: confirm-feedback",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "JS Validation Logic",
+    "name": "CA JS has: email-feedback",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "JS Validation Logic",
+    "name": "CA JS has: setTimeout",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "JS Validation Logic",
+    "name": "CA JS has: classList.add",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "JS Validation Logic",
+    "name": "CA JS has: classList.remove",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "JS Validation Logic",
+    "name": "CA JS has: display",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "JS Validation Logic",
+    "name": "CA JS has: style.display",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "JS Validation Logic",
+    "name": "JS double-check: togglePasswordVisibility",
+    "status": "PASS",
+    "duration": 1,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "JS Validation Logic",
+    "name": "JS double-check: fetch",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "JS Validation Logic",
+    "name": "JS double-check: check-email",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "JS Validation Logic",
+    "name": "JS double-check: confirm-feedback",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "JS Validation Logic",
+    "name": "JS double-check: email-feedback",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "JS Validation Logic",
+    "name": "JS double-check: display",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "JS Validation Logic",
+    "name": "JS double-check: classList",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "JS Validation Logic",
+    "name": "JS double-check: style",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "JS Validation Logic",
+    "name": "JS double-check: getElementById",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "JS Validation Logic",
+    "name": "JS double-check: title =",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "JS Validation Logic",
+    "name": "JS double-check: function toggle",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "JS Validation Logic",
+    "name": "JS double-check: input.type",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "JS Validation Logic",
+    "name": "JS double-check: btn.textContent",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Accessibility HTML",
+    "name": "/login: lang attr",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Accessibility HTML",
+    "name": "/create-account: lang attr",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Accessibility HTML",
+    "name": "/login: label elements",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Accessibility HTML",
+    "name": "/create-account: label elements",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Accessibility HTML",
+    "name": "/login: email label for",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Accessibility HTML",
+    "name": "/login: password label for",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Accessibility HTML",
+    "name": "/create-account: name label for",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Accessibility HTML",
+    "name": "/create-account: email label for",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Accessibility HTML",
+    "name": "/create-account: password label for",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Accessibility HTML",
+    "name": "/login: page title",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Accessibility HTML",
+    "name": "/create-account: page title",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Accessibility HTML",
+    "name": "/login: template has alert-box",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "\"class=\"alert-box\"\" missing",
+    "error": "\"class=\"alert-box\"\" missing"
+  },
+  {
+    "suite": "Accessibility HTML",
+    "name": "/create-account: template has alert-box",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "\"class=\"alert-box\"\" missing",
+    "error": "\"class=\"alert-box\"\" missing"
+  },
+  {
+    "suite": "Accessibility HTML",
+    "name": "/login: aria-label",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Accessibility HTML",
+    "name": "/login: charset meta",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Accessibility HTML",
+    "name": "/create-account: charset meta",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Accessibility HTML",
+    "name": "/login: viewport meta",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Accessibility HTML",
+    "name": "/create-account: viewport meta",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Accessibility HTML",
+    "name": "/login: doctype",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Accessibility HTML",
+    "name": "/create-account: doctype",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Accessibility HTML",
+    "name": "/login re-check: lang=\"en\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Accessibility HTML",
+    "name": "/login re-check: <title>",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Accessibility HTML",
+    "name": "/create-account re-check: charset",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Accessibility HTML",
+    "name": "/create-account re-check: viewport",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Accessibility HTML",
+    "name": "/login re-check: <!DOCTYPE",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Accessibility HTML",
+    "name": "/login re-check: for=\"email\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Accessibility HTML",
+    "name": "/login re-check: for=\"password\"",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Accessibility HTML",
+    "name": "/login re-check: alert-box",
+    "status": "PASS",
+    "duration": 1,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Accessibility HTML",
+    "name": "/create-account re-check: <label",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "Accessibility HTML",
+    "name": "/login re-check: autocomplete",
+    "status": "PASS",
+    "duration": 0,
+    "detail": "✓",
+    "error": ""
+  },
+  {
+    "suite": "CheckEmail Validation",
+    "name": "Response is JSON (run1)",
+    "status": "PASS",
+    "duration": 627,
+    "detail": "JSON ✓",
+    "error": ""
+  },
+  {
+    "suite": "CheckEmail Validation",
+    "name": "Response is JSON (run2)",
+    "status": "PASS",
+    "duration": 203,
+    "detail": "JSON ✓",
+    "error": ""
+  },
+  {
+    "suite": "CheckEmail Validation",
+    "name": "Response is JSON (run3)",
+    "status": "PASS",
+    "duration": 208,
+    "detail": "JSON ✓",
+    "error": ""
+  },
+  {
+    "suite": "CheckEmail Validation",
+    "name": "Response is JSON (run4)",
+    "status": "PASS",
+    "duration": 155,
+    "detail": "JSON ✓",
+    "error": ""
+  },
+  {
+    "suite": "CheckEmail Validation",
+    "name": "Response is JSON (run5)",
+    "status": "PASS",
+    "duration": 982,
+    "detail": "JSON ✓",
+    "error": ""
+  },
+  {
+    "suite": "CheckEmail Validation",
+    "name": "Response is JSON (run6)",
+    "status": "PASS",
+    "duration": 2504,
+    "detail": "JSON ✓",
+    "error": ""
+  },
+  {
+    "suite": "CheckEmail Validation",
+    "name": "Response is JSON (run7)",
+    "status": "PASS",
+    "duration": 2760,
+    "detail": "JSON ✓",
+    "error": ""
+  },
+  {
+    "suite": "CheckEmail Validation",
+    "name": "Response is JSON (run8)",
+    "status": "PASS",
+    "duration": 848,
+    "detail": "JSON ✓",
+    "error": ""
+  },
+  {
+    "suite": "CheckEmail Validation",
+    "name": "Response is JSON (run9)",
+    "status": "PASS",
+    "duration": 939,
+    "detail": "JSON ✓",
+    "error": ""
+  },
+  {
+    "suite": "CheckEmail Validation",
+    "name": "Response is JSON (run10)",
+    "status": "PASS",
+    "duration": 730,
+    "detail": "JSON ✓",
+    "error": ""
+  },
+  {
+    "suite": "CheckEmail Validation",
+    "name": "exists is boolean (run1)",
+    "status": "PASS",
+    "duration": 602,
+    "detail": "boolean",
+    "error": ""
+  },
+  {
+    "suite": "CheckEmail Validation",
+    "name": "exists is boolean (run2)",
+    "status": "PASS",
+    "duration": 221,
+    "detail": "boolean",
+    "error": ""
+  },
+  {
+    "suite": "CheckEmail Validation",
+    "name": "exists is boolean (run3)",
+    "status": "PASS",
+    "duration": 400,
+    "detail": "boolean",
+    "error": ""
+  },
+  {
+    "suite": "CheckEmail Validation",
+    "name": "exists is boolean (run4)",
+    "status": "PASS",
+    "duration": 554,
+    "detail": "boolean",
+    "error": ""
+  },
+  {
+    "suite": "CheckEmail Validation",
+    "name": "exists is boolean (run5)",
+    "status": "PASS",
+    "duration": 370,
+    "detail": "boolean",
+    "error": ""
+  },
+  {
+    "suite": "CheckEmail Validation",
+    "name": "exists is boolean (run6)",
+    "status": "PASS",
+    "duration": 257,
+    "detail": "boolean",
+    "error": ""
+  },
+  {
+    "suite": "CheckEmail Validation",
+    "name": "exists is boolean (run7)",
+    "status": "PASS",
+    "duration": 368,
+    "detail": "boolean",
+    "error": ""
+  },
+  {
+    "suite": "CheckEmail Validation",
+    "name": "exists is boolean (run8)",
+    "status": "PASS",
+    "duration": 345,
+    "detail": "boolean",
+    "error": ""
+  },
+  {
+    "suite": "CheckEmail Validation",
+    "name": "exists is boolean (run9)",
+    "status": "PASS",
+    "duration": 321,
+    "detail": "boolean",
+    "error": ""
+  },
+  {
+    "suite": "CheckEmail Validation",
+    "name": "exists is boolean (run10)",
+    "status": "PASS",
+    "duration": 204,
+    "detail": "boolean",
+    "error": ""
+  },
+  {
+    "suite": "CheckEmail Validation",
+    "name": "HTTP 200 (run1)",
+    "status": "PASS",
+    "duration": 438,
+    "detail": "200 ✓",
+    "error": ""
+  },
+  {
+    "suite": "CheckEmail Validation",
+    "name": "HTTP 200 (run2)",
+    "status": "PASS",
+    "duration": 205,
+    "detail": "200 ✓",
+    "error": ""
+  },
+  {
+    "suite": "CheckEmail Validation",
+    "name": "HTTP 200 (run3)",
+    "status": "PASS",
+    "duration": 174,
+    "detail": "200 ✓",
+    "error": ""
+  },
+  {
+    "suite": "CheckEmail Validation",
+    "name": "HTTP 200 (run4)",
+    "status": "PASS",
+    "duration": 195,
+    "detail": "200 ✓",
+    "error": ""
+  },
+  {
+    "suite": "CheckEmail Validation",
+    "name": "HTTP 200 (run5)",
+    "status": "PASS",
+    "duration": 207,
+    "detail": "200 ✓",
+    "error": ""
+  },
+  {
+    "suite": "CheckEmail Validation",
+    "name": "HTTP 200 (run6)",
+    "status": "PASS",
+    "duration": 206,
+    "detail": "200 ✓",
+    "error": ""
+  },
+  {
+    "suite": "CheckEmail Validation",
+    "name": "HTTP 200 (run7)",
+    "status": "PASS",
+    "duration": 401,
+    "detail": "200 ✓",
+    "error": ""
+  },
+  {
+    "suite": "CheckEmail Validation",
+    "name": "HTTP 200 (run8)",
+    "status": "PASS",
+    "duration": 417,
+    "detail": "200 ✓",
+    "error": ""
+  },
+  {
+    "suite": "CheckEmail Validation",
+    "name": "HTTP 200 (run9)",
+    "status": "PASS",
+    "duration": 194,
+    "detail": "200 ✓",
+    "error": ""
+  },
+  {
+    "suite": "CheckEmail Validation",
+    "name": "HTTP 200 (run10)",
+    "status": "PASS",
+    "duration": 6024,
+    "detail": "200 ✓",
     "error": ""
   }
 ]

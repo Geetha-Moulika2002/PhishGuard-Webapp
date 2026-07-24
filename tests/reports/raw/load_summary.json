@@ -1,43 +1,43 @@
 {
-  "runAt": "2026-07-23T15:18:09.233Z",
+  "runAt": "2026-07-24T03:16:23.508Z",
   "exitCode": 0,
   "totalRequests": 950,
   "totalCompleted": 950,
   "totalFailed": 0,
   "errorRate": "0.00%",
   "httpCodes": {
-    "200": 1896,
-    "302": 455,
-    "2xx": 1896,
-    "3xx": 455
+    "200": 1883,
+    "302": 459,
+    "2xx": 1883,
+    "3xx": 459
   },
   "responseTime": {
     "min": 1,
-    "mean": 15.9,
+    "mean": 36.3,
     "p50": 3,
-    "p95": 100.5,
-    "p99": 153,
-    "max": 211
+    "p95": 228.2,
+    "p99": 399.5,
+    "max": 1328
   },
-  "requestsPerSecond": 32,
+  "requestsPerSecond": 20,
   "thresholds": [
     {
       "name": "P99 response time < 3000ms",
-      "value": 153,
+      "value": 399.5,
       "threshold": 3000,
       "unit": "ms",
       "pass": true
     },
     {
       "name": "P95 response time < 2000ms",
-      "value": 100.5,
+      "value": 228.2,
       "threshold": 2000,
       "unit": "ms",
       "pass": true
     },
     {
       "name": "Mean response time < 1000ms",
-      "value": 15.9,
+      "value": 36.3,
       "threshold": 1000,
       "unit": "ms",
       "pass": true
@@ -61,91 +61,91 @@
     {
       "phase": 1,
       "name": "Phase 1",
-      "requests": 22,
+      "requests": 52,
       "p50": 3,
-      "p95": 37.7,
-      "p99": 130.3,
+      "p95": 391.6,
+      "p99": 713.5,
       "errors5xx": 0
     },
     {
       "phase": 2,
       "name": "Phase 2",
-      "requests": 91,
-      "p50": 3,
-      "p95": 53,
-      "p99": 135.7,
+      "requests": 97,
+      "p50": 4,
+      "p95": 228.2,
+      "p99": 278.7,
       "errors5xx": 0
     },
     {
       "phase": 3,
       "name": "Phase 3",
-      "requests": 154,
+      "requests": 259,
       "p50": 3,
-      "p95": 87.4,
-      "p99": 130.3,
+      "p95": 347.3,
+      "p99": 528.6,
       "errors5xx": 0
     },
     {
       "phase": 4,
       "name": "Phase 4",
-      "requests": 261,
-      "p50": 3,
-      "p95": 113.3,
-      "p99": 149.9,
+      "requests": 233,
+      "p50": 4,
+      "p95": 247.2,
+      "p99": 596,
       "errors5xx": 0
     },
     {
       "phase": 5,
       "name": "Phase 5",
-      "requests": 231,
+      "requests": 227,
       "p50": 3,
-      "p95": 117.9,
-      "p99": 144,
+      "p95": 214.9,
+      "p99": 361.5,
       "errors5xx": 0
     },
     {
       "phase": 6,
       "name": "Phase 6",
-      "requests": 260,
+      "requests": 233,
       "p50": 3,
-      "p95": 100.5,
-      "p99": 138.4,
+      "p95": 210.6,
+      "p99": 278.7,
       "errors5xx": 0
     },
     {
       "phase": 7,
       "name": "Phase 7",
-      "requests": 433,
+      "requests": 778,
       "p50": 3,
-      "p95": 96.6,
-      "p99": 138.4,
+      "p95": 153,
+      "p99": 257.3,
       "errors5xx": 0
     },
     {
       "phase": 8,
       "name": "Phase 8",
-      "requests": 735,
+      "requests": 415,
       "p50": 3,
-      "p95": 94.6,
-      "p99": 162.4,
+      "p95": 262.5,
+      "p99": 391.6,
       "errors5xx": 0
     },
     {
       "phase": 9,
       "name": "Phase 9",
-      "requests": 136,
+      "requests": 47,
       "p50": 3,
-      "p95": 74.4,
-      "p99": 120.3,
+      "p95": 262.5,
+      "p99": 572.6,
       "errors5xx": 0
     },
     {
       "phase": 10,
       "name": "Phase 10",
-      "requests": 28,
-      "p50": 4,
-      "p95": 96.6,
-      "p99": 153,
+      "requests": 1,
+      "p50": 3,
+      "p95": 3,
+      "p99": 3,
       "errors5xx": 0
     }
   ],
@@ -154,25 +154,25 @@
       "suite": "Load Test — Thresholds",
       "name": "P99 response time < 3000ms",
       "status": "PASS",
-      "value": "153 ms",
+      "value": "399.5 ms",
       "threshold": "3000 ms",
-      "detail": "Within threshold (153 ms)"
+      "detail": "Within threshold (399.5 ms)"
     },
     {
       "suite": "Load Test — Thresholds",
       "name": "P95 response time < 2000ms",
       "status": "PASS",
-      "value": "100.5 ms",
+      "value": "228.2 ms",
       "threshold": "2000 ms",
-      "detail": "Within threshold (100.5 ms)"
+      "detail": "Within threshold (228.2 ms)"
     },
     {
       "suite": "Load Test — Thresholds",
       "name": "Mean response time < 1000ms",
       "status": "PASS",
-      "value": "15.9 ms",
+      "value": "36.3 ms",
       "threshold": "1000 ms",
-      "detail": "Within threshold (15.9 ms)"
+      "detail": "Within threshold (36.3 ms)"
     },
     {
       "suite": "Load Test — Thresholds",
@@ -194,81 +194,81 @@
       "suite": "Load Test — Phases",
       "name": "Phase 1: Phase 1",
       "status": "PASS",
-      "value": "p99=130.3ms, 5xx=0",
+      "value": "p99=713.5ms, 5xx=0",
       "threshold": "p99<=3000ms, 5xx=0",
-      "detail": "Requests: 22, p50: 3ms, p95: 37.7ms, p99: 130.3ms"
+      "detail": "Requests: 52, p50: 3ms, p95: 391.6ms, p99: 713.5ms"
     },
     {
       "suite": "Load Test — Phases",
       "name": "Phase 2: Phase 2",
       "status": "PASS",
-      "value": "p99=135.7ms, 5xx=0",
+      "value": "p99=278.7ms, 5xx=0",
       "threshold": "p99<=3000ms, 5xx=0",
-      "detail": "Requests: 91, p50: 3ms, p95: 53ms, p99: 135.7ms"
+      "detail": "Requests: 97, p50: 4ms, p95: 228.2ms, p99: 278.7ms"
     },
     {
       "suite": "Load Test — Phases",
       "name": "Phase 3: Phase 3",
       "status": "PASS",
-      "value": "p99=130.3ms, 5xx=0",
+      "value": "p99=528.6ms, 5xx=0",
       "threshold": "p99<=3000ms, 5xx=0",
-      "detail": "Requests: 154, p50: 3ms, p95: 87.4ms, p99: 130.3ms"
+      "detail": "Requests: 259, p50: 3ms, p95: 347.3ms, p99: 528.6ms"
     },
     {
       "suite": "Load Test — Phases",
       "name": "Phase 4: Phase 4",
       "status": "PASS",
-      "value": "p99=149.9ms, 5xx=0",
+      "value": "p99=596ms, 5xx=0",
       "threshold": "p99<=3000ms, 5xx=0",
-      "detail": "Requests: 261, p50: 3ms, p95: 113.3ms, p99: 149.9ms"
+      "detail": "Requests: 233, p50: 4ms, p95: 247.2ms, p99: 596ms"
     },
     {
       "suite": "Load Test — Phases",
       "name": "Phase 5: Phase 5",
       "status": "PASS",
-      "value": "p99=144ms, 5xx=0",
+      "value": "p99=361.5ms, 5xx=0",
       "threshold": "p99<=3000ms, 5xx=0",
-      "detail": "Requests: 231, p50: 3ms, p95: 117.9ms, p99: 144ms"
+      "detail": "Requests: 227, p50: 3ms, p95: 214.9ms, p99: 361.5ms"
     },
     {
       "suite": "Load Test — Phases",
       "name": "Phase 6: Phase 6",
       "status": "PASS",
-      "value": "p99=138.4ms, 5xx=0",
+      "value": "p99=278.7ms, 5xx=0",
       "threshold": "p99<=3000ms, 5xx=0",
-      "detail": "Requests: 260, p50: 3ms, p95: 100.5ms, p99: 138.4ms"
+      "detail": "Requests: 233, p50: 3ms, p95: 210.6ms, p99: 278.7ms"
     },
     {
       "suite": "Load Test — Phases",
       "name": "Phase 7: Phase 7",
       "status": "PASS",
-      "value": "p99=138.4ms, 5xx=0",
+      "value": "p99=257.3ms, 5xx=0",
       "threshold": "p99<=3000ms, 5xx=0",
-      "detail": "Requests: 433, p50: 3ms, p95: 96.6ms, p99: 138.4ms"
+      "detail": "Requests: 778, p50: 3ms, p95: 153ms, p99: 257.3ms"
     },
     {
       "suite": "Load Test — Phases",
       "name": "Phase 8: Phase 8",
       "status": "PASS",
-      "value": "p99=162.4ms, 5xx=0",
+      "value": "p99=391.6ms, 5xx=0",
       "threshold": "p99<=3000ms, 5xx=0",
-      "detail": "Requests: 735, p50: 3ms, p95: 94.6ms, p99: 162.4ms"
+      "detail": "Requests: 415, p50: 3ms, p95: 262.5ms, p99: 391.6ms"
     },
     {
       "suite": "Load Test — Phases",
       "name": "Phase 9: Phase 9",
       "status": "PASS",
-      "value": "p99=120.3ms, 5xx=0",
+      "value": "p99=572.6ms, 5xx=0",
       "threshold": "p99<=3000ms, 5xx=0",
-      "detail": "Requests: 136, p50: 3ms, p95: 74.4ms, p99: 120.3ms"
+      "detail": "Requests: 47, p50: 3ms, p95: 262.5ms, p99: 572.6ms"
     },
     {
       "suite": "Load Test — Phases",
       "name": "Phase 10: Phase 10",
       "status": "PASS",
-      "value": "p99=153ms, 5xx=0",
+      "value": "p99=3ms, 5xx=0",
       "threshold": "p99<=3000ms, 5xx=0",
-      "detail": "Requests: 28, p50: 4ms, p95: 96.6ms, p99: 153ms"
+      "detail": "Requests: 1, p50: 3ms, p95: 3ms, p99: 3ms"
     }
   ]
 }

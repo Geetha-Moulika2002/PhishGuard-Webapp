@@ -916,50 +916,50 @@ function buildGenericSheet(wb, data, sheetName, tabColor, titleText, titleColor,
 }
 
 // ============================================================
-// MAIN — Generate Report
+// MAIN — Generate Consolidated Report
 // ============================================================
 async function generateReport() {
-  console.log("═══════════════════════════════════════════════");
-  console.log("  PhishGuard — Excel Report Generator");
-  console.log("  300 Tests | 9 Sheets");
-  console.log("═══════════════════════════════════════════════\n");
+  console.log("═══════════════════════════════════════════════════════");
+  console.log("  PhishGuard — Consolidated Excel Report Generator");
+  console.log("  All 1500 test results in one workbook");
+  console.log("═══════════════════════════════════════════════════════\n");
 
   if (!fs.existsSync(path.join(__dirname, "raw"))) {
     fs.mkdirSync(path.join(__dirname, "raw"), { recursive: true });
   }
 
-  // Load all raw results
+  // Load all 5 raw result files
   console.log("  📂 Loading raw test results...");
-  const e2e      = loadJSON("e2e_results.json",         []);
-  const vuln     = loadJSON("vuln_results.json",        []);
-  const unit     = loadJSON("unit_results.json",        []);
-  const valid    = loadJSON("validation_results.json",  []);
-  const loadtime = loadJSON("loadtime_results.json",    []);
-  const load     = loadJSON("load_summary.json",        { testCases: [], responseTime: {}, phases: [] });
+  const e2e      = loadJSON("e2e_results.json",        []);
+  const unit     = loadJSON("unit_results.json",       []);
+  const valid    = loadJSON("validation_results.json", []);
+  const loadtime = loadJSON("loadtime_results.json",   []);
+  const vuln     = loadJSON("vuln_results.json",       []);
+  const load     = loadJSON("load_summary.json",       { testCases: [], responseTime: {}, phases: [] });
 
-  console.log(`     E2E         : ${e2e.length}`);
-  console.log(`     Unit        : ${unit.length}`);
-  console.log(`     Validation  : ${valid.length}`);
-  console.log(`     Load Time   : ${loadtime.length}`);
-  console.log(`     Vuln        : ${vuln.length}`);
-  console.log(`     Artillery   : ${(load.testCases || []).length} threshold checks`);
+  const allResults = [
+    { name: "E2E (Selenium)",  data: e2e,      color: "FF22C55E", titleColor: "FF86EFAC" },
+    { name: "Unit Tests",      data: unit,     color: "FF3B82F6", titleColor: "FF93C5FD" },
+    { name: "Validation",      data: valid,    color: "FF8B5CF6", titleColor: "FFC4B5FD" },
+    { name: "Load Time",       data: loadtime, color: "FFFBBF24", titleColor: "FFFDE68A" },
+    { name: "Vulnerability",   data: vuln,     color: "FFEF4444", titleColor: "FFFCA5A5" },
+  ];
 
-  // Column definitions reused across generic sheets
-  const standardCols = [
-    { key: "suite",    header: "Suite",        width: 26 },
-    { key: "name",     header: "Test Name",    width: 48 },
-    { key: "status",   header: "Status",       width: 12 },
-    { key: "duration", header: "Duration(ms)", width: 14 },
-    { key: "detail",   header: "Detail / Error", width: 50 },
-  ];
-  const vulnCols = [
-    { key: "suite",          header: "Suite",          width: 24 },
-    { key: "name",           header: "Test Name",      width: 44 },
-    { key: "status",         header: "Status",         width: 12 },
-    { key: "severity",       header: "Severity",       width: 12 },
-    { key: "detail",         header: "Finding",        width: 44 },
-    { key: "recommendation", header: "Recommendation", width: 52 },
-  ];
+  // Grand totals
+  let grandTotal = 0, grandPass = 0, grandFail = 0;
+  for (const { data } of allResults) {
+    grandTotal += data.length;
+    grandPass  += data.filter(r => r.status === "PASS").length;
+    grandFail  += data.filter(r => r.status === "FAIL").length;
+  }
+
+  console.log(`\n  📊 Grand Total: ${grandTotal} tests  (${grandPass} PASS, ${grandFail} FAIL)\n`);
+  for (const { name, data } of allResults) {
+    const p = data.filter(r => r.status === "PASS").length;
+    const f = data.filter(r => r.status === "FAIL").length;
+    const rate = data.length > 0 ? ((p/data.length)*100).toFixed(1) : "0.0";
+    console.log(`     ${name.padEnd(18)}: ${data.length} total  ${p} PASS  ${f} FAIL  (${rate}%)`);
+  }
 
   // Build workbook
   const wb = new ExcelJS.Workbook();
@@ -969,48 +969,184 @@ async function generateReport() {
 
   console.log("\n  📊 Building sheets...");
 
-  buildCoverSheet(wb, e2e, vuln, load, unit, valid, loadtime);
-  console.log("     ✅ Summary Dashboard");
+  // Sheet 1 — Grand Summary
+  buildGrandSummary(wb, allResults, grandTotal, grandPass, grandFail);
+  console.log("     ✅ Grand Summary Dashboard");
 
-  buildGenericSheet(wb, e2e, "🧪 E2E Tests (120)", "FF22C55E",
-    "E2E Tests — Selenium WebDriver  (120 tests)", "FF86EFAC", standardCols);
-  console.log("     ✅ E2E Tests");
+  // Sheets 2–6 — One sheet per test type (all 300 results each)
+  const stdCols = [
+    { key: "suite",    header: "Suite",          width: 26 },
+    { key: "name",     header: "Test Name",      width: 52 },
+    { key: "status",   header: "Status",         width: 10 },
+    { key: "duration", header: "Duration (ms)",  width: 14 },
+    { key: "detail",   header: "Detail / Error", width: 55 },
+  ];
+  const vulnCols = [
+    { key: "suite",          header: "Suite",          width: 24 },
+    { key: "name",           header: "Test Name",      width: 44 },
+    { key: "status",         header: "Status",         width: 10 },
+    { key: "severity",       header: "Severity",       width: 12 },
+    { key: "detail",         header: "Finding",        width: 44 },
+    { key: "recommendation", header: "Recommendation", width: 50 },
+  ];
 
-  buildGenericSheet(wb, unit, "🔬 Unit Tests (60)", "FF3B82F6",
-    "Unit Tests — HTTP API & Route Behavior  (60 tests)", "FF93C5FD", standardCols);
-  console.log("     ✅ Unit Tests");
+  for (const { name, data, color, titleColor } of allResults) {
+    const cols = name === "Vulnerability" ? vulnCols : stdCols;
+    buildGenericSheet(wb, data,
+      `${getIcon(name)} ${name} (${data.length})`,
+      color,
+      `${name} — ${data.length} Tests   ✅ ${data.filter(r=>r.status==="PASS").length} PASS   ❌ ${data.filter(r=>r.status==="FAIL").length} FAIL`,
+      titleColor, cols
+    );
+    console.log(`     ✅ ${name} (${data.length} tests)`);
+  }
 
-  buildGenericSheet(wb, valid, "✔️  Validation (50)", "FF8B5CF6",
-    "Validation Tests — Form Fields & Live Feedback  (50 tests)", "FFC4B5FD", standardCols);
-  console.log("     ✅ Validation Tests");
+  // Sheet 7 — All 1500 tests in one flat sheet
+  buildAllResultsSheet(wb, allResults);
+  console.log(`     ✅ All Results (${grandTotal} tests combined)`);
 
-  buildGenericSheet(wb, loadtime, "⏱ Load Time (40)", "FFFBBF24",
-    "Load Time Tests — Performance & Timing  (40 tests)", "FFFDE68A", standardCols);
-  console.log("     ✅ Load Time Tests");
-
-  buildVulnSheet(wb, vuln);
-  console.log("     ✅ Vulnerability Tests");
-
+  // Sheet 8 — Artillery Load Tests
   buildLoadSheet(wb, load);
   console.log("     ✅ Artillery Load Tests");
 
-  buildLoadPhaseSheet(wb, load);
-  console.log("     ✅ Load Phase Analysis");
-
+  // Sheet 9 — Vulnerability Recommendations
   buildRecommendationsSheet(wb, vuln);
-  console.log("     ✅ Recommendations");
+  console.log("     ✅ Security Recommendations");
 
   await wb.xlsx.writeFile(OUTPUT_FILE);
-  console.log(`\n  ✅ Report saved to:\n     ${OUTPUT_FILE}`);
-  console.log("═══════════════════════════════════════════════\n");
+  console.log(`\n  ✅ Consolidated report saved:\n     ${OUTPUT_FILE}`);
+  console.log("═══════════════════════════════════════════════════════\n");
   return OUTPUT_FILE;
 }
 
-if (require.main === module) {
-  generateReport().catch((err) => {
-    console.error("Report generation failed:", err);
-    process.exit(1);
-  });
+function getIcon(name) {
+  const icons = { "E2E (Selenium)": "🧪", "Unit Tests": "🔬", "Validation": "✔️", "Load Time": "⏱", "Vulnerability": "🔐" };
+  return icons[name] || "📋";
 }
 
+// ============================================================
+// SHEET — Grand Summary Dashboard
+// ============================================================
+function buildGrandSummary(wb, allResults, grandTotal, grandPass, grandFail) {
+  const ws = wb.addWorksheet("📊 Grand Summary", { properties: { tabColor: { argb: C.ACCENT } } });
+  ws.columns = [{ width: 3 }, { width: 22 }, { width: 12 }, { width: 10 }, { width: 10 }, { width: 12 }, { width: 3 }];
+
+  // Title
+  ws.mergeCells("B2:F2");
+  const tc = ws.getCell("B2");
+  tc.value = "🛡️  PhishGuard — Consolidated Test Report  (" + grandTotal + " Total Tests)";
+  tc.font = font(C.TITLE_FG, true, 18); tc.fill = hFill(C.TITLE_BG, C.TITLE_FG);
+  tc.alignment = align("center", "middle"); ws.getRow(2).height = 50;
+
+  ws.mergeCells("B3:F3");
+  const sc = ws.getCell("B3");
+  sc.value = `Generated: ${new Date().toLocaleString()}   |   Target: ${config.BASE_URL}`;
+  sc.font = font("FF94A3B8", false, 10); sc.fill = hFill(C.TITLE_BG, "FF94A3B8");
+  sc.alignment = align("center", "middle"); ws.getRow(3).height = 20;
+  ws.addRow([]);
+
+  // Grand stat cards
+  const passRate = grandTotal > 0 ? ((grandPass/grandTotal)*100).toFixed(1) : "0";
+  [[5,2,"TOTAL TESTS",grandTotal,C.SECTION_BG,C.SECTION_FG],
+   [5,3,"PASSED",grandPass,C.PASS_BG,C.PASS_FG],
+   [5,4,"FAILED",grandFail,C.FAIL_BG,C.FAIL_FG],
+   [5,5,"PASS RATE",passRate+"%",C.HEADER_BG,C.HEADER_FG],
+  ].forEach(([row,col,label,val,bg,fg]) => {
+    ws.mergeCells(row, col, row+1, col);
+    const lc = ws.getCell(row, col);
+    lc.value = label; lc.font = font(fg, false, 10);
+    lc.fill = hFill(bg, fg); lc.alignment = align("center", "middle"); lc.border = border();
+    const vc = ws.getCell(row+1, col);
+    vc.value = val; vc.font = font(fg, true, 20);
+    vc.fill = hFill(bg, fg); vc.alignment = align("center", "middle"); vc.border = border();
+    ws.getRow(row).height = 20; ws.getRow(row+1).height = 40;
+  });
+
+  ws.addRow([]); ws.addRow([]);
+
+  // Per-type breakdown table
+  const hRow = ws.addRow(["", "Test Type", "Total", "Pass", "Fail", "Pass Rate", ""]);
+  applyHeaderRow(hRow, C.HEADER_BG, C.HEADER_FG);
+
+  allResults.forEach(({ name, data }, i) => {
+    const p = data.filter(r => r.status === "PASS").length;
+    const f = data.filter(r => r.status === "FAIL").length;
+    const rt = data.length > 0 ? ((p/data.length)*100).toFixed(1)+"%" : "N/A";
+    const isTot = false;
+    const r = ws.addRow(["", name, data.length, p, f, rt, ""]);
+    [2,3,4,5,6].forEach(c => {
+      r.getCell(c).fill = hFill(i%2 ? C.ALT_ROW : C.WHITE, "FF000000");
+      r.getCell(c).border = border();
+      r.getCell(c).alignment = align("center", "middle");
+      r.getCell(c).font = font("FF1E293B");
+    });
+    r.getCell(6).fill = parseFloat(rt)>=80 ? hFill(C.PASS_BG,C.PASS_FG) : hFill(C.FAIL_BG,C.FAIL_FG);
+    r.getCell(6).font = parseFloat(rt)>=80 ? font(C.PASS_FG,true) : font(C.FAIL_FG,true);
+    r.height = 24;
+  });
+
+  // Total row
+  const tot = ws.addRow(["","GRAND TOTAL",grandTotal,grandPass,grandFail,passRate+"%",""]);
+  [2,3,4,5,6].forEach(c => {
+    tot.getCell(c).fill = hFill(C.HEADER_BG,C.HEADER_FG);
+    tot.getCell(c).font = font(C.HEADER_FG,true);
+    tot.getCell(c).alignment = align("center","middle");
+    tot.getCell(c).border = border();
+  });
+  tot.height = 28;
+}
+
+// ============================================================
+// SHEET — All Results (flat combined view)
+// ============================================================
+function buildAllResultsSheet(wb, allResults) {
+  const ws = wb.addWorksheet("📋 All Results", { properties: { tabColor: { argb: "FF64748B" } }, views: [{ state: "frozen", ySplit: 3 }] });
+  ws.columns = [
+    { width: 3 },
+    { key: "type",     header: "Type",         width: 16 },
+    { key: "suite",    header: "Suite",        width: 24 },
+    { key: "name",     header: "Test Name",    width: 50 },
+    { key: "status",   header: "Status",       width: 10 },
+    { key: "duration", header: "ms",           width: 8 },
+    { key: "detail",   header: "Detail/Error", width: 50 },
+    { width: 3 },
+  ];
+
+  ws.mergeCells("B1:G1");
+  const tc = ws.getCell("B1");
+  tc.value = "All Test Results — Combined View";
+  tc.font = font("FFE2E8F0", true, 14); tc.fill = hFill(C.TITLE_BG, "FFE2E8F0");
+  tc.alignment = align("center", "middle"); ws.getRow(1).height = 36;
+
+  const hRow = ws.getRow(2);
+  hRow.values = ["", "Type", "Suite", "Test Name", "Status", "ms", "Detail/Error", ""];
+  applyHeaderRow(hRow, C.HEADER_BG, C.HEADER_FG);
+
+  let rowNum = 0;
+  for (const { name, data } of allResults) {
+    for (const test of data) {
+      const r = ws.addRow([
+        "", name, test.suite || "", test.name || "",
+        test.status || "", test.duration || 0,
+        test.detail || test.error || "", "",
+      ]);
+      r.getCell(5).fill = statusFill(test.status);
+      r.getCell(5).font = statusFont(test.status);
+      r.getCell(5).alignment = align("center", "middle");
+      r.getCell(5).border = border();
+      [2,3,4,6,7].forEach(c => {
+        r.getCell(c).fill = hFill(rowNum%2 ? C.ALT_ROW : C.WHITE, "FF000000");
+        r.getCell(c).font = font("FF1E293B");
+        r.getCell(c).border = border();
+        r.getCell(c).alignment = align("left", "middle", true);
+      });
+      r.height = 20;
+      rowNum++;
+    }
+  }
+}
+
+if (require.main === module) {
+  generateReport().catch(err => { console.error("Report failed:", err); process.exit(1); });
+}
 module.exports = { generateReport };

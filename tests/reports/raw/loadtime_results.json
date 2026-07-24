@@ -1,322 +1,2098 @@
 [
   {
-    "suite": "Response Time",
-    "name": "GET /login responds within 3000ms",
+    "suite": "Public Times",
+    "name": "GET /login run 1 < 3000ms",
+    "status": "FAIL",
+    "duration": 16,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Public Times",
+    "name": "GET /login run 2 < 3000ms",
+    "status": "FAIL",
+    "duration": 2,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Public Times",
+    "name": "GET /login run 3 < 3000ms",
+    "status": "FAIL",
+    "duration": 2,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Public Times",
+    "name": "GET /login run 4 < 3000ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Public Times",
+    "name": "GET /login run 5 < 3000ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Public Times",
+    "name": "GET /create-account run 1 < 3000ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Public Times",
+    "name": "GET /create-account run 2 < 3000ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Public Times",
+    "name": "GET /create-account run 3 < 3000ms",
+    "status": "FAIL",
+    "duration": 2,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Public Times",
+    "name": "GET /create-account run 4 < 3000ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Public Times",
+    "name": "GET /create-account run 5 < 3000ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Public Times",
+    "name": "GET / redirect run 1 < 1500ms",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Public Times",
+    "name": "GET / redirect run 2 < 1500ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Public Times",
+    "name": "GET / redirect run 3 < 1500ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Public Times",
+    "name": "GET / redirect run 4 < 1500ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Public Times",
+    "name": "GET / redirect run 5 < 1500ms",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Public Times",
+    "name": "GET /logout run 1 < 1500ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Public Times",
+    "name": "GET /logout run 2 < 1500ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Public Times",
+    "name": "GET /logout run 3 < 1500ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Public Times",
+    "name": "GET /logout run 4 < 1500ms",
+    "status": "FAIL",
+    "duration": 2,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Public Times",
+    "name": "GET /logout run 5 < 1500ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Public Times",
+    "name": "POST /check-email run 1 < 5000ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Public Times",
+    "name": "POST /check-email run 2 < 5000ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Public Times",
+    "name": "POST /check-email run 3 < 5000ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Public Times",
+    "name": "POST /check-email run 4 < 5000ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Public Times",
+    "name": "POST /check-email run 5 < 5000ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Public Times",
+    "name": "POST /login wrong creds run 1 < 5000ms",
+    "status": "FAIL",
+    "duration": 2,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Public Times",
+    "name": "POST /login wrong creds run 2 < 5000ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Public Times",
+    "name": "POST /login wrong creds run 3 < 5000ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Public Times",
+    "name": "POST /login wrong creds run 4 < 5000ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Public Times",
+    "name": "POST /login wrong creds run 5 < 5000ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Unauth Times",
+    "name": "GET /dashboard unauth run 1 < 1500ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Unauth Times",
+    "name": "GET /dashboard unauth run 2 < 1500ms",
+    "status": "FAIL",
+    "duration": 3,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Unauth Times",
+    "name": "GET /dashboard unauth run 3 < 1500ms",
+    "status": "FAIL",
+    "duration": 4,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Unauth Times",
+    "name": "GET /dashboard unauth run 4 < 1500ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Unauth Times",
+    "name": "GET /threats unauth run 1 < 1500ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Unauth Times",
+    "name": "GET /threats unauth run 2 < 1500ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Unauth Times",
+    "name": "GET /threats unauth run 3 < 1500ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Unauth Times",
+    "name": "GET /threats unauth run 4 < 1500ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Unauth Times",
+    "name": "GET /reports unauth run 1 < 1500ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Unauth Times",
+    "name": "GET /reports unauth run 2 < 1500ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Unauth Times",
+    "name": "GET /reports unauth run 3 < 1500ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Unauth Times",
+    "name": "GET /reports unauth run 4 < 1500ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Unauth Times",
+    "name": "GET /settings unauth run 1 < 1500ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Unauth Times",
+    "name": "GET /settings unauth run 2 < 1500ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Unauth Times",
+    "name": "GET /settings unauth run 3 < 1500ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Unauth Times",
+    "name": "GET /settings unauth run 4 < 1500ms",
+    "status": "FAIL",
+    "duration": 2,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Unauth Times",
+    "name": "GET /scanner unauth run 1 < 1500ms",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Unauth Times",
+    "name": "GET /scanner unauth run 2 < 1500ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Unauth Times",
+    "name": "GET /scanner unauth run 3 < 1500ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Unauth Times",
+    "name": "GET /scanner unauth run 4 < 1500ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Auth Times",
+    "name": "GET /dashboard auth run 1 < 5000ms",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "No session cookie",
+    "error": "No session cookie"
+  },
+  {
+    "suite": "Auth Times",
+    "name": "GET /dashboard auth run 2 < 5000ms",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "No session cookie",
+    "error": "No session cookie"
+  },
+  {
+    "suite": "Auth Times",
+    "name": "GET /dashboard auth run 3 < 5000ms",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "No session cookie",
+    "error": "No session cookie"
+  },
+  {
+    "suite": "Auth Times",
+    "name": "GET /dashboard auth run 4 < 5000ms",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "No session cookie",
+    "error": "No session cookie"
+  },
+  {
+    "suite": "Auth Times",
+    "name": "GET /dashboard auth run 5 < 5000ms",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "No session cookie",
+    "error": "No session cookie"
+  },
+  {
+    "suite": "Auth Times",
+    "name": "GET /dashboard auth run 6 < 5000ms",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "No session cookie",
+    "error": "No session cookie"
+  },
+  {
+    "suite": "Auth Times",
+    "name": "GET /threats auth run 1 < 5000ms",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "No session cookie",
+    "error": "No session cookie"
+  },
+  {
+    "suite": "Auth Times",
+    "name": "GET /threats auth run 2 < 5000ms",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "No session cookie",
+    "error": "No session cookie"
+  },
+  {
+    "suite": "Auth Times",
+    "name": "GET /threats auth run 3 < 5000ms",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "No session cookie",
+    "error": "No session cookie"
+  },
+  {
+    "suite": "Auth Times",
+    "name": "GET /threats auth run 4 < 5000ms",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "No session cookie",
+    "error": "No session cookie"
+  },
+  {
+    "suite": "Auth Times",
+    "name": "GET /threats auth run 5 < 5000ms",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "No session cookie",
+    "error": "No session cookie"
+  },
+  {
+    "suite": "Auth Times",
+    "name": "GET /threats auth run 6 < 5000ms",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "No session cookie",
+    "error": "No session cookie"
+  },
+  {
+    "suite": "Auth Times",
+    "name": "GET /reports auth run 1 < 5000ms",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "No session cookie",
+    "error": "No session cookie"
+  },
+  {
+    "suite": "Auth Times",
+    "name": "GET /reports auth run 2 < 5000ms",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "No session cookie",
+    "error": "No session cookie"
+  },
+  {
+    "suite": "Auth Times",
+    "name": "GET /reports auth run 3 < 5000ms",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "No session cookie",
+    "error": "No session cookie"
+  },
+  {
+    "suite": "Auth Times",
+    "name": "GET /reports auth run 4 < 5000ms",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "No session cookie",
+    "error": "No session cookie"
+  },
+  {
+    "suite": "Auth Times",
+    "name": "GET /reports auth run 5 < 5000ms",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "No session cookie",
+    "error": "No session cookie"
+  },
+  {
+    "suite": "Auth Times",
+    "name": "GET /reports auth run 6 < 5000ms",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "No session cookie",
+    "error": "No session cookie"
+  },
+  {
+    "suite": "Auth Times",
+    "name": "GET /settings auth run 1 < 5000ms",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "No session cookie",
+    "error": "No session cookie"
+  },
+  {
+    "suite": "Auth Times",
+    "name": "GET /settings auth run 2 < 5000ms",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "No session cookie",
+    "error": "No session cookie"
+  },
+  {
+    "suite": "Auth Times",
+    "name": "GET /settings auth run 3 < 5000ms",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "No session cookie",
+    "error": "No session cookie"
+  },
+  {
+    "suite": "Auth Times",
+    "name": "GET /settings auth run 4 < 5000ms",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "No session cookie",
+    "error": "No session cookie"
+  },
+  {
+    "suite": "Auth Times",
+    "name": "GET /settings auth run 5 < 5000ms",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "No session cookie",
+    "error": "No session cookie"
+  },
+  {
+    "suite": "Auth Times",
+    "name": "GET /settings auth run 6 < 5000ms",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "No session cookie",
+    "error": "No session cookie"
+  },
+  {
+    "suite": "Auth Times",
+    "name": "GET /scanner auth run 1 < 5000ms",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "No session cookie",
+    "error": "No session cookie"
+  },
+  {
+    "suite": "Auth Times",
+    "name": "GET /scanner auth run 2 < 5000ms",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "No session cookie",
+    "error": "No session cookie"
+  },
+  {
+    "suite": "Auth Times",
+    "name": "GET /scanner auth run 3 < 5000ms",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "No session cookie",
+    "error": "No session cookie"
+  },
+  {
+    "suite": "Auth Times",
+    "name": "GET /scanner auth run 4 < 5000ms",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "No session cookie",
+    "error": "No session cookie"
+  },
+  {
+    "suite": "Auth Times",
+    "name": "GET /scanner auth run 5 < 5000ms",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "No session cookie",
+    "error": "No session cookie"
+  },
+  {
+    "suite": "Auth Times",
+    "name": "GET /scanner auth run 6 < 5000ms",
+    "status": "FAIL",
+    "duration": 0,
+    "detail": "No session cookie",
+    "error": "No session cookie"
+  },
+  {
+    "suite": "Concurrent",
+    "name": "5x GET /login concurrent → no 5xx",
+    "status": "FAIL",
+    "duration": 2,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Concurrent",
+    "name": "10x GET /login concurrent → no 5xx",
+    "status": "FAIL",
+    "duration": 4,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Concurrent",
+    "name": "15x GET /login concurrent → no 5xx",
+    "status": "FAIL",
+    "duration": 7,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Concurrent",
+    "name": "5x GET /create-account concurrent → no 5xx",
+    "status": "FAIL",
+    "duration": 3,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Concurrent",
+    "name": "10x GET /create-account concurrent → no 5xx",
+    "status": "FAIL",
+    "duration": 4,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Concurrent",
+    "name": "15x GET /create-account concurrent → no 5xx",
+    "status": "FAIL",
+    "duration": 8,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Concurrent",
+    "name": "5x POST /check-email concurrent → no 5xx",
+    "status": "FAIL",
+    "duration": 4,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Concurrent",
+    "name": "10x POST /check-email concurrent → no 5xx",
+    "status": "FAIL",
+    "duration": 4,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Concurrent",
+    "name": "15x POST /check-email concurrent → no 5xx",
+    "status": "FAIL",
+    "duration": 7,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Concurrent",
+    "name": "5x GET /logout concurrent → no 5xx",
+    "status": "FAIL",
+    "duration": 4,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Concurrent",
+    "name": "10x GET /logout concurrent → no 5xx",
+    "status": "FAIL",
+    "duration": 4,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Concurrent",
+    "name": "5x GET / concurrent → no 5xx",
+    "status": "FAIL",
+    "duration": 3,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Concurrent",
+    "name": "10x GET / concurrent → no 5xx",
+    "status": "FAIL",
+    "duration": 8,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Concurrent",
+    "name": "5x GET /dashboard unauth concurrent → no 5xx",
+    "status": "FAIL",
+    "duration": 4,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Concurrent",
+    "name": "10x GET /dashboard unauth concurrent → no 5xx",
+    "status": "FAIL",
+    "duration": 4,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Concurrent",
+    "name": "5x GET /login concurrent all return 200",
+    "status": "FAIL",
+    "duration": 4,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Concurrent",
+    "name": "10x GET /login concurrent all return 200",
+    "status": "FAIL",
+    "duration": 7,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Concurrent",
+    "name": "15x GET /login concurrent all return 200",
+    "status": "FAIL",
+    "duration": 7,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "GET /login body > 1KB run 1",
+    "status": "FAIL",
+    "duration": 4,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "GET /login body > 1KB run 2",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "GET /login body > 1KB run 3",
+    "status": "FAIL",
+    "duration": 2,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "GET /login body > 1KB run 4",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "GET /login body > 1KB run 5",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "GET /login body < 200KB run 1",
+    "status": "FAIL",
+    "duration": 2,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "GET /login body < 200KB run 2",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "GET /login body < 200KB run 3",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "GET /login body < 200KB run 4",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "GET /login body < 200KB run 5",
+    "status": "FAIL",
+    "duration": 2,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "GET /create-account body > 1KB run 1",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "GET /create-account body > 1KB run 2",
+    "status": "FAIL",
+    "duration": 2,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "GET /create-account body > 1KB run 3",
+    "status": "FAIL",
+    "duration": 3,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "GET /create-account body > 1KB run 4",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "GET /create-account body > 1KB run 5",
+    "status": "FAIL",
+    "duration": 3,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "POST /check-email response < 100B run 1",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "POST /check-email response < 100B run 2",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "POST /check-email response < 100B run 3",
+    "status": "FAIL",
+    "duration": 2,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "POST /check-email response < 100B run 4",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "POST /check-email response < 100B run 5",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "GET / response < 500B run 1",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "GET / response < 500B run 2",
+    "status": "FAIL",
+    "duration": 2,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "GET / response < 500B run 3",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "GET / response < 500B run 4",
+    "status": "FAIL",
+    "duration": 2,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "GET / response < 500B run 5",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "GET /logout response < 500B run 1",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "GET /logout response < 500B run 2",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "GET /logout response < 500B run 3",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "GET /logout response < 500B run 4",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Response Size",
+    "name": "GET /logout response < 500B run 5",
+    "status": "FAIL",
+    "duration": 1,
+    "detail": "",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/login TTFB < 3000ms run 1",
+    "status": "FAIL",
+    "duration": 5291,
+    "detail": "unknown error: net::ERR_CONNECTION_REFUSED\n  (Session info: chrome=150.0.7871.130)",
+    "error": "unknown error: net::ERR_CONNECTION_REFUSED\n  (Session info: chrome=150.0.7871.130)"
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/login DCL < 8000ms run 1",
+    "status": "PASS",
+    "duration": 8315,
+    "detail": "5288ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/login pageLoad < 10000ms run 1",
+    "status": "PASS",
+    "duration": 338,
+    "detail": "314ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/login domInteractive < 8000ms run 1",
+    "status": "PASS",
+    "duration": 50,
+    "detail": "15ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/login navigationStart is valid run 1",
+    "status": "PASS",
+    "duration": 193,
+    "detail": "1784865106427",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/login TTFB < 3000ms run 2",
+    "status": "PASS",
+    "duration": 146,
+    "detail": "116ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/login DCL < 8000ms run 2",
+    "status": "PASS",
+    "duration": 198,
+    "detail": "176ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/login pageLoad < 10000ms run 2",
+    "status": "PASS",
+    "duration": 134,
+    "detail": "114ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/login domInteractive < 8000ms run 2",
+    "status": "PASS",
+    "duration": 211,
+    "detail": "185ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/login navigationStart is valid run 2",
+    "status": "PASS",
+    "duration": 117,
+    "detail": "1784865107308",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/create-account TTFB < 3000ms run 1",
+    "status": "PASS",
+    "duration": 283,
+    "detail": "246ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/create-account DCL < 8000ms run 1",
+    "status": "PASS",
+    "duration": 52,
+    "detail": "34ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/create-account pageLoad < 10000ms run 1",
+    "status": "PASS",
+    "duration": 282,
+    "detail": "268ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/create-account domInteractive < 8000ms run 1",
+    "status": "PASS",
+    "duration": 52,
+    "detail": "34ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/create-account TTFB positive run 1",
+    "status": "PASS",
+    "duration": 281,
+    "detail": "258ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/create-account TTFB < 3000ms run 2",
+    "status": "PASS",
+    "duration": 70,
+    "detail": "36ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/create-account DCL < 8000ms run 2",
+    "status": "PASS",
+    "duration": 263,
+    "detail": "242ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/create-account pageLoad < 10000ms run 2",
+    "status": "PASS",
+    "duration": 78,
+    "detail": "50ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/create-account domInteractive < 8000ms run 2",
+    "status": "PASS",
+    "duration": 286,
+    "detail": "259ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/create-account TTFB positive run 2",
+    "status": "PASS",
+    "duration": 69,
+    "detail": "30ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/dashboard TTFB < 5000ms run 1",
+    "status": "PASS",
+    "duration": 1734,
+    "detail": "1657ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/dashboard DCL < 10000ms run 1",
+    "status": "PASS",
+    "duration": 631,
+    "detail": "616ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/dashboard pageLoad > 0ms run 1",
+    "status": "PASS",
+    "duration": 818,
+    "detail": "783ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/dashboard TTFB < 5000ms run 2",
+    "status": "PASS",
+    "duration": 581,
+    "detail": "545ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/dashboard DCL < 10000ms run 2",
+    "status": "PASS",
+    "duration": 389,
+    "detail": "348ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/dashboard pageLoad > 0ms run 2",
+    "status": "PASS",
+    "duration": 825,
+    "detail": "801ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/threats TTFB < 5000ms run 1",
+    "status": "PASS",
+    "duration": 2107,
+    "detail": "2038ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/threats DCL < 10000ms run 1",
+    "status": "PASS",
+    "duration": 1302,
+    "detail": "1274ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/threats pageLoad > 0ms run 1",
+    "status": "PASS",
+    "duration": 1062,
+    "detail": "1034ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/threats TTFB < 5000ms run 2",
+    "status": "PASS",
+    "duration": 1395,
+    "detail": "1270ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/threats DCL < 10000ms run 2",
+    "status": "PASS",
+    "duration": 1635,
+    "detail": "1590ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/threats pageLoad > 0ms run 2",
+    "status": "PASS",
+    "duration": 1453,
+    "detail": "1422ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/reports TTFB < 5000ms run 1",
+    "status": "PASS",
+    "duration": 350,
+    "detail": "220ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/reports DCL < 10000ms run 1",
+    "status": "PASS",
+    "duration": 616,
+    "detail": "539ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/reports pageLoad > 0ms run 1",
+    "status": "PASS",
+    "duration": 530,
+    "detail": "507ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/reports TTFB < 5000ms run 2",
+    "status": "PASS",
+    "duration": 586,
+    "detail": "563ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/reports DCL < 10000ms run 2",
+    "status": "PASS",
+    "duration": 348,
+    "detail": "180ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/reports pageLoad > 0ms run 2",
+    "status": "PASS",
+    "duration": 687,
+    "detail": "628ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/settings TTFB < 5000ms run 1",
+    "status": "PASS",
+    "duration": 1700,
+    "detail": "1636ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/settings DCL < 10000ms run 1",
+    "status": "PASS",
+    "duration": 3026,
+    "detail": "2965ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/settings pageLoad > 0ms run 1",
+    "status": "PASS",
+    "duration": 1788,
+    "detail": "1769ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/settings TTFB < 5000ms run 2",
+    "status": "PASS",
+    "duration": 2487,
+    "detail": "2448ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/settings DCL < 10000ms run 2",
+    "status": "PASS",
+    "duration": 3403,
+    "detail": "3349ms",
+    "error": ""
+  },
+  {
+    "suite": "Browser Timing",
+    "name": "/settings pageLoad > 0ms run 2",
+    "status": "PASS",
+    "duration": 1820,
+    "detail": "1764ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/login sequential req 1 < 3000ms",
+    "status": "PASS",
+    "duration": 3,
+    "detail": "2ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/login sequential req 2 < 3000ms",
+    "status": "PASS",
+    "duration": 2,
+    "detail": "2ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/login sequential req 3 < 3000ms",
+    "status": "PASS",
+    "duration": 3,
+    "detail": "3ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/login sequential req 4 < 3000ms",
     "status": "PASS",
     "duration": 6,
     "detail": "6ms",
     "error": ""
   },
   {
-    "suite": "Response Time",
-    "name": "GET /create-account responds within 3000ms",
+    "suite": "Repeated",
+    "name": "/login sequential req 5 < 3000ms",
     "status": "PASS",
     "duration": 5,
-    "detail": "5ms",
+    "detail": "4ms",
     "error": ""
   },
   {
-    "suite": "Response Time",
-    "name": "GET / (root redirect) within 1500ms",
+    "suite": "Repeated",
+    "name": "/login sequential req 6 < 3000ms",
     "status": "PASS",
-    "duration": 9,
-    "detail": "8ms",
+    "duration": 4,
+    "detail": "4ms",
     "error": ""
   },
   {
-    "suite": "Response Time",
-    "name": "GET /dashboard (unauth) redirect within 1500ms",
+    "suite": "Repeated",
+    "name": "/create-account sequential req 1 < 3000ms",
     "status": "PASS",
-    "duration": 10,
-    "detail": "9ms",
+    "duration": 2,
+    "detail": "2ms",
     "error": ""
   },
   {
-    "suite": "Response Time",
-    "name": "GET /logout redirect within 1500ms",
+    "suite": "Repeated",
+    "name": "/create-account sequential req 2 < 3000ms",
+    "status": "PASS",
+    "duration": 3,
+    "detail": "3ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/create-account sequential req 3 < 3000ms",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "4ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/create-account sequential req 4 < 3000ms",
+    "status": "PASS",
+    "duration": 3,
+    "detail": "3ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/create-account sequential req 5 < 3000ms",
+    "status": "PASS",
+    "duration": 2,
+    "detail": "2ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/create-account sequential req 6 < 3000ms",
+    "status": "PASS",
+    "duration": 3,
+    "detail": "2ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/ sequential req 1 < 1500ms",
+    "status": "PASS",
+    "duration": 2,
+    "detail": "2ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/ sequential req 2 < 1500ms",
+    "status": "PASS",
+    "duration": 2,
+    "detail": "2ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/ sequential req 3 < 1500ms",
     "status": "PASS",
     "duration": 7,
     "detail": "7ms",
     "error": ""
   },
   {
-    "suite": "Response Time",
-    "name": "GET /dashboard (auth) within 3000ms",
-    "status": "FAIL",
-    "duration": 0,
-    "detail": "No session",
-    "error": "No session"
-  },
-  {
-    "suite": "Response Time",
-    "name": "GET /threats (auth) within 3000ms",
-    "status": "FAIL",
-    "duration": 1,
-    "detail": "No session",
-    "error": "No session"
-  },
-  {
-    "suite": "Response Time",
-    "name": "GET /reports (auth) within 3000ms",
-    "status": "FAIL",
-    "duration": 0,
-    "detail": "No session",
-    "error": "No session"
-  },
-  {
-    "suite": "Response Time",
-    "name": "GET /settings (auth) within 3000ms",
-    "status": "FAIL",
-    "duration": 0,
-    "detail": "No session",
-    "error": "No session"
-  },
-  {
-    "suite": "Response Time",
-    "name": "POST /check-email within 3000ms",
+    "suite": "Repeated",
+    "name": "/ sequential req 4 < 1500ms",
     "status": "PASS",
-    "duration": 97,
-    "detail": "97ms",
+    "duration": 3,
+    "detail": "3ms",
     "error": ""
   },
   {
-    "suite": "Response Time",
-    "name": "POST /login (wrong creds) within 3000ms",
-    "status": "PASS",
-    "duration": 82,
-    "detail": "82ms",
-    "error": ""
-  },
-  {
-    "suite": "Response Time",
-    "name": "POST /dashboard scan within 5000ms",
-    "status": "FAIL",
-    "duration": 0,
-    "detail": "No session",
-    "error": "No session"
-  },
-  {
-    "suite": "Browser Timing",
-    "name": "/login TTFB < 2000ms",
-    "status": "PASS",
-    "duration": 664,
-    "detail": "TTFB: 307ms",
-    "error": ""
-  },
-  {
-    "suite": "Browser Timing",
-    "name": "/login DOM Content Loaded < 5000ms",
-    "status": "PASS",
-    "duration": 38,
-    "detail": "DCL: 11ms",
-    "error": ""
-  },
-  {
-    "suite": "Browser Timing",
-    "name": "/login Page Load < 8000ms",
-    "status": "PASS",
-    "duration": 303,
-    "detail": "Load: 281ms",
-    "error": ""
-  },
-  {
-    "suite": "Browser Timing",
-    "name": "/create-account TTFB < 2000ms",
-    "status": "PASS",
-    "duration": 44,
-    "detail": "TTFB: 4ms",
-    "error": ""
-  },
-  {
-    "suite": "Browser Timing",
-    "name": "/create-account DOM Content Loaded < 5000ms",
-    "status": "PASS",
-    "duration": 307,
-    "detail": "DCL: 279ms",
-    "error": ""
-  },
-  {
-    "suite": "Browser Timing",
-    "name": "/dashboard DOM Interactive < 5000ms",
-    "status": "PASS",
-    "duration": 421,
-    "detail": "domInteractive: 378ms",
-    "error": ""
-  },
-  {
-    "suite": "Browser Timing",
-    "name": "/dashboard Page Load < 8000ms",
-    "status": "PASS",
-    "duration": 401,
-    "detail": "Load: 366ms",
-    "error": ""
-  },
-  {
-    "suite": "Browser Timing",
-    "name": "/threats Page Load < 8000ms",
-    "status": "PASS",
-    "duration": 379,
-    "detail": "Load: 345ms",
-    "error": ""
-  },
-  {
-    "suite": "Browser Timing",
-    "name": "/reports Page Load < 8000ms",
-    "status": "PASS",
-    "duration": 360,
-    "detail": "Load: 321ms",
-    "error": ""
-  },
-  {
-    "suite": "Browser Timing",
-    "name": "/settings Page Load < 8000ms",
-    "status": "PASS",
-    "duration": 547,
-    "detail": "Load: 461ms",
-    "error": ""
-  },
-  {
-    "suite": "Browser Timing",
-    "name": "/dashboard DOM load is positive (page actually loaded)",
-    "status": "PASS",
-    "duration": 427,
-    "detail": "domLoad: 399ms > 0 ✓",
-    "error": ""
-  },
-  {
-    "suite": "Browser Timing",
-    "name": "navigationStart is a valid timestamp",
-    "status": "PASS",
-    "duration": 792,
-    "detail": "navigationStart: 1784819723292",
-    "error": ""
-  },
-  {
-    "suite": "Concurrency",
-    "name": "5 concurrent GET /login requests all return 200",
-    "status": "PASS",
-    "duration": 13,
-    "detail": "5/5 returned 200 ✓",
-    "error": ""
-  },
-  {
-    "suite": "Concurrency",
-    "name": "10 concurrent GET /login all return 200",
-    "status": "PASS",
-    "duration": 32,
-    "detail": "10/10 returned 200 ✓",
-    "error": ""
-  },
-  {
-    "suite": "Concurrency",
-    "name": "5 concurrent /check-email calls all return 200",
-    "status": "PASS",
-    "duration": 148,
-    "detail": "5/5 returned 200 ✓",
-    "error": ""
-  },
-  {
-    "suite": "Concurrency",
-    "name": "5 concurrent GET /dashboard (unauth) all return 302",
-    "status": "FAIL",
-    "duration": 36,
-    "detail": "5 non-302",
-    "error": "5 non-302"
-  },
-  {
-    "suite": "Concurrency",
-    "name": "3 concurrent auth dashboard requests return 200",
-    "status": "FAIL",
-    "duration": 1,
-    "detail": "No session",
-    "error": "No session"
-  },
-  {
-    "suite": "Concurrency",
-    "name": "5 concurrent GET /reports all respond",
-    "status": "FAIL",
-    "duration": 0,
-    "detail": "No session",
-    "error": "No session"
-  },
-  {
-    "suite": "Concurrency",
-    "name": "10 concurrent /check-email all return valid JSON",
-    "status": "PASS",
-    "duration": 120,
-    "detail": "10/10 returned valid JSON ✓",
-    "error": ""
-  },
-  {
-    "suite": "Concurrency",
-    "name": "No 500 errors across 20 mixed concurrent requests",
-    "status": "PASS",
-    "duration": 77,
-    "detail": "20/20 no 5xx ✓",
-    "error": ""
-  },
-  {
-    "suite": "Resource Size",
-    "name": "GET /login response body < 100KB",
-    "status": "PASS",
-    "duration": 5,
-    "detail": "8.3KB",
-    "error": ""
-  },
-  {
-    "suite": "Resource Size",
-    "name": "GET /create-account response body < 100KB",
-    "status": "PASS",
-    "duration": 8,
-    "detail": "13.5KB",
-    "error": ""
-  },
-  {
-    "suite": "Resource Size",
-    "name": "GET /login response body > 1KB (not empty)",
-    "status": "PASS",
-    "duration": 5,
-    "detail": "8.3KB > 1KB ✓",
-    "error": ""
-  },
-  {
-    "suite": "Resource Size",
-    "name": "GET /create-account response body > 2KB",
-    "status": "PASS",
-    "duration": 5,
-    "detail": "13.5KB > 2KB ✓",
-    "error": ""
-  },
-  {
-    "suite": "Resource Size",
-    "name": "POST /check-email response < 200 bytes",
-    "status": "PASS",
-    "duration": 107,
-    "detail": "16 bytes",
-    "error": ""
-  },
-  {
-    "suite": "Resource Size",
-    "name": "GET /login includes Chart.js CDN link",
-    "status": "PASS",
-    "duration": 431,
-    "detail": "skipped — no session",
-    "error": ""
-  },
-  {
-    "suite": "Resource Size",
-    "name": "GET /login HTML contains DOCTYPE declaration",
-    "status": "PASS",
-    "duration": 5,
-    "detail": "DOCTYPE ✓",
-    "error": ""
-  },
-  {
-    "suite": "Resource Size",
-    "name": "GET /create-account HTML contains DOCTYPE declaration",
+    "suite": "Repeated",
+    "name": "/ sequential req 5 < 1500ms",
     "status": "PASS",
     "duration": 4,
-    "detail": "DOCTYPE ✓",
+    "detail": "4ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/ sequential req 6 < 1500ms",
+    "status": "PASS",
+    "duration": 6,
+    "detail": "6ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/logout sequential req 1 < 1500ms",
+    "status": "PASS",
+    "duration": 6,
+    "detail": "6ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/logout sequential req 2 < 1500ms",
+    "status": "PASS",
+    "duration": 4,
+    "detail": "4ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/logout sequential req 3 < 1500ms",
+    "status": "PASS",
+    "duration": 3,
+    "detail": "3ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/logout sequential req 4 < 1500ms",
+    "status": "PASS",
+    "duration": 6,
+    "detail": "6ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/logout sequential req 5 < 1500ms",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "5ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/logout sequential req 6 < 1500ms",
+    "status": "PASS",
+    "duration": 3,
+    "detail": "3ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/dashboard sequential req 1 < 5000ms",
+    "status": "PASS",
+    "duration": 552,
+    "detail": "552ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/dashboard sequential req 2 < 5000ms",
+    "status": "PASS",
+    "duration": 437,
+    "detail": "437ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/dashboard sequential req 3 < 5000ms",
+    "status": "PASS",
+    "duration": 204,
+    "detail": "204ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/dashboard sequential req 4 < 5000ms",
+    "status": "PASS",
+    "duration": 205,
+    "detail": "204ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/dashboard sequential req 5 < 5000ms",
+    "status": "PASS",
+    "duration": 222,
+    "detail": "222ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/dashboard sequential req 6 < 5000ms",
+    "status": "PASS",
+    "duration": 260,
+    "detail": "260ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/threats sequential req 1 < 5000ms",
+    "status": "PASS",
+    "duration": 1327,
+    "detail": "1327ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/threats sequential req 2 < 5000ms",
+    "status": "PASS",
+    "duration": 1004,
+    "detail": "1004ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/threats sequential req 3 < 5000ms",
+    "status": "PASS",
+    "duration": 1012,
+    "detail": "1011ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/threats sequential req 4 < 5000ms",
+    "status": "PASS",
+    "duration": 1584,
+    "detail": "1584ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/threats sequential req 5 < 5000ms",
+    "status": "PASS",
+    "duration": 933,
+    "detail": "933ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/threats sequential req 6 < 5000ms",
+    "status": "PASS",
+    "duration": 1010,
+    "detail": "1010ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/reports sequential req 1 < 5000ms",
+    "status": "PASS",
+    "duration": 249,
+    "detail": "249ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/reports sequential req 2 < 5000ms",
+    "status": "PASS",
+    "duration": 175,
+    "detail": "175ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/reports sequential req 3 < 5000ms",
+    "status": "PASS",
+    "duration": 223,
+    "detail": "223ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/reports sequential req 4 < 5000ms",
+    "status": "PASS",
+    "duration": 288,
+    "detail": "287ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/reports sequential req 5 < 5000ms",
+    "status": "PASS",
+    "duration": 229,
+    "detail": "229ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/reports sequential req 6 < 5000ms",
+    "status": "PASS",
+    "duration": 458,
+    "detail": "458ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/settings sequential req 1 < 5000ms",
+    "status": "PASS",
+    "duration": 1494,
+    "detail": "1494ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/settings sequential req 2 < 5000ms",
+    "status": "PASS",
+    "duration": 2229,
+    "detail": "2229ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/settings sequential req 3 < 5000ms",
+    "status": "PASS",
+    "duration": 2656,
+    "detail": "2656ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/settings sequential req 4 < 5000ms",
+    "status": "PASS",
+    "duration": 1895,
+    "detail": "1895ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/settings sequential req 5 < 5000ms",
+    "status": "PASS",
+    "duration": 2086,
+    "detail": "2086ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/settings sequential req 6 < 5000ms",
+    "status": "PASS",
+    "duration": 2006,
+    "detail": "2006ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/scanner sequential req 1 < 5000ms",
+    "status": "PASS",
+    "duration": 359,
+    "detail": "359ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/scanner sequential req 2 < 5000ms",
+    "status": "PASS",
+    "duration": 175,
+    "detail": "175ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/scanner sequential req 3 < 5000ms",
+    "status": "PASS",
+    "duration": 247,
+    "detail": "246ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/scanner sequential req 4 < 5000ms",
+    "status": "PASS",
+    "duration": 186,
+    "detail": "185ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/scanner sequential req 5 < 5000ms",
+    "status": "PASS",
+    "duration": 220,
+    "detail": "220ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/scanner sequential req 6 < 5000ms",
+    "status": "PASS",
+    "duration": 158,
+    "detail": "157ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/dashboard sequential req 1 < 1500ms",
+    "status": "PASS",
+    "duration": 6,
+    "detail": "6ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/dashboard sequential req 2 < 1500ms",
+    "status": "PASS",
+    "duration": 10,
+    "detail": "10ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/dashboard sequential req 3 < 1500ms",
+    "status": "PASS",
+    "duration": 6,
+    "detail": "6ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/dashboard sequential req 4 < 1500ms",
+    "status": "PASS",
+    "duration": 8,
+    "detail": "7ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/dashboard sequential req 5 < 1500ms",
+    "status": "PASS",
+    "duration": 7,
+    "detail": "7ms",
+    "error": ""
+  },
+  {
+    "suite": "Repeated",
+    "name": "/dashboard sequential req 6 < 1500ms",
+    "status": "PASS",
+    "duration": 5,
+    "detail": "5ms",
+    "error": ""
+  },
+  {
+    "suite": "Scan Timing",
+    "name": "Scan \"URGENT verify bank OTP login c...\" run 1 < 8000ms",
+    "status": "PASS",
+    "duration": 1167,
+    "detail": "1166ms",
+    "error": ""
+  },
+  {
+    "suite": "Scan Timing",
+    "name": "Scan \"URGENT verify bank OTP login c...\" run 2 < 8000ms",
+    "status": "PASS",
+    "duration": 1332,
+    "detail": "1331ms",
+    "error": ""
+  },
+  {
+    "suite": "Scan Timing",
+    "name": "Scan \"URGENT verify bank OTP login c...\" run 3 < 8000ms",
+    "status": "PASS",
+    "duration": 2855,
+    "detail": "2855ms",
+    "error": ""
+  },
+  {
+    "suite": "Scan Timing",
+    "name": "Scan \"Hello how are you today friend...\" run 1 < 8000ms",
+    "status": "PASS",
+    "duration": 1348,
+    "detail": "1348ms",
+    "error": ""
+  },
+  {
+    "suite": "Scan Timing",
+    "name": "Scan \"Hello how are you today friend...\" run 2 < 8000ms",
+    "status": "PASS",
+    "duration": 879,
+    "detail": "879ms",
+    "error": ""
+  },
+  {
+    "suite": "Scan Timing",
+    "name": "Scan \"Hello how are you today friend...\" run 3 < 8000ms",
+    "status": "PASS",
+    "duration": 959,
+    "detail": "959ms",
+    "error": ""
+  },
+  {
+    "suite": "Scan Timing",
+    "name": "Scan \"Prize winner click account ban...\" run 1 < 8000ms",
+    "status": "PASS",
+    "duration": 964,
+    "detail": "964ms",
+    "error": ""
+  },
+  {
+    "suite": "Scan Timing",
+    "name": "Scan \"Prize winner click account ban...\" run 2 < 8000ms",
+    "status": "PASS",
+    "duration": 2638,
+    "detail": "2637ms",
+    "error": ""
+  },
+  {
+    "suite": "Scan Timing",
+    "name": "Scan \"Prize winner click account ban...\" run 3 < 8000ms",
+    "status": "PASS",
+    "duration": 1991,
+    "detail": "1990ms",
+    "error": ""
+  },
+  {
+    "suite": "Scan Timing",
+    "name": "Scan \"Meeting at 3pm tomorrow see yo...\" run 1 < 8000ms",
+    "status": "PASS",
+    "duration": 1282,
+    "detail": "1282ms",
+    "error": ""
+  },
+  {
+    "suite": "Scan Timing",
+    "name": "Scan \"Meeting at 3pm tomorrow see yo...\" run 2 < 8000ms",
+    "status": "PASS",
+    "duration": 1156,
+    "detail": "1156ms",
+    "error": ""
+  },
+  {
+    "suite": "Scan Timing",
+    "name": "Scan \"Meeting at 3pm tomorrow see yo...\" run 3 < 8000ms",
+    "status": "PASS",
+    "duration": 1017,
+    "detail": "1017ms",
+    "error": ""
+  },
+  {
+    "suite": "Scan Timing",
+    "name": "Scan \"Verify your account immediatel...\" run 1 < 8000ms",
+    "status": "PASS",
+    "duration": 1371,
+    "detail": "1370ms",
+    "error": ""
+  },
+  {
+    "suite": "Scan Timing",
+    "name": "Scan \"Verify your account immediatel...\" run 2 < 8000ms",
+    "status": "PASS",
+    "duration": 1235,
+    "detail": "1235ms",
+    "error": ""
+  },
+  {
+    "suite": "Scan Timing",
+    "name": "Scan \"Verify your account immediatel...\" run 3 < 8000ms",
+    "status": "PASS",
+    "duration": 823,
+    "detail": "823ms",
+    "error": ""
+  },
+  {
+    "suite": "Scan Timing",
+    "name": "Scan \"Dinner is ready come home now...\" run 1 < 8000ms",
+    "status": "PASS",
+    "duration": 1018,
+    "detail": "1017ms",
+    "error": ""
+  },
+  {
+    "suite": "Scan Timing",
+    "name": "Scan \"Dinner is ready come home now...\" run 2 < 8000ms",
+    "status": "PASS",
+    "duration": 1013,
+    "detail": "1013ms",
+    "error": ""
+  },
+  {
+    "suite": "Scan Timing",
+    "name": "Scan \"Dinner is ready come home now...\" run 3 < 8000ms",
+    "status": "PASS",
+    "duration": 881,
+    "detail": "881ms",
+    "error": ""
+  },
+  {
+    "suite": "Scan Timing",
+    "name": "Scan \"OTP bank click login urgent ac...\" run 1 < 8000ms",
+    "status": "PASS",
+    "duration": 1051,
+    "detail": "1051ms",
+    "error": ""
+  },
+  {
+    "suite": "Scan Timing",
+    "name": "Scan \"OTP bank click login urgent ac...\" run 2 < 8000ms",
+    "status": "PASS",
+    "duration": 1131,
+    "detail": "1131ms",
+    "error": ""
+  },
+  {
+    "suite": "Scan Timing",
+    "name": "Scan \"OTP bank click login urgent ac...\" run 3 < 8000ms",
+    "status": "PASS",
+    "duration": 969,
+    "detail": "969ms",
+    "error": ""
+  },
+  {
+    "suite": "Scan Timing",
+    "name": "Scan \"Good morning have a nice day...\" run 1 < 8000ms",
+    "status": "PASS",
+    "duration": 904,
+    "detail": "904ms",
+    "error": ""
+  },
+  {
+    "suite": "Scan Timing",
+    "name": "Scan \"Good morning have a nice day...\" run 2 < 8000ms",
+    "status": "PASS",
+    "duration": 965,
+    "detail": "964ms",
+    "error": ""
+  },
+  {
+    "suite": "Scan Timing",
+    "name": "Scan \"Good morning have a nice day...\" run 3 < 8000ms",
+    "status": "PASS",
+    "duration": 700,
+    "detail": "699ms",
+    "error": ""
+  },
+  {
+    "suite": "Scan Timing",
+    "name": "Scan \"Your package arrived click to ...\" run 1 < 8000ms",
+    "status": "PASS",
+    "duration": 1588,
+    "detail": "1588ms",
+    "error": ""
+  },
+  {
+    "suite": "Scan Timing",
+    "name": "Scan \"Your package arrived click to ...\" run 2 < 8000ms",
+    "status": "PASS",
+    "duration": 804,
+    "detail": "803ms",
+    "error": ""
+  },
+  {
+    "suite": "Scan Timing",
+    "name": "Scan \"Your package arrived click to ...\" run 3 < 8000ms",
+    "status": "PASS",
+    "duration": 808,
+    "detail": "808ms",
+    "error": ""
+  },
+  {
+    "suite": "Scan Timing",
+    "name": "Scan \"Simple safe message nothing su...\" run 1 < 8000ms",
+    "status": "PASS",
+    "duration": 949,
+    "detail": "949ms",
+    "error": ""
+  },
+  {
+    "suite": "Scan Timing",
+    "name": "Scan \"Simple safe message nothing su...\" run 2 < 8000ms",
+    "status": "PASS",
+    "duration": 1133,
+    "detail": "1132ms",
+    "error": ""
+  },
+  {
+    "suite": "Scan Timing",
+    "name": "Scan \"Simple safe message nothing su...\" run 3 < 8000ms",
+    "status": "PASS",
+    "duration": 889,
+    "detail": "889ms",
     "error": ""
   }
 ]
