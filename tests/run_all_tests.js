@@ -92,11 +92,19 @@ async function runArtillery() {
 
 // ── Excel report ──────────────────────────────────────────────
 async function runReport() {
-  step("📊", "Generating Excel Report");
+  step("📊", "Generating Excel Reports");
   const start = Date.now();
   try {
     const { generateReport } = require("./reports/generate_report");
     const file = await generateReport();
+    
+    // Also run consolidated excel report generator
+    try {
+      require("./generate_consolidated_excel");
+    } catch (consErr) {
+      console.warn(`  ⚠️ Consolidated Excel report warning: ${consErr.message}`);
+    }
+
     console.log(`  ⏱  ${elapsed(start)}`);
     return { status: "PASS", file, duration: elapsed(start) };
   } catch (err) {

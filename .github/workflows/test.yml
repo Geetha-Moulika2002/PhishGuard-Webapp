@@ -145,7 +145,9 @@ jobs:
       # ── 15. Generate Excel Report ──────────────────────────
       - name: Generate Excel Test Report
         working-directory: tests
-        run: node reports/generate_report.js
+        run: |
+          node reports/generate_report.js
+          node generate_consolidated_excel.js
 
       # ── 16. Upload Excel report as artifact ───────────────
       - name: Upload Test Report
@@ -155,6 +157,8 @@ jobs:
           name: PhishGuard-Test-Report-${{ github.run_number }}
           path: |
             tests/reports/PhishGuard_Test_Report.xlsx
+            PhishGuard_Consolidated_1500_Test_Results.xlsx
+            tests/reports/PhishGuard_Consolidated_1500_Test_Results.xlsx
             tests/reports/raw/*.json
             tests/reports/raw/screenshots/
           retention-days: 30

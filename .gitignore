@@ -1,3 +1,7 @@
 firebase-key.json
 __pycache__/
 *.pyc
+*.xlsx
+tests/reports/raw/
+node_modules/
+
