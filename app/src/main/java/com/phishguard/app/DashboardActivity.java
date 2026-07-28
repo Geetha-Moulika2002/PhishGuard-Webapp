@@ -1,8 +1,10 @@
 package com.phishguard.app;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -17,6 +19,7 @@ public class DashboardActivity extends AppCompatActivity {
     private View cardReportScam, cardBlockedSenders, cardRewards, cardSettings, cardHelp;
     private BottomNavigationView bottomNavigation;
     private TextView tvScanned, tvBlocked, tvUserWelcome, tvUserEmail, tvScoreDisplayHeader;
+    private SmsReceiver dynamicSmsReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,9 +137,36 @@ public class DashboardActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        registerDynamicSmsReceiver();
         PhishGuardDataStore.getInstance().startRealtimeFirestoreSync(this);
         updateUserHeader();
         loadDashboardStats();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (dynamicSmsReceiver != null) {
+            try {
+                unregisterReceiver(dynamicSmsReceiver);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void registerDynamicSmsReceiver() {
+        try {
+            if (dynamicSmsReceiver == null) {
+                dynamicSmsReceiver = new SmsReceiver();
+                IntentFilter filter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
+                filter.setPriority(999);
+                registerReceiver(dynamicSmsReceiver, filter);
+                Log.e("PHISHGUARD_SMS", "Dynamic SmsReceiver Registered Successfully!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void updateUserHeader() {

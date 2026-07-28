@@ -24,7 +24,14 @@ public class SmsReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (intent == null || !"android.provider.Telephony.SMS_RECEIVED".equals(intent.getAction())) {
+        Log.e("PHISHGUARD_SMS", "=================================================");
+        Log.e("PHISHGUARD_SMS", ">>> SMS_RECEIVED BROADCAST INTERCEPTED BY PHISHGUARD <<<");
+        Log.e("PHISHGUARD_SMS", "=================================================");
+
+        if (intent == null || intent.getAction() == null) return;
+        
+        String action = intent.getAction();
+        if (!"android.provider.Telephony.SMS_RECEIVED".equals(action) && !"android.intent.action.DATA_SMS_RECEIVED".equals(action)) {
             return;
         }
 
@@ -37,7 +44,7 @@ public class SmsReceiver extends BroadcastReceiver {
 
             String format = bundle.getString("format");
             StringBuilder fullMessage = new StringBuilder();
-            String sender = "SMS Alert";
+            String sender = "SMS Sender";
 
             for (Object pdu : pdus) {
                 SmsMessage smsMessage;
@@ -57,17 +64,19 @@ public class SmsReceiver extends BroadcastReceiver {
             String messageBody = fullMessage.toString().trim();
             if (messageBody.isEmpty()) return;
 
-            Log.d("PHISHGUARD", "SMS Receiver Intercepted Message from: " + sender);
+            Log.e("PHISHGUARD_SMS", "Sender: " + sender);
+            Log.e("PHISHGUARD_SMS", "Content: " + messageBody);
 
             // 1. Check if Sender is Blocked
             if (PhishGuardDataStore.getInstance().isSenderBlocked(sender)) {
-                Log.d("PHISHGUARD", "Blocked sender message suppressed: " + sender);
+                Log.e("PHISHGUARD_SMS", "Blocked sender message suppressed: " + sender);
                 abortBroadcast();
                 return;
             }
 
             // 2. On-Device Explainable AI Intent Analysis
             PhishingAnalyzer.AnalysisResult result = PhishingAnalyzer.analyzeMessage(messageBody);
+            Log.e("PHISHGUARD_SMS", "AI Score: " + result.riskScore + " | Level: " + result.riskLevel);
 
             String scanId = String.valueOf(System.currentTimeMillis());
             String formattedTime = PhishGuardDataStore.getFormattedCurrentTime();
@@ -108,7 +117,6 @@ public class SmsReceiver extends BroadcastReceiver {
 
             // 5. Trigger System Alert & In-App Notification if High Risk Phishing (Score >= 60 or High Risk)
             if (result.riskScore >= 60 || "HIGH RISK".equalsIgnoreCase(result.riskLevel)) {
-                // Add Notification in-app
                 PhishGuardDataStore.getInstance().addNotification(new PhishGuardDataStore.NotificationItem(
                         "🚨 Phishing SMS Alert",
                         "High Risk SMS from " + sender + " (" + result.threatType + " - Risk Score: " + result.riskScore + "/100)",
@@ -117,7 +125,6 @@ public class SmsReceiver extends BroadcastReceiver {
                         "threat"
                 ));
 
-                // Post System Notification Alert
                 createNotificationChannel(context);
 
                 Intent alertIntent = new Intent(context, AlertActivity.class);
