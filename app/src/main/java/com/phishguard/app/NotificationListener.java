@@ -1,11 +1,14 @@
 package com.phishguard.app;
 
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
 import android.util.Log;
@@ -19,7 +22,7 @@ import java.util.Map;
 
 public class NotificationListener extends NotificationListenerService {
 
-    private static final int MAX_PREVIEW_LENGTH = 200;
+    private static final int MAX_PREVIEW_LENGTH = 300;
     private static final String CHANNEL_ID = "PHISHGUARD_ALERTS";
 
     @Override
@@ -45,29 +48,64 @@ public class NotificationListener extends NotificationListenerService {
         if (sbn == null || sbn.getPackageName() == null) return;
 
         String packageName = sbn.getPackageName();
-        // Restrict strictly to SMS Telephony Messaging Apps
-        boolean isSmsApp = packageName.contains("messaging") || packageName.contains("mms") || packageName.contains("sms") || packageName.contains("telephony");
-        if (!isSmsApp) return;
-
-        // Prevent self-interception of PhishGuard's own notifications
+        // Ignore self notifications
         if (getPackageName().equals(packageName)) return;
 
-        CharSequence titleSeq = sbn.getNotification().extras.getCharSequence("android.title");
-        CharSequence textSeq = sbn.getNotification().extras.getCharSequence("android.text");
-        String sender = titleSeq != null ? titleSeq.toString() : "SMS Alert";
-        String messageBody = textSeq != null ? textSeq.toString() : "";
+        Notification notif = sbn.getNotification();
+        if (notif == null) return;
+
+        String category = notif.category;
+        boolean isMessageCategory = Notification.CATEGORY_MESSAGE.equals(category) || 
+                                   "msg".equalsIgnoreCase(category) || 
+                                   packageName.contains("sms") || 
+                                   packageName.contains("message") || 
+                                   packageName.contains("messaging") || 
+                                   packageName.contains("mms") || 
+                                   packageName.contains("telephony") || 
+                                   packageName.contains("truecaller") || 
+                                   packageName.contains("rcs");
+
+        if (!isMessageCategory) return;
+
+        Bundle extras = notif.extras;
+        if (extras == null) return;
+
+        CharSequence titleSeq = extras.getCharSequence("android.title");
+        CharSequence textSeq = extras.getCharSequence("android.text");
+        CharSequence bigTextSeq = extras.getCharSequence("android.bigText");
+
+        String sender = titleSeq != null ? titleSeq.toString() : "SMS Sender";
+        String messageBody = "";
+
+        if (bigTextSeq != null && !bigTextSeq.toString().trim().isEmpty()) {
+            messageBody = bigTextSeq.toString();
+        } else if (textSeq != null && !textSeq.toString().trim().isEmpty()) {
+            messageBody = textSeq.toString();
+        } else {
+            // Extract from MessagingStyle messages if present
+            Parcelable[] messages = (Parcelable[]) extras.get("android.messages");
+            if (messages != null && messages.length > 0) {
+                for (Parcelable p : messages) {
+                    if (p instanceof Bundle) {
+                        Bundle b = (Bundle) p;
+                        CharSequence msgText = b.getCharSequence("text");
+                        if (msgText != null && !msgText.toString().trim().isEmpty()) {
+                            messageBody = msgText.toString();
+                        }
+                    }
+                }
+            }
+        }
 
         if (messageBody == null || messageBody.trim().isEmpty()) return;
 
         // -----------------------------------------------------------------
-        // FILTER OUT ANDROID SYSTEM PRIVACY REDACTION PLACEHOLDERS
+        // FILTER OUT REDACTED SYSTEM PRIVACY PLACEHOLDERS ONLY
         // -----------------------------------------------------------------
         String lowerBody = messageBody.toLowerCase().trim();
-        if (lowerBody.contains("content hidden") || 
-            lowerBody.contains("sensitive notification") ||
-            lowerBody.equals("view messages") || 
-            lowerBody.equals("new message") || 
-            lowerBody.equals("message received")) {
+        if (lowerBody.contains("sensitive notification") || 
+            lowerBody.equals("content hidden") ||
+            (lowerBody.equals("view messages") && sender.equalsIgnoreCase("Messages"))) {
             Log.d("PHISHGUARD", "Ignored Android system privacy placeholder notification.");
             return;
         }
@@ -90,6 +128,8 @@ public class NotificationListener extends NotificationListenerService {
         if (messageBody.length() > MAX_PREVIEW_LENGTH) {
             messageBody = messageBody.substring(0, MAX_PREVIEW_LENGTH);
         }
+
+        Log.d("PHISHGUARD", "Notification Intercepted Real SMS Content: [" + sender + "] " + messageBody);
 
         // On-Device Explainable AI Intent Risk Analysis
         PhishingAnalyzer.AnalysisResult result = PhishingAnalyzer.analyzeMessage(messageBody);
