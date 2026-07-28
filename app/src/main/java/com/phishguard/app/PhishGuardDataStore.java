@@ -188,10 +188,27 @@ public class PhishGuardDataStore {
         }
     }
 
+    public static class TimelineEvent {
+        public String id;
+        public String title;
+        public String description;
+        public String timestamp;
+        public String status;
+
+        public TimelineEvent(String id, String title, String description, String timestamp, String status) {
+            this.id = id;
+            this.title = title;
+            this.description = description;
+            this.timestamp = timestamp;
+            this.status = status;
+        }
+    }
+
     private final List<ScanItem> scanHistory = new ArrayList<>();
     private final List<NotificationItem> notifications = new ArrayList<>();
     private final List<BlockedSender> blockedSenders = new ArrayList<>();
     private final List<ScamReport> scamReports = new ArrayList<>();
+    private final List<TimelineEvent> timelineEvents = new ArrayList<>();
 
     private PhishGuardDataStore() {
         // Zero-start new profiles: No initial dummy items!
@@ -218,6 +235,7 @@ public class PhishGuardDataStore {
     public List<NotificationItem> getNotifications() { return notifications; }
     public List<BlockedSender> getBlockedSenders() { return blockedSenders; }
     public List<ScamReport> getScamReports() { return scamReports; }
+    public List<TimelineEvent> getTimelineEvents() { return timelineEvents; }
 
     public int getSecurityScore() {
         int baseScore = 80;

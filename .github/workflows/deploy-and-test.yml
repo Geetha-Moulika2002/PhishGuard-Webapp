@@ -59,6 +59,13 @@ jobs:
       - name: Deploy to Native GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        continue-on-error: true
+
+      - name: Upload Master Excel Test Report Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: PhishGuard-Master-Excel-Report
+          path: PhishGuard_Master_Consolidated_Test_Report.xlsx
 
       - name: Generate Prominent GitHub Step Summary
         run: |
