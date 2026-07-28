@@ -39,7 +39,13 @@ jobs:
       - name: Setup Python & Run Appium Test Runner
         run: |
           python phishguardAppium/test_runner.py
-          ls -la test_suite/appium/PhishGuard_Mobile_Appium_Test_Report.xlsx
+          ls -la phishguardAppium/PhishGuard_Mobile_Appium_Test_Report.xlsx
+
+      - name: Upload Mobile Appium Excel Report Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: PhishGuard-Mobile-Appium-Excel-Report
+          path: phishguardAppium/PhishGuard_Mobile_Appium_Test_Report.xlsx
 
       - name: Generate Prominent Mobile Step Summary
         run: |
@@ -56,4 +62,4 @@ jobs:
           echo "### 🟢 9. Live Chatbot Assistant Flow — 30 Test Cases PASSED" >> $GITHUB_STEP_SUMMARY
           echo "### 🟢 10. Encrypted JSON & PDF Report Export — 30 Test Cases PASSED" >> $GITHUB_STEP_SUMMARY
           echo "---" >> $GITHUB_STEP_SUMMARY
-          echo "### 📄 Mobile Excel Report: \`test_suite/appium/PhishGuard_Mobile_Appium_Test_Report.xlsx\`" >> $GITHUB_STEP_SUMMARY
+          echo "### 📄 Mobile Excel Report: \`phishguardAppium/PhishGuard_Mobile_Appium_Test_Report.xlsx\`" >> $GITHUB_STEP_SUMMARY
