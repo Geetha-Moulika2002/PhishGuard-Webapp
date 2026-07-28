@@ -1,0 +1,167 @@
+package com.phishguard.app;
+
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
+import android.os.Bundle;
+import android.telephony.SmsMessage;
+import android.util.Log;
+
+import androidx.core.app.NotificationCompat;
+
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class SmsReceiver extends BroadcastReceiver {
+
+    private static final String CHANNEL_ID = "PHISHGUARD_ALERTS";
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        if (intent == null || !"android.provider.Telephony.SMS_RECEIVED".equals(intent.getAction())) {
+            return;
+        }
+
+        Bundle bundle = intent.getExtras();
+        if (bundle == null) return;
+
+        try {
+            Object[] pdus = (Object[]) bundle.get("pdus");
+            if (pdus == null || pdus.length == 0) return;
+
+            String format = bundle.getString("format");
+            StringBuilder fullMessage = new StringBuilder();
+            String sender = "SMS Alert";
+
+            for (Object pdu : pdus) {
+                SmsMessage smsMessage;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    smsMessage = SmsMessage.createFromPdu((byte[]) pdu, format);
+                } else {
+                    smsMessage = SmsMessage.createFromPdu((byte[]) pdu);
+                }
+                if (smsMessage != null) {
+                    if (smsMessage.getOriginatingAddress() != null) {
+                        sender = smsMessage.getOriginatingAddress();
+                    }
+                    fullMessage.append(smsMessage.getMessageBody());
+                }
+            }
+
+            String messageBody = fullMessage.toString().trim();
+            if (messageBody.isEmpty()) return;
+
+            Log.d("PHISHGUARD", "SMS Receiver Intercepted Message from: " + sender);
+
+            // 1. Check if Sender is Blocked
+            if (PhishGuardDataStore.getInstance().isSenderBlocked(sender)) {
+                Log.d("PHISHGUARD", "Blocked sender message suppressed: " + sender);
+                abortBroadcast();
+                return;
+            }
+
+            // 2. On-Device Explainable AI Intent Analysis
+            PhishingAnalyzer.AnalysisResult result = PhishingAnalyzer.analyzeMessage(messageBody);
+
+            String scanId = String.valueOf(System.currentTimeMillis());
+            String formattedTime = PhishGuardDataStore.getFormattedCurrentTime();
+            String dateKey = PhishGuardDataStore.getTodayDateKey();
+
+            // 3. Save locally in DataStore for Mobile App UI
+            PhishGuardDataStore.getInstance().addScan(new PhishGuardDataStore.ScanItem(
+                    scanId,
+                    sender,
+                    messageBody,
+                    result.riskScore,
+                    result.riskLevel,
+                    formattedTime,
+                    dateKey,
+                    result.threatType
+            ));
+
+            // 4. Sync to Firebase Firestore for Real-Time Cross-Platform Parity
+            String userEmail = AuthManager.getUserEmail(context);
+            if (userEmail != null && !userEmail.isEmpty()) {
+                try {
+                    Map<String, Object> scanDoc = new HashMap<>();
+                    scanDoc.put("userEmail", userEmail);
+                    scanDoc.put("sender", sender);
+                    scanDoc.put("message", messageBody);
+                    scanDoc.put("riskScore", result.riskScore);
+                    scanDoc.put("riskLevel", result.riskLevel);
+                    scanDoc.put("threatType", result.threatType);
+                    scanDoc.put("timestamp", formattedTime);
+                    scanDoc.put("dateKey", dateKey);
+                    scanDoc.put("createdAt", System.currentTimeMillis());
+
+                    FirebaseFirestore.getInstance().collection("scans").document(scanId).set(scanDoc);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            // 5. Trigger System Alert & In-App Notification if High Risk Phishing (Score >= 60 or High Risk)
+            if (result.riskScore >= 60 || "HIGH RISK".equalsIgnoreCase(result.riskLevel)) {
+                // Add Notification in-app
+                PhishGuardDataStore.getInstance().addNotification(new PhishGuardDataStore.NotificationItem(
+                        "🚨 Phishing SMS Alert",
+                        "High Risk SMS from " + sender + " (" + result.threatType + " - Risk Score: " + result.riskScore + "/100)",
+                        formattedTime,
+                        dateKey,
+                        "threat"
+                ));
+
+                // Post System Notification Alert
+                createNotificationChannel(context);
+
+                Intent alertIntent = new Intent(context, AlertActivity.class);
+                alertIntent.putExtra("risk_score", result.riskScore);
+                alertIntent.putExtra("sms_text", messageBody);
+                alertIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                PendingIntent pendingIntent = PendingIntent.getActivity(
+                        context, (int) System.currentTimeMillis(), alertIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
+                        .setSmallIcon(android.R.drawable.ic_dialog_alert)
+                        .setContentTitle("🚨 PhishGuard Threat Alert!")
+                        .setContentText("High Risk SMS Intercepted from " + sender + " (" + result.riskScore + "/100)")
+                        .setSubText(result.threatType)
+                        .setStyle(new NotificationCompat.BigTextStyle().bigText(messageBody))
+                        .setPriority(NotificationCompat.PRIORITY_HIGH)
+                        .setCategory(NotificationCompat.CATEGORY_ALARM)
+                        .setContentIntent(pendingIntent)
+                        .setAutoCancel(true);
+
+                NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+                if (manager != null) {
+                    manager.notify((int) (System.currentTimeMillis() % 100000), builder.build());
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void createNotificationChannel(Context context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(
+                    CHANNEL_ID,
+                    "PhishGuard Phishing Alerts",
+                    NotificationManager.IMPORTANCE_HIGH
+            );
+            channel.setDescription("Alerts for intercepted phishing SMS messages");
+            NotificationManager manager = context.getSystemService(NotificationManager.class);
+            if (manager != null) {
+                manager.createNotificationChannel(channel);
+            }
+        }
+    }
+}
