@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_dark_gradient"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center_horizontal">
+
+        <!-- Icon -->
+        <ImageView
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:src="@android:drawable/ic_dialog_info"
+            android:layout_marginTop="40dp"/>
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Notification Listener Access"
+            android:textColor="#FFFFFF"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginTop="28dp"/>
+
+        <!-- Description -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PhishGuard requires notification access to intercept and scan incoming SMS alerts for phishing threats in real-time."
+            android:textColor="#94A3B8"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:lineSpacingExtra="4dp"
+            android:layout_marginTop="12dp"/>
+
+        <!-- Features Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card_dark"
+            android:padding="20dp"
+            android:layout_marginTop="32dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="✓ Real-Time Automated SMS Threat Detection"
+                android:textColor="#10B981"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="✓ Explainable AI Phishing Analysis"
+                android:textColor="#10B981"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_marginTop="14dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="✓ Privacy Shield - 100% Local On-Device Processing"
+                android:textColor="#10B981"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_marginTop="14dp"/>
+
+        </LinearLayout>
+
+        <!-- Button -->
+        <android.widget.Button
+            android:id="@+id/btnPermission"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:text="Enable Notification Listener"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/bg_button_primary"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="24dp"/>
+
+    </LinearLayout>
+
+</ScrollView>

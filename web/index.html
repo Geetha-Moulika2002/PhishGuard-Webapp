@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PhishGuard - Intelligent Phishing Defense &amp; SMS Security</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Firebase JS SDK (v9 Compat) -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+</head>
+<body>
+
+  <!-- App Header Bar -->
+  <header class="app-header">
+    <div class="brand-container">
+      <span class="brand-icon">🛡️</span>
+      <span class="brand-title">PhishGuard</span>
+    </div>
+    <div class="user-badge" id="userHeaderBadge" style="display: none;">
+      <span class="user-email-text" id="headerUserEmail">user@phishguard.ai</span>
+      <button class="btn-sm-outline" id="btnHeaderLogout">Sign Out</button>
+    </div>
+  </header>
+
+  <!-- Main App Layout Container -->
+  <main class="main-container">
+
+    <!-- 1. AUTHENTICATION PANEL (Exact Mobile Constraints) -->
+    <section id="view-auth" class="view-panel active">
+      <div class="auth-box">
+        <h2 style="font-size: 24px; font-weight: 800; text-align: center; margin-bottom: 4px;">Welcome to PhishGuard</h2>
+        <p style="font-size: 13px; color: var(--text-muted); text-align: center; margin-bottom: 20px;" id="tvSubtitle">Sign in to activate real-time phishing protection</p>
+        
+        <div class="auth-tabs">
+          <div class="auth-tab active" id="tabAuthLogin" onclick="switchAuthTab('login')">Sign In</div>
+          <div class="auth-tab" id="tabAuthRegister" onclick="switchAuthTab('register')">Register</div>
+        </div>
+
+        <form id="formAuth" onsubmit="handleAuthSubmit(event)">
+          <div class="form-group" id="groupName" style="display: none;">
+            <label class="form-label">Full Name</label>
+            <input type="text" id="authName" class="form-input" placeholder="e.g. Geetha" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" id="authEmail" class="form-input" placeholder="name@phishguard.ai" required />
+          </div>
+
+          <div class="form-group" style="position: relative;">
+            <label class="form-label">Password</label>
+            <input type="password" id="authPassword" class="form-input" placeholder="••••••••" required oninput="onPasswordInputRealtime(this.value)" />
+            <span id="btnTogglePassword" onclick="togglePasswordVisibilityWeb()" style="position: absolute; right: 14px; top: 34px; font-size: 11px; font-weight: 700; color: var(--primary-blue); cursor: pointer;">SHOW</span>
+          </div>
+
+          <!-- Password Rule Constraints (Exact LoginActivity.java) -->
+          <div id="layoutPasswordRules" style="display: none; background: #0F172A; padding: 12px 14px; border-radius: 12px; margin-bottom: 16px; border: 1px solid var(--card-border);">
+            <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); margin-bottom: 6px;">PASSWORD SECURITY REQUIREMENTS</div>
+            <div id="ruleLength" style="font-size: 12px; color: var(--accent-red); margin-bottom: 4px;">✖ At least 8 characters long</div>
+            <div id="ruleCase" style="font-size: 12px; color: var(--accent-red); margin-bottom: 4px;">✖ Contains uppercase (A-Z) &amp; lowercase (a-z)</div>
+            <div id="ruleNumberSymbol" style="font-size: 12px; color: var(--accent-red);">✖ Contains a number (0-9) &amp; special symbol (@#$%)</div>
+          </div>
+
+          <button type="submit" id="btnAuthSubmit" class="btn-primary">Sign In &amp; Continue</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- 2. DASHBOARD PANEL (Exact 8-Card Grid from activity_dashboard.xml) -->
+    <section id="view-dashboard" class="view-panel">
+      <!-- Top User Header -->
+      <div class="dashboard-header" style="display: flex; align-items: center; justify-content: space-between;">
+        <div>
+          <div style="font-size: 13px; font-weight: 700; color: var(--text-muted);" id="tvUserWelcome">Welcome Back</div>
+          <div style="font-size: 20px; font-weight: 800; color: var(--text-white);" id="tvUserEmail">user@phishguard.ai</div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 6px; background: rgba(16, 185, 129, 0.15); border: 1px solid #10B981; padding: 6px 12px; border-radius: 20px;">
+          <span style="width: 8px; height: 8px; background: #10B981; border-radius: 50%;"></span>
+          <span style="font-size: 11px; font-weight: 800; color: #10B981;">ACTIVE</span>
+        </div>
+      </div>
+
+      <!-- Security Protection Score Card -->
+      <div class="card-dark" style="margin-top: 16px; cursor: pointer;" onclick="showView('security-center')">
+        <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); letter-spacing: 0.5px;">SECURITY PROTECTION SCORE</div>
+        <div style="font-size: 22px; font-weight: 800; color: var(--text-white); margin-top: 4px;" id="tvScoreDisplayHeader">80 / 100 • Protected</div>
+      </div>
+
+      <!-- Threat Intelligence Overview -->
+      <div style="margin-top: 24px;">
+        <h3 style="font-size: 18px; font-weight: 800;">Threat Intelligence Overview</h3>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px;">
+          <div class="card-dark" style="text-align: center; margin-top: 0;">
+            <div style="font-size: 28px; font-weight: 800; color: var(--primary-blue);" id="tvScanned">0</div>
+            <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">SMS Analyzed</div>
+          </div>
+          <div class="card-dark" style="text-align: center; margin-top: 0;">
+            <div style="font-size: 28px; font-weight: 800; color: var(--accent-red);" id="tvBlocked">0</div>
+            <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Threats Neutralized</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Protection Tools Grid (Exact 8 Cards from activity_dashboard.xml) -->
+      <div style="margin-top: 24px;">
+        <h3 style="font-size: 18px; font-weight: 800;">Protection Tools</h3>
+        <div class="dashboard-grid" style="margin-top: 12px;">
+          
+          <!-- 1. Scan SMS -->
+          <div class="dash-card" onclick="showView('scan-sms')">
+            <div class="card-icon" style="color: #3B82F6;">💬</div>
+            <div class="card-title">Scan SMS</div>
+            <div class="card-desc">Analyze SMS text for phishing &amp; OTP theft</div>
+          </div>
+
+          <!-- 2. Threat History -->
+          <div class="dash-card" onclick="showView('history')">
+            <div class="card-icon" style="color: #EF4444;">🚨</div>
+            <div class="card-title">Threat History</div>
+            <div class="card-desc">Neutralized threats &amp; risk distribution</div>
+          </div>
+
+          <!-- 3. Reports -->
+          <div class="dash-card" onclick="showView('history')">
+            <div class="card-icon" style="color: #F59E0B;">📊</div>
+            <div class="card-title">Reports</div>
+            <div class="card-desc">Security audit summary reports</div>
+          </div>
+
+          <!-- 4. Security Center -->
+          <div class="dash-card" onclick="showView('security-center')">
+            <div class="card-icon" style="color: #10B981;">🛡️</div>
+            <div class="card-title">Security Center</div>
+            <div class="card-desc">System permission health &amp; shield</div>
+          </div>
+
+          <!-- 5. Blocked List -->
+          <div class="dash-card" onclick="showView('blocked')">
+            <div class="card-icon" style="color: #EF4444;">🚫</div>
+            <div class="card-title">Blocked List</div>
+            <div class="card-desc">Manage blocked phone numbers &amp; headers</div>
+          </div>
+
+          <!-- 6. Report Scam -->
+          <div class="dash-card" onclick="showView('report')">
+            <div class="card-icon" style="color: #F59E0B;">🚨</div>
+            <div class="card-title">Report Scam</div>
+            <div class="card-desc">Report scam to database &amp; auto-block</div>
+          </div>
+
+          <!-- 7. Rewards -->
+          <div class="dash-card" onclick="showView('rewards')">
+            <div class="card-icon" style="color: #F59E0B;">🏆</div>
+            <div class="card-title">Rewards</div>
+            <div class="card-desc">Protection badges &amp; security points</div>
+          </div>
+
+          <!-- 8. Settings -->
+          <div class="dash-card" onclick="showView('settings')">
+            <div class="card-icon" style="color: #94A3B8;">⚙️</div>
+            <div class="card-title">Settings</div>
+            <div class="card-desc">App preferences, Dark Mode &amp; backup</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Help Center Banner Card (Exact activity_dashboard.xml) -->
+      <div class="card-dark" style="margin-top: 16px; display: flex; align-items: center; justify-content: space-between; cursor: pointer;" onclick="showView('chatbot')">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <span style="font-size: 26px;">❓</span>
+          <div>
+            <div style="font-size: 14px; font-weight: 800; color: #FFFFFF;">Need Help or Support?</div>
+            <div style="font-size: 12px; color: #94A3B8; margin-top: 2px;">Interactive AI Support Assistant &amp; FAQs</div>
+          </div>
+        </div>
+        <span style="font-size: 22px; font-weight: 800; color: #38BDF8;">›</span>
+      </div>
+    </section>
+
+    <!-- 3. SCAN SMS PANEL & EXPLAINABLE AI -->
+    <section id="view-scan-sms" class="view-panel">
+      <button class="btn-sm-outline" onclick="showView('dashboard')">← Back to Dashboard</button>
+      <div class="card-dark" style="margin-top: 16px;">
+        <h2 style="font-size: 20px; font-weight: 800;">Scan SMS Content</h2>
+        <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">Analyze suspicious SMS messages using on-device Explainable AI intent analysis.</p>
+
+        <form id="formScan" onsubmit="handleScanSubmit(event)" style="margin-top: 16px;">
+          <div class="form-group">
+            <label class="form-label">Paste SMS Message Text</label>
+            <textarea id="scanInputText" class="form-input" placeholder="e.g. URGENT: Your bank account #4910 is suspended. Share OTP 849201 at http://verify-kyc.com immediately." required></textarea>
+          </div>
+          <button type="submit" class="btn-primary">Analyze SMS Message</button>
+        </form>
+      </div>
+
+      <!-- Result Box -->
+      <div id="scanResultBox" class="card-dark" style="display: none;">
+        <div id="resultBadge" class="risk-badge risk-high">HIGH RISK (94/100)</div>
+        <h3 id="resultThreatType" style="font-size: 18px; font-weight: 800; color: #EF4444;">OTP Theft &amp; Banking Phishing</h3>
+
+        <div class="explain-section">
+          <div class="explain-title">Suspicious Keywords Highlighted</div>
+          <div class="explain-val highlight-box" id="resultHighlights">"Share OTP", "suspended"</div>
+        </div>
+
+        <div class="explain-section">
+          <div class="explain-title">Analysis Reason</div>
+          <div class="explain-val" id="resultReason">Asks for sensitive verification OTP credentials via unverified web link.</div>
+        </div>
+
+        <div class="explain-section">
+          <div class="explain-title">Safe Recommended Action</div>
+          <div class="explain-val" id="resultAlternative">Never share verification codes or passwords. Contact official support directly.</div>
+        </div>
+
+        <button class="btn-primary btn-danger" style="margin-top: 16px;" onclick="reportCurrentScan()">Report Scam to Database &amp; Block Sender</button>
+      </div>
+    </section>
+
+    <!-- 4. THREAT HISTORY PANEL -->
+    <section id="view-history" class="view-panel">
+      <div style="display: flex; align-items: center; justify-content: space-between;">
+        <button class="btn-sm-outline" onclick="showView('dashboard')">← Dashboard</button>
+        <div style="display: flex; gap: 8px;">
+          <button class="btn-sm-outline" onclick="exportPdfReportWeb()">Export PDF</button>
+          <button class="btn-sm-outline" onclick="shareReportNativeWeb()">Share</button>
+          <button class="btn-sm-outline" style="color: var(--accent-red);" onclick="clearAllScanHistoryWeb()">Clear All</button>
+        </div>
+      </div>
+
+      <div class="card-dark" style="margin-top: 16px;">
+        <h2 style="font-size: 20px; font-weight: 800;">Scan History Logs</h2>
+        <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">Searchable security scan history synced to Firebase Firestore Database.</p>
+
+        <!-- Search Bar -->
+        <input type="text" id="historySearchInput" class="form-input" placeholder="Search history by keyword or sender..." style="margin-top: 12px;" oninput="renderHistoryListWeb()" />
+
+        <!-- Date Filter Chips -->
+        <div class="filter-toolbar">
+          <div class="chip-filter active" id="chipAll" onclick="setHistoryFilterWeb('all')">All</div>
+          <div class="chip-filter" id="chipToday" onclick="setHistoryFilterWeb('today')">Today</div>
+          <div class="chip-filter" id="chipYesterday" onclick="setHistoryFilterWeb('yesterday')">Yesterday</div>
+          <div class="chip-filter" id="chipWeek" onclick="setHistoryFilterWeb('week')">This Week</div>
+        </div>
+
+        <!-- History List Container -->
+        <div id="historyListContainer" style="margin-top: 16px;"></div>
+      </div>
+    </section>
+
+    <!-- 5. REPORT SCAM PANEL -->
+    <section id="view-report" class="view-panel">
+      <button class="btn-sm-outline" onclick="showView('dashboard')">← Dashboard</button>
+      <div class="card-dark" style="margin-top: 16px;">
+        <h2 style="font-size: 20px; font-weight: 800;">Report Scam to Database</h2>
+        <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">Submitting a scam report automatically parses the sender and blocks them in Firebase.</p>
+
+        <form id="formReportScam" onsubmit="handleReportScamSubmit(event)" style="margin-top: 16px;">
+          <div class="form-group">
+            <label class="form-label">Scam SMS Text / Communication</label>
+            <textarea id="reportSmsText" class="form-input" placeholder="Paste the fraudulent message here..." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Issue Description (Optional)</label>
+            <input type="text" id="reportDesc" class="form-input" placeholder="e.g. Unsolicited OTP harvesting attempt" />
+          </div>
+
+          <button type="submit" class="btn-primary btn-danger">Submit Scam Report &amp; Auto-Block Sender</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- 6. BLOCKED LIST PANEL -->
+    <section id="view-blocked" class="view-panel">
+      <button class="btn-sm-outline" onclick="showView('dashboard')">← Dashboard</button>
+      <div class="card-dark" style="margin-top: 16px;">
+        <h2 style="font-size: 20px; font-weight: 800;">Blocked List</h2>
+        <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">Manage blocked phone numbers &amp; headers synced to Firebase Firestore Database.</p>
+
+        <form id="formAddBlocked" onsubmit="handleAddBlockedSubmit(event)" style="margin-top: 14px; display: flex; gap: 8px;">
+          <input type="text" id="inputNewBlocked" class="form-input" placeholder="e.g. AX-BANKALERT or +1-800-555-0199" required style="flex: 1;" />
+          <button type="submit" class="btn-primary" style="width: 120px;">Block</button>
+        </form>
+
+        <div id="blockedListContainer" style="margin-top: 16px;"></div>
+      </div>
+    </section>
+
+    <!-- 7. SECURITY REWARDS PANEL -->
+    <section id="view-rewards" class="view-panel">
+      <button class="btn-sm-outline" onclick="showView('dashboard')">← Dashboard</button>
+      <div class="card-dark" style="margin-top: 16px; text-align: center; padding: 32px;">
+        <span style="font-size: 48px;">🏆</span>
+        <h2 style="font-size: 22px; font-weight: 800; margin-top: 12px;">PhishGuard Security Badges</h2>
+        <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">You have earned 100 Protection Points by neutralizing SMS threats!</p>
+        <div class="badge-tag" style="margin-top: 16px; font-size: 13px; padding: 6px 16px;">LEVEL 1: GUARDIAN SHIELD</div>
+      </div>
+    </section>
+
+    <!-- 8. SECURITY CENTER PANEL -->
+    <section id="view-security-center" class="view-panel">
+      <button class="btn-sm-outline" onclick="showView('dashboard')">← Dashboard</button>
+      <div class="card-dark" style="margin-top: 16px;">
+        <h2 style="font-size: 20px; font-weight: 800;">Security Center</h2>
+        <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">Browser &amp; system permission health indicators.</p>
+
+        <div class="explain-section" style="margin-top: 16px; display: flex; align-items: center; justify-content: space-between;">
+          <div>
+            <div style="font-weight: 700; font-size: 15px;">Notification Listener Access</div>
+            <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">System-level SMS listener</div>
+          </div>
+          <span class="badge-tag" style="background: rgba(245, 158, 11, 0.15); color: #F59E0B;">Device System Only (Web Limitation)</span>
+        </div>
+
+        <div class="explain-section" style="margin-top: 12px; display: flex; align-items: center; justify-content: space-between;">
+          <div>
+            <div style="font-weight: 700; font-size: 15px;">Browser Notifications Permission</div>
+            <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Real-time threat alerts in browser</div>
+          </div>
+          <span class="badge-tag" style="background: rgba(16, 185, 129, 0.15); color: #10B981;">● ACTIVE</span>
+        </div>
+
+        <div class="explain-section" style="margin-top: 12px; display: flex; align-items: center; justify-content: space-between;">
+          <div>
+            <div style="font-weight: 700; font-size: 15px;">Encrypted Local Storage</div>
+            <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Persistent database storage</div>
+          </div>
+          <span class="badge-tag" style="background: rgba(16, 185, 129, 0.15); color: #10B981;">● ACTIVE</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. AI CHATBOT PANEL -->
+    <section id="view-chatbot" class="view-panel">
+      <button class="btn-sm-outline" onclick="showView('dashboard')">← Dashboard</button>
+      <div class="card-dark" style="margin-top: 16px;">
+        <h2 style="font-size: 20px; font-weight: 800;">PhishGuard Security Assistant</h2>
+        <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">24/7 AI Security Assistant answering queries on SMS scans and phishing threats.</p>
+
+        <div id="chatBox" class="chat-container" style="margin-top: 16px;">
+          <div class="chat-bubble chat-bot">Hello! I am your PhishGuard AI Security Assistant. Ask me how to scan SMS messages, review blocked senders, or verify security scores!</div>
+        </div>
+
+        <form id="formChat" onsubmit="handleChatSubmit(event)" style="margin-top: 12px; display: flex; gap: 8px;">
+          <input type="text" id="inputChatMessage" class="form-input" placeholder="Type your security question..." required style="flex: 1;" />
+          <button type="submit" class="btn-primary" style="width: 100px;">Send</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- 10. USER PROFILE PANEL -->
+    <section id="view-profile" class="view-panel">
+      <button class="btn-sm-outline" onclick="showView('dashboard')">← Dashboard</button>
+      <div class="card-dark" style="margin-top: 16px;">
+        <h2 style="font-size: 20px; font-weight: 800;">User Profile</h2>
+        
+        <form id="formProfile" onsubmit="handleProfileSave(event)" style="margin-top: 16px;">
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input type="text" id="profileName" class="form-input" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" id="profileEmail" class="form-input" disabled />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Phone Number</label>
+            <input type="text" id="profilePhone" class="form-input" placeholder="+1 (555) 000-0000" />
+          </div>
+
+          <button type="submit" class="btn-primary">Save Profile Changes</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- 11. SETTINGS & BACKUP PANEL -->
+    <section id="view-settings" class="view-panel">
+      <button class="btn-sm-outline" onclick="showView('dashboard')">← Dashboard</button>
+      <div class="card-dark" style="margin-top: 16px;">
+        <h2 style="font-size: 20px; font-weight: 800;">Settings &amp; Backup</h2>
+        
+        <div class="explain-section" style="margin-top: 16px;">
+          <div style="font-weight: 700; font-size: 15px;">Export Encrypted JSON Security Backup</div>
+          <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Generates a downloadable `.json` backup file of all local scans and security scores.</p>
+          <button class="btn-sm-outline" style="margin-top: 10px;" onclick="exportEncryptedJsonWeb()">Download JSON Backup</button>
+        </div>
+
+        <div class="explain-section" style="margin-top: 12px;">
+          <div style="font-weight: 700; font-size: 15px;">Cloud Sync Backup to Firebase</div>
+          <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Syncs all scan logs and blocked senders to Firebase Firestore Database.</p>
+          <button class="btn-sm-outline" style="margin-top: 10px; color: var(--primary-blue);" onclick="performCloudSyncWeb()">Trigger Cloud Sync</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Bottom Navigation Bar (Matching Mobile Navigation Layout) -->
+  <nav class="bottom-nav" id="bottomNav" style="display: none;">
+    <div class="nav-item active" id="navHome" onclick="showView('dashboard')">
+      <span class="nav-icon">🏠</span>
+      <span>Home</span>
+    </div>
+    <div class="nav-item" id="navHistory" onclick="showView('history')">
+      <span class="nav-icon">📜</span>
+      <span>History</span>
+    </div>
+    <div class="nav-item" id="navProfile" onclick="showView('profile')">
+      <span class="nav-icon">👤</span>
+      <span>Profile</span>
+    </div>
+    <div class="nav-item" id="navSettings" onclick="showView('settings')">
+      <span class="nav-icon">⚙️</span>
+      <span>Settings</span>
+    </div>
+  </nav>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_dark_gradient">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/tvPrivacyHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Privacy Policy"
+            android:textColor="#FFFFFF"
+            android:textSize="26sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tvPrivacySubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PhishGuard Security &amp; Data Governance Commitment"
+            android:textColor="#94A3B8"
+            android:textSize="13sp"
+            android:layout_marginTop="4dp"/>
+
+        <!-- Section 1 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card_dark"
+            android:padding="18dp"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1. On-Device Analysis Guarantee"
+                android:textColor="#38BDF8"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="PhishGuard protects users from fraudulent SMS, phishing attempts and malicious content using intelligent on-device analysis. Your personal SMS text and message contents never leave your device and are never uploaded to any cloud server."
+                android:textColor="#CBD5E1"
+                android:textSize="13sp"
+                android:lineSpacingExtra="4dp"
+                android:layout_marginTop="8dp"/>
+
+        </LinearLayout>
+
+        <!-- Section 2 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card_dark"
+            android:padding="18dp"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2. Zero Data Selling &amp; Third-Party Non-Disclosure"
+                android:textColor="#38BDF8"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="We maintain a zero-monetization policy on personal data. PhishGuard does not share, rent, sell, or disclose your contact lists, scan histories, or personal identifiers to advertisers or third parties."
+                android:textColor="#CBD5E1"
+                android:textSize="13sp"
+                android:lineSpacingExtra="4dp"
+                android:layout_marginTop="8dp"/>
+
+        </LinearLayout>
+
+        <!-- Section 3 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card_dark"
+            android:padding="18dp"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3. GDPR &amp; CCPA User Rights"
+                android:textColor="#38BDF8"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="You retain full ownership of your security audit logs. You may clear your scan history, delete blocked senders, export encrypted backups, or request complete account erasure at any time in Settings."
+                android:textColor="#CBD5E1"
+                android:textSize="13sp"
+                android:lineSpacingExtra="4dp"
+                android:layout_marginTop="8dp"/>
+
+        </LinearLayout>
+
+        <!-- Section 4 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card_dark"
+            android:padding="18dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4. Contact &amp; Compliance Officer"
+                android:textColor="#38BDF8"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="For inquiries regarding data privacy compliance, contact privacy@phishguard.ai."
+                android:textColor="#CBD5E1"
+                android:textSize="13sp"
+                android:layout_marginTop="8dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

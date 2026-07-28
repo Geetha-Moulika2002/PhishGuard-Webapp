@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg_dark_gradient">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- Top User Header -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="8dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvUserWelcome"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Welcome Back"
+                        android:textColor="#94A3B8"
+                        android:textSize="13sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/tvUserEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="user@phishguard.ai"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:layout_marginTop="2dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@drawable/bg_badge_emerald"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"
+                    android:gravity="center">
+
+                    <View
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:background="#10B981"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ACTIVE"
+                        android:textColor="#10B981"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:layout_marginStart="6dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Protection Status Card -->
+            <LinearLayout
+                android:id="@+id/cardSecurityScore"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_card_dark"
+                android:padding="20dp"
+                android:layout_marginTop="20dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@android:drawable/ic_secure"
+                        app:tint="#10B981"
+                        android:contentDescription="Shield Icon" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginStart="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SECURITY PROTECTION SCORE"
+                            android:textColor="#94A3B8"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:letterSpacing="0.05"/>
+
+                        <TextView
+                            android:id="@+id/tvScoreDisplayHeader"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="85 / 100 • Protected"
+                            android:textColor="#FFFFFF"
+                            android:textSize="22sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="4dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Stats Overview -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Threat Intelligence Overview"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="24dp"/>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2"
+                android:layout_marginTop="12dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_columnWeight="1"
+                    android:layout_marginEnd="6dp"
+                    app:cardBackgroundColor="#10192E"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:background="@drawable/bg_card_dark">
+
+                        <TextView
+                            android:id="@+id/tvScanned"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2"
+                            android:textColor="#3B82F6"
+                            android:textSize="28sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SMS Analyzed"
+                            android:textColor="#94A3B8"
+                            android:textSize="12sp"
+                            android:layout_marginTop="2dp"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_columnWeight="1"
+                    android:layout_marginStart="6dp"
+                    app:cardBackgroundColor="#10192E"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:background="@drawable/bg_card_dark">
+
+                        <TextView
+                            android:id="@+id/tvBlocked"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2"
+                            android:textColor="#EF4444"
+                            android:textSize="28sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Threats Neutralized"
+                            android:textColor="#94A3B8"
+                            android:textSize="12sp"
+                            android:layout_marginTop="2dp"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </GridLayout>
+
+            <!-- Clean Symmetrical Protection Tools Grid -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Protection Tools"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="24dp"/>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2"
+                android:layout_marginTop="12dp">
+
+                <!-- 1. Scan SMS -->
+                <LinearLayout
+                    android:id="@+id/cardSms"
+                    android:layout_width="0dp"
+                    android:layout_height="90dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="6dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_card_dark"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:src="@android:drawable/ic_dialog_email"
+                        app:tint="#3B82F6"
+                        android:contentDescription="Scan SMS Icon"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Scan SMS"
+                        android:textColor="#FFFFFF"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="4dp"/>
+
+                </LinearLayout>
+
+                <!-- 2. Threat Center -->
+                <LinearLayout
+                    android:id="@+id/cardThreatCenter"
+                    android:layout_width="0dp"
+                    android:layout_height="90dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="6dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_card_dark"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:src="@android:drawable/ic_dialog_alert"
+                        app:tint="#EF4444"
+                        android:contentDescription="Threat Center Icon"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Threat Center"
+                        android:textColor="#FFFFFF"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="4dp"/>
+
+                </LinearLayout>
+
+                <!-- 3. Reports -->
+                <LinearLayout
+                    android:id="@+id/cardReports"
+                    android:layout_width="0dp"
+                    android:layout_height="90dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="6dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_card_dark"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:src="@android:drawable/ic_menu_agenda"
+                        app:tint="#F59E0B"
+                        android:contentDescription="Reports Icon"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Reports"
+                        android:textColor="#FFFFFF"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="4dp"/>
+
+                </LinearLayout>
+
+                <!-- 4. Security Center -->
+                <LinearLayout
+                    android:id="@+id/cardSecurityCenter"
+                    android:layout_width="0dp"
+                    android:layout_height="90dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="6dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_card_dark"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:src="@android:drawable/ic_secure"
+                        app:tint="#10B981"
+                        android:contentDescription="Security Center Icon"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Security Center"
+                        android:textColor="#FFFFFF"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="4dp"/>
+
+                </LinearLayout>
+
+                <!-- 5. Blocked Senders -->
+                <LinearLayout
+                    android:id="@+id/cardBlockedSenders"
+                    android:layout_width="0dp"
+                    android:layout_height="90dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="6dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_card_dark"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:src="@android:drawable/ic_delete"
+                        app:tint="#EF4444"
+                        android:contentDescription="Blocked List Icon"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Blocked List"
+                        android:textColor="#FFFFFF"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="4dp"/>
+
+                </LinearLayout>
+
+                <!-- 6. Report Scam -->
+                <LinearLayout
+                    android:id="@+id/cardReportScam"
+                    android:layout_width="0dp"
+                    android:layout_height="90dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="6dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_card_dark"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:src="@android:drawable/ic_menu_send"
+                        app:tint="#F59E0B"
+                        android:contentDescription="Report Scam Icon"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Report Scam"
+                        android:textColor="#FFFFFF"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="4dp"/>
+
+                </LinearLayout>
+
+                <!-- 7. Rewards -->
+                <LinearLayout
+                    android:id="@+id/cardRewards"
+                    android:layout_width="0dp"
+                    android:layout_height="90dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="6dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_card_dark"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:src="@android:drawable/btn_star"
+                        app:tint="#F59E0B"
+                        android:contentDescription="Rewards Icon"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rewards"
+                        android:textColor="#FFFFFF"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="4dp"/>
+
+                </LinearLayout>
+
+                <!-- 8. Settings -->
+                <LinearLayout
+                    android:id="@+id/cardSettings"
+                    android:layout_width="0dp"
+                    android:layout_height="90dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="6dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_card_dark"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:src="@android:drawable/ic_menu_preferences"
+                        app:tint="#94A3B8"
+                        android:contentDescription="Settings Icon"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Settings"
+                        android:textColor="#FFFFFF"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="4dp"/>
+
+                </LinearLayout>
+
+            </GridLayout>
+
+            <!-- Help Center Card -->
+            <LinearLayout
+                android:id="@+id/cardHelp"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/bg_card_dark"
+                android:padding="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="20dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@android:drawable/ic_menu_help"
+                    app:tint="#38BDF8"
+                    android:contentDescription="Help Icon"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="14dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Need Help or Support?"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Interactive AI Support Assistant &amp; FAQs"
+                        android:textColor="#94A3B8"
+                        android:textSize="12sp"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="›"
+                    android:textColor="#38BDF8"
+                    android:textSize="22sp"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- Bottom Navigation Bar -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#10192E"
+        app:itemIconTint="#3B82F6"
+        app:itemTextColor="#3B82F6"
+        app:menu="@menu/bottom_menu"/>
+
+</LinearLayout>

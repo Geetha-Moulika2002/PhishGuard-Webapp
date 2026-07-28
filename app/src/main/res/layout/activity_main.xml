@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/bg_dark_gradient"
+    android:padding="32dp">
+
+    <ImageView
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:src="@mipmap/ic_launcher"
+        android:contentDescription="PhishGuard Logo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PHISHGUARD"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:textSize="32sp"
+        android:letterSpacing="0.08"
+        android:layout_marginTop="24dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AI-Powered SMS &amp; Threat Defense"
+        android:textColor="#94A3B8"
+        android:textSize="15sp"
+        android:layout_marginTop="8dp"/>
+
+    <ProgressBar
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="48dp"
+        android:indeterminateTint="#3B82F6"/>
+
+</LinearLayout>

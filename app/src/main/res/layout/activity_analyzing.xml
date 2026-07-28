@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#050816"
+    android:padding="24dp">
+
+    <!-- Loader -->
+
+    <ProgressBar
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:indeterminateTint="#3A46C1"/>
+
+    <!-- Main Text -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AI Threat Analysis Running..."
+        android:textColor="#FFFFFF"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:layout_marginTop="40dp"/>
+
+    <!-- Sub Text -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Analyzing suspicious patterns using NLP, SVM and BiLSTM models"
+        android:textColor="#B0B7C3"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_marginTop="20dp"/>
+
+    <!-- Fake AI Steps -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#10182B"
+        android:padding="20dp"
+        android:layout_marginTop="50dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="✔ Tokenizing SMS content"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="✔ Extracting suspicious URLs"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:layout_marginTop="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="✔ Context-aware phishing analysis"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:layout_marginTop="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="✔ Generating phishing risk score"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:layout_marginTop="16dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

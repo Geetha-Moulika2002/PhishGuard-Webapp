@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_dark_gradient">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Help Center &amp; Support"
+            android:textColor="#FFFFFF"
+            android:textSize="26sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="24/7 security assistance, FAQs &amp; feedback"
+            android:textColor="#94A3B8"
+            android:textSize="13sp"
+            android:layout_marginTop="4dp"/>
+
+        <!-- Support Actions Grid -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card_dark"
+            android:padding="18dp"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/rowLiveChat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="💬 Live Chatbot Assistant"
+                android:textColor="#38BDF8"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"/>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#1E2B48"/>
+
+            <TextView
+                android:id="@+id/rowReportScam"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="🚨 Report Scam to Database"
+                android:textColor="#EF4444"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"/>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#1E2B48"/>
+
+            <TextView
+                android:id="@+id/rowFeedback"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="📝 App Feedback &amp; Suggestions"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"/>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#1E2B48"/>
+
+            <TextView
+                android:id="@+id/rowBugReport"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="🐛 Submit Security Bug Report"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"/>
+
+        </LinearLayout>
+
+        <!-- FAQs Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Frequently Asked Questions"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="24dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card_dark"
+            android:padding="18dp"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Q: How does PhishGuard inspect incoming SMS?"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PhishGuard protects users from fraudulent SMS, phishing attempts and malicious QR codes using intelligent on-device analysis."
+                android:textColor="#94A3B8"
+                android:textSize="13sp"
+                android:layout_marginTop="4dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

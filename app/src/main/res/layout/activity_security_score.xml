@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg_dark_gradient"
+    android:padding="20dp"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Weekly Security Score"
+        android:textColor="#FFFFFF"
+        android:textSize="26sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your overall mobile threat defense rating"
+        android:textColor="#94A3B8"
+        android:textSize="13sp"
+        android:layout_marginTop="4dp"/>
+
+    <!-- Score Circle Gauge Ring -->
+    <LinearLayout
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/bg_card_dark"
+        android:layout_marginTop="36dp">
+
+        <TextView
+            android:id="@+id/tvScoreDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="82/100"
+            android:textColor="#10B981"
+            android:textSize="44sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PROTECTED"
+            android:textColor="#38BDF8"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.1"
+            android:layout_marginTop="6dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_card_dark"
+        android:padding="18dp"
+        android:layout_marginTop="32dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Improvement Suggestions"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="• Enable Automatic SMS Background Scanner (+10 pts)\n• Add Emergency Trusted Contact (+8 pts)"
+            android:textColor="#CBD5E1"
+            android:textSize="14sp"
+            android:layout_marginTop="10dp"
+            android:lineSpacingExtra="4dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

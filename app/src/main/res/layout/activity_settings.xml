@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_dark_gradient">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/tvSettingsHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Settings &amp; Preferences"
+            android:textColor="#FFFFFF"
+            android:textSize="26sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tvSettingsSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="App preferences, real-time protection switches &amp; account management"
+            android:textColor="#94A3B8"
+            android:textSize="13sp"
+            android:layout_marginTop="4dp"/>
+
+        <!-- Defense Preferences -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card_dark"
+            android:padding="18dp"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Defense Preferences"
+                android:textColor="#38BDF8"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
+
+            <!-- Auto Scan Switch -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Automatic Background SMS Scan"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"/>
+
+                <Switch
+                    android:id="@+id/switchAutoScan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"/>
+
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#1E2B48"/>
+
+            <!-- Real-Time Defense Switch -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Real-Time Threat Alerts"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"/>
+
+                <Switch
+                    android:id="@+id/switchRealTimeProtection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"/>
+
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#1E2B48"/>
+
+            <!-- Dark Mode Switch -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Dark Mode Aesthetics"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"/>
+
+                <Switch
+                    android:id="@+id/switchDarkMode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"/>
+
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#1E2B48"/>
+
+            <!-- Notification Settings Row -->
+            <LinearLayout
+                android:id="@+id/rowNotificationSettings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Notification Alert Preferences"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:id="@+id/tvNotifPrefStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4 / 4 Active ›"
+                    android:textColor="#38BDF8"
+                    android:textSize="14sp"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Data & Backup Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card_dark"
+            android:padding="18dp"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data &amp; Backup"
+                android:textColor="#38BDF8"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/rowExportData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Export Encrypted Security JSON Data"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:clickable="true"
+                android:focusable="true"/>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#1E2B48"/>
+
+            <TextView
+                android:id="@+id/rowBackup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cloud Sync Backup to Firebase"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:clickable="true"
+                android:focusable="true"/>
+
+        </LinearLayout>
+
+        <!-- Legal & Account Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card_dark"
+            android:padding="18dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Legal &amp; Account"
+                android:textColor="#38BDF8"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/rowPrivacyPolicy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Privacy Policy"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:clickable="true"
+                android:focusable="true"/>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#1E2B48"/>
+
+            <TextView
+                android:id="@+id/rowTerms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Terms &amp; Conditions"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:clickable="true"
+                android:focusable="true"/>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#1E2B48"/>
+
+            <TextView
+                android:id="@+id/rowAbout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="About App"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:clickable="true"
+                android:focusable="true"/>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#1E2B48"/>
+
+            <TextView
+                android:id="@+id/rowDeleteAccount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Delete Account"
+                android:textColor="#EF4444"
+                android:textSize="15sp"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:clickable="true"
+                android:focusable="true"/>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#1E2B48"/>
+
+            <TextView
+                android:id="@+id/rowLogout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sign Out"
+                android:textColor="#EF4444"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:clickable="true"
+                android:focusable="true"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

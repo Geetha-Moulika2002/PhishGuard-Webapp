@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg_dark_gradient"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit Profile"
+        android:textColor="#FFFFFF"
+        android:textSize="26sp"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/etEditName"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:hint="Full Name"
+        android:textColorHint="#64748B"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/bg_card_dark"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:layout_marginTop="24dp"/>
+
+    <EditText
+        android:id="@+id/etEditEmail"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:hint="Email Address"
+        android:textColorHint="#64748B"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/bg_card_dark"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:layout_marginTop="14dp"/>
+
+    <EditText
+        android:id="@+id/etEditPhone"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:hint="Phone Number"
+        android:textColorHint="#64748B"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/bg_card_dark"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:layout_marginTop="14dp"/>
+
+    <android.widget.Button
+        android:id="@+id/btnSaveProfile"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="Save Changes"
+        android:textAllCaps="false"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:background="@drawable/bg_button_primary"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="28dp"/>
+
+</LinearLayout>

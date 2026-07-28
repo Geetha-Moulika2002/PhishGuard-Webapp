@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_dark_gradient"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center_horizontal">
+
+        <!-- Top Header & App Badge -->
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="24dp"
+            android:src="@mipmap/ic_launcher"
+            android:contentDescription="PhishGuard Shield Icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🛡 PhishGuard"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_marginTop="12dp"/>
+
+        <TextView
+            android:id="@+id/tvSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign in to activate real-time phishing protection"
+            android:textColor="#94A3B8"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:layout_marginTop="6dp"/>
+
+        <!-- Mode Selector Switch (Login / Register) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            android:background="#10192E"
+            android:layout_marginTop="24dp"
+            android:padding="4dp">
+
+            <TextView
+                android:id="@+id/tabLogin"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Sign In"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:background="@drawable/bg_button_primary"/>
+
+            <TextView
+                android:id="@+id/tabRegister"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Register"
+                android:gravity="center"
+                android:textColor="#94A3B8"
+                android:textStyle="bold"
+                android:textSize="15sp"/>
+
+        </LinearLayout>
+
+        <!-- Input Card Container -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card_dark"
+            android:padding="20dp"
+            android:layout_marginTop="18dp">
+
+            <!-- Full Name (Visible in Register mode) -->
+            <TextView
+                android:id="@+id/lblFullName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Full Name"
+                android:textColor="#CBD5E1"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:visibility="gone"/>
+
+            <EditText
+                android:id="@+id/etFullName"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="6dp"
+                android:hint="e.g. Alex Morgan"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#64748B"
+                android:inputType="textPersonName"
+                android:background="@drawable/bg_input_field"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textSize="15sp"
+                android:visibility="gone"/>
+
+            <!-- Email Label & Field -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email Address"
+                android:textColor="#CBD5E1"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"/>
+
+            <EditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="6dp"
+                android:hint="name@domain.com"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#64748B"
+                android:inputType="textEmailAddress"
+                android:background="@drawable/bg_input_field"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textSize="15sp"/>
+
+            <!-- Password Label & Field with Toggle -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Password"
+                android:textColor="#CBD5E1"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="6dp">
+
+                <EditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="••••••••"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#64748B"
+                    android:inputType="textPassword"
+                    android:background="@drawable/bg_input_field"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="48dp"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:id="@+id/tvTogglePassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="14dp"
+                    android:gravity="center"
+                    android:text="SHOW"
+                    android:textColor="#3B82F6"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+            </RelativeLayout>
+
+            <!-- Password Strength Rules Checklist (Visible in Register Mode) -->
+            <LinearLayout
+                android:id="@+id/layoutPasswordRules"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#0F172A"
+                android:padding="12dp"
+                android:layout_marginTop="12dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Password Security Requirements:"
+                    android:textColor="#94A3B8"
+                    android:textSize="12sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/ruleLength"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="✖ At least 8 characters long"
+                    android:textColor="#EF4444"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp"/>
+
+                <TextView
+                    android:id="@+id/ruleCase"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="✖ Contains uppercase (A-Z) &amp; lowercase (a-z)"
+                    android:textColor="#EF4444"
+                    android:textSize="12sp"
+                    android:layout_marginTop="2dp"/>
+
+                <TextView
+                    android:id="@+id/ruleNumberSymbol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="✖ Contains a number (0-9) &amp; special symbol (@#$%)"
+                    android:textColor="#EF4444"
+                    android:textSize="12sp"
+                    android:layout_marginTop="2dp"/>
+
+            </LinearLayout>
+
+            <!-- Loading Spinner (Visible during auth action) -->
+            <ProgressBar
+                android:id="@+id/progressAuth"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:indeterminateTint="#3B82F6"
+                android:visibility="gone"/>
+
+            <!-- Action Button -->
+            <android.widget.Button
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginTop="20dp"
+                android:text="Sign In &amp; Continue"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/bg_button_primary"/>
+
+        </LinearLayout>
+
+        <!-- Security Badge -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_badge_emerald"
+            android:padding="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🔒 Real-Time Firebase Auth Sync"
+                android:textColor="#10B981"
+                android:textStyle="bold"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="✓ End-to-End Encrypted Cloud Storage\n✓ Universal Web &amp; Mobile Account Integration"
+                android:textColor="#A7F3D0"
+                android:textSize="13sp"
+                android:layout_marginTop="6dp"
+                android:lineSpacingExtra="3dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

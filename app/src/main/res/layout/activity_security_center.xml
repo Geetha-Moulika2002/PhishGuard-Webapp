@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_dark_gradient">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Header Row with Back Button -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/btnBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="← Dashboard"
+                android:textColor="#38BDF8"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:padding="8dp"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvSecurityCenterHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Security Center"
+            android:textColor="#FFFFFF"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/tvSecurityCenterSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Real Android system permissions &amp; hardware defense status"
+            android:textColor="#94A3B8"
+            android:textSize="13sp"
+            android:layout_marginTop="4dp"/>
+
+        <!-- Shield Status Banner -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/bg_card_dark"
+            android:padding="18dp"
+            android:gravity="center_vertical"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Real Phone Shield Status"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tvShieldStatusHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="● ALL GREEN"
+                android:textColor="#10B981"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <!-- Real Phone Permission Rows -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card_dark"
+            android:padding="18dp"
+            android:layout_marginTop="16dp">
+
+            <!-- 1. Notification Access -->
+            <LinearLayout
+                android:id="@+id/rowNotificationAccess"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Notification Listener Access"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tap to open Android System Notification Settings"
+                        android:textColor="#94A3B8"
+                        android:textSize="12sp"
+                        android:layout_marginTop="2dp"/>
+
+                </LinearLayout>
+
+                <Switch
+                    android:id="@+id/switchNotificationAccess"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:focusable="false"/>
+
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#1E2B48" android:layout_marginTop="8dp" android:layout_marginBottom="8dp"/>
+
+            <!-- 2. SMS Permission -->
+            <LinearLayout
+                android:id="@+id/rowSmsPermission"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SMS Reader Permission"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tap to open Android App Permissions Settings"
+                        android:textColor="#94A3B8"
+                        android:textSize="12sp"
+                        android:layout_marginTop="2dp"/>
+
+                </LinearLayout>
+
+                <Switch
+                    android:id="@+id/switchSmsPermission"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:focusable="false"/>
+
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#1E2B48" android:layout_marginTop="8dp" android:layout_marginBottom="8dp"/>
+
+            <!-- 3. Battery Optimization -->
+            <LinearLayout
+                android:id="@+id/rowBatteryOptimization"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Unrestricted Battery Usage"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tap to open Android Battery Saver Settings"
+                        android:textColor="#94A3B8"
+                        android:textSize="12sp"
+                        android:layout_marginTop="2dp"/>
+
+                </LinearLayout>
+
+                <Switch
+                    android:id="@+id/switchBatteryOptimization"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:focusable="false"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Continue to Dashboard Action Button -->
+        <Button
+            android:id="@+id/btnContinueDashboard"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="Continue to Dashboard ›"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:background="@drawable/bg_button_primary"
+            android:layout_marginTop="24dp"/>
+
+    </LinearLayout>
+
+</ScrollView>

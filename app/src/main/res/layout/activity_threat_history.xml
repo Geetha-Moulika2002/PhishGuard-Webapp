@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg_dark_gradient"
+    android:padding="20dp">
+
+    <!-- Header & Action Row -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Scan History"
+                android:textColor="#FFFFFF"
+                android:textSize="26sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="On-Device Scan Logs &amp; Threat Reports"
+                android:textColor="#94A3B8"
+                android:textSize="13sp"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/btnClearAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clear"
+            android:textColor="#EF4444"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:padding="8dp"/>
+
+    </LinearLayout>
+
+    <!-- Search Input -->
+    <EditText
+        android:id="@+id/etSearchHistory"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Search history by keyword or sender..."
+        android:textColorHint="#64748B"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        android:background="@drawable/bg_card_dark"
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Filter Toolbar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="14dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/btnFilterAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="All"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:textSize="12sp"
+            android:background="@drawable/bg_button_primary"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"/>
+
+        <TextView
+            android:id="@+id/btnFilterToday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Today"
+            android:textColor="#94A3B8"
+            android:textSize="12sp"
+            android:background="@drawable/bg_card_dark"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:layout_marginStart="6dp"/>
+
+        <TextView
+            android:id="@+id/btnFilterYesterday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yesterday"
+            android:textColor="#94A3B8"
+            android:textSize="12sp"
+            android:background="@drawable/bg_card_dark"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:layout_marginStart="6dp"/>
+
+        <TextView
+            android:id="@+id/btnFilterWeek"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="This Week"
+            android:textColor="#94A3B8"
+            android:textSize="12sp"
+            android:background="@drawable/bg_card_dark"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:layout_marginStart="6dp"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/btnExportPdf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Export PDF"
+            android:textColor="#38BDF8"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:padding="6dp"/>
+
+        <TextView
+            android:id="@+id/btnShareReport"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Share"
+            android:textColor="#38BDF8"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:padding="6dp"
+            android:layout_marginStart="4dp"/>
+
+    </LinearLayout>
+
+    <!-- Empty State View -->
+    <LinearLayout
+        android:id="@+id/layoutEmptyState"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@android:drawable/ic_menu_recent_history"
+            android:contentDescription="Empty History Icon"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No scans yet."
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your SMS scan records will appear here."
+            android:textColor="#94A3B8"
+            android:textSize="14sp"
+            android:layout_marginTop="4dp"/>
+
+    </LinearLayout>
+
+    <!-- Dynamic History List Scroll Area -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="16dp">
+
+        <LinearLayout
+            android:id="@+id/layoutHistoryList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"/>
+
+    </ScrollView>
+
+    <!-- Bottom Navigation Bar -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#10192E"
+        app:itemIconTint="#3B82F6"
+        app:itemTextColor="#3B82F6"
+        app:menu="@menu/bottom_menu"/>
+
+</LinearLayout>

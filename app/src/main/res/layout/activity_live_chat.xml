@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg_dark_gradient"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PhishGuard Live Security Chatbot"
+        android:textColor="#FFFFFF"
+        android:textSize="22sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="● Interactive AI Assistant Online"
+        android:textColor="#10B981"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:layout_marginTop="2dp"/>
+
+    <ScrollView
+        android:id="@+id/scrollChat"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="16dp">
+
+        <LinearLayout
+            android:id="@+id/layoutChatContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"/>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="12dp">
+
+        <EditText
+            android:id="@+id/etMessageInput"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:hint="Ask about SMS scan, blocking, privacy..."
+            android:textColorHint="#64748B"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:background="@drawable/bg_card_dark"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"/>
+
+        <android.widget.Button
+            android:id="@+id/btnSend"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="Send"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/bg_button_primary"
+            android:layout_marginStart="8dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

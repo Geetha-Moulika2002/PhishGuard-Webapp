@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_dark_gradient">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/tvRewardsHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Security Rewards &amp; Badges"
+            android:textColor="#FFFFFF"
+            android:textSize="26sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tvRewardsSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tap any badge to view unlock requirements and active progress"
+            android:textColor="#94A3B8"
+            android:textSize="13sp"
+            android:layout_marginTop="4dp"/>
+
+        <!-- Grid of Badges -->
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:layout_marginTop="20dp">
+
+            <!-- Badge 1: Safe User -->
+            <LinearLayout
+                android:id="@+id/badgeSafeUser"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/bg_card_dark"
+                android:layout_marginEnd="6dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🏅"
+                    android:textSize="36sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Safe User"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="6dp"/>
+
+                <TextView
+                    android:id="@+id/tvBadgeSafeUserStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Unlocked (85/100)"
+                    android:textColor="#10B981"
+                    android:textSize="11sp"/>
+
+            </LinearLayout>
+
+            <!-- Badge 2: 100 Scans -->
+            <LinearLayout
+                android:id="@+id/badge100Scans"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/bg_card_dark"
+                android:layout_marginStart="6dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="💯"
+                    android:textSize="36sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100 Scans"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="6dp"/>
+
+                <TextView
+                    android:id="@+id/tvBadge100ScansProgress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2 / 100 Scans"
+                    android:textColor="#38BDF8"
+                    android:textSize="11sp"/>
+
+            </LinearLayout>
+
+            <!-- Badge 3: First Report -->
+            <LinearLayout
+                android:id="@+id/badgeFirstReport"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/bg_card_dark"
+                android:layout_marginEnd="6dp"
+                android:layout_marginTop="12dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📢"
+                    android:textSize="36sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="First Report"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="6dp"/>
+
+                <TextView
+                    android:id="@+id/tvBadgeReportStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Locked (0/1)"
+                    android:textColor="#94A3B8"
+                    android:textSize="11sp"/>
+
+            </LinearLayout>
+
+            <!-- Badge 4: 7 Day Streak -->
+            <LinearLayout
+                android:id="@+id/badge7DayStreak"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/bg_card_dark"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="12dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🔥"
+                    android:textSize="36sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="7 Day Streak"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="6dp"/>
+
+                <TextView
+                    android:id="@+id/tvBadgeStreakStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Unlocked"
+                    android:textColor="#10B981"
+                    android:textSize="11sp"/>
+
+            </LinearLayout>
+
+        </GridLayout>
+
+    </LinearLayout>
+
+</ScrollView>

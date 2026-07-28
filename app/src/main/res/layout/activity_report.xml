@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_dark_gradient">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/tvReportHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Report Scam Communication"
+            android:textColor="#FFFFFF"
+            android:textSize="26sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tvReportSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit suspicious SMS content directly to the PhishGuard Database"
+            android:textColor="#94A3B8"
+            android:textSize="13sp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="20dp"/>
+
+        <!-- Paste SMS Content Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card_dark"
+            android:padding="20dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/tvSmsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Paste Suspicious SMS Content"
+                android:textColor="#38BDF8"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
+
+            <EditText
+                android:id="@+id/etSmsText"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:hint="Paste suspicious SMS text here (e.g. Share OTP 482910 to unlock bank account)..."
+                android:gravity="top"
+                android:textColorHint="#64748B"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:background="@drawable/bg_dark_gradient"
+                android:padding="14dp"/>
+
+        </LinearLayout>
+
+        <!-- Describe Issue Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card_dark"
+            android:padding="20dp"
+            android:layout_marginBottom="24dp">
+
+            <TextView
+                android:id="@+id/tvIssueLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Describe the Scam Issue"
+                android:textColor="#38BDF8"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
+
+            <EditText
+                android:id="@+id/etIssueDescription"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:hint="Explain suspicious behavior (e.g. fake bank alert, extortion threat)..."
+                android:gravity="top"
+                android:textColorHint="#64748B"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:background="@drawable/bg_dark_gradient"
+                android:padding="14dp"/>
+
+        </LinearLayout>
+
+        <android.widget.Button
+            android:id="@+id/btnSubmitReport"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Submit Scam Report to Database"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:background="@drawable/bg_button_primary"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="24dp"/>
+
+    </LinearLayout>
+
+</ScrollView>

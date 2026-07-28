@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.PhishGuard"
+        tools:targetApi="31">
+
+        <!-- AUTHENTICATION & ONBOARDING -->
+        <activity android:name=".MainActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".OnboardingActivity" android:exported="false" />
+        <activity android:name=".LoginActivity" android:exported="false" />
+        <activity android:name=".RegisterActivity" android:exported="false" />
+        <activity android:name=".ForgotPasswordActivity" android:exported="false" />
+        <activity android:name=".OtpVerificationActivity" android:exported="false" />
+        <activity android:name=".CreatePasswordActivity" android:exported="false" />
+
+        <!-- CORE DASHBOARD -->
+        <activity android:name=".DashboardActivity" android:exported="false" />
+
+        <!-- SCANNING & EXPLAINABLE AI -->
+        <activity android:name=".PermissionActivity" android:exported="false" />
+        <activity android:name=".ScanSmsActivity" android:exported="false" />
+        <activity android:name=".AnalyzingActivity" android:exported="false" />
+        <activity android:name=".ResultActivity" android:exported="false" />
+
+        <!-- HISTORY, NOTIFICATIONS & ANALYTICS -->
+        <activity android:name=".ThreatHistoryActivity" android:exported="false" />
+        <activity android:name=".NotificationsActivity" android:exported="false" />
+        <activity android:name=".ReportsActivity" android:exported="false" />
+
+        <!-- THREAT & SECURITY CENTER -->
+        <activity android:name=".ThreatCenterActivity" android:exported="false" />
+        <activity android:name=".SecurityCenterActivity" android:exported="false" />
+        <activity android:name=".SecurityScoreActivity" android:exported="false" />
+
+        <!-- PROTECTION TOOLS -->
+        <activity android:name=".ReportActivity" android:exported="false" />
+        <activity android:name=".BlockedSendersActivity" android:exported="false" />
+        <activity android:name=".RewardsActivity" android:exported="false" />
+
+        <!-- PROFILE, SETTINGS & SUPPORT -->
+        <activity android:name=".ProfileActivity" android:exported="false" />
+        <activity android:name=".EditProfileActivity" android:exported="false" />
+        <activity android:name=".SettingsActivity" android:exported="false" />
+        <activity android:name=".NotificationSettingsActivity" android:exported="false" />
+        <activity android:name=".HelpCenterActivity" android:exported="false" />
+        <activity android:name=".LiveChatActivity" android:exported="false" />
+        <activity android:name=".FeedbackActivity" android:exported="false" />
+        <activity android:name=".AboutAppActivity" android:exported="false" />
+        <activity android:name=".PrivacyActivity" android:exported="false" />
+        <activity android:name=".TermsActivity" android:exported="false" />
+        <activity android:name=".AlertActivity" android:exported="false" />
+
+        <!-- SERVICES -->
+        <service
+            android:name=".NotificationListener"
+            android:exported="true"
+            android:label="PhishGuard Notification Service"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>
