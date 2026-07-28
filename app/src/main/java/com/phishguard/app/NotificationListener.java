@@ -45,8 +45,12 @@ public class NotificationListener extends NotificationListenerService {
         if (sbn == null || sbn.getPackageName() == null) return;
 
         String packageName = sbn.getPackageName();
+        // Restrict strictly to SMS Telephony Messaging Apps
         boolean isSmsApp = packageName.contains("messaging") || packageName.contains("mms") || packageName.contains("sms") || packageName.contains("telephony");
         if (!isSmsApp) return;
+
+        // Prevent self-interception of PhishGuard's own notifications
+        if (getPackageName().equals(packageName)) return;
 
         CharSequence titleSeq = sbn.getNotification().extras.getCharSequence("android.title");
         CharSequence textSeq = sbn.getNotification().extras.getCharSequence("android.text");
@@ -54,6 +58,19 @@ public class NotificationListener extends NotificationListenerService {
         String messageBody = textSeq != null ? textSeq.toString() : "";
 
         if (messageBody == null || messageBody.trim().isEmpty()) return;
+
+        // -----------------------------------------------------------------
+        // FILTER OUT ANDROID SYSTEM PRIVACY REDACTION PLACEHOLDERS
+        // -----------------------------------------------------------------
+        String lowerBody = messageBody.toLowerCase().trim();
+        if (lowerBody.contains("content hidden") || 
+            lowerBody.contains("sensitive notification") ||
+            lowerBody.equals("view messages") || 
+            lowerBody.equals("new message") || 
+            lowerBody.equals("message received")) {
+            Log.d("PHISHGUARD", "Ignored Android system privacy placeholder notification.");
+            return;
+        }
 
         // -----------------------------------------------------------------
         // BLOCKED SENDER CHECK & SUPPRESSION MECHANISM

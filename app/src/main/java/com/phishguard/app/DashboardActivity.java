@@ -1,11 +1,13 @@
 package com.phishguard.app;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -20,6 +22,16 @@ public class DashboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
+        // Auto Request Runtime Permissions for SMS Interception & High Risk Alert Notifications
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            String[] permissions = new String[]{
+                    android.Manifest.permission.RECEIVE_SMS,
+                    android.Manifest.permission.READ_SMS,
+                    android.Manifest.permission.POST_NOTIFICATIONS
+            };
+            ActivityCompat.requestPermissions(this, permissions, 101);
+        }
 
         PhishGuardDataStore.getInstance().init(this);
         PhishGuardDataStore.getInstance().setDataChangeListener(this::loadDashboardStats);
