@@ -50,6 +50,31 @@ public class PhishGuardDataStore {
         }
     }
 
+    // Helper for Privacy & Google Play Store Compliance PII Masking
+    public static String maskPhoneNumber(String sender) {
+        if (sender == null || sender.trim().isEmpty()) return "SMS Sender";
+        String clean = sender.trim();
+        if (clean.matches("^\\+?\\d{7,15}$")) {
+            int len = clean.length();
+            if (len > 6) {
+                String prefix = clean.substring(0, Math.min(5, len - 4));
+                String suffix = clean.substring(len - 2);
+                return prefix + "*** ***" + suffix;
+            }
+        }
+        return clean;
+    }
+
+    // Short preview helper for Cloud DB Privacy Hardening
+    public static String getSafeCloudPreview(String message) {
+        if (message == null || message.trim().isEmpty()) return "Scanned Content";
+        String clean = message.trim();
+        if (clean.length() > 35) {
+            return clean.substring(0, 35) + "...";
+        }
+        return clean;
+    }
+
     public void startRealtimeFirestoreSync(Context context) {
         String userEmail = AuthManager.getUserEmail(context);
         if (userEmail == null || userEmail.isEmpty()) return;

@@ -29,7 +29,7 @@ public class SmsReceiver extends BroadcastReceiver {
         Log.e("PHISHGUARD_SMS", "=================================================");
 
         if (intent == null || intent.getAction() == null) return;
-        
+
         String action = intent.getAction();
         if (!"android.provider.Telephony.SMS_RECEIVED".equals(action) && !"android.intent.action.DATA_SMS_RECEIVED".equals(action)) {
             return;
@@ -44,7 +44,7 @@ public class SmsReceiver extends BroadcastReceiver {
 
             String format = bundle.getString("format");
             StringBuilder fullMessage = new StringBuilder();
-            String sender = "SMS Sender";
+            String rawSender = "SMS Sender";
 
             for (Object pdu : pdus) {
                 SmsMessage smsMessage;
@@ -55,7 +55,7 @@ public class SmsReceiver extends BroadcastReceiver {
                 }
                 if (smsMessage != null) {
                     if (smsMessage.getOriginatingAddress() != null) {
-                        sender = smsMessage.getOriginatingAddress();
+                        rawSender = smsMessage.getOriginatingAddress();
                     }
                     fullMessage.append(smsMessage.getMessageBody());
                 }
@@ -64,17 +64,18 @@ public class SmsReceiver extends BroadcastReceiver {
             String messageBody = fullMessage.toString().trim();
             if (messageBody.isEmpty()) return;
 
-            Log.e("PHISHGUARD_SMS", "Sender: " + sender);
-            Log.e("PHISHGUARD_SMS", "Content: " + messageBody);
+            String maskedSender = PhishGuardDataStore.maskPhoneNumber(rawSender);
+            Log.e("PHISHGUARD_SMS", "Masked Sender: " + maskedSender);
+            Log.e("PHISHGUARD_SMS", "Content Snippet: " + PhishGuardDataStore.getSafeCloudPreview(messageBody));
 
             // 1. Check if Sender is Blocked
-            if (PhishGuardDataStore.getInstance().isSenderBlocked(sender)) {
-                Log.e("PHISHGUARD_SMS", "Blocked sender message suppressed: " + sender);
+            if (PhishGuardDataStore.getInstance().isSenderBlocked(rawSender) || PhishGuardDataStore.getInstance().isSenderBlocked(maskedSender)) {
+                Log.e("PHISHGUARD_SMS", "Blocked sender message suppressed: " + rawSender);
                 abortBroadcast();
                 return;
             }
 
-            // 2. On-Device Explainable AI Intent Analysis
+            // 2. On-Device Explainable AI Intent Analysis (100% Local On-Device Processing)
             PhishingAnalyzer.AnalysisResult result = PhishingAnalyzer.analyzeMessage(messageBody);
             Log.e("PHISHGUARD_SMS", "AI Score: " + result.riskScore + " | Level: " + result.riskLevel);
 
@@ -82,10 +83,10 @@ public class SmsReceiver extends BroadcastReceiver {
             String formattedTime = PhishGuardDataStore.getFormattedCurrentTime();
             String dateKey = PhishGuardDataStore.getTodayDateKey();
 
-            // 3. Save locally in DataStore for Mobile App UI
+            // 3. Save locally in DataStore for Mobile App UI (Full local message)
             PhishGuardDataStore.getInstance().addScan(new PhishGuardDataStore.ScanItem(
                     scanId,
-                    sender,
+                    maskedSender,
                     messageBody,
                     result.riskScore,
                     result.riskLevel,
@@ -94,14 +95,14 @@ public class SmsReceiver extends BroadcastReceiver {
                     result.threatType
             ));
 
-            // 4. Sync to Firebase Firestore for Real-Time Cross-Platform Parity
+            // 4. Cloud Database Privacy Hardening (Firebase Firestore): PII Masked & Truncated Safe Snippet Only
             String userEmail = AuthManager.getUserEmail(context);
             if (userEmail != null && !userEmail.isEmpty()) {
                 try {
                     Map<String, Object> scanDoc = new HashMap<>();
                     scanDoc.put("userEmail", userEmail);
-                    scanDoc.put("sender", sender);
-                    scanDoc.put("message", messageBody);
+                    scanDoc.put("sender", maskedSender); // Masked PII
+                    scanDoc.put("message", PhishGuardDataStore.getSafeCloudPreview(messageBody)); // Short safe snippet
                     scanDoc.put("riskScore", result.riskScore);
                     scanDoc.put("riskLevel", result.riskLevel);
                     scanDoc.put("threatType", result.threatType);
@@ -119,7 +120,7 @@ public class SmsReceiver extends BroadcastReceiver {
             if (result.riskScore >= 60 || "HIGH RISK".equalsIgnoreCase(result.riskLevel)) {
                 PhishGuardDataStore.getInstance().addNotification(new PhishGuardDataStore.NotificationItem(
                         "🚨 Phishing SMS Alert",
-                        "High Risk SMS from " + sender + " (" + result.threatType + " - Risk Score: " + result.riskScore + "/100)",
+                        "High Risk SMS from " + maskedSender + " (" + result.threatType + " - Risk Score: " + result.riskScore + "/100)",
                         formattedTime,
                         dateKey,
                         "threat"
@@ -138,7 +139,7 @@ public class SmsReceiver extends BroadcastReceiver {
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
                         .setSmallIcon(android.R.drawable.ic_dialog_alert)
                         .setContentTitle("🚨 PhishGuard Threat Alert!")
-                        .setContentText("High Risk SMS Intercepted from " + sender + " (" + result.riskScore + "/100)")
+                        .setContentText("High Risk SMS Intercepted from " + maskedSender + " (" + result.riskScore + "/100)")
                         .setSubText(result.threatType)
                         .setStyle(new NotificationCompat.BigTextStyle().bigText(messageBody))
                         .setPriority(NotificationCompat.PRIORITY_HIGH)
