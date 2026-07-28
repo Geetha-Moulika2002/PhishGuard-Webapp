@@ -179,6 +179,20 @@
 
             </RelativeLayout>
 
+            <!-- Forgot Password Option Link -->
+            <TextView
+                android:id="@+id/tvForgotPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="8dp"
+                android:text="Forgot Password?"
+                android:textColor="#3B82F6"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:clickable="true"
+                android:focusable="true"/>
+
             <!-- Password Strength Rules Checklist (Visible in Register Mode) -->
             <LinearLayout
                 android:id="@+id/layoutPasswordRules"

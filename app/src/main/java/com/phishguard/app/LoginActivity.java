@@ -33,7 +33,7 @@ import java.util.Map;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText etEmail, etPassword, etFullName;
-    private TextView lblFullName, tvSubtitle, tabLogin, tabRegister, tvTogglePassword;
+    private TextView lblFullName, tvSubtitle, tabLogin, tabRegister, tvTogglePassword, tvForgotPassword;
     private TextView ruleLength, ruleCase, ruleNumberSymbol;
     private LinearLayout layoutPasswordRules;
     private Button btnLogin;
@@ -64,6 +64,7 @@ public class LoginActivity extends AppCompatActivity {
         lblFullName = findViewById(R.id.lblFullName);
         tvSubtitle = findViewById(R.id.tvSubtitle);
         tvTogglePassword = findViewById(R.id.tvTogglePassword);
+        tvForgotPassword = findViewById(R.id.tvForgotPassword);
 
         layoutPasswordRules = findViewById(R.id.layoutPasswordRules);
         ruleLength = findViewById(R.id.ruleLength);
@@ -77,7 +78,21 @@ public class LoginActivity extends AppCompatActivity {
         progressAuth = findViewById(R.id.progressAuth);
 
         // Password visibility toggle
-        tvTogglePassword.setOnClickListener(v -> togglePasswordVisibility());
+        if (tvTogglePassword != null) {
+            tvTogglePassword.setOnClickListener(v -> togglePasswordVisibility());
+        }
+
+        // Forgot Password link click
+        if (tvForgotPassword != null) {
+            tvForgotPassword.setOnClickListener(v -> {
+                Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
+                String email = etEmail.getText() != null ? etEmail.getText().toString().trim() : "";
+                if (!email.isEmpty()) {
+                    intent.putExtra("email", email);
+                }
+                startActivity(intent);
+            });
+        }
 
         // Real-time password strength watcher
         etPassword.addTextChangedListener(new TextWatcher() {
@@ -128,6 +143,7 @@ public class LoginActivity extends AppCompatActivity {
             lblFullName.setVisibility(View.VISIBLE);
             etFullName.setVisibility(View.VISIBLE);
             layoutPasswordRules.setVisibility(View.VISIBLE);
+            if (tvForgotPassword != null) tvForgotPassword.setVisibility(View.GONE);
 
             tvSubtitle.setText("Create a secure account to protect your SMS communications");
             btnLogin.setText("Register & Create Account");
@@ -142,6 +158,7 @@ public class LoginActivity extends AppCompatActivity {
             lblFullName.setVisibility(View.GONE);
             etFullName.setVisibility(View.GONE);
             layoutPasswordRules.setVisibility(View.GONE);
+            if (tvForgotPassword != null) tvForgotPassword.setVisibility(View.VISIBLE);
 
             tvSubtitle.setText("Sign in to activate real-time phishing protection");
             btnLogin.setText("Sign In & Continue");
