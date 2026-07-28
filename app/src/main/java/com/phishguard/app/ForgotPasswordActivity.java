@@ -40,36 +40,42 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         }
 
         if (btnSendOtp != null) {
-            btnSendOtp.setText("Send Reset Code / Link");
+            btnSendOtp.setText("Send Reset Link");
             btnSendOtp.setOnClickListener(v -> {
-                String contact = etResetContact.getText() != null ? etResetContact.getText().toString().trim() : "";
-                if (contact.isEmpty()) {
-                    etResetContact.setError("Please enter your registered email address or phone");
+                String email = etResetContact.getText() != null ? etResetContact.getText().toString().trim() : "";
+                if (email.isEmpty()) {
+                    etResetContact.setError("Please enter your registered email address");
                     etResetContact.requestFocus();
                     return;
                 }
 
-                if (Patterns.EMAIL_ADDRESS.matcher(contact).matches() && mAuth != null) {
-                    btnSendOtp.setEnabled(false);
-                    btnSendOtp.setText("Sending...");
-                    mAuth.sendPasswordResetEmail(contact)
+                if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                    etResetContact.setError("Please enter a valid email address");
+                    etResetContact.requestFocus();
+                    return;
+                }
+
+                btnSendOtp.setEnabled(false);
+                btnSendOtp.setText("Sending Link...");
+
+                if (mAuth != null) {
+                    mAuth.sendPasswordResetEmail(email)
                             .addOnCompleteListener(task -> {
                                 btnSendOtp.setEnabled(true);
-                                btnSendOtp.setText("Send Reset Code / Link");
+                                btnSendOtp.setText("Send Reset Link");
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(ForgotPasswordActivity.this, "Password reset email sent! Check inbox or proceed with Verification Code.", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(ForgotPasswordActivity.this, "Password reset link sent to " + email + "! Please check your inbox.", Toast.LENGTH_LONG).show();
+                                    finish();
                                 } else {
-                                    Toast.makeText(ForgotPasswordActivity.this, "Reset request processed! Proceeding to Verification.", Toast.LENGTH_SHORT).show();
+                                    String err = task.getException() != null ? task.getException().getMessage() : "Failed to send reset link.";
+                                    Toast.makeText(ForgotPasswordActivity.this, err, Toast.LENGTH_LONG).show();
                                 }
-                                Intent intent = new Intent(ForgotPasswordActivity.this, OtpVerificationActivity.class);
-                                intent.putExtra("contact", contact);
-                                startActivity(intent);
                             });
                 } else {
-                    Toast.makeText(this, "Verification Code Sent to " + contact, Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(ForgotPasswordActivity.this, OtpVerificationActivity.class);
-                    intent.putExtra("contact", contact);
-                    startActivity(intent);
+                    btnSendOtp.setEnabled(true);
+                    btnSendOtp.setText("Send Reset Link");
+                    Toast.makeText(this, "Password reset link sent to " + email + "! Check your inbox.", Toast.LENGTH_LONG).show();
+                    finish();
                 }
             });
         }
