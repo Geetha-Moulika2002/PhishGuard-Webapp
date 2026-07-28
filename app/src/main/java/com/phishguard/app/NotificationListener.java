@@ -54,8 +54,31 @@ public class NotificationListener extends NotificationListenerService {
         String packageName = sbn.getPackageName();
         if (getPackageName().equals(packageName)) return;
 
+        // Filter out system UI, charging, battery, downloads, and OS settings notifications
+        if (packageName.equals("android") || 
+            packageName.equals("com.android.systemui") || 
+            packageName.equals("com.android.providers.downloads") || 
+            packageName.equals("com.android.settings") ||
+            packageName.contains("battery") ||
+            packageName.contains("power")) {
+            return;
+        }
+
         Notification notif = sbn.getNotification();
         if (notif == null) return;
+
+        // Must be an SMS / Telephony messaging application or SMS category 'msg'
+        String category = notif.category;
+        boolean isSmsApp = packageName.contains("messaging") || 
+                           packageName.contains("mms") || 
+                           packageName.contains("sms") || 
+                           packageName.contains("telephony") || 
+                           packageName.contains("truecaller") || 
+                           packageName.contains("rcs") ||
+                           "msg".equalsIgnoreCase(category) ||
+                           Notification.CATEGORY_MESSAGE.equals(category);
+
+        if (!isSmsApp) return;
 
         Bundle extras = notif.extras;
         if (extras == null) return;
@@ -88,24 +111,18 @@ public class NotificationListener extends NotificationListenerService {
 
         if (messageBody == null || messageBody.trim().isEmpty()) return;
 
-        // -----------------------------------------------------------------
-        // FILTER OUT ANDROID SYSTEM PRIVACY PLACEHOLDERS ONLY
-        // -----------------------------------------------------------------
+        // Filter out system privacy placeholder notifications
         String lowerBody = messageBody.toLowerCase().trim();
         if (lowerBody.contains("sensitive notification") || 
             lowerBody.equals("content hidden") ||
             (lowerBody.equals("view messages") && rawSender.equalsIgnoreCase("Messages"))) {
-            Log.d("PHISHGUARD", "Ignored Android system privacy placeholder notification.");
             return;
         }
 
         String maskedSender = PhishGuardDataStore.maskPhoneNumber(rawSender);
 
-        // -----------------------------------------------------------------
-        // BLOCKED SENDER CHECK & SUPPRESSION MECHANISM
-        // -----------------------------------------------------------------
+        // Check if sender is blocked
         if (PhishGuardDataStore.getInstance().isSenderBlocked(rawSender) || PhishGuardDataStore.getInstance().isSenderBlocked(maskedSender)) {
-            Log.d("PHISHGUARD", "Blocked sender message intercepted: " + rawSender);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 try {
                     cancelNotification(sbn.getKey());
@@ -120,16 +137,16 @@ public class NotificationListener extends NotificationListenerService {
             messageBody = messageBody.substring(0, MAX_PREVIEW_LENGTH);
         }
 
-        Log.d("PHISHGUARD", "Notification Intercepted Message: [" + maskedSender + "] " + messageBody);
+        Log.d("PHISHGUARD", "Notification Intercepted SMS: [" + maskedSender + "] " + messageBody);
 
-        // On-Device Explainable AI Intent Risk Analysis (100% Local On-Device Processing)
+        // On-Device Explainable AI Risk Analysis
         PhishingAnalyzer.AnalysisResult result = PhishingAnalyzer.analyzeMessage(messageBody);
 
         String scanId = String.valueOf(System.currentTimeMillis());
         String formattedTime = PhishGuardDataStore.getFormattedCurrentTime();
         String dateKey = PhishGuardDataStore.getTodayDateKey();
 
-        // 1. Save locally in DataStore for Mobile App UI (Full local message)
+        // 1. Save locally in DataStore for Mobile App UI
         PhishGuardDataStore.getInstance().addScan(new PhishGuardDataStore.ScanItem(
                 scanId,
                 maskedSender,
@@ -141,14 +158,14 @@ public class NotificationListener extends NotificationListenerService {
                 result.threatType
         ));
 
-        // 2. Cloud Database Privacy Hardening (Firebase Firestore): PII Masked & Short Safe Snippet
+        // 2. Cloud Database Safe Snippet Sync
         String userEmail = AuthManager.getUserEmail(this);
         if (userEmail != null && !userEmail.isEmpty()) {
             try {
                 Map<String, Object> scanDoc = new HashMap<>();
                 scanDoc.put("userEmail", userEmail);
-                scanDoc.put("sender", maskedSender); // Masked PII
-                scanDoc.put("message", PhishGuardDataStore.getSafeCloudPreview(messageBody)); // Short safe snippet
+                scanDoc.put("sender", maskedSender);
+                scanDoc.put("message", PhishGuardDataStore.getSafeCloudPreview(messageBody));
                 scanDoc.put("riskScore", result.riskScore);
                 scanDoc.put("riskLevel", result.riskLevel);
                 scanDoc.put("threatType", result.threatType);
@@ -162,7 +179,7 @@ public class NotificationListener extends NotificationListenerService {
             }
         }
 
-        // 3. High Risk Phishing Alert Notification Trigger (score >= 60 or High Risk)
+        // 3. High Risk Alert Trigger
         if (result.riskScore >= 60 || "HIGH RISK".equalsIgnoreCase(result.riskLevel)) {
             PhishGuardDataStore.getInstance().addNotification(new PhishGuardDataStore.NotificationItem(
                     "⚠️ High Risk Phishing Alert",

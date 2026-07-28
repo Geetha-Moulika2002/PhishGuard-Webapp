@@ -41,11 +41,20 @@ public class PhishGuardDataStore {
     }
 
     public void init(Context context) {
-        if (context != null && prefs == null) {
-            prefs = context.getApplicationContext().getSharedPreferences("PhishGuardDataStorePrefs", Context.MODE_PRIVATE);
-            loadDataFromPrefs();
-        }
         if (context != null) {
+            String userEmail = AuthManager.getUserEmail(context);
+            String safeKey = "PhishGuardDataStorePrefs";
+            if (userEmail != null && !userEmail.isEmpty()) {
+                safeKey = "PhishGuardDataStorePrefs_" + userEmail.toLowerCase().replaceAll("[^a-z0-9]", "_");
+            }
+
+            if (prefs == null || (userEmail != null && !userEmail.equals(activeSyncEmail))) {
+                prefs = context.getApplicationContext().getSharedPreferences(safeKey, Context.MODE_PRIVATE);
+                scanHistory.clear();
+                blockedSenders.clear();
+                notifications.clear();
+                loadDataFromPrefs();
+            }
             startRealtimeFirestoreSync(context);
         }
     }
@@ -83,7 +92,7 @@ public class PhishGuardDataStore {
         activeSyncEmail = userEmail;
 
         try {
-            // Sync Scans Real-time from Firebase Firestore ("scans") without wiping local unsynced scans
+            // Sync Scans Real-time from Firebase Firestore ("scans") for the SPECIFIC logged-in user
             FirebaseFirestore.getInstance().collection("scans")
                     .whereEqualTo("userEmail", userEmail)
                     .addSnapshotListener((value, error) -> {
@@ -121,7 +130,7 @@ public class PhishGuardDataStore {
                         notifyListener();
                     });
 
-            // Sync Blocked Senders Real-time from Firebase Firestore ("blocked_senders")
+            // Sync Blocked Senders Real-time from Firebase Firestore ("blocked_senders") for SPECIFIC user
             FirebaseFirestore.getInstance().collection("blocked_senders")
                     .whereEqualTo("userEmail", userEmail)
                     .addSnapshotListener((value, error) -> {

@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class DashboardActivity extends AppCompatActivity {
 
@@ -138,7 +140,7 @@ public class DashboardActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         registerDynamicSmsReceiver();
-        PhishGuardDataStore.getInstance().startRealtimeFirestoreSync(this);
+        PhishGuardDataStore.getInstance().init(this);
         updateUserHeader();
         loadDashboardStats();
     }
@@ -173,11 +175,23 @@ public class DashboardActivity extends AppCompatActivity {
         String userName = AuthManager.getUserName(this);
         String userEmail = AuthManager.getUserEmail(this);
 
+        FirebaseUser fbUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (fbUser != null && fbUser.getDisplayName() != null && !fbUser.getDisplayName().trim().isEmpty()) {
+            userName = fbUser.getDisplayName().trim();
+        } else if (userName == null || userName.trim().isEmpty() || userName.equalsIgnoreCase("User") || userName.equalsIgnoreCase("Protected User")) {
+            if (userEmail != null && userEmail.contains("@")) {
+                String prefix = userEmail.split("@")[0];
+                if (!prefix.isEmpty()) {
+                    userName = prefix.substring(0, 1).toUpperCase() + prefix.substring(1);
+                }
+            }
+        }
+
         if (tvUserWelcome != null) {
-            tvUserWelcome.setText("Welcome Back, " + userName);
+            tvUserWelcome.setText("Welcome Back, " + (userName != null ? userName : "User"));
         }
         if (tvUserEmail != null) {
-            tvUserEmail.setText(userEmail);
+            tvUserEmail.setText(userEmail != null ? userEmail : "");
         }
     }
 
