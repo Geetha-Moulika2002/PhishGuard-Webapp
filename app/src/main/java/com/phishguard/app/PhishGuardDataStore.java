@@ -22,6 +22,7 @@ public class PhishGuardDataStore {
     private static PhishGuardDataStore instance;
     private SharedPreferences prefs;
     private String activeSyncEmail = null;
+    private String emergencyContact = "";
 
     public interface DataChangeListener {
         void onDataChanged();
@@ -134,6 +135,11 @@ public class PhishGuardDataStore {
             this.dateKey = dateKey;
             this.threatType = threatType;
         }
+
+        // Overloaded 7-argument constructor for QrScannerActivity
+        public ScanItem(String id, String sender, String message, int score, String riskLevel, String timestamp, String dateKey) {
+            this(id, sender, message, score, riskLevel, timestamp, dateKey, "Scanned QR / Message");
+        }
     }
 
     public static class NotificationItem {
@@ -193,6 +199,7 @@ public class PhishGuardDataStore {
         public String title;
         public String description;
         public String timestamp;
+        public String time;
         public String status;
 
         public TimelineEvent(String id, String title, String description, String timestamp, String status) {
@@ -200,7 +207,18 @@ public class PhishGuardDataStore {
             this.title = title;
             this.description = description;
             this.timestamp = timestamp;
+            this.time = timestamp;
             this.status = status;
+        }
+    }
+
+    public static class TrustedContact {
+        public String name;
+        public String phone;
+
+        public TrustedContact(String name, String phone) {
+            this.name = name;
+            this.phone = phone;
         }
     }
 
@@ -209,6 +227,7 @@ public class PhishGuardDataStore {
     private final List<BlockedSender> blockedSenders = new ArrayList<>();
     private final List<ScamReport> scamReports = new ArrayList<>();
     private final List<TimelineEvent> timelineEvents = new ArrayList<>();
+    private final List<TrustedContact> trustedContacts = new ArrayList<>();
 
     private PhishGuardDataStore() {
         // Zero-start new profiles: No initial dummy items!
@@ -236,6 +255,11 @@ public class PhishGuardDataStore {
     public List<BlockedSender> getBlockedSenders() { return blockedSenders; }
     public List<ScamReport> getScamReports() { return scamReports; }
     public List<TimelineEvent> getTimelineEvents() { return timelineEvents; }
+    public List<TrustedContact> getTrustedContacts() { return trustedContacts; }
+
+    public String getEmergencyContact() { return emergencyContact; }
+    public void setEmergencyContact(String contact) { this.emergencyContact = contact; }
+    public void addTrustedContact(TrustedContact contact) { trustedContacts.add(contact); }
 
     public int getSecurityScore() {
         int baseScore = 80;
