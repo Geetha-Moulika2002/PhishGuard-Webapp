@@ -10,8 +10,9 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="24dp"
-        android:gravity="center_horizontal">
+        android:gravity="center">
 
+        <!-- Dramatic Red Alert Header -->
         <TextView
             android:id="@+id/tvAlertHeader"
             android:layout_width="wrap_content"
@@ -29,18 +30,18 @@
             android:layout_height="wrap_content"
             android:text="BLOCKED SENDER &amp; THREAT INTERCEPTED"
             android:textColor="#FECDD3"
-            android:textSize="14sp"
+            android:textSize="13sp"
             android:textStyle="bold"
             android:layout_marginTop="6dp"/>
 
-        <!-- Sender Detail Card -->
+        <!-- Box 1: Sender Name & Status -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="#7F1D1D"
             android:padding="20dp"
-            android:layout_marginTop="24dp">
+            android:layout_marginTop="28dp">
 
             <TextView
                 android:id="@+id/tvSenderHeader"
@@ -48,88 +49,55 @@
                 android:layout_height="wrap_content"
                 android:text="Sender: Blocked Scammer"
                 android:textColor="#FFFFFF"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/tvRiskScore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Status: 🛡️ Notification Silenced &amp; Message Quarantined"
+                android:text="Status: 🛡️ Blocked Sender (Quarantined)"
                 android:textColor="#6EE7B7"
-                android:textSize="13sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 android:layout_marginTop="8dp"/>
 
         </LinearLayout>
 
-        <!-- User Safety Action Warning Card -->
+        <!-- Box 2: Clean Bold Warning -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="#7F1D1D"
-            android:padding="20dp"
-            android:layout_marginTop="16dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="⚠️ URGENT USER SAFETY WARNING"
-                android:textColor="#FCA5A5"
-                android:textStyle="bold"
-                android:textSize="15sp"/>
+            android:padding="24dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center">
 
             <TextView
                 android:id="@+id/tvUserWarningText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="🚫 DO NOT CLICK OR OPEN ANY MESSAGES FROM THIS SENDER!\n\n❌ Do NOT click any links inside the SMS\n❌ Do NOT share OTPs or bank details\n❌ Do NOT reply or call back this sender"
+                android:text="🚫 DO NOT CLICK ON MESSAGES FROM THIS SENDER!\n\n⚠️ THIS SENDER IS HARMFUL."
                 android:textColor="#FFFFFF"
-                android:textSize="14sp"
-                android:layout_marginTop="10dp"/>
-
-        </LinearLayout>
-
-        <!-- Blocked Message Preview -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="#7F1D1D"
-            android:padding="20dp"
-            android:layout_marginTop="16dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Blocked SMS Preview"
-                android:textColor="#7DD3FC"
+                android:textSize="18sp"
                 android:textStyle="bold"
-                android:textSize="14sp"/>
-
-            <TextView
-                android:id="@+id/tvAlertMessageBody"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="[Message Content Suppressed]"
-                android:textColor="#E2E8F0"
-                android:textSize="13sp"
-                android:layout_marginTop="8dp"/>
+                android:gravity="center"/>
 
         </LinearLayout>
 
+        <!-- Dismiss Button -->
         <android.widget.Button
             android:id="@+id/btnDismissAlert"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:text="DISMISS SECURITY WARNING"
+            android:text="DISMISS WARNING"
             android:textAllCaps="false"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:background="@drawable/bg_button_primary"
             android:textColor="#FFFFFF"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="32dp"
             android:layout_marginBottom="24dp"/>
 
     </LinearLayout>

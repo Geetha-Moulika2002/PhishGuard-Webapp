@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class AlertActivity extends AppCompatActivity {
 
-    private TextView tvSenderHeader, tvRiskScore, tvAlertMessageBody;
+    private TextView tvSenderHeader, tvRiskScore, tvUserWarningText;
     private Button btnDismissAlert;
     private Ringtone ringtone;
 
@@ -38,26 +38,26 @@ public class AlertActivity extends AppCompatActivity {
 
         tvSenderHeader = findViewById(R.id.tvSenderHeader);
         tvRiskScore = findViewById(R.id.tvRiskScore);
-        tvAlertMessageBody = findViewById(R.id.tvAlertMessageBody);
+        tvUserWarningText = findViewById(R.id.tvUserWarningText);
         btnDismissAlert = findViewById(R.id.btnDismissAlert);
 
         String sender = getIntent().getStringExtra("sender");
-        String message = getIntent().getStringExtra("message");
-        int score = getIntent().getIntExtra("risk_score", 98);
+        if (sender == null || sender.trim().isEmpty()) sender = "Blocked Sender";
+
         boolean isBlocked = getIntent().getBooleanExtra("is_blocked_alert", true);
 
-        if (tvSenderHeader != null && sender != null) {
+        if (tvSenderHeader != null) {
             tvSenderHeader.setText("Sender: " + sender);
-        }
-        if (tvAlertMessageBody != null && message != null) {
-            tvAlertMessageBody.setText(message);
         }
         if (tvRiskScore != null) {
             if (isBlocked) {
-                tvRiskScore.setText("Status: 🛡️ Notification Silenced & Message Quarantined");
+                tvRiskScore.setText("Status: 🛡️ Blocked Sender (Quarantined)");
             } else {
-                tvRiskScore.setText("Status: 🚨 Phishing Threat Detected (Risk: " + score + "%)");
+                tvRiskScore.setText("Status: 🚨 Phishing Threat Detected");
             }
+        }
+        if (tvUserWarningText != null) {
+            tvUserWarningText.setText("🚫 DO NOT CLICK ON MESSAGES FROM " + sender.toUpperCase() + "!\n\n⚠️ THIS SENDER IS HARMFUL.");
         }
 
         // Play PhishGuard Custom Audio Siren Alert on Interception
