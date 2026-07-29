@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -37,6 +38,26 @@ public class BlockedSendersActivity extends AppCompatActivity {
 
         renderBlockedList();
 
+        // 1. Real-time Firestore Sync for Blocked Senders across Mobile & Web
+        String userEmail = AuthManager.getUserEmail(this);
+        FirebaseFirestore.getInstance().collection("blocked_senders")
+                .whereEqualTo("userEmail", userEmail)
+                .addSnapshotListener((snapshot, error) -> {
+                    if (error != null || snapshot == null) return;
+                    List<PhishGuardDataStore.BlockedSender> storeList = PhishGuardDataStore.getInstance().getBlockedSenders();
+                    storeList.clear();
+                    for (DocumentSnapshot doc : snapshot.getDocuments()) {
+                        String phone = doc.getString("phoneOrHeader");
+                        String reason = doc.getString("reason");
+                        if (phone != null) {
+                            storeList.add(new PhishGuardDataStore.BlockedSender(
+                                    phone, reason != null ? reason : "Blocked Sender", "Today", PhishGuardDataStore.getTodayDateKey()
+                            ));
+                        }
+                    }
+                    renderBlockedList();
+                });
+
         if (btnAddBlocked != null) {
             btnAddBlocked.setOnClickListener(v -> {
                 String newSender = etNewSender != null ? etNewSender.getText().toString().trim() : "";
@@ -45,12 +66,12 @@ public class BlockedSendersActivity extends AppCompatActivity {
                     return;
                 }
 
-                // 1. Add to Local DataStore Database
+                // Add to Local DataStore Database
                 PhishGuardDataStore.getInstance().addBlockedSender(new PhishGuardDataStore.BlockedSender(
                         newSender, "Manually added by user", "Today", PhishGuardDataStore.getTodayDateKey()
                 ));
 
-                // 2. Add to Firebase Firestore Database ("blocked_senders" collection)
+                // Add to Firebase Firestore Database ("blocked_senders" collection)
                 try {
                     Map<String, Object> map = new HashMap<>();
                     map.put("phoneOrHeader", newSender);
@@ -132,12 +153,24 @@ public class BlockedSendersActivity extends AppCompatActivity {
                 Button btnUnblock = new Button(this);
                 btnUnblock.setText("Unblock");
                 btnUnblock.setTextSize(12);
-                btnUnblock.setTextColor(android.graphics.Color.parseColor("#38BDF8"));
+                btnUnblock.setTextColor(android.graphics.Color.parseColor("#EF4444"));
                 btnUnblock.setBackgroundResource(R.drawable.bg_card_dark);
                 btnUnblock.setOnClickListener(v -> {
+                    String senderHeader = sender.phoneOrHeader;
                     PhishGuardDataStore.getInstance().getBlockedSenders().remove(index);
                     renderBlockedList();
-                    Toast.makeText(this, "Unblocked " + sender.phoneOrHeader, Toast.LENGTH_SHORT).show();
+
+                    // Delete from Firebase Firestore Across Mobile & Web
+                    FirebaseFirestore.getInstance().collection("blocked_senders")
+                            .whereEqualTo("userEmail", AuthManager.getUserEmail(BlockedSendersActivity.this))
+                            .whereEqualTo("phoneOrHeader", senderHeader)
+                            .get().addOnSuccessListener(snapshot -> {
+                                for (DocumentSnapshot doc : snapshot.getDocuments()) {
+                                    doc.getReference().delete();
+                                }
+                            });
+
+                    Toast.makeText(this, "Unblocked " + senderHeader, Toast.LENGTH_SHORT).show();
                 });
 
                 card.addView(textCol);

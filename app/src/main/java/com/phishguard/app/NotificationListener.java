@@ -54,11 +54,15 @@ public class NotificationListener extends NotificationListenerService {
         String packageName = sbn.getPackageName();
         if (getPackageName().equals(packageName)) return;
 
-        // Filter out system UI, charging, battery, downloads, and OS settings notifications
+        // Filter out system UI, charging, battery, WhatsApp, Instagram, Telegram, and OS settings notifications
         if (packageName.equals("android") || 
             packageName.equals("com.android.systemui") || 
             packageName.equals("com.android.providers.downloads") || 
             packageName.equals("com.android.settings") ||
+            packageName.contains("whatsapp") ||
+            packageName.contains("instagram") ||
+            packageName.contains("facebook.orca") ||
+            packageName.contains("telegram") ||
             packageName.contains("battery") ||
             packageName.contains("power")) {
             return;

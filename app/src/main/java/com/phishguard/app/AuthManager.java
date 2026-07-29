@@ -35,7 +35,7 @@ public class AuthManager {
     public static void saveSession(Context context, String email, String name) {
         SharedPreferences.Editor editor = getPrefs(context).edit();
         editor.putBoolean(KEY_IS_LOGGED_IN, true);
-        editor.putString(KEY_USER_EMAIL, email != null ? email.trim() : "user@phishguard.ai");
+        editor.putString(KEY_USER_EMAIL, email != null ? email.trim().toLowerCase() : "user@phishguard.ai");
         editor.putString(KEY_USER_NAME, name != null && !name.trim().isEmpty() ? name.trim() : extractNameFromEmail(email));
         editor.putString(KEY_SESSION_TOKEN, "PG-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase());
         editor.putLong(KEY_LOGIN_TIME, System.currentTimeMillis());
@@ -47,7 +47,8 @@ public class AuthManager {
     }
 
     public static String getUserEmail(Context context) {
-        return getPrefs(context).getString(KEY_USER_EMAIL, "user@phishguard.ai");
+        String email = getPrefs(context).getString(KEY_USER_EMAIL, "user@phishguard.ai");
+        return email != null ? email.trim().toLowerCase() : "user@phishguard.ai";
     }
 
     public static String getUserName(Context context) {

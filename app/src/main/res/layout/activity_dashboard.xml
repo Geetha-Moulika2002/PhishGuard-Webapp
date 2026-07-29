@@ -84,7 +84,7 @@
 
             </LinearLayout>
 
-            <!-- Protection Status Card -->
+            <!-- Protection Status Card (Hidden) -->
             <LinearLayout
                 android:id="@+id/cardSecurityScore"
                 android:layout_width="match_parent"
@@ -93,6 +93,7 @@
                 android:background="@drawable/bg_card_dark"
                 android:padding="20dp"
                 android:layout_marginTop="20dp"
+                android:visibility="gone"
                 android:clickable="true"
                 android:focusable="true">
 
@@ -339,7 +340,7 @@
 
                 </LinearLayout>
 
-                <!-- 4. Security Center -->
+                <!-- 4. Security Center (Hidden) -->
                 <LinearLayout
                     android:id="@+id/cardSecurityCenter"
                     android:layout_width="0dp"
@@ -349,7 +350,8 @@
                     android:gravity="center"
                     android:orientation="vertical"
                     android:background="@drawable/bg_card_dark"
-                    android:padding="8dp">
+                    android:padding="8dp"
+                    android:visibility="gone">
 
                     <ImageView
                         android:layout_width="26dp"

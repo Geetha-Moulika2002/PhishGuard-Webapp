@@ -44,11 +44,22 @@ public class EditProfileActivity extends AppCompatActivity {
                     return;
                 }
 
-                // Save to AuthManager SharedPreferences
-                AuthManager.saveUserLogin(this, newName, newEmail);
+                // Save to AuthManager SharedPreferences (email, name)
+                AuthManager.saveUserLogin(this, newEmail.toLowerCase().trim(), newName);
                 prefs.edit().putString("user_phone", newPhone).apply();
 
-                Toast.makeText(this, "Profile updated successfully!", Toast.LENGTH_SHORT).show();
+                // Sync with Firebase Firestore
+                com.google.firebase.auth.FirebaseUser user = com.google.firebase.auth.FirebaseAuth.getInstance().getCurrentUser();
+                if (user != null) {
+                    java.util.Map<String, Object> update = new java.util.HashMap<>();
+                    update.put("fullName", newName);
+                    update.put("userPhone", newPhone);
+                    com.google.firebase.firestore.FirebaseFirestore.getInstance()
+                        .collection("users").document(user.getUid())
+                        .set(update, com.google.firebase.firestore.SetOptions.merge());
+                }
+
+                Toast.makeText(this, "Profile updated & synced with Cloud!", Toast.LENGTH_SHORT).show();
                 finish();
             });
         }
