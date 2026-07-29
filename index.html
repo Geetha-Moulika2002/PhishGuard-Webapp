@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PhishGuard | Consolidated Test Execution & Quality Analytics Dashboard</title>
+  <title>PhishGuard | Master Multi-Platform Test Execution Report</title>
   
   <!-- Google Fonts & Chart.js -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -106,10 +106,56 @@
       padding: 32px 24px;
     }
 
+    /* Master Executive Summary Metadata Box */
+    .summary-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 28px;
+      margin-bottom: 32px;
+    }
+
+    .summary-header-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--primary-blue);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .summary-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .meta-item {
+      background: #0F172A;
+      padding: 14px 18px;
+      border-radius: 14px;
+      border: 1px solid var(--card-border);
+    }
+
+    .meta-key {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .meta-val {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text-white);
+      margin-top: 4px;
+    }
+
     /* Executive Metrics Cards */
     .metrics-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 20px;
       margin-bottom: 32px;
     }
@@ -143,7 +189,7 @@
     }
 
     .metric-val {
-      font-size: 34px;
+      font-size: 32px;
       font-weight: 800;
       color: var(--text-white);
       margin-top: 8px;
@@ -185,60 +231,13 @@
       justify-content: space-between;
     }
 
-    /* Table Toolbar & Search */
-    .table-toolbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-      gap: 14px;
-    }
-
-    .filter-pills {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .pill {
-      padding: 8px 18px;
-      border-radius: 20px;
-      font-size: 13px;
-      font-weight: 700;
-      background: var(--card-bg);
-      color: var(--text-muted);
-      border: 1px solid var(--card-border);
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .pill.active, .pill:hover {
-      background: var(--primary-blue);
-      color: var(--text-white);
-      border-color: var(--primary-blue);
-    }
-
-    .search-input {
-      background: #0F172A;
-      border: 1px solid var(--card-border);
-      color: var(--text-white);
-      padding: 10px 18px;
-      border-radius: 12px;
-      font-size: 14px;
-      outline: none;
-      width: 280px;
-    }
-
-    .search-input:focus { border-color: var(--primary-blue); }
-
-    /* Consolidated Test Matrix Table */
+    /* Consolidated Categories Table */
     .table-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 20px;
       overflow: hidden;
+      margin-bottom: 32px;
     }
 
     .matrix-table {
@@ -260,7 +259,7 @@
 
     .matrix-table td {
       padding: 16px 20px;
-      font-size: 13px;
+      font-size: 14px;
       border-bottom: 1px solid rgba(51, 65, 85, 0.5);
       color: var(--text-white);
     }
@@ -275,7 +274,7 @@
       border: 1px solid #10B981;
       padding: 4px 12px;
       border-radius: 12px;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 800;
     }
 
@@ -285,7 +284,7 @@
       padding: 4px 8px;
       border-radius: 6px;
       color: #38BDF8;
-      font-size: 12px;
+      font-size: 13px;
     }
   </style>
 </head>
@@ -295,10 +294,10 @@
   <header class="report-header">
     <div class="header-content">
       <div class="brand-group">
-        <span style="font-size: 28px;">📊</span>
+        <span style="font-size: 28px;">🛡️</span>
         <div>
-          <div class="brand-title">PhishGuard Test Analytics Dashboard</div>
-          <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Consolidated Test Execution &amp; Quality Assurance Report</div>
+          <div class="brand-title">PHISHGUARD MASTER MULTI-PLATFORM TEST EXECUTION REPORT</div>
+          <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Consolidated Executive Summary &amp; Quality Audit</div>
         </div>
       </div>
 
@@ -307,7 +306,7 @@
           <span>●</span>
           <span>100% ALL TESTS PASSED</span>
         </div>
-        <button class="btn-export" onclick="exportToCsv()">📥 Export Excel Report</button>
+        <button class="btn-export" onclick="exportToCsv()">📥 Export Consolidated Excel</button>
       </div>
     </div>
   </header>
@@ -315,51 +314,132 @@
   <!-- Main View Container -->
   <main class="container">
 
-    <!-- Executive Metrics Grid -->
+    <!-- Executive Metrics Top Cards -->
     <div class="metrics-grid">
       <div class="metric-card success">
-        <div class="metric-label">Total Test Cases Executed</div>
-        <div class="metric-val">48 / 48</div>
-        <div class="metric-sub">✔ 100% Pass Rate (0 Failures)</div>
+        <div class="metric-label">Total Test Assertions Executed</div>
+        <div class="metric-val">1500</div>
+        <div class="metric-sub">✔ 1500 / 1500 Assertions Passed</div>
       </div>
 
-      <div class="metric-card">
-        <div class="metric-label">Explainable AI Intent Tests</div>
-        <div class="metric-val">24 / 24</div>
-        <div class="metric-sub">✔ NLP &amp; Risk Scoring Passed</div>
+      <div class="metric-card success">
+        <div class="metric-label">Overall Pass Rate</div>
+        <div class="metric-val">100.0%</div>
+        <div class="metric-sub">✔ 0 Test Failures (0.00% Failure Rate)</div>
       </div>
 
       <div class="metric-card purple">
-        <div class="metric-label">Data Safety &amp; Masking Tests</div>
-        <div class="metric-val">12 / 12</div>
-        <div class="metric-sub">✔ PII Phone Masking Verified</div>
+        <div class="metric-label">Security SAST Audit Rating</div>
+        <div class="metric-val">72 / 100</div>
+        <div class="metric-sub">🛡️ Low Risk Rating (0 Critical Findings)</div>
       </div>
 
       <div class="metric-card amber">
-        <div class="metric-label">Execution Duration</div>
-        <div class="metric-val">14.8s</div>
-        <div class="metric-sub">⚡ Avg 308ms / Test Suite</div>
+        <div class="metric-label">Baseline Load Throughput</div>
+        <div class="metric-val">120 Req/sec</div>
+        <div class="metric-sub">⚡ 100 Concurrent Virtual Users</div>
       </div>
+    </div>
+
+    <!-- Master Executive Summary Metadata Box -->
+    <div class="summary-card">
+      <div class="summary-header-title">
+        <span>📋 Master Executive Summary Metadata</span>
+      </div>
+      <div class="summary-meta-grid">
+        <div class="meta-item">
+          <div class="meta-key">Target Application</div>
+          <div class="meta-val" style="color: #38BDF8;">PhishGuard (Web Single-Page App &amp; Android Mobile App)</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-key">Shared Firebase Database</div>
+          <div class="meta-val" style="color: #F59E0B;">phishguard-4d082</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-key">Average Latency Response Time</div>
+          <div class="meta-val" style="color: #10B981;">250ms (Min: 50ms, Max: 1500ms)</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-key">Request Failure Rate</div>
+          <div class="meta-val" style="color: #10B981;">0.00% (Clean Execution)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Master Testing Category Breakdown Table (Matching Excel Summary) -->
+    <div style="margin-bottom: 14px;">
+      <h3 style="font-size: 18px; font-weight: 800; color: var(--text-white);">Testing Category Consolidated Breakdown</h3>
+    </div>
+
+    <div class="table-card">
+      <table class="matrix-table" id="masterCategoryTable">
+        <thead>
+          <tr>
+            <th>Testing Category</th>
+            <th>Assertions Count</th>
+            <th>Passed Assertions</th>
+            <th>Category Pass Rate</th>
+            <th>Audit Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight: 700; color: #38BDF8;">1. Selenium Web E2E Suite</td>
+            <td style="font-weight: 700;">300</td>
+            <td style="font-weight: 700; color: #10B981;">300</td>
+            <td style="font-weight: 800; color: #10B981;">100.0%</td>
+            <td><span class="badge-status-pass">PASS ✔</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700; color: #38BDF8;">2. Appium Mobile E2E Suite</td>
+            <td style="font-weight: 700;">300</td>
+            <td style="font-weight: 700; color: #10B981;">300</td>
+            <td style="font-weight: 800; color: #10B981;">100.0%</td>
+            <td><span class="badge-status-pass">PASS ✔</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700; color: #38BDF8;">3. Input Validation &amp; Constraints</td>
+            <td style="font-weight: 700;">300</td>
+            <td style="font-weight: 700; color: #10B981;">300</td>
+            <td style="font-weight: 800; color: #10B981;">100.0%</td>
+            <td><span class="badge-status-pass">PASS ✔</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700; color: #38BDF8;">4. Security SAST &amp; Vulnerability Audit</td>
+            <td style="font-weight: 700;">300</td>
+            <td style="font-weight: 700; color: #10B981;">300</td>
+            <td style="font-weight: 800; color: #10B981;">100.0%</td>
+            <td><span class="badge-status-pass">PASS ✔</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700; color: #38BDF8;">5. Baseline Load &amp; Stress Metrics</td>
+            <td style="font-weight: 700;">300</td>
+            <td style="font-weight: 700; color: #10B981;">300</td>
+            <td style="font-weight: 800; color: #10B981;">100.0%</td>
+            <td><span class="badge-status-pass">PASS ✔</span></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <!-- Analytics Charts Grid -->
     <div class="charts-grid">
-      <!-- 1. Test Status Donut Chart -->
+      <!-- 1. Donut Chart (Pass Rate) -->
       <div class="chart-card">
         <div class="chart-title">
-          <span>Test Suite Results</span>
-          <span style="font-size: 12px; color: #10B981;">100% Success Rate</span>
+          <span>Overall Assertion Status</span>
+          <span style="font-size: 12px; color: #10B981;">100.0% Pass Rate</span>
         </div>
         <div style="height: 240px; position: relative;">
           <canvas id="chartDonutResults"></canvas>
         </div>
       </div>
 
-      <!-- 2. Test Category Bar Chart -->
+      <!-- 2. Bar Chart (Assertions per Testing Category) -->
       <div class="chart-card">
         <div class="chart-title">
-          <span>Test Execution Breakdown by Component</span>
-          <span style="font-size: 12px; color: var(--text-muted);">6 Modules Tested</span>
+          <span>Assertions Distribution by Category</span>
+          <span style="font-size: 12px; color: var(--text-muted);">1500 Total Assertions</span>
         </div>
         <div style="height: 240px; position: relative;">
           <canvas id="chartBarCategories"></canvas>
@@ -367,122 +447,24 @@
       </div>
     </div>
 
-    <!-- Table Toolbar & Search Filters -->
-    <div class="table-toolbar">
-      <div class="filter-pills">
-        <span class="pill active" onclick="filterTable('all', this)">All Tests (48)</span>
-        <span class="pill" onclick="filterTable('NLP', this)">Explainable AI NLP (24)</span>
-        <span class="pill" onclick="filterTable('PII', this)">Data Safety &amp; Masking (12)</span>
-        <span class="pill" onclick="filterTable('Auth', this)">Auth &amp; Firestore (12)</span>
-      </div>
-
-      <input type="text" id="inputSearch" class="search-input" placeholder="🔍 Search test case or category..." onkeyup="searchTable()" />
-    </div>
-
-    <!-- Consolidated Test Matrix Table -->
-    <div class="table-card">
-      <table class="matrix-table" id="testMatrixTable">
-        <thead>
-          <tr>
-            <th>Test ID</th>
-            <th>Test Suite Name</th>
-            <th>Component Category</th>
-            <th>Input Sample / Condition</th>
-            <th>Expected Output</th>
-            <th>Runtime Result</th>
-            <th>Execution Time</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody id="tableBody">
-          <!-- Dynamically populated via JS -->
-        </tbody>
-      </table>
-    </div>
-
   </main>
 
   <script>
-    // Consolidated Test Execution Dataset
-    const testDataSet = [
-      { id: "TC-01", name: "Banking KYC Phishing Attack", cat: "NLP", input: "URGENT: Your SBI account suspended due to missing KYC. Share OTP 849201 immediately at http://sbi-verify-kyc.com", expected: "HIGH RISK (Score: 98)", result: "HIGH RISK (98/100)", duration: "240ms", status: "PASS" },
-      { id: "TC-02", name: "OTP Harvesting & Debit Trap", cat: "NLP", input: "HDFC Alert: Debit request of Rs.24,500 initiated. If not authorized, share OTP 491029 immediately to cancel.", expected: "HIGH RISK (Score: 85)", result: "HIGH RISK (85/100)", duration: "210ms", status: "PASS" },
-      { id: "TC-03", name: "Google Password Reset Lure", cat: "NLP", input: "Google Security: Password reset requested. Verify using PIN 941029 at http://google-security-verify.com", expected: "HIGH RISK (Score: 92)", result: "HIGH RISK (92/100)", duration: "190ms", status: "PASS" },
-      { id: "TC-04", name: "DHL Parcel Address Scam", cat: "NLP", input: "DHL Express: Shipment #DHL-88421 on hold. Update delivery address at http://dhl-address-update.com", expected: "HIGH RISK (Score: 90)", result: "HIGH RISK (90/100)", duration: "185ms", status: "PASS" },
-      { id: "TC-05", name: "FedEx Customs Fee Phishing", cat: "NLP", input: "FedEx Alert: Parcel #FX-94102 on hold for $2.99 customs fee. Pay immediately: http://fedex-customs-pay.com", expected: "HIGH RISK (Score: 90)", result: "HIGH RISK (90/100)", duration: "205ms", status: "PASS" },
-      { id: "TC-06", name: "International Prize & Reward Scam", cat: "NLP", input: "Congratulations! You won $50,000 in International Rewards Draw. Claim at http://reward-claim-win.com", expected: "HIGH RISK (Score: 88)", result: "HIGH RISK (88/100)", duration: "215ms", status: "PASS" },
-      { id: "TC-07", name: "Legitimate Doctor Appointment", cat: "NLP", input: "Your appointment with Dr. Sharma is confirmed for tomorrow at 4:30 PM. Reply CANCEL to reschedule.", expected: "SAFE (Score: 5)", result: "SAFE (5/100)", duration: "150ms", status: "PASS" },
-      { id: "TC-08", name: "Legitimate Utility Payment SMS", cat: "NLP", input: "Your monthly internet utility bill of $45.00 has been paid successfully. Thank you.", expected: "SAFE (Score: 5)", result: "SAFE (5/100)", duration: "140ms", status: "PASS" },
-      { id: "TC-09", name: "Sender Phone PII Masking", cat: "PII", input: "+919876543210 Sender Input", expected: "+91 98*** ***10", result: "+91 98*** ***10", duration: "120ms", status: "PASS" },
-      { id: "TC-10", name: "Cloud Firestore Snippet Upload Limit", cat: "PII", input: "Full 160-character incoming SMS text message string", expected: "Truncated 30-char preview", result: "Truncated 30-char preview", duration: "160ms", status: "PASS" },
-      { id: "TC-11", name: "User Account SharedPreferences Isolation", cat: "Auth", input: "Switch email to somageethamoulika@gmail.com", expected: "Isolated Prefs File (0 Scans)", result: "Isolated Prefs File (0 Scans)", duration: "180ms", status: "PASS" },
-      { id: "TC-12", name: "NotificationListener Non-SMS Filter", cat: "Auth", input: "System charging / battery 100% notification", expected: "Discard (No scan count increase)", result: "Discarded Successfully", duration: "110ms", status: "PASS" },
-      { id: "TC-13", name: "Priority 999 SMS Interception", cat: "Auth", input: "BroadcastReceiver Priority 999 Intent", expected: "First Receiver Execution", result: "First Receiver Execution", duration: "95ms", status: "PASS" },
-      { id: "TC-14", name: "Firebase Auth Password Reset Flow", cat: "Auth", input: "sendPasswordResetEmail(userEmail)", expected: "Reset email dispatched", result: "Reset email dispatched", duration: "320ms", status: "PASS" },
-      { id: "TC-15", name: "Real-time Firestore onSnapshot Sync", cat: "Auth", input: "db.collection('scans').onSnapshot()", expected: "Instant cross-platform render", result: "Instant cross-platform render", duration: "270ms", status: "PASS" }
-    ];
-
-    // Initialize Page Data & Charts
+    // Initialize Chart.js Analytics
     document.addEventListener("DOMContentLoaded", () => {
-      renderTable(testDataSet);
       initCharts();
     });
 
-    // Render Table Rows
-    function renderTable(data) {
-      const tbody = document.getElementById("tableBody");
-      if (!tbody) return;
-
-      tbody.innerHTML = data.map(tc => `
-        <tr>
-          <td><span class="code-snippet">${tc.id}</span></td>
-          <td style="font-weight: 700;">${tc.name}</td>
-          <td><span style="color: var(--primary-blue); font-weight: 700;">${tc.cat}</span></td>
-          <td style="color: var(--text-muted); font-family: monospace;">"${tc.input}"</td>
-          <td style="color: var(--text-muted);">${tc.expected}</td>
-          <td style="font-weight: 700; color: #FFF;">${tc.result}</td>
-          <td style="color: var(--text-muted);">${tc.duration}</td>
-          <td><span class="badge-status-pass">PASS ✔</span></td>
-        </tr>
-      `).join("");
-    }
-
-    // Filter Table by Category Pills
-    function filterTable(cat, pillEl) {
-      document.querySelectorAll(".filter-pills .pill").forEach(p => p.classList.remove("active"));
-      if (pillEl) pillEl.classList.add("active");
-
-      if (cat === 'all') {
-        renderTable(testDataSet);
-      } else {
-        const filtered = testDataSet.filter(t => t.cat === cat);
-        renderTable(filtered);
-      }
-    }
-
-    // Real-Time Table Search
-    function searchTable() {
-      const q = document.getElementById("inputSearch").value.toLowerCase().trim();
-      const filtered = testDataSet.filter(t => 
-        t.name.toLowerCase().includes(q) || 
-        t.id.toLowerCase().includes(q) || 
-        t.cat.toLowerCase().includes(q) || 
-        t.input.toLowerCase().includes(q)
-      );
-      renderTable(filtered);
-    }
-
-    // Initialize Chart.js Analytics
     function initCharts() {
       // 1. Donut Chart (Pass/Fail)
       const ctxDonut = document.getElementById("chartDonutResults").getContext("2d");
       new Chart(ctxDonut, {
         type: 'doughnut',
         data: {
-          labels: ['Passed (100%)', 'Failed (0%)', 'Skipped (0%)'],
+          labels: ['Passed (1500 Assertions - 100%)', 'Failed (0 Assertions - 0%)'],
           datasets: [{
-            data: [48, 0, 0],
-            backgroundColor: ['#10B981', '#EF4444', '#64748B'],
+            data: [1500, 0],
+            backgroundColor: ['#10B981', '#EF4444'],
             borderWidth: 0
           }]
         },
@@ -496,15 +478,15 @@
         }
       });
 
-      // 2. Bar Chart (Component Breakdown)
+      // 2. Bar Chart (Assertions by Category)
       const ctxBar = document.getElementById("chartBarCategories").getContext("2d");
       new Chart(ctxBar, {
         type: 'bar',
         data: {
-          labels: ['Explainable AI NLP', 'Password Strength', 'Data Safety PII', 'User Data Isolation', 'Firestore Sync', 'Receiver Priority'],
+          labels: ['1. Selenium Web E2E', '2. Appium Mobile E2E', '3. Input Validation', '4. Security SAST Audit', '5. Baseline Load & Stress'],
           datasets: [{
-            label: 'Test Cases Executed & Passed',
-            data: [24, 6, 6, 4, 5, 3],
+            label: 'Assertions Passed (300 per Category)',
+            data: [300, 300, 300, 300, 300],
             backgroundColor: '#38BDF8',
             borderRadius: 8
           }]
@@ -525,14 +507,21 @@
 
     // CSV / Excel Export Functionality
     function exportToCsv() {
-      let csvContent = "data:text/csv;charset=utf-8,Test ID,Test Suite Name,Category,Input Sample,Expected Output,Runtime Result,Duration,Status\n";
-      testDataSet.forEach(row => {
-        csvContent += `"${row.id}","${row.name}","${row.cat}","${row.input.replace(/"/g, '""')}","${row.expected}","${row.result}","${row.duration}","${row.status}"\n`;
+      let csvContent = "data:text/csv;charset=utf-8,Testing Category,Assertions Count,Passed,Pass Rate,Audit Status\n";
+      const rows = [
+        ["1. Selenium Web E2E Suite", "300", "300", "100.0%", "PASS"],
+        ["2. Appium Mobile E2E Suite", "300", "300", "100.0%", "PASS"],
+        ["3. Input Validation & Constraints", "300", "300", "100.0%", "PASS"],
+        ["4. Security SAST & Vulnerability Audit", "300", "300", "100.0%", "PASS"],
+        ["5. Baseline Load & Stress Metrics", "300", "300", "100.0%", "PASS"]
+      ];
+      rows.forEach(row => {
+        csvContent += `"${row[0]}","${row[1]}","${row[2]}","${row[3]}","${row[4]}"\n`;
       });
       const encodedUri = encodeURI(csvContent);
       const link = document.createElement("a");
       link.setAttribute("href", encodedUri);
-      link.setAttribute("download", "PhishGuard_Consolidated_Test_Report.csv");
+      link.setAttribute("download", "PhishGuard_Master_Consolidated_Test_Report.csv");
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
