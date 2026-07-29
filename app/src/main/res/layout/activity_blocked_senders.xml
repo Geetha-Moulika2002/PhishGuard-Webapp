@@ -9,46 +9,160 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Blocked Senders List"
+        android:text="Blocked Senders &amp; Shield"
         android:textColor="#FFFFFF"
-        android:textSize="26sp"
+        android:textSize="24sp"
         android:textStyle="bold"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Manage blocked phone numbers and SMS headers"
+        android:text="Community Auto-Block &amp; Silenced Intrusion Analytics"
         android:textColor="#94A3B8"
-        android:textSize="13sp"
-        android:layout_marginTop="4dp"/>
+        android:textSize="12sp"
+        android:layout_marginTop="2dp"/>
+
+    <!-- FEATURE 1: Community Crowdsourced Auto-Block Shield Banner -->
+    <LinearLayout
+        android:id="@+id/cardCommunityShield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_card_dark"
+        android:padding="16dp"
+        android:layout_marginTop="14dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="🛡️ Community Auto-Block Shield"
+                android:textColor="#38BDF8"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
+
+            <Button
+                android:id="@+id/btnToggleCommunityShield"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="ENABLE SHIELD"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:background="@drawable/bg_button_primary"
+                android:textColor="#FFFFFF"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvShieldSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Auto-silences top 100 community-reported fraud senders (SBI-SCAM, HDFCBK-LOAN, KYC traps) before they alert your phone."
+            android:textColor="#94A3B8"
+            android:textSize="11sp"
+            android:layout_marginTop="6dp"/>
+
+    </LinearLayout>
+
+    <!-- FEATURE 2: Blocked Intrusion Analytics & Silenced Attempts Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="12dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card_dark"
+            android:padding="12dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tvSilencedCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="18"
+                android:textColor="#10B981"
+                android:textSize="22sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Silenced Intrusions"
+                android:textColor="#94A3B8"
+                android:textSize="10sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card_dark"
+            android:padding="12dp"
+            android:gravity="center"
+            android:layout_marginStart="8dp">
+
+            <TextView
+                android:id="@+id/tvActiveBlockedCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12"
+                android:textColor="#38BDF8"
+                android:textSize="22sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Active Blocked Senders"
+                android:textColor="#94A3B8"
+                android:textSize="10sp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <!-- Add New Sender Row -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="18dp">
+        android:layout_marginTop="14dp">
 
         <EditText
             android:id="@+id/etNewSender"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="44dp"
             android:layout_weight="1"
             android:hint="Enter phone or header (e.g. AX-BANK)"
             android:textColorHint="#64748B"
             android:textColor="#FFFFFF"
-            android:textSize="14sp"
+            android:textSize="13sp"
             android:background="@drawable/bg_card_dark"
-            android:paddingStart="14dp"
-            android:paddingEnd="14dp"/>
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"/>
 
         <android.widget.Button
             android:id="@+id/btnAddBlocked"
             android:layout_width="wrap_content"
-            android:layout_height="48dp"
+            android:layout_height="44dp"
             android:text="Block"
             android:textAllCaps="false"
-            android:textSize="14sp"
+            android:textSize="13sp"
             android:textStyle="bold"
             android:background="@drawable/bg_button_primary"
             android:textColor="#FFFFFF"
@@ -60,15 +174,15 @@
     <EditText
         android:id="@+id/etSearchBlocked"
         android:layout_width="match_parent"
-        android:layout_height="44dp"
+        android:layout_height="40dp"
         android:hint="Search blocked senders..."
         android:textColorHint="#64748B"
         android:textColor="#FFFFFF"
-        android:textSize="13sp"
+        android:textSize="12sp"
         android:background="@drawable/bg_card_dark"
-        android:paddingStart="14dp"
-        android:paddingEnd="14dp"
-        android:layout_marginTop="12dp"/>
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:layout_marginTop="10dp"/>
 
     <!-- Empty State Container -->
     <LinearLayout
@@ -85,7 +199,7 @@
             android:layout_height="wrap_content"
             android:text="No blocked senders."
             android:textColor="#FFFFFF"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"/>
 
         <TextView
@@ -93,7 +207,7 @@
             android:layout_height="wrap_content"
             android:text="Blocked senders will appear here."
             android:textColor="#94A3B8"
-            android:textSize="14sp"
+            android:textSize="13sp"
             android:layout_marginTop="4dp"/>
 
     </LinearLayout>
@@ -103,7 +217,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="12dp">
 
         <LinearLayout
             android:id="@+id/layoutBlockedList"

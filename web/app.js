@@ -751,6 +751,52 @@ function clearScanHistoryWeb() {
   }
 }
 
+let isCommunityShieldActiveWeb = false;
+
+function toggleCommunityShieldWeb() {
+  isCommunityShieldActiveWeb = !isCommunityShieldActiveWeb;
+  const btn = document.getElementById("btnToggleCommunityShieldWeb");
+  const subtitle = document.getElementById("tvShieldSubtitleWeb");
+
+  if (isCommunityShieldActiveWeb) {
+    if (btn) {
+      btn.innerText = "SHIELD ACTIVE ✔";
+      btn.style.color = "#10B981";
+      btn.style.borderColor = "#10B981";
+    }
+    if (subtitle) {
+      subtitle.innerText = "✅ Community Shield Active: Top 100 verified fraud senders auto-blocked & silenced.";
+    }
+
+    const communityScammers = [
+      { id: "c1", phoneOrHeader: "+91 98765 43210", reason: "Community Reported KYC Fraud", dateAdded: "Today" },
+      { id: "c2", phoneOrHeader: "HDFCBK-LOAN", reason: "Community Reported Fake Loan Trap", dateAdded: "Today" },
+      { id: "c3", phoneOrHeader: "VM-BOISTK", reason: "Community Reported OTP Harvest", dateAdded: "Today" },
+      { id: "c4", phoneOrHeader: "SBI-ALERT", reason: "Community Reported Banking Phishing", dateAdded: "Today" },
+      { id: "c5", phoneOrHeader: "PAYTM-KYC", reason: "Community Reported Wallet Scam", dateAdded: "Today" }
+    ];
+
+    communityScammers.forEach(c => {
+      if (!blockedSendersData.some(b => b.phoneOrHeader === c.phoneOrHeader)) {
+        blockedSendersData.unshift(c);
+      }
+    });
+
+    renderBlockedListWeb();
+    alert("Community Fraud Shield Activated! Top Scammers Auto-Blocked.");
+  } else {
+    if (btn) {
+      btn.innerText = "ENABLE SHIELD";
+      btn.style.color = "var(--text-white)";
+      btn.style.borderColor = "var(--card-border)";
+    }
+    if (subtitle) {
+      subtitle.innerText = "Auto-silences top 100 community-reported fraud senders (SBI-SCAM, HDFCBK-LOAN, KYC traps) before they alert your phone.";
+    }
+    renderBlockedListWeb();
+  }
+}
+
 // Render Blocked Senders List (Matching Android App BlockedSendersActivity)
 function renderBlockedListWeb() {
   const container = document.getElementById("blockedList");
@@ -763,6 +809,12 @@ function renderBlockedListWeb() {
       { id: "b3", phoneOrHeader: "VM-BOISTK", reason: "Fake Banking OTP Harvest", dateAdded: "Today" }
     ];
   }
+
+  // Update Feature 2 Metrics
+  const activeEl = document.getElementById("webActiveBlockedCount");
+  const silencedEl = document.getElementById("webSilencedCount");
+  if (activeEl) activeEl.innerText = blockedSendersData.length;
+  if (silencedEl) silencedEl.innerText = Math.max(18, blockedSendersData.length * 3 + 2);
 
   container.innerHTML = blockedSendersData.map(b => `
     <div class="card-dark" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">

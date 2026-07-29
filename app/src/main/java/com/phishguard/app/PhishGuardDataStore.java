@@ -307,11 +307,21 @@ public class PhishGuardDataStore {
     }
 
     public boolean isSenderBlocked(String sender) {
-        if (sender == null) return false;
-        String query = sender.toLowerCase().trim();
+        if (sender == null || sender.trim().isEmpty()) return false;
+        String rawQuery = sender.toLowerCase().trim();
+        String digitsQuery = rawQuery.replaceAll("[^0-9]", "");
+
         for (BlockedSender item : blockedSenders) {
-            if (item.phoneOrHeader != null && item.phoneOrHeader.toLowerCase().trim().equals(query)) {
+            if (item.phoneOrHeader == null) continue;
+            String rawBlocked = item.phoneOrHeader.toLowerCase().trim();
+            if (rawBlocked.equals(rawQuery) || rawQuery.contains(rawBlocked) || rawBlocked.contains(rawQuery)) {
                 return true;
+            }
+            String digitsBlocked = rawBlocked.replaceAll("[^0-9]", "");
+            if (!digitsQuery.isEmpty() && digitsQuery.length() >= 7 && !digitsBlocked.isEmpty() && digitsBlocked.length() >= 7) {
+                if (digitsQuery.endsWith(digitsBlocked) || digitsBlocked.endsWith(digitsQuery)) {
+                    return true;
+                }
             }
         }
         return false;

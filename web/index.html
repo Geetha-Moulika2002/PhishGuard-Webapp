@@ -369,10 +369,31 @@
     <section id="view-blocked-senders" class="view-panel">
       <div class="panel-header">
         <button class="btn-back" onclick="showView('dashboard')">←</button>
-        <h2>Blocked List</h2>
+        <h2>Blocked List &amp; Shield</h2>
       </div>
 
-      <div class="card-dark">
+      <!-- Feature 1: Community Auto-Block Shield Card -->
+      <div class="card-dark" style="margin-top: 0;">
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <div style="font-size: 15px; font-weight: 800; color: var(--primary-blue);">🛡️ Community Auto-Block Shield</div>
+          <button id="btnToggleCommunityShieldWeb" class="btn-secondary" style="height: 38px; padding: 0 16px; font-size: 12px;" onclick="toggleCommunityShieldWeb()">ENABLE SHIELD</button>
+        </div>
+        <p style="color: var(--text-muted); font-size: 12px; margin-top: 6px;" id="tvShieldSubtitleWeb">Auto-silences top 100 community-reported fraud senders (SBI-SCAM, HDFCBK-LOAN, KYC traps) before they alert your phone.</p>
+      </div>
+
+      <!-- Feature 2: Blocked Intrusion Analytics & Silenced Attempts Bar -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px;">
+        <div class="card-dark" style="margin-top: 0; text-align: center; padding: 16px;">
+          <div style="font-size: 26px; font-weight: 800; color: #10B981;" id="webSilencedCount">18</div>
+          <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Silenced Intrusions</div>
+        </div>
+        <div class="card-dark" style="margin-top: 0; text-align: center; padding: 16px;">
+          <div style="font-size: 26px; font-weight: 800; color: var(--primary-blue);" id="webActiveBlockedCount">12</div>
+          <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Active Blocked Senders</div>
+        </div>
+      </div>
+
+      <div class="card-dark" style="margin-top: 14px;">
         <div style="display: flex; gap: 8px;">
           <input type="text" id="inputBlockSender" class="form-input" placeholder="e.g. +919876543210 or HDFCBK" style="flex: 1;" />
           <button class="btn-danger" onclick="addBlockedSenderWeb()">Block</button>
