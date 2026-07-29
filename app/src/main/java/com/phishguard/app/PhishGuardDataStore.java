@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -15,8 +17,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class PhishGuardDataStore {
     private static PhishGuardDataStore instance;
@@ -24,6 +28,11 @@ public class PhishGuardDataStore {
     private String activeSyncEmail = null;
     private String emergencyContact = "";
     private boolean audioAlarmEnabled = true;
+
+    private final List<ScanItem> scanHistory = new ArrayList<>();
+    private final List<BlockedSender> blockedSenders = new ArrayList<>();
+    private final List<NotificationItem> notifications = new ArrayList<>();
+    private final List<ScamReport> scamReports = new ArrayList<>();
 
     public boolean isAudioAlarmEnabled() {
         if (prefs != null) {
@@ -74,7 +83,6 @@ public class PhishGuardDataStore {
         }
     }
 
-    // Helper for Privacy & Google Play Store Compliance PII Masking
     public static String maskPhoneNumber(String sender) {
         if (sender == null || sender.trim().isEmpty()) return "SMS Sender";
         String clean = sender.trim();
@@ -89,7 +97,6 @@ public class PhishGuardDataStore {
         return clean;
     }
 
-    // Short preview helper for Cloud DB Privacy Hardening
     public static String getSafeCloudPreview(String message) {
         if (message == null || message.trim().isEmpty()) return "Scanned Content";
         String clean = message.trim();
@@ -101,50 +108,8 @@ public class PhishGuardDataStore {
 
     public void startRealtimeFirestoreSync(Context context) {
         String userEmail = AuthManager.getUserEmail(context);
-        if (userEmail == null || userEmail.isEmpty()) return;
-
-        if (userEmail.equals(activeSyncEmail)) return;
-        activeSyncEmail = userEmail;
 
         try {
-            // Sync Scans Real-time from Firebase Firestore ("scans") for the SPECIFIC logged-in user
-            FirebaseFirestore.getInstance().collection("scans")
-                    .whereEqualTo("userEmail", userEmail)
-                    .addSnapshotListener((value, error) -> {
-                        if (error != null || value == null) return;
-                        for (QueryDocumentSnapshot doc : value) {
-                            String docId = doc.getId();
-                            boolean exists = false;
-                            for (ScanItem localItem : scanHistory) {
-                                if (docId.equals(localItem.id)) {
-                                    exists = true;
-                                    break;
-                                }
-                            }
-                            if (!exists) {
-                                String sender = doc.getString("sender");
-                                String message = doc.getString("message");
-                                Long scoreObj = doc.getLong("riskScore");
-                                int score = scoreObj != null ? scoreObj.intValue() : 0;
-                                String riskLevel = doc.getString("riskLevel");
-                                String threatType = doc.getString("threatType");
-
-                                scanHistory.add(0, new ScanItem(
-                                        docId,
-                                        sender != null ? sender : "Manual Scan",
-                                        message != null ? message : "",
-                                        score,
-                                        riskLevel != null ? riskLevel : (score >= 65 ? "HIGH RISK" : "SAFE"),
-                                        getFormattedCurrentTime(),
-                                        getTodayDateKey(),
-                                        threatType != null ? threatType : "Scanned Message"
-                                ));
-                            }
-                        }
-                        saveDataToPrefs();
-                        notifyListener();
-                    });
-
             // Collection 1: Global Community Blocked Senders (Synced across ALL user accounts)
             FirebaseFirestore.getInstance().collection("global_blocked_senders")
                     .addSnapshotListener((value, error) -> {
@@ -161,20 +126,22 @@ public class PhishGuardDataStore {
                     });
 
             // Collection 2: Personal Manual Blocked Senders (Synced for SPECIFIC logged-in user)
-            FirebaseFirestore.getInstance().collection("blocked_senders")
-                    .whereEqualTo("userEmail", userEmail)
-                    .addSnapshotListener((value, error) -> {
-                        if (error != null || value == null) return;
-                        for (QueryDocumentSnapshot doc : value) {
-                            String header = doc.getString("phoneOrHeader");
-                            String reason = doc.getString("reason");
-                            if (header != null && !isSenderBlocked(header)) {
-                                blockedSenders.add(0, new BlockedSender(header, reason != null ? reason : "Personal Blocked", "Today", getTodayDateKey()));
+            if (userEmail != null && !userEmail.isEmpty()) {
+                FirebaseFirestore.getInstance().collection("blocked_senders")
+                        .whereEqualTo("userEmail", userEmail)
+                        .addSnapshotListener((value, error) -> {
+                            if (error != null || value == null) return;
+                            for (QueryDocumentSnapshot doc : value) {
+                                String header = doc.getString("phoneOrHeader");
+                                String reason = doc.getString("reason");
+                                if (header != null && !isSenderBlocked(header)) {
+                                    blockedSenders.add(0, new BlockedSender(header, reason != null ? reason : "Personal Blocked", "Today", getTodayDateKey()));
+                                }
                             }
-                        }
-                        saveDataToPrefs();
-                        notifyListener();
-                    });
+                            saveDataToPrefs();
+                            notifyListener();
+                        });
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -208,7 +175,7 @@ public class PhishGuardDataStore {
         }
 
         public ScanItem(String id, String sender, String message, int score, String riskLevel, String timestamp, String dateKey) {
-            this(id, sender, message, score, riskLevel, timestamp, dateKey, "Scanned QR / Message");
+            this(id, sender, message, score, riskLevel, timestamp, dateKey, "Scanned Message");
         }
     }
 
@@ -264,94 +231,38 @@ public class PhishGuardDataStore {
         }
     }
 
-    public static class TimelineEvent {
-        public String id;
-        public String title;
-        public String description;
-        public String timestamp;
-        public String time;
-        public String status;
+    public List<ScanItem> getScanHistory() { return scanHistory; }
+    public List<BlockedSender> getBlockedSenders() { return blockedSenders; }
+    public List<NotificationItem> getNotifications() { return notifications; }
+    public List<ScamReport> getScamReports() { return scamReports; }
 
-        public TimelineEvent(String id, String title, String description, String timestamp, String status) {
-            this.id = id;
-            this.title = title;
-            this.description = description;
-            this.timestamp = timestamp;
-            this.time = timestamp;
-            this.status = status;
+    public int getSecurityScore() {
+        int baseScore = 100;
+        int threatDeduction = 0;
+        for (ScanItem item : scanHistory) {
+            if (item.score >= 70) {
+                threatDeduction += 10;
+            } else if (item.score >= 40) {
+                threatDeduction += 5;
+            }
         }
-    }
-
-    public static class TrustedContact {
-        public String name;
-        public String phone;
-
-        public TrustedContact(String name, String phone) {
-            this.name = name;
-            this.phone = phone;
-        }
-    }
-
-    private final List<ScanItem> scanHistory = new ArrayList<>();
-    private final List<NotificationItem> notifications = new ArrayList<>();
-    private final List<BlockedSender> blockedSenders = new ArrayList<>();
-    private final List<ScamReport> scamReports = new ArrayList<>();
-    private final List<TimelineEvent> timelineEvents = new ArrayList<>();
-    private final List<TrustedContact> trustedContacts = new ArrayList<>();
-
-    private PhishGuardDataStore() {}
-
-    public static String getTodayDateKey() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        return sdf.format(new Date());
+        int finalScore = baseScore - threatDeduction;
+        return Math.max(25, Math.min(100, finalScore));
     }
 
     public static String getYesterdayDateKey() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DATE, -1);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         return sdf.format(cal.getTime());
     }
 
-    public static String getFormattedCurrentTime() {
-        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a", Locale.getDefault());
-        return sdf.format(new Date());
-    }
-
-    public List<ScanItem> getScanHistory() { return scanHistory; }
-    public List<NotificationItem> getNotifications() { return notifications; }
-    public List<BlockedSender> getBlockedSenders() { return blockedSenders; }
-    public List<ScamReport> getScamReports() { return scamReports; }
-    public List<TimelineEvent> getTimelineEvents() { return timelineEvents; }
-    public List<TrustedContact> getTrustedContacts() { return trustedContacts; }
-
-    public String getEmergencyContact() { return emergencyContact; }
-    public void setEmergencyContact(String contact) { this.emergencyContact = contact; }
-    public void addTrustedContact(TrustedContact contact) { trustedContacts.add(contact); }
-
-    public int getSecurityScore() {
-        int baseScore = 80;
-        if (!blockedSenders.isEmpty()) baseScore += 10;
-        if (!scanHistory.isEmpty()) baseScore += 10;
-        return Math.min(baseScore, 100);
-    }
-
-    public boolean isSenderBlocked(String sender) {
-        if (sender == null || sender.trim().isEmpty()) return false;
-        String rawQuery = sender.toLowerCase().trim();
-        String digitsQuery = rawQuery.replaceAll("[^0-9]", "");
-
-        for (BlockedSender item : blockedSenders) {
-            if (item.phoneOrHeader == null) continue;
-            String rawBlocked = item.phoneOrHeader.toLowerCase().trim();
-            if (rawBlocked.equals(rawQuery) || rawQuery.contains(rawBlocked) || rawBlocked.contains(rawQuery)) {
+    public boolean isSenderBlocked(String senderHeader) {
+        if (senderHeader == null || senderHeader.trim().isEmpty()) return false;
+        String query = senderHeader.toLowerCase().trim();
+        for (BlockedSender b : blockedSenders) {
+            if (b.phoneOrHeader != null && b.phoneOrHeader.toLowerCase().trim().equals(query)) {
                 return true;
-            }
-            String digitsBlocked = rawBlocked.replaceAll("[^0-9]", "");
-            if (!digitsQuery.isEmpty() && digitsQuery.length() >= 7 && !digitsBlocked.isEmpty() && digitsBlocked.length() >= 7) {
-                if (digitsQuery.endsWith(digitsBlocked) || digitsBlocked.endsWith(digitsQuery)) {
-                    return true;
-                }
             }
         }
         return false;
@@ -413,31 +324,32 @@ public class PhishGuardDataStore {
             notifyListener();
         }
 
-        if (context != null) {
-            String userEmail = AuthManager.getUserEmail(context);
-            try {
-                java.util.Map<String, Object> data = new java.util.HashMap<>();
-                data.put("phoneOrHeader", sender.phoneOrHeader);
-                data.put("reason", sender.reason);
-                data.put("dateAdded", sender.dateAdded);
-                data.put("userEmail", userEmail != null ? userEmail : "community");
-                data.put("timestamp", com.google.firebase.firestore.FieldValue.serverTimestamp());
+        try {
+            String userEmail = context != null ? AuthManager.getUserEmail(context) : "community_user";
+            Map<String, Object> data = new HashMap<>();
+            data.put("phoneOrHeader", sender.phoneOrHeader);
+            data.put("reason", sender.reason);
+            data.put("dateAdded", sender.dateAdded);
+            data.put("userEmail", userEmail != null ? userEmail : "community_user");
+            data.put("timestamp", FieldValue.serverTimestamp());
 
-                // Write to personal blocked_senders collection
-                FirebaseFirestore.getInstance().collection("blocked_senders").add(data);
+            // 1. Write to personal blocked_senders collection
+            FirebaseFirestore.getInstance().collection("blocked_senders").add(data)
+                    .addOnSuccessListener(ref -> Log.e("PHISHGUARD_FIREBASE", "✅ Document added to blocked_senders: " + ref.getId()))
+                    .addOnFailureListener(err -> Log.e("PHISHGUARD_FIREBASE", "❌ Failed writing to blocked_senders: " + err.getMessage()));
 
-                // If global / community shield, also write to global_blocked_senders collection
-                if (isGlobal) {
-                    FirebaseFirestore.getInstance().collection("global_blocked_senders").add(data);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            // 2. Write to global_blocked_senders collection so ALL users get it
+            FirebaseFirestore.getInstance().collection("global_blocked_senders").add(data)
+                    .addOnSuccessListener(ref -> Log.e("PHISHGUARD_FIREBASE", "✅ Document added to global_blocked_senders: " + ref.getId()))
+                    .addOnFailureListener(err -> Log.e("PHISHGUARD_FIREBASE", "❌ Failed writing to global_blocked_senders: " + err.getMessage()));
+        } catch (Exception e) {
+            Log.e("PHISHGUARD_FIREBASE", "Firestore error: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
     public void addBlockedSender(BlockedSender sender) {
-        addBlockedSender(null, sender, false);
+        addBlockedSender(null, sender, true);
     }
 
     public void deleteBlockedSender(Context context, String phoneOrHeader) {
@@ -451,20 +363,26 @@ public class PhishGuardDataStore {
         notifyListener();
 
         String userEmail = AuthManager.getUserEmail(context);
-        if (userEmail != null && !userEmail.isEmpty()) {
-            try {
-                FirebaseFirestore.getInstance().collection("blocked_senders")
-                        .whereEqualTo("userEmail", userEmail)
-                        .whereEqualTo("phoneOrHeader", phoneOrHeader)
-                        .get()
-                        .addOnSuccessListener(queryDocumentSnapshots -> {
-                            for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
-                                doc.getReference().delete();
-                            }
-                        });
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        try {
+            FirebaseFirestore.getInstance().collection("blocked_senders")
+                    .whereEqualTo("phoneOrHeader", phoneOrHeader)
+                    .get()
+                    .addOnSuccessListener(queryDocumentSnapshots -> {
+                        for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
+                            doc.getReference().delete();
+                        }
+                    });
+
+            FirebaseFirestore.getInstance().collection("global_blocked_senders")
+                    .whereEqualTo("phoneOrHeader", phoneOrHeader)
+                    .get()
+                    .addOnSuccessListener(queryDocumentSnapshots -> {
+                        for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
+                            doc.getReference().delete();
+                        }
+                    });
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -520,13 +438,13 @@ public class PhishGuardDataStore {
                 for (int i = 0; i < scansArr.length(); i++) {
                     JSONObject obj = scansArr.getJSONObject(i);
                     scanHistory.add(new ScanItem(
-                            obj.optString("id", String.valueOf(System.currentTimeMillis())),
-                            obj.optString("sender", "Unknown"),
-                            obj.optString("message", ""),
-                            obj.optInt("score", 0),
-                            obj.optString("riskLevel", "SAFE"),
-                            obj.optString("timestamp", getFormattedCurrentTime()),
-                            obj.optString("dateKey", getTodayDateKey()),
+                            obj.optString("id"),
+                            obj.optString("sender"),
+                            obj.optString("message"),
+                            obj.optInt("score"),
+                            obj.optString("riskLevel"),
+                            obj.optString("timestamp"),
+                            obj.optString("dateKey"),
                             obj.optString("threatType", "Scanned Message")
                     ));
                 }
@@ -539,15 +457,25 @@ public class PhishGuardDataStore {
                 for (int i = 0; i < blockedArr.length(); i++) {
                     JSONObject obj = blockedArr.getJSONObject(i);
                     blockedSenders.add(new BlockedSender(
-                            obj.optString("phoneOrHeader", ""),
-                            obj.optString("reason", "Blocked"),
-                            obj.optString("dateAdded", "Today"),
-                            obj.optString("dateKey", getTodayDateKey())
+                            obj.optString("phoneOrHeader"),
+                            obj.optString("reason"),
+                            obj.optString("dateAdded"),
+                            obj.optString("dateKey")
                     ));
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static String getFormattedCurrentTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a", Locale.getDefault());
+        return sdf.format(new Date());
+    }
+
+    public static String getTodayDateKey() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        return sdf.format(new Date());
     }
 }

@@ -120,10 +120,10 @@ public class BlockedSendersActivity extends AppCompatActivity {
                     return;
                 }
 
-                // Add to Local DataStore Database
-                PhishGuardDataStore.getInstance().addBlockedSender(new PhishGuardDataStore.BlockedSender(
+                // Add to Local DataStore & Push to both Firebase Firestore collections (blocked_senders & global_blocked_senders)
+                PhishGuardDataStore.getInstance().addBlockedSender(this, new PhishGuardDataStore.BlockedSender(
                         newSender, "Manually added by user", "Today", PhishGuardDataStore.getTodayDateKey()
-                ));
+                ), true);
 
                 // Add to Firebase Firestore Database ("blocked_senders" collection)
                 try {
