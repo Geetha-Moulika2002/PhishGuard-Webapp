@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 
 public class ReportActivity extends AppCompatActivity {
 
-    private EditText etSmsText, etIssueDescription;
+    private EditText etScamSender, etSmsText, etIssueDescription;
     private Button btnSubmitReport;
 
     @Override
@@ -24,6 +24,7 @@ public class ReportActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report);
 
+        etScamSender = findViewById(R.id.etScamSender);
         etSmsText = findViewById(R.id.etSmsText);
         etIssueDescription = findViewById(R.id.etIssueDescription);
         btnSubmitReport = findViewById(R.id.btnSubmitReport);
@@ -35,13 +36,17 @@ public class ReportActivity extends AppCompatActivity {
 
         if (btnSubmitReport != null) {
             btnSubmitReport.setOnClickListener(v -> {
+                String senderHeader = etScamSender != null ? etScamSender.getText().toString().trim() : "";
                 String smsContent = etSmsText != null ? etSmsText.getText().toString().trim() : "";
                 String issueDesc = etIssueDescription != null ? etIssueDescription.getText().toString().trim() : "";
 
-                if (smsContent.isEmpty() && issueDesc.isEmpty()) {
-                    Toast.makeText(this, "Please enter SMS content or describe the scam issue", Toast.LENGTH_SHORT).show();
+                if (senderHeader.isEmpty() && smsContent.isEmpty() && issueDesc.isEmpty()) {
+                    Toast.makeText(this, "Please enter scammer phone/header or SMS content", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+                String targetSender = !senderHeader.isEmpty() ? senderHeader : extractSenderFromText(smsContent);
+                if (targetSender == null) targetSender = "Reported Scam Sender";
 
                 String finalDesc = issueDesc.isEmpty() ? "Suspicious scam communication reported by user" : issueDesc;
                 String userEmail = AuthManager.getUserEmail(this);
@@ -56,46 +61,40 @@ public class ReportActivity extends AppCompatActivity {
                         PhishGuardDataStore.getTodayDateKey()
                 ));
 
-                // 2. Extract potential sender header or phone number from SMS text
-                String extractedSender = extractSenderFromText(smsContent);
-                if (extractedSender != null) {
-                    // Auto-block the reported scam sender
-                    PhishGuardDataStore.getInstance().addBlockedSender(new PhishGuardDataStore.BlockedSender(
-                            extractedSender, "Auto-blocked via Scam Report", "Today", PhishGuardDataStore.getTodayDateKey()
-                    ));
+                // 2. Auto-block the reported scam sender header in Local DataStore
+                PhishGuardDataStore.getInstance().addBlockedSender(new PhishGuardDataStore.BlockedSender(
+                        targetSender, "Auto-blocked via Scam Report", "Today", PhishGuardDataStore.getTodayDateKey()
+                ));
 
-                    // Save Auto-Blocked Sender to Firebase Firestore Database ("blocked_senders")
-                    try {
-                        Map<String, Object> blockMap = new HashMap<>();
-                        blockMap.put("phoneOrHeader", extractedSender);
-                        blockMap.put("reason", "Auto-blocked via Scam Report");
-                        blockMap.put("userEmail", userEmail);
-                        blockMap.put("timestamp", new java.util.Date());
-                        FirebaseFirestore.getInstance().collection("blocked_senders").add(blockMap);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                // 3. Save Scam Report to Firebase Firestore Database ("scam_reports")
+                // 3. Save Auto-Blocked Sender to Firebase Firestore Database ("blocked_senders")
                 try {
-                    Map<String, Object> reportMap = new HashMap<>();
-                    reportMap.put("smsText", smsContent);
-                    reportMap.put("issueDescription", finalDesc);
-                    reportMap.put("userEmail", userEmail);
-                    reportMap.put("timestamp", new java.util.Date());
-                    reportMap.put("autoBlockedSender", extractedSender != null ? extractedSender : "None");
-                    reportMap.put("status", "SUBMITTED");
-
-                    FirebaseFirestore.getInstance().collection("scam_reports")
-                            .add(reportMap)
-                            .addOnSuccessListener(docRef -> Toast.makeText(this, "Report saved to Firebase Database!", Toast.LENGTH_SHORT).show())
-                            .addOnFailureListener(e -> e.printStackTrace());
+                    Map<String, Object> blockMap = new HashMap<>();
+                    blockMap.put("phoneOrHeader", targetSender);
+                    blockMap.put("reason", "Auto-blocked via Scam Report");
+                    blockMap.put("userEmail", userEmail);
+                    blockMap.put("timestamp", new java.util.Date());
+                    FirebaseFirestore.getInstance().collection("blocked_senders").add(blockMap);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
 
-                Toast.makeText(this, "Scam Reported & Sender Auto-Blocked in Database!", Toast.LENGTH_LONG).show();
+                // 4. Save Scam Report to Firebase Firestore Database ("scam_reports")
+                try {
+                    Map<String, Object> reportMap = new HashMap<>();
+                    reportMap.put("senderHeader", targetSender);
+                    reportMap.put("smsText", smsContent);
+                    reportMap.put("issueDescription", finalDesc);
+                    reportMap.put("userEmail", userEmail);
+                    reportMap.put("timestamp", new java.util.Date());
+                    reportMap.put("autoBlockedSender", targetSender);
+                    reportMap.put("status", "SUBMITTED");
+
+                    FirebaseFirestore.getInstance().collection("scam_reports").add(reportMap);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                Toast.makeText(this, "Scam Reported & Sender [" + targetSender + "] Auto-Blocked in Database!", Toast.LENGTH_LONG).show();
                 finish();
             });
         }
@@ -103,13 +102,11 @@ public class ReportActivity extends AppCompatActivity {
 
     private String extractSenderFromText(String text) {
         if (text == null || text.isEmpty()) return null;
-
-        // Match phone numbers or uppercase headers (e.g. +1-800-555-0199 or AX-BANKALERT or 9876543210)
         Pattern pattern = Pattern.compile("([A-Z]{2}-[A-Z0-9]{4,10}|\\+?\\d{10,13})");
         Matcher matcher = pattern.matcher(text);
         if (matcher.find()) {
             return matcher.group(1);
         }
-        return "Reported Scam Sender";
+        return null;
     }
 }

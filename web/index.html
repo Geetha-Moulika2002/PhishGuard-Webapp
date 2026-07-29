@@ -359,9 +359,17 @@
       </div>
 
       <div class="card-dark">
-        <label class="form-label">Scam Content or Header:</label>
-        <textarea id="txtReportContent" class="form-textarea" placeholder="Describe the scam SMS or enter the suspicious sender header..." rows="4"></textarea>
-        <button class="btn-primary" style="width: 100%; margin-top: 12px;" onclick="submitScamReportWeb()">Submit Report to Threat DB</button>
+        <div class="form-group">
+          <label class="form-label">Scammer Phone Number or Header:</label>
+          <input type="text" id="inputReportSender" class="form-input" placeholder="e.g. +91 98765 43210 or HDFCBK-SCAM" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Scam Content or Description:</label>
+          <textarea id="txtReportContent" class="form-textarea" placeholder="Paste the suspicious scam SMS or describe the fraud..." rows="4"></textarea>
+        </div>
+
+        <button class="btn-primary" style="width: 100%; margin-top: 12px;" onclick="submitScamReportWeb()">Submit Report &amp; Auto-Block Sender</button>
       </div>
     </section>
 

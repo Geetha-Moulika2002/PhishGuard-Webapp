@@ -23,11 +23,43 @@
             android:id="@+id/tvReportSubtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Submit suspicious SMS content directly to the PhishGuard Database"
+            android:text="Submit suspicious SMS content &amp; sender headers directly to PhishGuard Database"
             android:textColor="#94A3B8"
             android:textSize="13sp"
             android:layout_marginTop="6dp"
             android:layout_marginBottom="20dp"/>
+
+        <!-- Sender Header Input Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card_dark"
+            android:padding="20dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Scammer Phone Number or Header"
+                android:textColor="#38BDF8"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
+
+            <EditText
+                android:id="@+id/etScamSender"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="e.g. +91 98765 43210 or HDFCBK-SCAM"
+                android:textColorHint="#64748B"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:background="@drawable/bg_dark_gradient"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"/>
+
+        </LinearLayout>
 
         <!-- Paste SMS Content Card -->
         <LinearLayout
@@ -51,7 +83,7 @@
             <EditText
                 android:id="@+id/etSmsText"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="100dp"
                 android:hint="Paste suspicious SMS text here (e.g. Share OTP 482910 to unlock bank account)..."
                 android:gravity="top"
                 android:textColorHint="#64748B"
@@ -84,7 +116,7 @@
             <EditText
                 android:id="@+id/etIssueDescription"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="80dp"
                 android:hint="Explain suspicious behavior (e.g. fake bank alert, extortion threat)..."
                 android:gravity="top"
                 android:textColorHint="#64748B"
@@ -99,7 +131,7 @@
             android:id="@+id/btnSubmitReport"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:text="Submit Scam Report to Database"
+            android:text="Submit Scam Report &amp; Auto-Block"
             android:textAllCaps="false"
             android:textSize="16sp"
             android:textStyle="bold"

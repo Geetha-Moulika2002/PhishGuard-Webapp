@@ -918,15 +918,51 @@ function deleteBlockedSenderWeb(val) {
 
 // Submit Scam Report
 function submitScamReportWeb() {
-  const txt = document.getElementById("txtReportContent").value.trim();
-  if (!txt) {
-    alert("Please describe or paste the scam content.");
+  const senderInput = document.getElementById("inputReportSender");
+  const txtInput = document.getElementById("txtReportContent");
+
+  const sender = senderInput ? senderInput.value.trim() : "";
+  const txt = txtInput ? txtInput.value.trim() : "";
+
+  if (!sender && !txt) {
+    alert("Please enter scammer phone/header or describe the scam content.");
     return;
   }
 
-  alert("Scam report submitted to PhishGuard Threat Database! Thank you.");
-  document.getElementById("txtReportContent").value = "";
-  showView("dashboard");
+  const targetSender = sender ? sender : "Reported Scam Sender";
+
+  // Auto-block in local memory
+  if (!blockedSendersData.some(b => b.phoneOrHeader === targetSender)) {
+    blockedSendersData.unshift({
+      id: "b_" + Date.now(),
+      phoneOrHeader: targetSender,
+      reason: "Auto-blocked via Scam Report",
+      dateAdded: "Today"
+    });
+  }
+
+  // Upload to Firebase Firestore
+  if (currentUser) {
+    db.collection("scam_reports").add({
+      userEmail: currentUser.email,
+      senderHeader: targetSender,
+      smsText: txt,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    }).catch(err => console.error(err));
+
+    db.collection("blocked_senders").add({
+      userEmail: currentUser.email,
+      phoneOrHeader: targetSender,
+      reason: "Auto-blocked via Scam Report",
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    }).catch(err => console.error(err));
+  }
+
+  alert("Scam report submitted and Sender [" + targetSender + "] Auto-Blocked in Database!");
+  if (senderInput) senderInput.value = "";
+  if (txtInput) txtInput.value = "";
+  renderBlockedListWeb();
+  showView("blocked-senders");
 }
 
 let currentReportTimeframe = 'weekly';
