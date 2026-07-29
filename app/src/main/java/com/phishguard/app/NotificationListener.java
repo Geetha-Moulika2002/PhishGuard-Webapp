@@ -20,7 +20,9 @@ public class NotificationListener extends NotificationListenerService {
     public void onCreate() {
         super.onCreate();
         createAlertChannel();
-        Log.d("PHISHGUARD", "Notification Listener Service Created");
+        Log.e("PHISHGUARD_NOTIF", "=================================================");
+        Log.e("PHISHGUARD_NOTIF", ">>> PHISHGUARD NOTIFICATION LISTENER SERVICE STARTED <<<");
+        Log.e("PHISHGUARD_NOTIF", "=================================================");
     }
 
     private void createAlertChannel() {
@@ -45,6 +47,9 @@ public class NotificationListener extends NotificationListenerService {
         String packageName = sbn.getPackageName();
         if (getPackageName().equals(packageName)) return;
 
+        // Log every incoming notification for Logcat inspection
+        Log.e("PHISHGUARD_NOTIF", "--> Notification Received from Package: " + packageName);
+
         // Filter out system UI, charging, battery, WhatsApp, Instagram, Telegram, and OS settings notifications
         if (packageName.equals("android") || 
             packageName.equals("com.android.systemui") || 
@@ -62,7 +67,6 @@ public class NotificationListener extends NotificationListenerService {
         Notification notif = sbn.getNotification();
         if (notif == null) return;
 
-        // Must be an SMS / Telephony messaging application or SMS category 'msg'
         String category = notif.category;
         boolean isSmsApp = packageName.contains("messaging") || 
                            packageName.contains("mms") || 
@@ -106,6 +110,8 @@ public class NotificationListener extends NotificationListenerService {
 
         if (messageBody == null || messageBody.trim().isEmpty()) return;
 
+        Log.e("PHISHGUARD_NOTIF", "Evaluating SMS Notification: Sender=[" + rawSender + "] | Body=[" + messageBody + "]");
+
         // Filter out system privacy placeholder notifications
         String lowerBody = messageBody.toLowerCase().trim();
         if (lowerBody.contains("sensitive notification") || 
@@ -117,22 +123,25 @@ public class NotificationListener extends NotificationListenerService {
         String maskedSender = PhishGuardDataStore.maskPhoneNumber(rawSender);
 
         // Check if sender is blocked in PhishGuard Blocked List
-        if (PhishGuardDataStore.getInstance().isSenderBlocked(rawSender) || 
-            PhishGuardDataStore.getInstance().isSenderBlocked(maskedSender) ||
-            PhishGuardDataStore.getInstance().isSenderBlocked(titleSeq != null ? titleSeq.toString() : "")) {
-            
-            Log.e("PHISHGUARD_NOTIF", ">>> CANCELLING & ERASING NOTIFICATION FOR BLOCKED SENDER: " + rawSender + " <<<");
-            
+        boolean isBlocked = PhishGuardDataStore.getInstance().isSenderBlocked(rawSender) || 
+                            PhishGuardDataStore.getInstance().isSenderBlocked(maskedSender) ||
+                            PhishGuardDataStore.getInstance().isSenderBlocked(titleSeq != null ? titleSeq.toString() : "");
+
+        if (isBlocked) {
+            Log.e("PHISHGUARD_NOTIF", "🚨 MATCH FOUND! SENDER [" + rawSender + "] IS BLOCKED! ATTEMPTING CANCEL_NOTIFICATION...");
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 try {
                     cancelNotification(sbn.getKey());
+                    Log.e("PHISHGUARD_NOTIF", "✅ Executed cancelNotification(key): " + sbn.getKey());
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    Log.e("PHISHGUARD_NOTIF", "❌ cancelNotification(key) failed: " + e.getMessage());
                 }
                 try {
                     cancelNotification(sbn.getPackageName(), sbn.getTag(), sbn.getId());
+                    Log.e("PHISHGUARD_NOTIF", "✅ Executed cancelNotification(pkg, tag, id)");
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    Log.e("PHISHGUARD_NOTIF", "❌ cancelNotification(pkg, tag, id) failed: " + e.getMessage());
                 }
             }
             return;
@@ -151,7 +160,7 @@ public class NotificationListener extends NotificationListenerService {
         String formattedTime = PhishGuardDataStore.getFormattedCurrentTime();
         String dateKey = PhishGuardDataStore.getTodayDateKey();
 
-        // 1. Save locally in DataStore for Mobile App UI
+        // Save locally in DataStore for Mobile App UI
         PhishGuardDataStore.getInstance().addScan(new PhishGuardDataStore.ScanItem(
                 scanId,
                 maskedSender,
