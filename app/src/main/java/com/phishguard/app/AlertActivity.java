@@ -1,7 +1,6 @@
 package com.phishguard.app;
 
-import android.media.AudioManager;
-import android.media.MediaPlayer;
+import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
@@ -17,7 +16,7 @@ public class AlertActivity extends AppCompatActivity {
 
     private TextView tvSenderHeader, tvRiskScore, tvUserWarningText;
     private Button btnDismissAlert;
-    private MediaPlayer mediaPlayer;
+    private static Ringtone activeRingtone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,51 +61,46 @@ public class AlertActivity extends AppCompatActivity {
             tvUserWarningText.setText("🚫 DO NOT CLICK ON MESSAGES FROM " + sender.toUpperCase() + "!\n\n⚠️ THIS SENDER IS HARMFUL.");
         }
 
-        // Play Loud PhishGuard Audio Warning Siren via MediaPlayer instance
+        // Play Loud Security Warning Ringtone Alarm via static persistent instance
         if (PhishGuardDataStore.getInstance().isAudioAlarmEnabled()) {
             try {
+                if (activeRingtone != null && activeRingtone.isPlaying()) {
+                    activeRingtone.stop();
+                }
+
                 Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
                 if (soundUri == null) {
                     soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
                 }
 
-                mediaPlayer = MediaPlayer.create(getApplicationContext(), soundUri);
-                if (mediaPlayer != null) {
-                    mediaPlayer.setAudioStreamType(AudioManager.STREAM_ALARM);
-                    mediaPlayer.setLooping(true);
-                    mediaPlayer.start();
-                    Log.e("PHISHGUARD_ALERT", "🔊 MediaPlayer started playing Security Siren Alert!");
+                activeRingtone = RingtoneManager.getRingtone(getApplicationContext(), soundUri);
+                if (activeRingtone != null) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                        activeRingtone.setLooping(true);
+                    }
+                    activeRingtone.play();
+                    Log.e("PHISHGUARD_ALERT", "🔊 Static Ringtone Alarm Started Playing!");
                 }
             } catch (Exception e) {
-                Log.e("PHISHGUARD_ALERT", "MediaPlayer error: " + e.getMessage());
-                try {
-                    Uri fallbackUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-                    mediaPlayer = MediaPlayer.create(getApplicationContext(), fallbackUri);
-                    if (mediaPlayer != null) {
-                        mediaPlayer.start();
-                    }
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+                Log.e("PHISHGUARD_ALERT", "Ringtone error: " + e.getMessage());
             }
         }
 
         if (btnDismissAlert != null) {
-            btnDismissAlert.setOnClickListener(v -> stopAudioAndFinish());
+            btnDismissAlert.setOnClickListener(v -> stopRingtoneAndFinish());
         }
     }
 
-    private void stopAudioAndFinish() {
-        if (mediaPlayer != null) {
+    private void stopRingtoneAndFinish() {
+        if (activeRingtone != null) {
             try {
-                if (mediaPlayer.isPlaying()) {
-                    mediaPlayer.stop();
+                if (activeRingtone.isPlaying()) {
+                    activeRingtone.stop();
                 }
-                mediaPlayer.release();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            mediaPlayer = null;
+            activeRingtone = null;
         }
         finish();
     }
@@ -114,6 +108,6 @@ public class AlertActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        stopAudioAndFinish();
+        stopRingtoneAndFinish();
     }
 }
