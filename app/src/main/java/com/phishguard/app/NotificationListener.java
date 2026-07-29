@@ -3,9 +3,7 @@ package com.phishguard.app;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -13,17 +11,10 @@ import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
 import android.util.Log;
 
-import androidx.core.app.NotificationCompat;
-
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.HashMap;
-import java.util.Map;
-
 public class NotificationListener extends NotificationListenerService {
 
-    private static final int MAX_PREVIEW_LENGTH = 300;
     private static final String CHANNEL_ID = "PHISHGUARD_ALERTS";
+    private static final int MAX_PREVIEW_LENGTH = 160;
 
     @Override
     public void onCreate() {
@@ -125,11 +116,21 @@ public class NotificationListener extends NotificationListenerService {
 
         String maskedSender = PhishGuardDataStore.maskPhoneNumber(rawSender);
 
-        // Check if sender is blocked
-        if (PhishGuardDataStore.getInstance().isSenderBlocked(rawSender) || PhishGuardDataStore.getInstance().isSenderBlocked(maskedSender)) {
+        // Check if sender is blocked in PhishGuard Blocked List
+        if (PhishGuardDataStore.getInstance().isSenderBlocked(rawSender) || 
+            PhishGuardDataStore.getInstance().isSenderBlocked(maskedSender) ||
+            PhishGuardDataStore.getInstance().isSenderBlocked(titleSeq != null ? titleSeq.toString() : "")) {
+            
+            Log.e("PHISHGUARD_NOTIF", ">>> CANCELLING & ERASING NOTIFICATION FOR BLOCKED SENDER: " + rawSender + " <<<");
+            
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 try {
                     cancelNotification(sbn.getKey());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                try {
+                    cancelNotification(sbn.getPackageName(), sbn.getTag(), sbn.getId());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -161,61 +162,5 @@ public class NotificationListener extends NotificationListenerService {
                 dateKey,
                 result.threatType
         ));
-
-        // 2. Cloud Database Safe Snippet Sync
-        String userEmail = AuthManager.getUserEmail(this);
-        if (userEmail != null && !userEmail.isEmpty()) {
-            try {
-                Map<String, Object> scanDoc = new HashMap<>();
-                scanDoc.put("userEmail", userEmail);
-                scanDoc.put("sender", maskedSender);
-                scanDoc.put("message", PhishGuardDataStore.getSafeCloudPreview(messageBody));
-                scanDoc.put("riskScore", result.riskScore);
-                scanDoc.put("riskLevel", result.riskLevel);
-                scanDoc.put("threatType", result.threatType);
-                scanDoc.put("timestamp", formattedTime);
-                scanDoc.put("dateKey", dateKey);
-                scanDoc.put("createdAt", System.currentTimeMillis());
-
-                FirebaseFirestore.getInstance().collection("scans").document(scanId).set(scanDoc);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-        // 3. High Risk Alert Trigger
-        if (result.riskScore >= 60 || "HIGH RISK".equalsIgnoreCase(result.riskLevel)) {
-            PhishGuardDataStore.getInstance().addNotification(new PhishGuardDataStore.NotificationItem(
-                    "⚠️ High Risk Phishing Alert",
-                    "Intercepted Phishing SMS from " + maskedSender + " (" + result.threatType + " - Risk: " + result.riskScore + "/100)",
-                    formattedTime,
-                    dateKey,
-                    "threat"
-            ));
-
-            Intent intent = new Intent(this, AlertActivity.class);
-            intent.putExtra("risk_score", result.riskScore);
-            intent.putExtra("sms_text", messageBody);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-            PendingIntent pendingIntent = PendingIntent.getActivity(
-                    this, (int) System.currentTimeMillis(), intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
-
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                    .setSmallIcon(android.R.drawable.ic_dialog_alert)
-                    .setContentTitle("🚨 PhishGuard Phishing Alert!")
-                    .setContentText("High Risk SMS Detected from " + maskedSender + " (" + result.riskScore + "/100)")
-                    .setSubText(result.threatType)
-                    .setStyle(new NotificationCompat.BigTextStyle().bigText(messageBody))
-                    .setPriority(NotificationCompat.PRIORITY_HIGH)
-                    .setCategory(NotificationCompat.CATEGORY_ALARM)
-                    .setContentIntent(pendingIntent)
-                    .setAutoCancel(true);
-
-            NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            if (manager != null) {
-                manager.notify((int) (System.currentTimeMillis() % 100000), builder.build());
-            }
-        }
     }
 }
