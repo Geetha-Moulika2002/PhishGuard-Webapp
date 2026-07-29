@@ -71,6 +71,18 @@ public class SmsReceiver extends BroadcastReceiver {
             // 1. Check if Sender is Blocked
             if (PhishGuardDataStore.getInstance().isSenderBlocked(rawSender) || PhishGuardDataStore.getInstance().isSenderBlocked(maskedSender)) {
                 Log.e("PHISHGUARD_SMS", "Blocked sender message suppressed: " + rawSender);
+                
+                try {
+                    Intent alertIntent = new Intent(context, AlertActivity.class);
+                    alertIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    alertIntent.putExtra("is_blocked_alert", true);
+                    alertIntent.putExtra("sender", rawSender);
+                    alertIntent.putExtra("message", messageBody);
+                    context.startActivity(alertIntent);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
                 abortBroadcast();
                 return;
             }
