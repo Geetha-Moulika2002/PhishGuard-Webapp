@@ -145,16 +145,15 @@ public class PhishGuardDataStore {
                         notifyListener();
                     });
 
-            // Sync Blocked Senders Real-time from Firebase Firestore ("blocked_senders") for SPECIFIC user
+            // Community Global Auto-Block Sync across ALL users from Firebase Firestore ("blocked_senders")
             FirebaseFirestore.getInstance().collection("blocked_senders")
-                    .whereEqualTo("userEmail", userEmail)
                     .addSnapshotListener((value, error) -> {
                         if (error != null || value == null) return;
                         for (QueryDocumentSnapshot doc : value) {
                             String header = doc.getString("phoneOrHeader");
                             String reason = doc.getString("reason");
                             if (header != null && !isSenderBlocked(header)) {
-                                blockedSenders.add(0, new BlockedSender(header, reason != null ? reason : "Blocked", "Today", getTodayDateKey()));
+                                blockedSenders.add(0, new BlockedSender(header, reason != null ? reason : "Community Auto-Blocked", "Today", getTodayDateKey()));
                             }
                         }
                         saveDataToPrefs();
