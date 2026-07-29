@@ -1,5 +1,8 @@
 package com.phishguard.app;
 
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -10,6 +13,7 @@ public class AlertActivity extends AppCompatActivity {
 
     private TextView tvSenderHeader, tvRiskScore, tvAlertMessageBody;
     private Button btnDismissAlert;
+    private Ringtone ringtone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +44,37 @@ public class AlertActivity extends AppCompatActivity {
             }
         }
 
+        // Play PhishGuard Custom Audio Siren Alert on Interception
+        if (PhishGuardDataStore.getInstance().isAudioAlarmEnabled()) {
+            try {
+                Uri alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                if (alarmUri == null) {
+                    alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+                }
+                ringtone = RingtoneManager.getRingtone(getApplicationContext(), alarmUri);
+                if (ringtone != null) {
+                    ringtone.play();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
         if (btnDismissAlert != null) {
-            btnDismissAlert.setOnClickListener(v -> finish());
+            btnDismissAlert.setOnClickListener(v -> {
+                if (ringtone != null && ringtone.isPlaying()) {
+                    ringtone.stop();
+                }
+                finish();
+            });
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (ringtone != null && ringtone.isPlaying()) {
+            ringtone.stop();
         }
     }
 }

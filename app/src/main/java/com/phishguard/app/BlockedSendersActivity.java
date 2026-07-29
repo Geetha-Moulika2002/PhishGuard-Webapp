@@ -41,7 +41,20 @@ public class BlockedSendersActivity extends AppCompatActivity {
         btnToggleCommunityShield = findViewById(R.id.btnToggleCommunityShield);
         tvSilencedCount = findViewById(R.id.tvSilencedCount);
         tvActiveBlockedCount = findViewById(R.id.tvActiveBlockedCount);
-        tvShieldSubtitle = findViewById(R.id.tvShieldSubtitle);
+        Button btnToggleAudioAlarm = findViewById(R.id.btnToggleAudioAlarm);
+        if (btnToggleAudioAlarm != null) {
+            boolean currentAlarmState = PhishGuardDataStore.getInstance().isAudioAlarmEnabled();
+            btnToggleAudioAlarm.setText(currentAlarmState ? "ALARM: ON" : "ALARM: OFF");
+            btnToggleAudioAlarm.setTextColor(android.graphics.Color.parseColor(currentAlarmState ? "#10B981" : "#EF4444"));
+
+            btnToggleAudioAlarm.setOnClickListener(v -> {
+                boolean newState = !PhishGuardDataStore.getInstance().isAudioAlarmEnabled();
+                PhishGuardDataStore.getInstance().setAudioAlarmEnabled(newState);
+                btnToggleAudioAlarm.setText(newState ? "ALARM: ON" : "ALARM: OFF");
+                btnToggleAudioAlarm.setTextColor(android.graphics.Color.parseColor(newState ? "#10B981" : "#EF4444"));
+                Toast.makeText(this, newState ? "Audio Security Alarm Tone Enabled" : "Audio Security Alarm Tone Muted", Toast.LENGTH_SHORT).show();
+            });
+        }
 
         renderBlockedList();
 

@@ -752,6 +752,17 @@ function clearScanHistoryWeb() {
 }
 
 let isCommunityShieldActiveWeb = false;
+let isAudioAlarmActiveWeb = true;
+
+function toggleAudioAlarmWeb() {
+  isAudioAlarmActiveWeb = !isAudioAlarmActiveWeb;
+  const btn = document.getElementById("btnToggleAudioAlarmWeb");
+  if (btn) {
+    btn.innerText = isAudioAlarmActiveWeb ? "ALARM: ON" : "ALARM: OFF";
+    btn.style.color = isAudioAlarmActiveWeb ? "#10B981" : "#EF4444";
+  }
+  alert(isAudioAlarmActiveWeb ? "PhishGuard Audio Security Alarm Tone Enabled!" : "Audio Security Alarm Tone Muted.");
+}
 
 function toggleCommunityShieldWeb() {
   isCommunityShieldActiveWeb = !isCommunityShieldActiveWeb;

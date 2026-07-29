@@ -23,6 +23,21 @@ public class PhishGuardDataStore {
     private SharedPreferences prefs;
     private String activeSyncEmail = null;
     private String emergencyContact = "";
+    private boolean audioAlarmEnabled = true;
+
+    public boolean isAudioAlarmEnabled() {
+        if (prefs != null) {
+            return prefs.getBoolean("audio_alarm_enabled", true);
+        }
+        return audioAlarmEnabled;
+    }
+
+    public void setAudioAlarmEnabled(boolean enabled) {
+        this.audioAlarmEnabled = enabled;
+        if (prefs != null) {
+            prefs.edit().putBoolean("audio_alarm_enabled", enabled).apply();
+        }
+    }
 
     public interface DataChangeListener {
         void onDataChanged();

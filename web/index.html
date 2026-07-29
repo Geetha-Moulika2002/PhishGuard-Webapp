@@ -389,6 +389,17 @@
         <p style="color: var(--text-muted); font-size: 12px; margin-top: 6px;" id="tvShieldSubtitleWeb">Auto-silences top 100 community-reported fraud senders (SBI-SCAM, HDFCBK-LOAN, KYC traps) before they alert your phone.</p>
       </div>
 
+      <!-- Audio Siren Alarm Toggle Card -->
+      <div class="card-dark" style="margin-top: 10px;">
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <div>
+            <div style="font-size: 14px; font-weight: 800; color: var(--text-white);">🔊 PhishGuard Audio Warning Siren</div>
+            <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Plays custom audio warning chime when blocked sender texts</div>
+          </div>
+          <button id="btnToggleAudioAlarmWeb" class="btn-secondary" style="height: 34px; padding: 0 14px; font-size: 11px; color: #10B981;" onclick="toggleAudioAlarmWeb()">ALARM: ON</button>
+        </div>
+      </div>
+
       <!-- Feature 2: Blocked Intrusion Analytics & Silenced Attempts Bar -->
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px;">
         <div class="card-dark" style="margin-top: 0; text-align: center; padding: 16px;">
