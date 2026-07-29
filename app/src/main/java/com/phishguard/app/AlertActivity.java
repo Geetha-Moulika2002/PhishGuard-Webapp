@@ -1,7 +1,9 @@
 package com.phishguard.app;
 
+import android.media.AudioManager;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
+import android.media.ToneGenerator;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,6 +19,7 @@ public class AlertActivity extends AppCompatActivity {
     private TextView tvSenderHeader, tvRiskScore, tvUserWarningText;
     private Button btnDismissAlert;
     private static Ringtone activeRingtone;
+    private ToneGenerator toneGenerator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +64,18 @@ public class AlertActivity extends AppCompatActivity {
             tvUserWarningText.setText("🚫 DO NOT CLICK ON MESSAGES FROM " + sender.toUpperCase() + "!\n\n⚠️ THIS SENDER IS HARMFUL.");
         }
 
-        // Play Loud Security Warning Ringtone Alarm via static persistent instance
+        // Play Loud Security Warning Siren via Ringtone + ToneGenerator Hardware Synthesizer
         if (PhishGuardDataStore.getInstance().isAudioAlarmEnabled()) {
+            // Method A: Hardware ToneGenerator emergency siren (100% Fail-Proof)
+            try {
+                toneGenerator = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
+                toneGenerator.startTone(ToneGenerator.TONE_CDMA_EMERGENCY_RINGBACK, 1500);
+                Log.e("PHISHGUARD_ALERT", "🔊 ToneGenerator Emergency Siren Started!");
+            } catch (Exception e) {
+                Log.e("PHISHGUARD_ALERT", "ToneGenerator error: " + e.getMessage());
+            }
+
+            // Method B: System Ringtone Alarm
             try {
                 if (activeRingtone != null && activeRingtone.isPlaying()) {
                     activeRingtone.stop();
@@ -79,7 +92,7 @@ public class AlertActivity extends AppCompatActivity {
                         activeRingtone.setLooping(true);
                     }
                     activeRingtone.play();
-                    Log.e("PHISHGUARD_ALERT", "🔊 Static Ringtone Alarm Started Playing!");
+                    Log.e("PHISHGUARD_ALERT", "🔊 Ringtone Alarm Started Playing!");
                 }
             } catch (Exception e) {
                 Log.e("PHISHGUARD_ALERT", "Ringtone error: " + e.getMessage());
@@ -92,6 +105,16 @@ public class AlertActivity extends AppCompatActivity {
     }
 
     private void stopRingtoneAndFinish() {
+        if (toneGenerator != null) {
+            try {
+                toneGenerator.stopTone();
+                toneGenerator.release();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            toneGenerator = null;
+        }
+
         if (activeRingtone != null) {
             try {
                 if (activeRingtone.isPlaying()) {
