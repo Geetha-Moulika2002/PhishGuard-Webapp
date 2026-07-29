@@ -137,31 +137,40 @@ public class NotificationListener extends NotificationListenerService {
                             PhishGuardDataStore.getInstance().isSenderBlocked(titleSeq != null ? titleSeq.toString() : "");
 
         if (isBlocked) {
-            Log.e("PHISHGUARD_NOTIF", "🚨 MATCH FOUND! SENDER [" + rawSender + "] IS BLOCKED! LAUNCHING RED FULLSCREEN OVERLAY VIA PENDING INTENT...");
+            Log.e("PHISHGUARD_NOTIF", "🚨 MATCH FOUND! SENDER [" + rawSender + "] IS BLOCKED! LAUNCHING RED FULLSCREEN OVERLAY & ERASING NOTIFICATION!");
 
-            // Launch Truecaller-style Red Security Alert Screen via FullScreenIntent
+            // 1. Launch Truecaller-style Red Security Alert Screen via FullScreenIntent
             launchRedAlertOverlay(this, rawSender, messageBody, true, 98);
 
-            // Temporarily suppress notification sound & banner for blocked sender
+            // 2. Temporarily suppress notification sound & banner for blocked sender
             try {
                 requestInterruptionFilter(INTERRUPTION_FILTER_NONE);
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
+            // 3. Multi-pass delayed cancellation to ensure complete erasure from drawer
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 try {
                     cancelNotification(sbn.getKey());
-                    Log.e("PHISHGUARD_NOTIF", "✅ Executed cancelNotification(key): " + sbn.getKey());
-                } catch (Exception e) {
-                    Log.e("PHISHGUARD_NOTIF", "❌ cancelNotification(key) failed: " + e.getMessage());
-                }
-                try {
                     cancelNotification(sbn.getPackageName(), sbn.getTag(), sbn.getId());
-                    Log.e("PHISHGUARD_NOTIF", "✅ Executed cancelNotification(pkg, tag, id)");
                 } catch (Exception e) {
-                    Log.e("PHISHGUARD_NOTIF", "❌ cancelNotification(pkg, tag, id) failed: " + e.getMessage());
+                    e.printStackTrace();
                 }
+
+                new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                    try {
+                        cancelNotification(sbn.getKey());
+                        cancelNotification(sbn.getPackageName(), sbn.getTag(), sbn.getId());
+                    } catch (Exception e) {}
+                }, 150);
+
+                new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                    try {
+                        cancelNotification(sbn.getKey());
+                        cancelNotification(sbn.getPackageName(), sbn.getTag(), sbn.getId());
+                    } catch (Exception e) {}
+                }, 450);
             }
 
             // Restore normal notification filter after 1.5 seconds

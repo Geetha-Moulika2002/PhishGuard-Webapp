@@ -1,10 +1,13 @@
 package com.phishguard.app;
 
+import android.media.AudioAttributes;
+import android.media.AudioManager;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
@@ -60,18 +63,33 @@ public class AlertActivity extends AppCompatActivity {
             tvUserWarningText.setText("🚫 DO NOT CLICK ON MESSAGES FROM " + sender.toUpperCase() + "!\n\n⚠️ THIS SENDER IS HARMFUL.");
         }
 
-        // Play PhishGuard Custom Audio Siren Alert on Interception
+        // Play Loud PhishGuard Audio Warning Siren Alert on Interception
         if (PhishGuardDataStore.getInstance().isAudioAlarmEnabled()) {
             try {
-                Uri alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                Uri alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
                 if (alarmUri == null) {
-                    alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+                    alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
                 }
+                if (alarmUri == null) {
+                    alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                }
+
                 ringtone = RingtoneManager.getRingtone(getApplicationContext(), alarmUri);
                 if (ringtone != null) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                        ringtone.setLooping(false);
+                    }
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        ringtone.setAudioAttributes(new AudioAttributes.Builder()
+                                .setUsage(AudioAttributes.USAGE_ALARM)
+                                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                                .build());
+                    }
                     ringtone.play();
+                    Log.e("PHISHGUARD_ALERT", "🔊 Playing Audio Warning Siren Ringtone!");
                 }
             } catch (Exception e) {
+                Log.e("PHISHGUARD_ALERT", "Audio alarm error: " + e.getMessage());
                 e.printStackTrace();
             }
         }
