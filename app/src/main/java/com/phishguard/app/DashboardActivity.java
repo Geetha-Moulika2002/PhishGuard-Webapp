@@ -28,7 +28,7 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        // Auto Request Runtime Permissions for SMS Interception & High Risk Alert Notifications
+        // Auto Request Runtime Permissions for SMS Interception & Display Over Other Apps Overlay
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             String[] permissions = new String[]{
                     android.Manifest.permission.RECEIVE_SMS,
@@ -36,6 +36,18 @@ public class DashboardActivity extends AppCompatActivity {
                     android.Manifest.permission.POST_NOTIFICATIONS
             };
             ActivityCompat.requestPermissions(this, permissions, 101);
+
+            if (!android.provider.Settings.canDrawOverlays(this)) {
+                try {
+                    Intent overlayIntent = new Intent(
+                            android.provider.Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                            android.net.Uri.parse("package:" + getPackageName())
+                    );
+                    startActivity(overlayIntent);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
         PhishGuardDataStore.getInstance().init(this);

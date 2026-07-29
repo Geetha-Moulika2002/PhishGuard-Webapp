@@ -1,7 +1,8 @@
 package com.phishguard.app;
 
-import android.content.ComponentName;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.widget.Button;
@@ -10,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class PermissionActivity extends AppCompatActivity {
 
-    Button btnPermission;
+    private Button btnPermission;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,52 +21,36 @@ public class PermissionActivity extends AppCompatActivity {
         btnPermission = findViewById(R.id.btnPermission);
 
         btnPermission.setOnClickListener(v -> {
-
-            Intent intent = new Intent(
-                    Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS
-            );
-
-            startActivity(intent);
-
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
+                Intent overlayIntent = new Intent(
+                        Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                        Uri.parse("package:" + getPackageName())
+                );
+                startActivity(overlayIntent);
+            } else {
+                Intent intent = new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS);
+                startActivity(intent);
+            }
         });
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        // Check if permission granted
-
         if (isNotificationServiceEnabled()) {
-
-            Intent intent = new Intent(
-                    PermissionActivity.this,
-                    DashboardActivity.class
-            );
-
+            Intent intent = new Intent(PermissionActivity.this, DashboardActivity.class);
             startActivity(intent);
-
             finish();
         }
     }
 
-    // Permission checker
-
     private boolean isNotificationServiceEnabled() {
-
         String packageName = getPackageName();
-
         String flat = Settings.Secure.getString(
                 getContentResolver(),
                 "enabled_notification_listeners"
         );
-
-        if (flat != null) {
-
-            return flat.contains(packageName);
-        }
-
-        return false;
+        return flat != null && flat.contains(packageName);
     }
 }
