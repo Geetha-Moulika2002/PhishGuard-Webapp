@@ -145,15 +145,31 @@ public class PhishGuardDataStore {
                         notifyListener();
                     });
 
-            // Community Global Auto-Block Sync across ALL users from Firebase Firestore ("blocked_senders")
-            FirebaseFirestore.getInstance().collection("blocked_senders")
+            // Collection 1: Global Community Blocked Senders (Synced across ALL user accounts)
+            FirebaseFirestore.getInstance().collection("global_blocked_senders")
                     .addSnapshotListener((value, error) -> {
                         if (error != null || value == null) return;
                         for (QueryDocumentSnapshot doc : value) {
                             String header = doc.getString("phoneOrHeader");
                             String reason = doc.getString("reason");
                             if (header != null && !isSenderBlocked(header)) {
-                                blockedSenders.add(0, new BlockedSender(header, reason != null ? reason : "Community Auto-Blocked", "Today", getTodayDateKey()));
+                                blockedSenders.add(0, new BlockedSender(header, reason != null ? reason : "Global Community Blocked", "Today", getTodayDateKey()));
+                            }
+                        }
+                        saveDataToPrefs();
+                        notifyListener();
+                    });
+
+            // Collection 2: Personal Manual Blocked Senders (Synced for SPECIFIC logged-in user)
+            FirebaseFirestore.getInstance().collection("blocked_senders")
+                    .whereEqualTo("userEmail", userEmail)
+                    .addSnapshotListener((value, error) -> {
+                        if (error != null || value == null) return;
+                        for (QueryDocumentSnapshot doc : value) {
+                            String header = doc.getString("phoneOrHeader");
+                            String reason = doc.getString("reason");
+                            if (header != null && !isSenderBlocked(header)) {
+                                blockedSenders.add(0, new BlockedSender(header, reason != null ? reason : "Personal Blocked", "Today", getTodayDateKey()));
                             }
                         }
                         saveDataToPrefs();
@@ -390,12 +406,38 @@ public class PhishGuardDataStore {
         notifyListener();
     }
 
-    public void addBlockedSender(BlockedSender sender) {
+    public void addBlockedSender(Context context, BlockedSender sender, boolean isGlobal) {
         if (!isSenderBlocked(sender.phoneOrHeader)) {
             blockedSenders.add(0, sender);
             saveDataToPrefs();
             notifyListener();
         }
+
+        if (context != null) {
+            String userEmail = AuthManager.getUserEmail(context);
+            try {
+                java.util.Map<String, Object> data = new java.util.HashMap<>();
+                data.put("phoneOrHeader", sender.phoneOrHeader);
+                data.put("reason", sender.reason);
+                data.put("dateAdded", sender.dateAdded);
+                data.put("userEmail", userEmail != null ? userEmail : "community");
+                data.put("timestamp", com.google.firebase.firestore.FieldValue.serverTimestamp());
+
+                // Write to personal blocked_senders collection
+                FirebaseFirestore.getInstance().collection("blocked_senders").add(data);
+
+                // If global / community shield, also write to global_blocked_senders collection
+                if (isGlobal) {
+                    FirebaseFirestore.getInstance().collection("global_blocked_senders").add(data);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void addBlockedSender(BlockedSender sender) {
+        addBlockedSender(null, sender, false);
     }
 
     public void deleteBlockedSender(Context context, String phoneOrHeader) {
