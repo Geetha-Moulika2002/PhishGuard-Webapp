@@ -3,6 +3,7 @@ package com.phishguard.app;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -13,6 +14,8 @@ import android.os.Parcelable;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
 import android.util.Log;
+
+import androidx.core.app.NotificationCompat;
 
 public class NotificationListener extends NotificationListenerService {
 
@@ -47,7 +50,7 @@ public class NotificationListener extends NotificationListenerService {
     public void onNotificationPosted(StatusBarNotification sbn) {
         if (sbn == null || sbn.getPackageName() == null) return;
 
-        // CRITICAL FIX: Ensure PhishGuardDataStore is initialized in listener context
+        // Ensure PhishGuardDataStore is initialized
         PhishGuardDataStore.getInstance().init(this);
 
         String packageName = sbn.getPackageName();
@@ -134,21 +137,12 @@ public class NotificationListener extends NotificationListenerService {
                             PhishGuardDataStore.getInstance().isSenderBlocked(titleSeq != null ? titleSeq.toString() : "");
 
         if (isBlocked) {
-            Log.e("PHISHGUARD_NOTIF", "🚨 MATCH FOUND! SENDER [" + rawSender + "] IS BLOCKED! LAUNCHING RED SECURITY OVERLAY & SILENCING NOTIFICATION!");
+            Log.e("PHISHGUARD_NOTIF", "🚨 MATCH FOUND! SENDER [" + rawSender + "] IS BLOCKED! LAUNCHING RED FULLSCREEN OVERLAY VIA PENDING INTENT...");
 
-            // 1. Pop up Truecaller-style Red Security Alert Screen
-            try {
-                Intent alertIntent = new Intent(this, AlertActivity.class);
-                alertIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                alertIntent.putExtra("is_blocked_alert", true);
-                alertIntent.putExtra("sender", rawSender);
-                alertIntent.putExtra("message", messageBody);
-                startActivity(alertIntent);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            // Launch Truecaller-style Red Security Alert Screen via FullScreenIntent
+            launchRedAlertOverlay(this, rawSender, messageBody, true, 98);
 
-            // 2. Temporarily suppress notification sound & banner for blocked sender
+            // Temporarily suppress notification sound & banner for blocked sender
             try {
                 requestInterruptionFilter(INTERRUPTION_FILTER_NONE);
             } catch (Exception e) {
@@ -206,5 +200,59 @@ public class NotificationListener extends NotificationListenerService {
                 dateKey,
                 result.threatType
         ));
+    }
+
+    private void launchRedAlertOverlay(Context context, String sender, String message, boolean isBlocked, int score) {
+        try {
+            Intent fullScreenIntent = new Intent(context, AlertActivity.class);
+            fullScreenIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            fullScreenIntent.putExtra("is_blocked_alert", isBlocked);
+            fullScreenIntent.putExtra("risk_score", score);
+            fullScreenIntent.putExtra("sender", sender);
+            fullScreenIntent.putExtra("message", message);
+
+            int flag = PendingIntent.FLAG_UPDATE_CURRENT;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                flag |= PendingIntent.FLAG_IMMUTABLE;
+            }
+
+            PendingIntent fullScreenPendingIntent = PendingIntent.getActivity(
+                    context,
+                    (int) System.currentTimeMillis(),
+                    fullScreenIntent,
+                    flag
+            );
+
+            NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+            if (notificationManager != null) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    NotificationChannel channel = new NotificationChannel(
+                            CHANNEL_ID,
+                            "PhishGuard Phishing Alerts",
+                            NotificationManager.IMPORTANCE_HIGH
+                    );
+                    channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
+                    notificationManager.createNotificationChannel(channel);
+                }
+
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
+                        .setSmallIcon(R.mipmap.ic_launcher)
+                        .setContentTitle("🚨 PHISHGUARD SECURITY ALERT")
+                        .setContentText("Blocked Sender Intercepted: " + sender)
+                        .setPriority(NotificationCompat.PRIORITY_MAX)
+                        .setCategory(NotificationCompat.CATEGORY_ALARM)
+                        .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                        .setFullScreenIntent(fullScreenPendingIntent, true)
+                        .setAutoCancel(true);
+
+                notificationManager.notify((int) System.currentTimeMillis() + 1, builder.build());
+            }
+
+            // Direct fallback launch
+            context.startActivity(fullScreenIntent);
+
+        } catch (Exception e) {
+            Log.e("PHISHGUARD_NOTIF", "FullScreenIntent error: " + e.getMessage());
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.phishguard.app;
 
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -30,7 +31,7 @@ public class SmsReceiver extends BroadcastReceiver {
 
         if (context == null || intent == null || intent.getAction() == null) return;
 
-        // CRITICAL FIX: Ensure PhishGuardDataStore is initialized in background receiver context
+        // Ensure PhishGuardDataStore is initialized
         PhishGuardDataStore.getInstance().init(context);
 
         String action = intent.getAction();
@@ -71,20 +72,12 @@ public class SmsReceiver extends BroadcastReceiver {
             Log.e("PHISHGUARD_SMS", "Raw Sender: " + rawSender + " | Masked Sender: " + maskedSender);
             Log.e("PHISHGUARD_SMS", "Content Snippet: " + PhishGuardDataStore.getSafeCloudPreview(messageBody));
 
-            // 1. Check if Sender is Blocked in initialized DataStore
+            // 1. Check if Sender is Blocked in DataStore
             if (PhishGuardDataStore.getInstance().isSenderBlocked(rawSender) || PhishGuardDataStore.getInstance().isSenderBlocked(maskedSender)) {
-                Log.e("PHISHGUARD_SMS", "🚨 BLOCKED SENDER MATCHED: " + rawSender + " -> LAUNCHING RED SECURITY OVERLAY!");
+                Log.e("PHISHGUARD_SMS", "🚨 BLOCKED SENDER MATCHED: " + rawSender + " -> LAUNCHING FULLSCREEN RED OVERLAY VIA PENDING INTENT!");
                 
-                try {
-                    Intent alertIntent = new Intent(context, AlertActivity.class);
-                    alertIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    alertIntent.putExtra("is_blocked_alert", true);
-                    alertIntent.putExtra("sender", rawSender);
-                    alertIntent.putExtra("message", messageBody);
-                    context.startActivity(alertIntent);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                // Android 10+ FullScreenIntent to bypass ActivityTaskManager background restriction
+                launchRedAlertOverlay(context, rawSender, messageBody, true, 98);
 
                 abortBroadcast();
                 return;
@@ -110,19 +103,9 @@ public class SmsReceiver extends BroadcastReceiver {
                     result.threatType
             ));
 
-            // 4. If High Risk Phishing, also pop up Red Alert Overlay Screen
+            // 4. If High Risk Phishing, pop up Red Alert Overlay Screen via FullScreenIntent
             if (result.riskScore >= 70) {
-                try {
-                    Intent alertIntent = new Intent(context, AlertActivity.class);
-                    alertIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    alertIntent.putExtra("is_blocked_alert", false);
-                    alertIntent.putExtra("risk_score", result.riskScore);
-                    alertIntent.putExtra("sender", rawSender);
-                    alertIntent.putExtra("message", messageBody);
-                    context.startActivity(alertIntent);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                launchRedAlertOverlay(context, rawSender, messageBody, false, result.riskScore);
             }
 
             // 5. Cloud Database Privacy Hardening (Firebase Firestore)
@@ -148,6 +131,60 @@ public class SmsReceiver extends BroadcastReceiver {
         } catch (Exception e) {
             Log.e("PHISHGUARD_SMS", "Error processing SMS: " + e.getMessage());
             e.printStackTrace();
+        }
+    }
+
+    private void launchRedAlertOverlay(Context context, String sender, String message, boolean isBlocked, int score) {
+        try {
+            Intent fullScreenIntent = new Intent(context, AlertActivity.class);
+            fullScreenIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            fullScreenIntent.putExtra("is_blocked_alert", isBlocked);
+            fullScreenIntent.putExtra("risk_score", score);
+            fullScreenIntent.putExtra("sender", sender);
+            fullScreenIntent.putExtra("message", message);
+
+            int flag = PendingIntent.FLAG_UPDATE_CURRENT;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                flag |= PendingIntent.FLAG_IMMUTABLE;
+            }
+
+            PendingIntent fullScreenPendingIntent = PendingIntent.getActivity(
+                    context,
+                    (int) System.currentTimeMillis(),
+                    fullScreenIntent,
+                    flag
+            );
+
+            NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+            if (notificationManager != null) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    NotificationChannel channel = new NotificationChannel(
+                            CHANNEL_ID,
+                            "PhishGuard Phishing Alerts",
+                            NotificationManager.IMPORTANCE_HIGH
+                    );
+                    channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
+                    notificationManager.createNotificationChannel(channel);
+                }
+
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
+                        .setSmallIcon(R.mipmap.ic_launcher)
+                        .setContentTitle("🚨 PHISHGUARD SECURITY ALERT")
+                        .setContentText("Blocked Sender Intercepted: " + sender)
+                        .setPriority(NotificationCompat.PRIORITY_MAX)
+                        .setCategory(NotificationCompat.CATEGORY_ALARM)
+                        .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                        .setFullScreenIntent(fullScreenPendingIntent, true)
+                        .setAutoCancel(true);
+
+                notificationManager.notify((int) System.currentTimeMillis(), builder.build());
+            }
+
+            // Direct fallback launch
+            context.startActivity(fullScreenIntent);
+
+        } catch (Exception e) {
+            Log.e("PHISHGUARD_SMS", "FullScreenIntent error: " + e.getMessage());
         }
     }
 }
