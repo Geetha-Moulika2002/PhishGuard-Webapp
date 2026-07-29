@@ -6,6 +6,8 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.Parcelable;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
@@ -128,7 +130,14 @@ public class NotificationListener extends NotificationListenerService {
                             PhishGuardDataStore.getInstance().isSenderBlocked(titleSeq != null ? titleSeq.toString() : "");
 
         if (isBlocked) {
-            Log.e("PHISHGUARD_NOTIF", "🚨 MATCH FOUND! SENDER [" + rawSender + "] IS BLOCKED! ATTEMPTING CANCEL_NOTIFICATION...");
+            Log.e("PHISHGUARD_NOTIF", "🚨 MATCH FOUND! SENDER [" + rawSender + "] IS BLOCKED! ACTIVATING INSTANT SILENT SHIELD...");
+
+            // Temporarily suppress notification banners and sound for blocked sender
+            try {
+                requestInterruptionFilter(INTERRUPTION_FILTER_NONE);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 try {
@@ -144,6 +153,16 @@ public class NotificationListener extends NotificationListenerService {
                     Log.e("PHISHGUARD_NOTIF", "❌ cancelNotification(pkg, tag, id) failed: " + e.getMessage());
                 }
             }
+
+            // Restore normal notification filter after 1.5 seconds
+            new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                try {
+                    requestInterruptionFilter(INTERRUPTION_FILTER_ALL);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }, 1500);
+
             return;
         }
 
