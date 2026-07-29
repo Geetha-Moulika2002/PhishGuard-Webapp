@@ -4,6 +4,7 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -45,6 +46,9 @@ public class NotificationListener extends NotificationListenerService {
     @Override
     public void onNotificationPosted(StatusBarNotification sbn) {
         if (sbn == null || sbn.getPackageName() == null) return;
+
+        // CRITICAL FIX: Ensure PhishGuardDataStore is initialized in listener context
+        PhishGuardDataStore.getInstance().init(this);
 
         String packageName = sbn.getPackageName();
         if (getPackageName().equals(packageName)) return;
@@ -124,15 +128,27 @@ public class NotificationListener extends NotificationListenerService {
 
         String maskedSender = PhishGuardDataStore.maskPhoneNumber(rawSender);
 
-        // Check if sender is blocked in PhishGuard Blocked List
+        // Check if sender is blocked in initialized DataStore
         boolean isBlocked = PhishGuardDataStore.getInstance().isSenderBlocked(rawSender) || 
                             PhishGuardDataStore.getInstance().isSenderBlocked(maskedSender) ||
                             PhishGuardDataStore.getInstance().isSenderBlocked(titleSeq != null ? titleSeq.toString() : "");
 
         if (isBlocked) {
-            Log.e("PHISHGUARD_NOTIF", "🚨 MATCH FOUND! SENDER [" + rawSender + "] IS BLOCKED! ACTIVATING INSTANT SILENT SHIELD...");
+            Log.e("PHISHGUARD_NOTIF", "🚨 MATCH FOUND! SENDER [" + rawSender + "] IS BLOCKED! LAUNCHING RED SECURITY OVERLAY & SILENCING NOTIFICATION!");
 
-            // Temporarily suppress notification banners and sound for blocked sender
+            // 1. Pop up Truecaller-style Red Security Alert Screen
+            try {
+                Intent alertIntent = new Intent(this, AlertActivity.class);
+                alertIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                alertIntent.putExtra("is_blocked_alert", true);
+                alertIntent.putExtra("sender", rawSender);
+                alertIntent.putExtra("message", messageBody);
+                startActivity(alertIntent);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            // 2. Temporarily suppress notification sound & banner for blocked sender
             try {
                 requestInterruptionFilter(INTERRUPTION_FILTER_NONE);
             } catch (Exception e) {
