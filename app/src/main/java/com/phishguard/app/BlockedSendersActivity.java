@@ -92,25 +92,8 @@ public class BlockedSendersActivity extends AppCompatActivity {
             });
         }
 
-        // Real-time Firestore Sync for Blocked Senders across Mobile & Web
-        String userEmail = AuthManager.getUserEmail(this);
-        FirebaseFirestore.getInstance().collection("blocked_senders")
-                .whereEqualTo("userEmail", userEmail)
-                .addSnapshotListener((snapshot, error) -> {
-                    if (error != null || snapshot == null) return;
-                    List<PhishGuardDataStore.BlockedSender> storeList = PhishGuardDataStore.getInstance().getBlockedSenders();
-                    storeList.clear();
-                    for (DocumentSnapshot doc : snapshot.getDocuments()) {
-                        String phone = doc.getString("phoneOrHeader");
-                        String reason = doc.getString("reason");
-                        if (phone != null) {
-                            storeList.add(new PhishGuardDataStore.BlockedSender(
-                                    phone, reason != null ? reason : "Blocked Sender", "Today", PhishGuardDataStore.getTodayDateKey()
-                            ));
-                        }
-                    }
-                    renderBlockedList();
-                });
+        // Register DataChangeListener on PhishGuardDataStore to auto-render both global & personal blocked senders
+        PhishGuardDataStore.getInstance().setDataChangeListener(this::renderBlockedList);
 
         if (btnAddBlocked != null) {
             btnAddBlocked.setOnClickListener(v -> {
