@@ -106,25 +106,40 @@ function initRealtimeFirestoreSync(email) {
       renderReportsWeb();
     });
 
-  // 2. Real-time Listener on "blocked_senders" collection
-  blockedUnsubscribe = db.collection("blocked_senders")
-    .where("userEmail", "==", cleanEmail)
-    .onSnapshot((snapshot) => {
-      blockedSendersData = [];
-      snapshot.forEach(doc => {
-        const d = doc.data();
+  // 2. Real-time Listeners on "global_blocked_senders" & "blocked_senders" collections (Affects ALL Accounts!)
+  db.collection("global_blocked_senders").onSnapshot((snapshot) => {
+    snapshot.forEach(doc => {
+      const d = doc.data();
+      if (d.phoneOrHeader && !blockedSendersData.some(b => b.phoneOrHeader === d.phoneOrHeader)) {
         blockedSendersData.push({
           id: doc.id,
-          phoneOrHeader: d.phoneOrHeader || "",
-          reason: d.reason || "Blocked",
+          phoneOrHeader: d.phoneOrHeader,
+          reason: d.reason || "Global Community Shield",
           dateAdded: "Today",
           dateKey: getTodayDateKey()
         });
-      });
-
-      updateDashboardMetrics();
-      renderBlockedListWeb();
+      }
     });
+    updateDashboardMetrics();
+    renderBlockedListWeb();
+  });
+
+  blockedUnsubscribe = db.collection("blocked_senders").onSnapshot((snapshot) => {
+    snapshot.forEach(doc => {
+      const d = doc.data();
+      if (d.phoneOrHeader && !blockedSendersData.some(b => b.phoneOrHeader === d.phoneOrHeader)) {
+        blockedSendersData.push({
+          id: doc.id,
+          phoneOrHeader: d.phoneOrHeader,
+          reason: d.reason || "Community Blocked",
+          dateAdded: "Today",
+          dateKey: getTodayDateKey()
+        });
+      }
+    });
+    updateDashboardMetrics();
+    renderBlockedListWeb();
+  });
 }
 
 let userDocUnsubscribe = null;

@@ -138,23 +138,20 @@ public class PhishGuardDataStore {
                         notifyListener();
                     });
 
-            // Collection 2: Personal Manual Blocked Senders (Synced for SPECIFIC logged-in user)
-            if (userEmail != null && !userEmail.isEmpty()) {
-                FirebaseFirestore.getInstance().collection("blocked_senders")
-                        .whereEqualTo("userEmail", userEmail)
-                        .addSnapshotListener((value, error) -> {
-                            if (error != null || value == null) return;
-                            for (QueryDocumentSnapshot doc : value) {
-                                String header = doc.getString("phoneOrHeader");
-                                String reason = doc.getString("reason");
-                                if (header != null && !isSenderBlocked(header)) {
-                                    blockedSenders.add(0, new BlockedSender(header, reason != null ? reason : "Personal Blocked", "Today", getTodayDateKey()));
-                                }
+            // Collection 2: Cross-Account Blocked Senders Sync (All blocked senders in Firebase affect ALL user accounts!)
+            FirebaseFirestore.getInstance().collection("blocked_senders")
+                    .addSnapshotListener((value, error) -> {
+                        if (error != null || value == null) return;
+                        for (QueryDocumentSnapshot doc : value) {
+                            String header = doc.getString("phoneOrHeader");
+                            String reason = doc.getString("reason");
+                            if (header != null && !isSenderBlocked(header)) {
+                                blockedSenders.add(0, new BlockedSender(header, reason != null ? reason : "Community Blocked", "Today", getTodayDateKey()));
                             }
-                            saveDataToPrefs();
-                            notifyListener();
-                        });
-            }
+                        }
+                        saveDataToPrefs();
+                        notifyListener();
+                    });
         } catch (Exception e) {
             e.printStackTrace();
         }
