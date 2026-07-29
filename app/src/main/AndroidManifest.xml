@@ -68,7 +68,12 @@
         <activity android:name=".AboutAppActivity" android:exported="false" />
         <activity android:name=".PrivacyActivity" android:exported="false" />
         <activity android:name=".TermsActivity" android:exported="false" />
-        <activity android:name=".AlertActivity" android:exported="false" />
+        <activity
+            android:name=".AlertActivity"
+            android:exported="false"
+            android:showWhenLocked="true"
+            android:turnScreenOn="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
 
         <!-- REAL-TIME SMS BROADCAST RECEIVER -->
         <receiver
