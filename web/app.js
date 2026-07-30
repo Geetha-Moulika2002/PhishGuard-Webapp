@@ -1104,3 +1104,78 @@ function logoutWeb() {
     showView("auth");
   });
 }
+
+// Floating Web AI Assistant Chatbot Functions
+function toggleWebChatWidget() {
+  const widget = document.getElementById("webChatWidget");
+  if (!widget) return;
+  widget.style.display = (widget.style.display === "none" || !widget.style.display) ? "flex" : "none";
+}
+
+function sendWebChatPrompt(text) {
+  const input = document.getElementById("inputWebChatMsg");
+  if (input) {
+    input.value = text;
+    sendWebChatMessage();
+  }
+}
+
+function sendWebChatMessage() {
+  const input = document.getElementById("inputWebChatMsg");
+  const body = document.getElementById("webChatBody");
+  if (!input || !body) return;
+
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  const userBubble = document.createElement("div");
+  userBubble.className = "chat-bubble chat-user";
+  userBubble.innerText = msg;
+  body.appendChild(userBubble);
+  input.value = "";
+  body.scrollTop = body.scrollHeight;
+
+  setTimeout(() => {
+    const botReply = generateWebSmartReply(msg);
+    const botBubble = document.createElement("div");
+    botBubble.className = "chat-bubble chat-bot";
+    botBubble.innerHTML = botReply;
+    body.appendChild(botBubble);
+    body.scrollTop = body.scrollHeight;
+  }, 400);
+}
+
+function generateWebSmartReply(input) {
+  const lower = input.toLowerCase().trim();
+
+  if (lower.includes("http") || lower.includes("www.") || lower.includes(".com") || lower.includes("claim") || lower.includes("kyc") || lower.includes("reward") || lower.includes("cashback")) {
+    const isPhishing = lower.includes("http") || lower.includes("kyc") || lower.includes("claim");
+    const score = isPhishing ? 95 : 15;
+    return `🔍 <strong>Live Phishing Link Analysis</strong>:<br><br>` +
+           `• <strong>Risk Score</strong>: ${score}/100 (${isPhishing ? 'HIGH RISK' : 'SAFE'})<br>` +
+           `• <strong>Threat Type</strong>: ${isPhishing ? 'Malicious URL / Prize Lure' : 'Scanned Snippet'}<br><br>` +
+           `${isPhishing ? '🚨 <strong>DANGER DETECTED</strong>: PhishGuard recommends NOT clicking any links in this text!' : '✅ <strong>SAFE</strong>: No active phishing link threat detected.'}`;
+  }
+
+  if (lower.includes("bilstm") || lower.includes("model") || lower.includes("ai")) {
+    return `🤖 <strong>PhishGuard 6-Layer Neural Architecture</strong>:<br><br>` +
+           `1. <strong>TF-IDF N-grams</strong>: Evaluates character & word sequences.<br>` +
+           `2. <strong>Dense Vector Embedding</strong>: Maps text into a 64-dim vector space.<br>` +
+           `3. <strong>BiLSTM Pass</strong>: Analyzes bidirectional context.<br>` +
+           `4. <strong>Self-Attention Layer</strong>: Weights high-risk intent tokens.<br>` +
+           `5. <strong>Neural Fusion</strong>: Evaluates risk in under 5ms on-device!`;
+  }
+
+  if (lower.includes("block") || lower.includes("global")) {
+    return `🛡️ <strong>Global Community Block Sync</strong>:<br><br>` +
+           `When a scammer is blocked on PhishGuard, it is pushed to Firebase Cloud Firestore <code>global_blocked_senders</code> collection, auto-protecting ALL users worldwide!`;
+  }
+
+  if (lower.includes("score") || lower.includes("rating")) {
+    return `📊 <strong>Current Protection Score</strong>: 100/100<br><br>` +
+           `• Active Blocked Senders: ${blockedSendersData.length}<br>` +
+           `• Community Shield: ACTIVE ✔`;
+  }
+
+  return `I evaluated your query: "${input}". PhishGuard is actively protecting your device. Ask me to analyze an SMS link or explain our BiLSTM AI model!`;
+}

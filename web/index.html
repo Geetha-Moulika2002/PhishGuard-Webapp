@@ -23,7 +23,7 @@
   <!-- Top App Navigation Bar -->
   <header class="app-header">
     <div class="header-container">
-      <div class="brand-badge">
+      <div class="brand-badge" onclick="showView('dashboard')">
         <span class="brand-icon">🛡</span>
         <span class="brand-title">PhishGuard</span>
       </div>
@@ -49,477 +49,208 @@
           <p class="auth-subtitle" id="tvSubtitle">Sign in to activate real-time phishing protection</p>
         </div>
 
-        <div class="auth-tabs">
-          <div class="auth-tab active" id="tabAuthLogin" onclick="switchAuthTab('login')">Sign In</div>
-          <div class="auth-tab" id="tabAuthRegister" onclick="switchAuthTab('register')">Register</div>
-        </div>
-
-        <form id="formAuth" onsubmit="handleAuthSubmit(event)">
-          <div class="form-group" id="groupName" style="display: none;">
-            <label class="form-label">Full Name</label>
-            <input type="text" id="authName" class="form-input" placeholder="e.g. Geetha" />
+        <form id="formAuth" onsubmit="handleAuthSubmitWeb(event)">
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" id="inputEmail" class="form-input" placeholder="name@domain.com" required />
           </div>
 
           <div class="form-group">
-            <label class="form-label">Email Address</label>
-            <input type="email" id="authEmail" class="form-input" placeholder="name@phishguard.ai" required />
-          </div>
-
-          <div class="form-group" style="position: relative;">
             <label class="form-label">Password</label>
-            <input type="password" id="authPassword" class="form-input" placeholder="••••••••" required oninput="onPasswordInputRealtime(this.value)" />
-            <span id="btnTogglePassword" onclick="togglePasswordVisibilityWeb()" style="position: absolute; right: 14px; top: 34px; font-size: 11px; font-weight: 700; color: var(--primary-blue); cursor: pointer;">SHOW</span>
+            <div style="position: relative;">
+              <input type="password" id="inputPassword" class="form-input" placeholder="••••••••" required />
+              <button type="button" onclick="togglePasswordVisibilityWeb()" style="position: absolute; right: 12px; top: 12px; background: transparent; border: none; color: var(--text-muted); cursor: pointer;">👁</button>
+            </div>
           </div>
 
-          <!-- Forgot Password Option Link -->
-          <div id="rowForgotPassword" style="text-align: right; margin-top: -6px; margin-bottom: 14px;">
-            <a href="#" id="linkForgotPassword" onclick="handleForgotPasswordWeb(event)" style="font-size: 12px; font-weight: 700; color: var(--primary-blue); text-decoration: none;">Forgot Password?</a>
-          </div>
-
-          <!-- Password Rule Constraints -->
-          <div id="layoutPasswordRules" style="display: none; background: #0F172A; padding: 12px 14px; border-radius: 12px; margin-bottom: 16px; border: 1px solid var(--card-border);">
-            <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); margin-bottom: 6px;">PASSWORD SECURITY REQUIREMENTS</div>
-            <div id="ruleLength" style="font-size: 12px; color: var(--accent-red); margin-bottom: 4px;">✖ At least 8 characters long</div>
-            <div id="ruleCase" style="font-size: 12px; color: var(--accent-red); margin-bottom: 4px;">✖ Contains uppercase (A-Z) &amp; lowercase (a-z)</div>
-            <div id="ruleNumberSymbol" style="font-size: 12px; color: var(--accent-red);">✖ Contains a number (0-9) &amp; special symbol (@#$%)</div>
-          </div>
-
-          <button type="submit" id="btnAuthSubmit" class="btn-primary">Sign In &amp; Continue</button>
+          <button type="submit" id="btnAuthSubmit" class="btn-primary">Sign In</button>
         </form>
+
+        <div style="text-align: center; margin-top: 16px;">
+          <a href="#" id="linkToggleAuthMode" onclick="toggleAuthModeWeb(event)" style="font-size: 13px; color: var(--primary-blue); text-decoration: none; font-weight: 600;">Don't have an account? Register here</a>
+        </div>
       </div>
     </section>
 
-    <!-- 2. DASHBOARD PANEL -->
+    <!-- 2. DASHBOARD VIEW -->
     <section id="view-dashboard" class="view-panel">
-      <!-- Top User Header -->
-      <div class="dashboard-header" style="display: flex; align-items: center; justify-content: space-between;">
-        <div>
-          <div style="font-size: 13px; font-weight: 700; color: var(--text-muted);" id="tvUserWelcome">Welcome Back</div>
-          <div style="font-size: 20px; font-weight: 800; color: var(--text-white);" id="tvUserEmail">user@phishguard.ai</div>
+
+      <!-- Hero Cyber Shield Radar Banner -->
+      <div class="hero-banner">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="status-dot"></span>
+            <span>SYSTEM GUARD ACTIVE • BI-LSTM ENGINE ONLINE</span>
+          </div>
+          <h1 class="hero-title">Real-Time AI Phishing Interception</h1>
+          <p class="hero-desc">PhishGuard continuously monitors SMS threats, silences fraud notifications, and syncs community blacklist databases in real-time.</p>
         </div>
-        <div style="display: flex; align-items: center; gap: 6px; background: rgba(16, 185, 129, 0.15); border: 1px solid #10B981; padding: 6px 12px; border-radius: 20px;">
-          <span style="width: 8px; height: 8px; background: #10B981; border-radius: 50%;"></span>
-          <span style="font-size: 11px; font-weight: 800; color: #10B981;">ACTIVE</span>
+        <div style="font-size: 80px; opacity: 0.8; filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.4));">🛡️</div>
+      </div>
+
+      <!-- Quick Metrics Counters Grid -->
+      <div class="grid-4" style="margin-bottom: 24px;">
+        <div class="stat-card">
+          <div class="stat-number" id="tvScanned">0</div>
+          <div class="stat-label">Scans Analyzed</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="tvBlocked" style="color: var(--accent-red);">0</div>
+          <div class="stat-label">Active Blocked</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="tvScoreDisplayHeader" style="color: var(--accent-green);">100</div>
+          <div class="stat-label">Security Score</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" style="color: var(--accent-amber);">100%</div>
+          <div class="stat-label">Zero-Cloud Privacy</div>
         </div>
       </div>
 
-      <!-- Threat Intelligence Overview -->
-      <div style="margin-top: 24px;">
-        <h3 style="font-size: 18px; font-weight: 800;">Threat Intelligence Overview</h3>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px;">
-          <div class="card-dark" style="text-align: center; margin-top: 0;">
-            <div style="font-size: 28px; font-weight: 800; color: var(--primary-blue);" id="tvScanned">0</div>
-            <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">SMS Analyzed</div>
-          </div>
-          <div class="card-dark" style="text-align: center; margin-top: 0;">
-            <div style="font-size: 28px; font-weight: 800; color: var(--accent-red);" id="tvBlocked">0</div>
-            <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Threats Neutralized</div>
-          </div>
-        </div>
-      </div>
+      <!-- Main Action Cards Grid -->
+      <div class="grid-2">
 
-      <!-- Protection Tools Grid -->
-      <div style="margin-top: 24px;">
-        <h3 style="font-size: 18px; font-weight: 800;">Protection Tools</h3>
-        <div class="dashboard-grid" style="margin-top: 12px;">
+        <!-- Manual SMS / URL Threat Scanner -->
+        <div class="card-dark">
+          <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 6px;">🔍 Instant SMS &amp; Link Scanner</h3>
+          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">Paste suspicious SMS text or link for BiLSTM neural evaluation.</p>
           
-          <!-- 1. Scan SMS -->
-          <div class="dash-card" onclick="showView('scan-sms')">
-            <div class="card-icon" style="color: #3B82F6;">💬</div>
-            <div class="card-title">Scan SMS</div>
-            <div class="card-desc">Analyze SMS text for phishing &amp; OTP theft</div>
+          <div class="form-group">
+            <label class="form-label">SMS Sender Header (Optional)</label>
+            <input type="text" id="inputScanSender" class="form-input" placeholder="e.g. AX-BANK or +919959215135" />
           </div>
 
-          <!-- 2. Threat Center -->
-          <div class="dash-card" onclick="showView('threat-center')">
-            <div class="card-icon" style="color: #EF4444;">🛡</div>
-            <div class="card-title">Threat Center</div>
-            <div class="card-desc">Live threat alerts &amp; real-time protection</div>
+          <div class="form-group">
+            <label class="form-label">Message Body / URL</label>
+            <textarea id="inputScanText" class="form-input" style="height: 90px; padding: 12px; resize: none;" placeholder="e.g. CONGRATULATIONS! Claim cashback reward: http://phonepe-claim.example.com"></textarea>
           </div>
 
-          <!-- 3. Reports -->
-          <div class="dash-card" onclick="showView('reports')">
-            <div class="card-icon" style="color: #10B981;">📊</div>
-            <div class="card-title">Security Reports</div>
-            <div class="card-desc">Threat metrics &amp; timeframe analytics</div>
-          </div>
+          <button class="btn-primary" onclick="runWebScan()">Run BiLSTM AI Scan</button>
 
-          <!-- 4. Blocked Senders -->
-          <div class="dash-card" onclick="showView('blocked-senders')">
-            <div class="card-icon" style="color: #6366F1;">🚫</div>
-            <div class="card-title">Blocked List</div>
-            <div class="card-desc">Manage blocked headers &amp; numbers</div>
-          </div>
-
-          <!-- 5. Report Scam -->
-          <div class="dash-card" onclick="showView('report-scam')">
-            <div class="card-icon" style="color: #EC4899;">⚠️</div>
-            <div class="card-title">Report Scam</div>
-            <div class="card-desc">Submit new phishing sample</div>
-          </div>
-
-          <!-- 6. Rewards -->
-          <div class="dash-card" onclick="showView('rewards')">
-            <div class="card-icon" style="color: #EAB308;">🏆</div>
-            <div class="card-title">Security Rewards</div>
-            <div class="card-desc">Badges &amp; community points</div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Need Help or Support Banner (Matching Android App cardHelp) -->
-      <div class="card-dark" style="margin-top: 20px; display: flex; align-items: center; justify-content: space-between; cursor: pointer;" onclick="showView('help')">
-        <div style="display: flex; align-items: center; gap: 14px;">
-          <div style="font-size: 26px; color: var(--primary-blue);">❓</div>
-          <div>
-            <div style="font-size: 15px; font-weight: 800; color: var(--text-white);">Need Help or Support?</div>
-            <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Interactive AI Support Assistant &amp; FAQs</div>
+          <div id="scanResultContainer" style="display: none; margin-top: 18px; padding: 16px; border-radius: var(--radius-md); background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border-glass);">
+            <div id="tvScanRiskLevel" style="font-size: 16px; font-weight: 800;"></div>
+            <div id="tvScanThreatType" style="font-size: 13px; color: var(--text-muted); margin-top: 4px;"></div>
+            <div id="tvScanRecommendation" style="font-size: 13px; margin-top: 10px;"></div>
           </div>
         </div>
-        <div style="font-size: 22px; font-weight: 800; color: var(--primary-blue);">›</div>
+
+        <!-- Community Fraud Shield & Blocked Sender Manager -->
+        <div class="card-dark">
+          <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 6px;">🛡️ Community Auto-Block Shield</h3>
+          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">Auto-silences top 100 community-reported fraud senders (SBI-SCAM, HDFCBK-LOAN, KYC traps).</p>
+
+          <div style="display: flex; gap: 10px; margin-bottom: 16px;">
+            <button id="btnToggleCommunityShieldWeb" class="btn-secondary" style="flex: 1;" onclick="toggleCommunityShieldWeb()">ENABLE SHIELD</button>
+            <button id="btnToggleAudioAlarmWeb" class="btn-secondary" style="flex: 1; color: var(--accent-green);" onclick="toggleAudioAlarmWeb()">ALARM: ON</button>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Add Blocked Phone / Header</label>
+            <div style="display: flex; gap: 8px;">
+              <input type="text" id="inputBlockSender" class="form-input" placeholder="e.g. +919959215135" style="flex: 1;" />
+              <button class="btn-primary" style="width: 90px;" onclick="addBlockedSenderWeb()">Block</button>
+            </div>
+          </div>
+
+          <div style="font-size: 13px; font-weight: 700; color: var(--text-muted); margin-top: 14px; margin-bottom: 8px;">Active Blocked List (Real-Time Cloud Sync):</div>
+          <div id="blockedSendersContainerWeb" style="max-height: 180px; overflow-y: auto;"></div>
+        </div>
+
       </div>
+
+      <!-- Report Scam Panel -->
+      <div class="card-dark" style="margin-top: 20px;">
+        <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 6px;">🚨 Report Scam Sender to Cloud Database</h3>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">Submitting a report auto-blocks the sender globally across ALL user accounts!</p>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label class="form-label">Scam Sender Header / Phone</label>
+            <input type="text" id="inputReportSender" class="form-input" placeholder="e.g. +91 99592 15135 (Mouli)" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Issue Category</label>
+            <select id="selectReportIssue" class="form-input">
+              <option value="Phishing Link Trap">Phishing Link Trap</option>
+              <option value="Fake Bank / KYC Fraud">Fake Bank / KYC Fraud</option>
+              <option value="Lottery / Prize Scam">Lottery / Prize Scam</option>
+              <option value="Impersonation Attack">Impersonation Attack</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Scam Message Body Snippet</label>
+          <textarea id="inputReportText" class="form-input" style="height: 70px; padding: 10px; resize: none;" placeholder="Paste suspicious SMS snippet..."></textarea>
+        </div>
+
+        <button class="btn-primary" onclick="submitScamReportWeb()">Submit Scam Report &amp; Auto-Block Globally</button>
+      </div>
+
     </section>
 
-    <!-- 3. SCAN SMS PANEL -->
-    <section id="view-scan-sms" class="view-panel">
-      <div class="panel-header">
-        <button class="btn-back" onclick="showView('dashboard')">←</button>
-        <h2>Scan SMS Message</h2>
-      </div>
-
-      <div class="card-dark">
-        <label class="form-label">Paste SMS Content below:</label>
-        <textarea id="inputScanSms" class="form-textarea" placeholder="Paste incoming SMS message here to detect phishing, fake banking links, and OTP theft attempts..." rows="5"></textarea>
-        
-        <div style="display: flex; gap: 10px; margin-top: 12px;">
-          <button class="btn-secondary" onclick="pasteSamplePhishingSms()" style="flex: 1;">Paste Test Scam SMS</button>
-          <button class="btn-primary" onclick="executeSmsScanWeb()" style="flex: 1;">Analyze SMS Now</button>
-        </div>
-      </div>
-
-      <!-- Explainable AI Result Card Container -->
-      <div id="scanResultContainer" style="display: none; margin-top: 20px;"></div>
-    </section>
-
-    <!-- 4. THREAT HISTORY PANEL -->
+    <!-- 3. HISTORY VIEW -->
     <section id="view-history" class="view-panel">
-      <div class="panel-header">
-        <button class="btn-back" onclick="showView('dashboard')">←</button>
-        <h2>Threat History</h2>
-        <button class="btn-text-danger" onclick="clearScanHistoryWeb()">Clear All</button>
-      </div>
-
-      <div class="filter-pills">
-        <span class="pill active" id="pillAll" onclick="filterHistoryWeb('all')">All Scans</span>
-        <span class="pill" id="pillHigh" onclick="filterHistoryWeb('high')">High Risk</span>
-        <span class="pill" id="pillSafe" onclick="filterHistoryWeb('safe')">Safe</span>
-      </div>
-
-      <div id="historyList" class="history-list" style="margin-top: 16px;"></div>
-    </section>
-
-    <!-- 5. NOTIFICATIONS PANEL -->
-    <section id="view-notifications" class="view-panel">
-      <div class="panel-header">
-        <button class="btn-back" onclick="showView('dashboard')">←</button>
-        <h2>Security Notifications &amp; Alerts</h2>
-        <button class="btn-text-danger" onclick="clearNotificationsWeb()">Clear All</button>
-      </div>
-      <div id="notificationList" style="margin-top: 16px;"></div>
-    </section>
-
-    <!-- 6. PROFILE PANEL -->
-    <section id="view-profile" class="view-panel">
-      <div class="panel-header">
-        <button class="btn-back" onclick="showView('dashboard')">←</button>
-        <h2>User Profile</h2>
-      </div>
-
-      <div class="card-dark" style="text-align: center; padding: 24px;">
-        <div style="width: 72px; height: 72px; background: var(--primary-blue); border-radius: 50%; color: #FFF; font-size: 32px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin: 0 auto;" id="profileAvatar">U</div>
-        <h3 style="margin-top: 12px; font-size: 20px;" id="profileName">Protected User</h3>
-        <p style="color: var(--text-muted); font-size: 14px;" id="profileEmail">user@phishguard.ai</p>
-        <p style="color: var(--primary-blue); font-size: 13px; margin-top: 2px;" id="profilePhone">+1 (555) 019-2831</p>
-        <span style="display: inline-block; margin-top: 8px; padding: 4px 12px; background: rgba(16,185,129,0.2); color: #10B981; border-radius: 12px; font-size: 12px; font-weight: 700;">Account Active</span>
-        
-        <button class="btn-secondary" style="width: 100%; margin-top: 16px;" onclick="toggleEditProfileWeb()">Edit Profile</button>
-      </div>
-
-      <!-- Edit Profile Form Card -->
-      <div id="cardEditProfileForm" class="card-dark" style="display: none; margin-top: 16px;">
-        <h4 style="font-size: 15px; margin-bottom: 12px; color: var(--primary-blue);">Edit Account Information</h4>
-        <div class="form-group">
-          <label class="form-label">Full Name</label>
-          <input type="text" id="inputEditName" class="form-input" placeholder="e.g. Prajwal" />
-        </div>
-        <div class="form-group">
-          <label class="form-label">Phone Number</label>
-          <input type="text" id="inputEditPhone" class="form-input" placeholder="+91 9876543210" />
-        </div>
-        <div style="display: flex; gap: 10px; margin-top: 12px;">
-          <button class="btn-secondary" style="flex: 1;" onclick="toggleEditProfileWeb()">Cancel</button>
-          <button class="btn-primary" style="flex: 1;" onclick="saveEditProfileWeb()">Save &amp; Sync Profile</button>
-        </div>
-      </div>
-
-      <div class="card-dark" style="margin-top: 16px;">
-        <h4 style="font-size: 15px; margin-bottom: 12px;">Account Actions</h4>
-        <button class="btn-danger" style="width: 100%;" onclick="logoutWeb()">Sign Out Account</button>
-      </div>
-    </section>
-
-    <!-- 7. REPORTS & ANALYTICS PANEL -->
-    <section id="view-reports" class="view-panel">
-      <div class="panel-header">
-        <button class="btn-back" onclick="showView('dashboard')">←</button>
-        <h2>Security Reports &amp; Analytics</h2>
-      </div>
-
-      <div class="filter-pills">
-        <span class="pill" id="pillDaily" onclick="setReportTimeframeWeb('daily')">Daily</span>
-        <span class="pill active" id="pillWeekly" onclick="setReportTimeframeWeb('weekly')">Weekly</span>
-        <span class="pill" id="pillMonthly" onclick="setReportTimeframeWeb('monthly')">Monthly</span>
-      </div>
-
-      <div class="card-dark" style="margin-top: 16px;">
-        <h4 id="repTimeframeTitle" style="font-size: 16px; color: var(--primary-blue);">Weekly Threat Intelligence Summary</h4>
-        
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px;">
-          <div style="background: #0F172A; padding: 14px; border-radius: 12px; text-align: center; border: 1px solid var(--card-border);">
-            <div style="font-size: 26px; font-weight: 800; color: #38BDF8;" id="repTotalScans">0</div>
-            <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Total Scans Executed</div>
-          </div>
-          <div style="background: #0F172A; padding: 14px; border-radius: 12px; text-align: center; border: 1px solid var(--card-border);">
-            <div style="font-size: 26px; font-weight: 800; color: #EF4444;" id="repHighThreats">0</div>
-            <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">High Risk Threats</div>
-          </div>
-        </div>
-
-        <div style="margin-top: 16px; padding: 14px; background: #0F172A; border-radius: 12px; border: 1px solid var(--card-border);">
-          <div style="font-size: 11px; font-weight: 700; color: var(--text-muted);">TOP DETECTED THREAT CATEGORY</div>
-          <div style="font-size: 15px; font-weight: 800; color: var(--text-white); margin-top: 4px;" id="repTopCategory">Banking OTP Phishing</div>
-        </div>
-
-        <div style="margin-top: 12px; padding: 14px; background: #0F172A; border-radius: 12px; border: 1px solid var(--card-border);">
-          <div style="font-size: 11px; font-weight: 700; color: var(--text-muted);">THREAT TREND STATUS</div>
-          <div style="font-size: 14px; font-weight: 800; color: #10B981; margin-top: 4px;" id="repTrendStatus">✅ 100% Clean Range</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 8. THREAT CENTER PANEL -->
-    <section id="view-threat-center" class="view-panel">
-      <div class="panel-header">
-        <button class="btn-back" onclick="showView('dashboard')">←</button>
-        <h2>Threat Center</h2>
-      </div>
-
       <div class="card-dark">
-        <h4 style="color: #EF4444;">🚨 Active Phishing Vector Intelligence</h4>
-        <p style="color: var(--text-muted); font-size: 13px; margin-top: 6px;">PhishGuard actively monitors over 17 threat vector categories including Bank KYC traps, OTP theft attempts, and postal customs delivery lures.</p>
-      </div>
-
-      <div class="card-dark" style="margin-top: 16px;">
-        <h4 style="font-size: 15px; margin-bottom: 12px; color: var(--primary-blue);">Live Threat Intelligence Vectors</h4>
-        
-        <div style="display: grid; grid-template-columns: 1fr; gap: 10px;">
-          <div style="background: #0F172A; padding: 12px 16px; border-radius: 12px; border: 1px solid var(--card-border); display: flex; align-items: center; justify-content: space-between;">
-            <div>
-              <div style="font-size: 14px; font-weight: 700; color: var(--text-white);">Banking KYC Suspensions</div>
-              <div style="font-size: 12px; color: var(--text-muted);">Fake netbanking block alerts requiring urgent login</div>
-            </div>
-            <span style="background: rgba(239, 68, 68, 0.2); color: #EF4444; border: 1px solid #EF4444; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 800;">HIGH THREAT</span>
-          </div>
-
-          <div style="background: #0F172A; padding: 12px 16px; border-radius: 12px; border: 1px solid var(--card-border); display: flex; align-items: center; justify-content: space-between;">
-            <div>
-              <div style="font-size: 14px; font-weight: 700; color: var(--text-white);">Customs &amp; Courier Lures</div>
-              <div style="font-size: 12px; color: var(--text-muted);">Parcel address update fee prompts</div>
-            </div>
-            <span style="background: rgba(245, 158, 11, 0.2); color: #F59E0B; border: 1px solid #F59E0B; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 800;">ACTIVE LURE</span>
-          </div>
-
-          <div style="background: #0F172A; padding: 12px 16px; border-radius: 12px; border: 1px solid var(--card-border); display: flex; align-items: center; justify-content: space-between;">
-            <div>
-              <div style="font-size: 14px; font-weight: 700; color: var(--text-white);">Fake Electricity Bill Expiry</div>
-              <div style="font-size: 12px; color: var(--text-muted);">Immediate power disconnect warnings</div>
-            </div>
-            <span style="background: rgba(239, 68, 68, 0.2); color: #EF4444; border: 1px solid #EF4444; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 800;">HIGH THREAT</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 9. REPORT SCAM PANEL -->
-    <section id="view-report-scam" class="view-panel">
-      <div class="panel-header">
-        <button class="btn-back" onclick="showView('dashboard')">←</button>
-        <h2>Report Phishing Scam</h2>
-      </div>
-
-      <div class="card-dark">
-        <div class="form-group">
-          <label class="form-label">Scammer Phone Number or Header:</label>
-          <input type="text" id="inputReportSender" class="form-input" placeholder="e.g. +91 98765 43210 or HDFCBK-SCAM" />
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+          <h2 style="font-size: 20px; font-weight: 800;">📜 Real-Time Threat Analysis History</h2>
+          <button class="btn-secondary" style="width: auto; padding: 0 16px; height: 36px;" onclick="clearScanHistoryWeb()">Clear History</button>
         </div>
 
-        <div class="form-group">
-          <label class="form-label">Scam Content or Description:</label>
-          <textarea id="txtReportContent" class="form-textarea" placeholder="Paste the suspicious scam SMS or describe the fraud..." rows="4"></textarea>
-        </div>
-
-        <button class="btn-primary" style="width: 100%; margin-top: 12px;" onclick="submitScamReportWeb()">Submit Report &amp; Auto-Block Sender</button>
-      </div>
-    </section>
-
-    <!-- 10. BLOCKED SENDERS PANEL -->
-    <section id="view-blocked-senders" class="view-panel">
-      <div class="panel-header">
-        <button class="btn-back" onclick="showView('dashboard')">←</button>
-        <h2>Blocked List &amp; Shield</h2>
-      </div>
-
-      <!-- Feature 1: Community Auto-Block Shield Card -->
-      <div class="card-dark" style="margin-top: 0;">
-        <div style="display: flex; align-items: center; justify-content: space-between;">
-          <div style="font-size: 15px; font-weight: 800; color: var(--primary-blue);">🛡️ Community Auto-Block Shield</div>
-          <button id="btnToggleCommunityShieldWeb" class="btn-secondary" style="height: 38px; padding: 0 16px; font-size: 12px;" onclick="toggleCommunityShieldWeb()">ENABLE SHIELD</button>
-        </div>
-        <p style="color: var(--text-muted); font-size: 12px; margin-top: 6px;" id="tvShieldSubtitleWeb">Auto-silences top 100 community-reported fraud senders (SBI-SCAM, HDFCBK-LOAN, KYC traps) before they alert your phone.</p>
-      </div>
-
-      <!-- Audio Siren Alarm Toggle Card -->
-      <div class="card-dark" style="margin-top: 10px;">
-        <div style="display: flex; align-items: center; justify-content: space-between;">
-          <div>
-            <div style="font-size: 14px; font-weight: 800; color: var(--text-white);">🔊 PhishGuard Audio Warning Siren</div>
-            <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Plays custom audio warning chime when blocked sender texts</div>
-          </div>
-          <button id="btnToggleAudioAlarmWeb" class="btn-secondary" style="height: 34px; padding: 0 14px; font-size: 11px; color: #10B981;" onclick="toggleAudioAlarmWeb()">ALARM: ON</button>
-        </div>
-      </div>
-
-      <!-- Feature 2: Blocked Intrusion Analytics & Silenced Attempts Bar -->
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px;">
-        <div class="card-dark" style="margin-top: 0; text-align: center; padding: 16px;">
-          <div style="font-size: 26px; font-weight: 800; color: #10B981;" id="webSilencedCount">18</div>
-          <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Silenced Intrusions</div>
-        </div>
-        <div class="card-dark" style="margin-top: 0; text-align: center; padding: 16px;">
-          <div style="font-size: 26px; font-weight: 800; color: var(--primary-blue);" id="webActiveBlockedCount">12</div>
-          <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Active Blocked Senders</div>
-        </div>
-      </div>
-
-      <div class="card-dark" style="margin-top: 14px;">
-        <div style="display: flex; gap: 8px;">
-          <input type="text" id="inputBlockSender" class="form-input" placeholder="e.g. +919876543210 or HDFCBK" style="flex: 1;" />
-          <button class="btn-danger" onclick="addBlockedSenderWeb()">Block</button>
-        </div>
-      </div>
-
-      <div id="blockedList" style="margin-top: 16px;"></div>
-    </section>
-
-    <!-- 11. REWARDS PANEL -->
-    <section id="view-rewards" class="view-panel">
-      <div class="panel-header">
-        <button class="btn-back" onclick="showView('dashboard')">←</button>
-        <h2>Security Rewards</h2>
-      </div>
-
-      <div class="card-dark" style="text-align: center; padding: 24px;">
-        <div style="font-size: 44px;">🏆</div>
-        <h3 style="margin-top: 8px;">Security Pioneer Elite</h3>
-        <div style="font-size: 28px; font-weight: 800; color: var(--primary-blue); margin-top: 6px;" id="txtRewardPoints">450 Points</div>
-        <p style="color: var(--text-muted); font-size: 13px; margin-top: 4px;">Earned for actively scanning SMS messages &amp; protecting your account.</p>
-
-        <button class="btn-primary" style="margin-top: 16px;" onclick="claimDailyRewardBonusWeb()">Claim Daily Protection Bonus (+50 Points)</button>
-      </div>
-
-      <div class="card-dark" style="margin-top: 16px;">
-        <h4 style="font-size: 15px; margin-bottom: 12px; color: var(--primary-blue);">Earned Badges &amp; Achievements</h4>
-
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-          <div style="background: #0F172A; padding: 14px; border-radius: 12px; text-align: center; border: 1px solid var(--card-border);">
-            <div style="font-size: 28px;">🛡️</div>
-            <div style="font-weight: 700; font-size: 13px; margin-top: 4px;">Cyber Shield</div>
-            <div style="font-size: 11px; color: #10B981; font-weight: 800; margin-top: 2px;">UNLOCKED</div>
-          </div>
-
-          <div style="background: #0F172A; padding: 14px; border-radius: 12px; text-align: center; border: 1px solid var(--card-border);">
-            <div style="font-size: 28px;">⚡</div>
-            <div style="font-weight: 700; font-size: 13px; margin-top: 4px;">OTP Defender</div>
-            <div style="font-size: 11px; color: #10B981; font-weight: 800; margin-top: 2px;">UNLOCKED</div>
-          </div>
-
-          <div style="background: #0F172A; padding: 14px; border-radius: 12px; text-align: center; border: 1px solid var(--card-border);">
-            <div style="font-size: 28px;">🌟</div>
-            <div style="font-weight: 700; font-size: 13px; margin-top: 4px;">Scam Hunter</div>
-            <div style="font-size: 11px; color: #10B981; font-weight: 800; margin-top: 2px;">UNLOCKED</div>
-          </div>
-
-          <div style="background: #0F172A; padding: 14px; border-radius: 12px; text-align: center; border: 1px solid var(--card-border);">
-            <div style="font-size: 28px;">👑</div>
-            <div style="font-weight: 700; font-size: 13px; margin-top: 4px;">Master Guardian</div>
-            <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">50 Pts Away</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 12. HELP CENTER PANEL -->
-    <section id="view-help" class="view-panel">
-      <div class="panel-header">
-        <button class="btn-back" onclick="showView('dashboard')">←</button>
-        <h2>PhishGuard Support Assistant</h2>
-      </div>
-
-      <div class="card-dark">
-        <div style="font-size: 13px; font-weight: 700; color: var(--primary-blue); margin-bottom: 8px;">INTERACTIVE AI SECURITY ASSISTANT</div>
-        <div class="chat-container" id="chatContainer">
-          <div class="chat-bubble chat-bot">👋 Hi! I am PhishGuard AI Assistant. How can I help protect your device today?</div>
-        </div>
-
-        <div style="display: flex; gap: 8px; margin-top: 12px;">
-          <input type="text" id="inputChatMsg" class="form-input" placeholder="Ask about phishing, SMS alerts, or permissions..." style="flex: 1;" onkeypress="if(event.key==='Enter') sendChatMessageWeb()" />
-          <button class="btn-primary" style="width: 80px;" onclick="sendChatMessageWeb()">Send</button>
-        </div>
-      </div>
-
-      <div class="card-dark" style="margin-top: 16px;">
-        <h4 style="font-size: 15px; margin-bottom: 10px;">Frequently Asked Questions</h4>
-        <details style="margin-bottom: 8px; cursor: pointer;">
-          <summary style="font-size: 13px; font-weight: 700; color: var(--text-white);">How does PhishGuard detect SMS scams?</summary>
-          <p style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">PhishGuard uses local explainable AI heuristic models to analyze incoming SMS text patterns, suspicious URLs, and urgent financial demands on-device.</p>
-        </details>
-        <details style="margin-bottom: 8px; cursor: pointer;">
-          <summary style="font-size: 13px; font-weight: 700; color: var(--text-white);">Is my message content uploaded to servers?</summary>
-          <p style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">No! Complete message text is processed 100% locally on your device to comply with Google Play privacy rules.</p>
-        </details>
+        <div id="historyContainerWeb"></div>
       </div>
     </section>
 
   </main>
 
+  <!-- Floating AI Assistant Trigger Button (Web) -->
+  <button id="btnFloatAiWeb" class="btn-float-ai" onclick="toggleWebChatWidget()">
+    <span>🤖 PhishGuard AI Assistant</span>
+  </button>
+
+  <!-- Floating AI Assistant Chat Drawer (Web) -->
+  <div id="webChatWidget" class="web-chat-widget" style="display: none;">
+    <div class="web-chat-header">
+      <div class="web-chat-title">
+        <span>🤖</span>
+        <span>PhishGuard AI Assistant</span>
+      </div>
+      <button class="web-chat-close" onclick="toggleWebChatWidget()">✕</button>
+    </div>
+
+    <!-- Suggestion Chips -->
+    <div style="padding: 10px 14px; background: rgba(15, 23, 42, 0.8); border-bottom: 1px solid var(--border-glass); display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none;">
+      <span onclick="sendWebChatPrompt('How does the BiLSTM AI model detect phishing?')" style="font-size: 11px; font-weight: 700; color: var(--primary-blue); background: rgba(56, 189, 248, 0.15); padding: 4px 10px; border-radius: 12px; cursor: pointer; white-space: nowrap;">🤖 BiLSTM AI</span>
+      <span onclick="sendWebChatPrompt('Analyze this link: http://sbi-kyc-verify.com')" style="font-size: 11px; font-weight: 700; color: var(--primary-blue); background: rgba(56, 189, 248, 0.15); padding: 4px 10px; border-radius: 12px; cursor: pointer; white-space: nowrap;">🔍 Test Link</span>
+      <span onclick="sendWebChatPrompt('How do I block scammers globally?')" style="font-size: 11px; font-weight: 700; color: var(--primary-blue); background: rgba(56, 189, 248, 0.15); padding: 4px 10px; border-radius: 12px; cursor: pointer; white-space: nowrap;">🛡️ Global Block</span>
+    </div>
+
+    <div class="web-chat-body" id="webChatBody">
+      <div class="chat-bubble chat-bot">
+        👋 Hello! I am **PhishGuard AI Assistant**. Ask me to analyze an SMS link, check your security score, or explain our BiLSTM model!
+      </div>
+    </div>
+
+    <div style="padding: 12px; border-top: 1px solid var(--border-glass); display: flex; gap: 8px;">
+      <input type="text" id="inputWebChatMsg" class="form-input" placeholder="Type prompt or link..." style="height: 42px; font-size: 13px;" onkeypress="if(event.key==='Enter') sendWebChatMessage()" />
+      <button class="btn-primary" style="width: 70px; height: 42px; font-size: 13px;" onclick="sendWebChatMessage()">Send</button>
+    </div>
+  </div>
+
   <!-- Bottom Navigation Bar -->
   <nav id="bottomNav" class="bottom-nav" style="display: none;">
     <button class="nav-item active" id="navHome" onclick="showView('dashboard')">
       <span class="nav-icon">🏠</span>
-      <span class="nav-label">Home</span>
+      <span class="nav-label">Dashboard</span>
     </button>
     <button class="nav-item" id="navHistory" onclick="showView('history')">
       <span class="nav-icon">📜</span>
       <span class="nav-label">History</span>
     </button>
-    <button class="nav-item" id="navNotifications" onclick="showView('notifications')">
-      <span class="nav-icon">🔔</span>
-      <span class="nav-label">Alerts</span>
-    </button>
-    <button class="nav-item" id="navProfile" onclick="showView('profile')">
+    <button class="nav-item" id="navProfile" onclick="showView('auth')">
       <span class="nav-icon">👤</span>
-      <span class="nav-label">Profile</span>
+      <span class="nav-label">Account</span>
     </button>
   </nav>
 

@@ -4,31 +4,140 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/bg_dark_gradient"
-    android:padding="20dp">
+    android:padding="16dp">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <!-- Header Title Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="PhishGuard Live Security Chatbot"
-        android:textColor="#FFFFFF"
-        android:textSize="22sp"
-        android:textStyle="bold"/>
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingBottom="8dp">
 
-    <TextView
-        android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🤖 PhishGuard AI Security Assistant"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="● BiLSTM Neural Threat Analysis Engine • Active"
+                android:textColor="#10B981"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:layout_marginTop="2dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Quick Action Suggestion Pills (Horizontal Scroll) -->
+    <HorizontalScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="● Interactive AI Assistant Online"
-        android:textColor="#10B981"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        android:layout_marginTop="2dp"/>
+        android:scrollbars="none"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/pillBiLSTM"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🤖 How BiLSTM AI Works"
+                android:textColor="#38BDF8"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:background="@drawable/bg_card_dark"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
+                android:id="@+id/pillAnalyzeLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🔍 Analyze an SMS Link"
+                android:textColor="#38BDF8"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:background="@drawable/bg_card_dark"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
+                android:id="@+id/pillBlockScammers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🛡️ How to Block Scammers"
+                android:textColor="#38BDF8"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:background="@drawable/bg_card_dark"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
+                android:id="@+id/pillSecurityScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📊 Check Security Score"
+                android:textColor="#38BDF8"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:background="@drawable/bg_card_dark"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
+                android:id="@+id/pillReportScam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🚨 Report Scam Sender"
+                android:textColor="#38BDF8"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:background="@drawable/bg_card_dark"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"/>
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <!-- Chat Message Scroll Container -->
     <ScrollView
         android:id="@+id/scrollChat"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="4dp">
 
         <LinearLayout
             android:id="@+id/layoutChatContainer"
@@ -38,31 +147,34 @@
 
     </ScrollView>
 
+    <!-- Message Input Bar -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="12dp">
+        android:layout_marginTop="10dp">
 
         <EditText
             android:id="@+id/etMessageInput"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="52dp"
             android:layout_weight="1"
-            android:hint="Ask about SMS scan, blocking, privacy..."
+            android:hint="Ask AI about SMS, BiLSTM, links, or report..."
             android:textColorHint="#64748B"
             android:textColor="#FFFFFF"
             android:textSize="14sp"
             android:background="@drawable/bg_card_dark"
-            android:paddingStart="14dp"
-            android:paddingEnd="14dp"/>
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"/>
 
         <android.widget.Button
             android:id="@+id/btnSend"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
+            android:layout_width="80dp"
+            android:layout_height="52dp"
             android:text="Send"
             android:textAllCaps="false"
+            android:textSize="15sp"
+            android:textStyle="bold"
             android:textColor="#FFFFFF"
             android:background="@drawable/bg_button_primary"
             android:layout_marginStart="8dp"/>
