@@ -370,14 +370,14 @@ function switchAuthTab(mode) {
 function togglePasswordVisibilityWeb() {
   const pwdInput = document.getElementById("authPassword");
   const btnToggle = document.getElementById("btnTogglePassword");
-  if (isPasswordVisible) {
-    pwdInput.type = "password";
-    btnToggle.innerText = "SHOW";
-    isPasswordVisible = false;
-  } else {
+  if (!pwdInput || !btnToggle) return;
+
+  if (pwdInput.type === "password") {
     pwdInput.type = "text";
     btnToggle.innerText = "HIDE";
-    isPasswordVisible = true;
+  } else {
+    pwdInput.type = "password";
+    btnToggle.innerText = "SHOW";
   }
 }
 
@@ -388,30 +388,30 @@ function handleForgotPasswordWeb(e) {
   const email = emailInput ? emailInput.value.trim() : "";
 
   if (!email) {
-    alert("Please enter your registered email address in the Email field above first, then click Forgot Password.");
+    showCyberToast("Please enter your registered email address in the Email field above first.", "⚠️", "Input Required");
     if (emailInput) emailInput.focus();
     return;
   }
 
   if (!email.includes("@") || !email.includes(".")) {
-    alert("Please enter a valid email address (e.g. user@domain.com).");
+    showCyberToast("Please enter a valid email address (e.g. user@domain.com).", "⚠️", "Invalid Email");
     if (emailInput) emailInput.focus();
     return;
   }
 
   auth.sendPasswordResetEmail(email)
     .then(() => {
-      alert("Password reset email sent to " + email + "! Please check your inbox to reset your password.");
+      showCyberToast("Password reset email sent to " + email + "! Please check your inbox.", "📧", "Reset Email Sent");
     })
     .catch((error) => {
-      alert(error.message || "Failed to send password reset email. Please verify your registered email address.");
+      showCyberToast(error.message || "Failed to send password reset email.", "❌", "Error");
     });
 }
 
 // Real-Time Password Strength Validation (Matching LoginActivity.java)
 function onPasswordInputRealtime(pwd) {
   const mode = document.getElementById("btnAuthSubmit").dataset.mode || "login";
-  if (mode !== "register") return;
+  if (mode !== "register") return true;
 
   const hasLength = pwd.length >= 8;
   const hasUpper = /[A-Z]/.test(pwd);
@@ -423,28 +423,19 @@ function onPasswordInputRealtime(pwd) {
   const ruleCase = document.getElementById("ruleCase");
   const ruleNumberSymbol = document.getElementById("ruleNumberSymbol");
 
-  if (hasLength) {
-    ruleLength.innerText = "✔ At least 8 characters long";
-    ruleLength.style.color = "#10B981";
-  } else {
-    ruleLength.innerText = "✖ At least 8 characters long";
-    ruleLength.style.color = "#EF4444";
+  if (ruleLength) {
+    ruleLength.innerText = hasLength ? "✔ At least 8 characters long" : "✖ At least 8 characters long";
+    ruleLength.style.color = hasLength ? "#10B981" : "#EF4444";
   }
 
-  if (hasUpper && hasLower) {
-    ruleCase.innerText = "✔ Contains uppercase (A-Z) & lowercase (a-z)";
-    ruleCase.style.color = "#10B981";
-  } else {
-    ruleCase.innerText = "✖ Contains uppercase (A-Z) & lowercase (a-z)";
-    ruleCase.style.color = "#EF4444";
+  if (ruleCase) {
+    ruleCase.innerText = (hasUpper && hasLower) ? "✔ Contains uppercase (A-Z) & lowercase (a-z)" : "✖ Contains uppercase (A-Z) & lowercase (a-z)";
+    ruleCase.style.color = (hasUpper && hasLower) ? "#10B981" : "#EF4444";
   }
 
-  if (hasDigit && hasSymbol) {
-    ruleNumberSymbol.innerText = "✔ Contains a number (0-9) & special symbol (@#$%)";
-    ruleNumberSymbol.style.color = "#10B981";
-  } else {
-    ruleNumberSymbol.innerText = "✖ Contains a number (0-9) & special symbol (@#$%)";
-    ruleNumberSymbol.style.color = "#EF4444";
+  if (ruleNumberSymbol) {
+    ruleNumberSymbol.innerText = (hasDigit && hasSymbol) ? "✔ Contains a number (0-9) & special symbol (@#$%)" : "✖ Contains a number (0-9) & special symbol (@#$%)";
+    ruleNumberSymbol.style.color = (hasDigit && hasSymbol) ? "#10B981" : "#EF4444";
   }
 
   return hasLength && hasUpper && hasLower && hasDigit && hasSymbol;
@@ -462,16 +453,7 @@ function toggleAuthModeWeb(e) {
   switchAuthTab(currentMode === "login" ? "register" : "login");
 }
 
-// 1-Click Instant Demo Login Helper for Evaluators
-function autoFillDemoAccountWeb() {
-  const emailEl = document.getElementById("authEmail");
-  const pwdEl = document.getElementById("authPassword");
-  if (emailEl) emailEl.value = "prajwal@gmail.com";
-  if (pwdEl) pwdEl.value = "Prajwal@123";
-  handleAuthSubmit(null);
-}
-
-// Handle Sign In / Register Form Submission (100% Resilient Auto-Fallback System)
+// Handle Sign In / Register Form Submission
 function handleAuthSubmit(e) {
   if (e) e.preventDefault();
   const btnSubmit = document.getElementById("btnAuthSubmit");
@@ -483,18 +465,16 @@ function handleAuthSubmit(e) {
 
   const email = emailEl ? emailEl.value.trim() : "";
   const password = passwordEl ? passwordEl.value : "";
-  const fullName = nameEl && nameEl.value.trim() ? nameEl.value.trim() : (extractNameFromEmail(email) || "Prajwal");
+  const fullName = nameEl && nameEl.value.trim() ? nameEl.value.trim() : "Protected User";
 
   if (!email || !password) {
-    showCyberToast("Please enter both email address and password.", "⚠️", "Sign In Required");
-    if (btnSubmit) { btnSubmit.disabled = false; btnSubmit.style.opacity = "1.0"; btnSubmit.innerText = mode === "register" ? "Register Account" : "Sign In & Continue"; }
+    showCyberToast("Please enter both email address and password.", "⚠️", "Input Required");
     return false;
   }
 
   if (btnSubmit) {
     btnSubmit.disabled = true;
     btnSubmit.style.opacity = "0.6";
-    btnSubmit.innerText = "⚡ Authenticating...";
   }
 
   if (mode === "register") {
@@ -507,34 +487,20 @@ function handleAuthSubmit(e) {
           fullName: fullName,
           status: "ACTIVE",
           role: "USER",
-          authProvider: "EMAIL_PASSWORD",
           createdAt: firebase.firestore.FieldValue.serverTimestamp(),
           lastLoginTime: firebase.firestore.FieldValue.serverTimestamp()
         }, { merge: true });
 
-        if (btnSubmit) { btnSubmit.disabled = false; btnSubmit.style.opacity = "1.0"; btnSubmit.innerText = "Sign In & Continue"; }
-        showCyberToast("Account Created & Authenticated Successfully!", "🎉", "Registration Success");
+        if (btnSubmit) { btnSubmit.disabled = false; btnSubmit.style.opacity = "1.0"; }
+        showCyberToast("Account Created Successfully!", "🎉", "Registration Success");
         showView("dashboard");
       })
       .catch((error) => {
-        if (error.code === 'auth/email-already-in-use') {
-          auth.signInWithEmailAndPassword(email, password)
-            .then(() => {
-              if (btnSubmit) { btnSubmit.disabled = false; btnSubmit.style.opacity = "1.0"; btnSubmit.innerText = "Sign In & Continue"; }
-              showCyberToast("Account Authenticated!", "✅", "Sign In Success");
-              showView("dashboard");
-            })
-            .catch((err2) => {
-              if (btnSubmit) { btnSubmit.disabled = false; btnSubmit.style.opacity = "1.0"; btnSubmit.innerText = "Register Account"; }
-              showCyberToast("Invalid password for this existing account.", "❌", "Auth Error");
-            });
-        } else {
-          if (btnSubmit) { btnSubmit.disabled = false; btnSubmit.style.opacity = "1.0"; btnSubmit.innerText = "Register Account"; }
-          showCyberToast(error.message || "Registration failed.", "❌", "Registration Error");
-        }
+        if (btnSubmit) { btnSubmit.disabled = false; btnSubmit.style.opacity = "1.0"; }
+        showCyberToast(error.message || "Registration failed. Please try again.", "❌", "Registration Error");
       });
   } else {
-    // SIGN IN MODE: Try signing in first; if account doesn't exist yet, auto-create it seamlessly!
+    // SIGN IN MODE
     auth.signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
         const user = userCredential.user;
@@ -542,38 +508,13 @@ function handleAuthSubmit(e) {
           lastLoginTime: firebase.firestore.FieldValue.serverTimestamp()
         }, { merge: true });
 
-        if (btnSubmit) { btnSubmit.disabled = false; btnSubmit.style.opacity = "1.0"; btnSubmit.innerText = "Sign In & Continue"; }
-        showCyberToast("Authenticated Successfully!", "✅", "Welcome Back");
+        if (btnSubmit) { btnSubmit.disabled = false; btnSubmit.style.opacity = "1.0"; }
+        showCyberToast("Signed In Successfully!", "✅", "Welcome Back");
         showView("dashboard");
       })
       .catch((error) => {
-        if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
-          auth.createUserWithEmailAndPassword(email, password)
-            .then((userCredential) => {
-              const user = userCredential.user;
-              db.collection("users").doc(user.uid).set({
-                uid: user.uid,
-                email: email,
-                fullName: extractNameFromEmail(email),
-                status: "ACTIVE",
-                role: "USER",
-                authProvider: "EMAIL_PASSWORD",
-                createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                lastLoginTime: firebase.firestore.FieldValue.serverTimestamp()
-              }, { merge: true });
-
-              if (btnSubmit) { btnSubmit.disabled = false; btnSubmit.style.opacity = "1.0"; btnSubmit.innerText = "Sign In & Continue"; }
-              showCyberToast("Account Verified & Signed In!", "🎉", "Welcome");
-              showView("dashboard");
-            })
-            .catch((err2) => {
-              if (btnSubmit) { btnSubmit.disabled = false; btnSubmit.style.opacity = "1.0"; btnSubmit.innerText = "Sign In & Continue"; }
-              showCyberToast("Please check your email and password format.", "❌", "Sign In Error");
-            });
-        } else {
-          if (btnSubmit) { btnSubmit.disabled = false; btnSubmit.style.opacity = "1.0"; btnSubmit.innerText = "Sign In & Continue"; }
-          showCyberToast(error.message || "Sign in failed.", "❌", "Sign In Error");
-        }
+        if (btnSubmit) { btnSubmit.disabled = false; btnSubmit.style.opacity = "1.0"; }
+        showCyberToast(error.message || "Sign in failed. Invalid email or password.", "❌", "Sign In Error");
       });
   }
   return false;
