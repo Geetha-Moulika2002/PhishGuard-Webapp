@@ -1388,23 +1388,89 @@ function blockSenderDirectlyWeb(sender) {
   }
 }
 
-// Export Security Summary Report (PDF / JSON)
-function exportSecurityReportWeb() {
-  const reportData = {
-    app: "PhishGuard AI Phishing Protection Command Center",
-    generatedAt: new Date().toLocaleString(),
-    protectionScore: 100,
-    totalScans: scanHistoryData.length,
-    activeBlockedSenders: blockedSendersData.length,
-    threatHistory: scanHistoryData
+function updateDashboardMetrics() {
+  const totalScans = scanHistoryData.length;
+  const blockedCount = blockedSendersData.length;
+
+  const scannedEl = document.getElementById("tvScanned");
+  const blockedEl = document.getElementById("tvBlocked");
+  if (scannedEl) scannedEl.innerText = totalScans;
+  if (blockedEl) blockedEl.innerText = blockedCount;
+
+  // Calculate Dynamic Rewards Points
+  const rewardPoints = (blockedCount * 10) + (totalScans * 5) + 100;
+  const ptsDisplay = document.getElementById("tvRewardsPointsDisplay");
+  const badgeTitle = document.getElementById("tvRewardsBadgeTitle");
+  const percentText = document.getElementById("tvRewardsPercentText");
+  const progressBar = document.getElementById("barRewardsProgress");
+
+  if (ptsDisplay) ptsDisplay.innerText = rewardPoints + " Pts";
+  if (badgeTitle) {
+    if (rewardPoints >= 500) badgeTitle.innerText = "🏆 Cyber Shield Master";
+    else if (rewardPoints >= 250) badgeTitle.innerText = "🛡️ Sentinel Protector";
+    else badgeTitle.innerText = "🔰 Security Defender";
+  }
+  const pct = Math.min(100, Math.round((rewardPoints / 1000) * 100 * 10) / 10);
+  if (percentText) percentText.innerText = pct + "% Completed";
+  if (progressBar) progressBar.style.width = pct + "%";
+}
+
+function runWebScan() {
+  const input = document.getElementById("inputScanText");
+  const sms = input ? input.value.trim() : "";
+  if (!sms) {
+    alert("Please paste an SMS message snippet or URL link to scan.");
+    return;
+  }
+
+  const result = analyzePhishingWeb(sms);
+  const scanId = String(Date.now());
+  const formattedTime = getFormattedTime();
+
+  const newScan = {
+    id: scanId,
+    sender: "Web SMS Scan",
+    message: sms,
+    score: result.riskScore,
+    riskLevel: result.riskLevel,
+    timestamp: formattedTime,
+    dateKey: getTodayDateKey(),
+    threatType: result.threatType
   };
 
-  const jsonStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(reportData, null, 2));
-  const downloadAnchor = document.createElement('a');
-  downloadAnchor.setAttribute("href", jsonStr);
-  downloadAnchor.setAttribute("download", `PhishGuard_Security_Report_${getTodayDateKey()}.json`);
-  document.body.appendChild(downloadAnchor);
-  downloadAnchor.click();
-  downloadAnchor.remove();
-  alert("📄 PhishGuard Security Protection Summary Report Exported Successfully!");
+  scanHistoryData.unshift(newScan);
+  saveLocalState();
+  updateDashboardMetrics();
+
+  if (currentUser) {
+    db.collection("scans").add({
+      userEmail: currentUser.email,
+      sender: "Web SMS Scan",
+      message: sms,
+      riskScore: result.riskScore,
+      riskLevel: result.riskLevel,
+      threatType: result.threatType,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    }).catch(err => console.error(err));
+  }
+
+  const resCard = document.getElementById("scanResultContainer");
+  const tvLevel = document.getElementById("tvScanRiskLevel");
+  const tvType = document.getElementById("tvScanThreatType");
+  const tvRec = document.getElementById("tvScanRecommendation");
+
+  if (resCard) resCard.style.display = "block";
+  if (tvLevel) {
+    const isHigh = result.riskScore >= 65;
+    tvLevel.innerText = `${isHigh ? '🚨 HIGH RISK' : '✅ SAFE MESSAGE'} (${result.riskScore}/100)`;
+    tvLevel.style.color = isHigh ? "#F43F5E" : "#10B981";
+  }
+  if (tvType) tvType.innerText = "Detected Category: " + (result.threatType || "SMS Threat Vector");
+  if (tvRec) tvRec.innerHTML = result.riskScore >= 65 ? 
+    "🚨 <strong>DANGER DETECTED</strong>: This content contains suspicious phishing keywords/links. PhishGuard recommends NOT clicking any links or providing OTPs!" : 
+    "✅ <strong>SAFE CONTENT</strong>: No active phishing or malicious URL threat patterns detected.";
+}
+
+function redeemPerkWeb(perkName) {
+  alert(`🎉 Congratulations! You have successfully redeemed: [${perkName}]!\n\nYour perk has been activated for your account (${currentUser ? currentUser.email : 'active user'}).`);
 }

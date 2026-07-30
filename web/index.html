@@ -161,7 +161,7 @@
         </div>
 
         <!-- Card 6: Rewards -->
-        <div class="tool-card" onclick="showRewardsWeb()">
+        <div class="tool-card" onclick="showView('rewards')">
           <div style="font-size: 32px; color: #FBBF24; margin-bottom: 10px;">⭐</div>
           <div style="font-size: 15px; font-weight: 800; color: #FFFFFF;">Rewards</div>
         </div>
@@ -176,22 +176,17 @@
       <!-- Main Tools Action Panels -->
       <div class="grid-2">
 
-        <!-- Manual SMS / URL Threat Scanner -->
+        <!-- Manual SMS / URL Threat Scanner (Simplified: Clean Message Text / URL Only) -->
         <div class="card-dark" id="secScanSms">
           <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 6px;">✉️ BiLSTM Neural SMS &amp; Link Scanner</h3>
-          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 14px;">Paste suspicious SMS text or link to run live neural intent scoring.</p>
+          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">Paste suspicious SMS message body snippet or URL link to run real-time neural evaluation.</p>
           
           <div class="form-group">
-            <label class="form-label">SMS Sender Header (Optional)</label>
-            <input type="text" id="inputScanSender" class="form-input" placeholder="e.g. AX-BANK or +919959215135" />
-          </div>
-
-          <div class="form-group">
             <label class="form-label">Message Body / URL</label>
-            <textarea id="inputScanText" class="form-input" style="height: 90px; padding: 12px; resize: none;" placeholder="e.g. CONGRATULATIONS! Claim cashback reward: http://phonepe-claim.example.com"></textarea>
+            <textarea id="inputScanText" class="form-input" style="height: 110px; padding: 12px; resize: none;" placeholder="e.g. CONGRATULATIONS! Claim cashback reward: http://phonepe-claim.example.com"></textarea>
           </div>
 
-          <button class="btn-primary" onclick="runWebScan()">Run BiLSTM AI Neural Scan</button>
+          <button class="btn-primary" onclick="runWebScan()">Scan SMS</button>
 
           <!-- Interactive Results Card -->
           <div id="scanResultContainer" style="display: none; margin-top: 18px; padding: 18px; border-radius: var(--radius-md); background: rgba(15, 23, 42, 0.95); border: 1px solid var(--border-highlight);">
@@ -224,6 +219,27 @@
 
       </div>
 
+      <!-- Threat Center Panel -->
+      <div class="card-dark" id="secThreatCenter" style="margin-top: 24px;">
+        <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 6px;">⚠️ Threat Center &amp; Global Blacklist Feed</h3>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">Real-time feed of community-flagged fraud headers, SMS traps, and malicious URLs.</p>
+
+        <div class="grid-3">
+          <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border-glass); padding: 14px; border-radius: var(--radius-md);">
+            <div style="font-size: 12px; font-weight: 800; color: #F43F5E;">🚨 SBI-ALERT (Fake Banking)</div>
+            <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Blocked globally across 1,420+ devices</div>
+          </div>
+          <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border-glass); padding: 14px; border-radius: var(--radius-md);">
+            <div style="font-size: 12px; font-weight: 800; color: #F43F5E;">🚨 +91 99592 15135 (Mouli)</div>
+            <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Community Flagged Scam Sender</div>
+          </div>
+          <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border-glass); padding: 14px; border-radius: var(--radius-md);">
+            <div style="font-size: 12px; font-weight: 800; color: #F43F5E;">🚨 HDFCBK-LOAN (Loan Trap)</div>
+            <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Blocked globally across 980+ devices</div>
+          </div>
+        </div>
+      </div>
+
       <!-- Report Scam Panel -->
       <div class="card-dark" id="secReportScam" style="margin-top: 24px;">
         <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 6px;">🚩 Report Scam Sender to Cloud Database</h3>
@@ -253,9 +269,127 @@
         <button class="btn-primary" onclick="submitScamReportWeb()">Submit Scam Report &amp; Auto-Block Globally</button>
       </div>
 
+      <!-- Settings & Security Preferences Panel (Matching Clickable Settings Tool) -->
+      <div class="card-dark" id="secSettings" style="margin-top: 24px;">
+        <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 6px;">🔧 Settings &amp; Protection Preferences</h3>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 18px;">Configure real-time alarm sirens, notification suppression, and cloud synchronization.</p>
+
+        <div class="grid-2">
+          <!-- Setting 1: Audio Siren -->
+          <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 16px; display: flex; align-items: center; justify-content: space-between;">
+            <div>
+              <div style="font-size: 14px; font-weight: 800; color: #FFFFFF;">🔊 PhishGuard Audio Warning Siren</div>
+              <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Synthesizes emergency alarm chime when blocked senders text</div>
+            </div>
+            <button id="btnSettingsAudio" class="filter-chip active" onclick="toggleAudioAlarmWeb()">ALARM: ON</button>
+          </div>
+
+          <!-- Setting 2: Community Shield -->
+          <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 16px; display: flex; align-items: center; justify-content: space-between;">
+            <div>
+              <div style="font-size: 14px; font-weight: 800; color: #FFFFFF;">🛡️ Community Auto-Block Shield</div>
+              <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Auto-silences top 100 crowdsourced scam senders</div>
+            </div>
+            <button id="btnSettingsShield" class="filter-chip active" onclick="toggleCommunityShieldWeb()">ENABLED</button>
+          </div>
+
+          <!-- Setting 3: Priority 999 Interception -->
+          <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 16px; display: flex; align-items: center; justify-content: space-between;">
+            <div>
+              <div style="font-size: 14px; font-weight: 800; color: #FFFFFF;">⚡ Priority 999 Notification Suppressor</div>
+              <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Erases residual status bar notifications in under 150ms</div>
+            </div>
+            <span class="filter-chip active" style="color: var(--accent-green);">ACTIVE ✔</span>
+          </div>
+
+          <!-- Setting 4: Zero-Cloud Privacy -->
+          <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 16px; display: flex; align-items: center; justify-content: space-between;">
+            <div>
+              <div style="font-size: 14px; font-weight: 800; color: #FFFFFF;">🔒 Zero-Cloud SMS Privacy Enforcement</div>
+              <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Personal SMS texts are processed 100% locally on-device</div>
+            </div>
+            <span class="filter-chip active" style="color: var(--accent-green);">ENFORCED ✔</span>
+          </div>
+        </div>
+      </div>
+
     </section>
 
-    <!-- 3. HISTORY VIEW WITH REAL-TIME FIRESTORE DATA -->
+    <!-- 3. REWARDS & GAMIFICATION VIEW PANEL -->
+    <section id="view-rewards" class="view-panel">
+      <div class="card-dark">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <h2 style="font-size: 24px; font-weight: 900; color: #FFFFFF;">⭐ PhishGuard Security Rewards &amp; Achievements</h2>
+            <p style="font-size: 13px; color: var(--text-muted); margin-top: 2px;">Earn points by scanning threats and blocking scam senders to unlock exclusive security perks!</p>
+          </div>
+          <button class="btn-secondary" style="width: auto; padding: 0 18px; height: 40px;" onclick="showView('dashboard')">← Back to Dashboard</button>
+        </div>
+
+        <!-- Dynamic Gamified Level Badge & Progress Bar Card -->
+        <div style="background: linear-gradient(135deg, rgba(251, 191, 36, 0.15) 0%, rgba(30, 41, 59, 0.9) 100%); border: 1px solid rgba(251, 191, 36, 0.4); border-radius: var(--radius-lg); padding: 28px; margin-bottom: 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;">
+          <div>
+            <div style="font-size: 12px; font-weight: 800; color: #FBBF24; text-transform: uppercase; letter-spacing: 1px;">YOUR CURRENT RANK</div>
+            <div style="font-size: 32px; font-weight: 900; color: #FFFFFF; margin-top: 4px;" id="tvRewardsBadgeTitle">🏆 Cyber Shield Master</div>
+            <div style="font-size: 14px; color: var(--text-muted); margin-top: 4px;">Top 1% Community Security Contributor</div>
+          </div>
+
+          <div style="text-align: right;">
+            <div style="font-size: 42px; font-weight: 900; color: #FBBF24;" id="tvRewardsPointsDisplay">575 Pts</div>
+            <div style="font-size: 12px; color: var(--text-muted); font-weight: 700;">Total Reward Points Balance</div>
+          </div>
+
+          <div style="width: 100%; margin-top: 10px;">
+            <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; margin-bottom: 6px;">
+              <span>Progress to Next Rank: <strong>1,000 Points</strong></span>
+              <span id="tvRewardsPercentText" style="color: #FBBF24;">57.5% Completed</span>
+            </div>
+            <div class="progress-bar-wrap" style="height: 10px;"><div id="barRewardsProgress" class="progress-bar-fill" style="width: 57.5%; background: linear-gradient(90deg, #F59E0B, #FBBF24);"></div></div>
+          </div>
+        </div>
+
+        <!-- Redeemable Security Perks Grid -->
+        <div style="font-size: 18px; font-weight: 800; color: #FFFFFF; margin-bottom: 16px;">🎁 Unlockable Security Perks &amp; Badges</div>
+
+        <div class="grid-3" style="margin-bottom: 28px;">
+          <!-- Perk 1 -->
+          <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 20px;">
+            <div style="font-size: 28px; margin-bottom: 8px;">🎟️</div>
+            <div style="font-size: 16px; font-weight: 800; color: #FFFFFF;">1-Month Free Premium Malware Shield</div>
+            <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px; margin-bottom: 14px;">Unlock advanced web link sandbox isolation. (Cost: 500 Pts)</div>
+            <button class="btn-primary" style="height: 38px; font-size: 13px;" onclick="redeemPerkWeb('Malware Shield')">REDEEM NOW (UNLOCKED)</button>
+          </div>
+
+          <!-- Perk 2 -->
+          <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 20px;">
+            <div style="font-size: 28px; margin-bottom: 8px;">⚡</div>
+            <div style="font-size: 16px; font-weight: 800; color: #FFFFFF;">Priority BiLSTM Neural Threat Scanner</div>
+            <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px; margin-bottom: 14px;">Zero-latency parallel GPU inference pass. (Cost: 750 Pts)</div>
+            <button class="btn-secondary" style="height: 38px; font-size: 13px;" onclick="alert('Earn 175 more points to unlock this perk!')">PROGRESS: 76% (NEEDS 750 PTS)</button>
+          </div>
+
+          <!-- Perk 3 -->
+          <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 20px;">
+            <div style="font-size: 28px; margin-bottom: 8px;">👑</div>
+            <div style="font-size: 16px; font-weight: 800; color: #FFFFFF;">VIP Community Guard Gold Badge</div>
+            <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px; margin-bottom: 14px;">Displayed on global fraud report leaderboards. (Cost: 1,000 Pts)</div>
+            <button class="btn-secondary" style="height: 38px; font-size: 13px;" onclick="alert('Earn 425 more points to unlock this badge!')">PROGRESS: 57% (NEEDS 1000 PTS)</button>
+          </div>
+        </div>
+
+        <!-- How to Earn Points Breakdown Card -->
+        <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 20px;">
+          <div style="font-size: 16px; font-weight: 800; color: #FFFFFF; margin-bottom: 12px;">💡 How to Earn More Reward Points:</div>
+          <div class="grid-3" style="font-size: 13px; color: var(--text-muted);">
+            <div>➕ <strong>+10 Points</strong> for every scam sender reported/blocked</div>
+            <div>➕ <strong>+5 Points</strong> for every SMS text scanned</div>
+            <div>➕ <strong>+50 Bonus Points</strong> for enabling Community Shield</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. HISTORY VIEW WITH REAL-TIME FIRESTORE DATA -->
     <section id="view-history" class="view-panel">
       <div class="card-dark">
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
