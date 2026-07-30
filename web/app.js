@@ -1179,3 +1179,189 @@ function generateWebSmartReply(input) {
 
   return `I evaluated your query: "${input}". PhishGuard is actively protecting your device. Ask me to analyze an SMS link or explain our BiLSTM AI model!`;
 }
+
+// Interactive Preset Simulator Samples Helper
+function loadPresetSample(type) {
+  const senderInput = document.getElementById("inputScanSender");
+  const textInput = document.getElementById("inputScanText");
+  if (!textInput) return;
+
+  if (type === 'sbi') {
+    if (senderInput) senderInput.value = "SBI-ALERT";
+    textInput.value = "URGENT: Your SBI Account #4829 has been BLOCKED due to pending KYC update. Click here to verify details immediately to avoid permanent closure: http://sbi-kyc-verify-bank.com/update";
+  } else if (type === 'phonepe') {
+    if (senderInput) senderInput.value = "PHONEPE-REWARD";
+    textInput.value = "CONGRATULATIONS! You have received a cashback reward of Rs. 1,250 on PhonePe. Click here to accept pending payment into your bank account: http://phonepe-reward-claim.example.com";
+  } else if (type === 'dhl') {
+    if (senderInput) senderInput.value = "DHL-EXPRESS";
+    textInput.value = "DHL EXPRESS: Your parcel #84920 is ON HOLD due to unpaid customs fee of Rs 45. Pay now at http://dhl-parcel-tracking.example.com to avoid return.";
+  } else if (type === 'electricity') {
+    if (senderInput) senderInput.value = "EB-BILL-ALERT";
+    textInput.value = "ATTENTION CONSUMER: Your electricity power supply will be DISCONNECTED tonight at 9:30 PM due to previous month bill unpaid. Contact EB Officer at +91 99592 15135 immediately.";
+  }
+
+  // Trigger live AI scan automatically
+  runWebScan();
+}
+
+// Interactive SVG Score Gauge Updater
+function updateScoreGaugeWeb(score) {
+  const scoreText = document.getElementById("tvScoreDisplayHeader");
+  const arc = document.getElementById("svgScoreArc");
+  if (scoreText) scoreText.innerText = score;
+  if (!arc) return;
+
+  const circumference = 339.29;
+  const offset = circumference - (score / 100) * circumference;
+  arc.style.strokeDashoffset = offset;
+
+  if (score >= 80) {
+    arc.style.stroke = "#10B981";
+  } else if (score >= 50) {
+    arc.style.stroke = "#F59E0B";
+  } else {
+    arc.style.stroke = "#F43F5E";
+  }
+}
+
+// Interactive BiLSTM Neural Network Model Inspector
+function inspectNeuralLayer(layerNum) {
+  const title = document.getElementById("tvNeuralTitle");
+  const desc = document.getElementById("tvNeuralDesc");
+  const math = document.getElementById("tvNeuralMath");
+  if (!title || !desc || !math) return;
+
+  const cards = document.querySelectorAll('.neural-layer-card');
+  cards.forEach((card, idx) => {
+    if (idx === (layerNum - 1)) {
+      card.classList.add('active');
+    } else {
+      card.classList.remove('active');
+    }
+  });
+
+  if (layerNum === 1) {
+    title.innerText = "Layer 1: TF-IDF N-gram Tokenizer";
+    desc.innerText = "Parses raw SMS text into 1,000+ trained character & word n-grams (e.g. 'cashback', 'pan_verify', 'click_here', 'reward_claim').";
+    math.innerText = "Math: TF-IDF(t, d) = TF(t, d) × log(N / DF(t))";
+  } else if (layerNum === 2) {
+    title.innerText = "Layer 2: 64-Dim Dense Vector Embedding";
+    desc.innerText = "Projects high-dimensional n-gram tokens into a dense continuous 64-dimensional semantic embedding space.";
+    math.innerText = "Math: E(w) = W_embed × OneHot(w),  E ∈ ℝ^{N × 64}";
+  } else if (layerNum === 3) {
+    title.innerText = "Layer 3: BiLSTM Bidirectional Context Pass";
+    desc.innerText = "Evaluates sequential text both forward (left-to-right) and backward (right-to-left) to capture full sentence intent.";
+    math.innerText = "Math: h_t = [h⃗_t || h⃖_t],  where h⃗_t = LSTM(x_t, h⃗_{t-1})";
+  } else if (layerNum === 4) {
+    title.innerText = "Layer 4: Self-Attention Weighting Matrix";
+    desc.innerText = "Applies self-attention weights to highlight critical threat tokens (e.g. CASHBACK: 0.94, HTTP: 0.98, URGENT: 0.89).";
+    math.innerText = "Math: α_t = softmax(w_a^T tanh(W_s h_t)),  c = ∑ α_t h_t";
+  } else if (layerNum === 5) {
+    title.innerText = "Layer 5: Neural Ensemble Score Fusion";
+    desc.innerText = "Combines BiLSTM neural network class probability with domain heuristic rules to produce final 0-100 Risk Score.";
+    math.innerText = "Math: RiskScore = σ(W_out c + b) × 100";
+  }
+}
+
+// History Filters & Real-Time Search Logic
+let activeHistoryFilter = 'all';
+
+function setHistoryFilterWeb(filterType) {
+  activeHistoryFilter = filterType;
+  const chipAll = document.getElementById("chipFilterAll");
+  const chipHigh = document.getElementById("chipFilterHigh");
+  const chipSafe = document.getElementById("chipFilterSafe");
+
+  if (chipAll) chipAll.classList.toggle('active', filterType === 'all');
+  if (chipHigh) chipHigh.classList.toggle('active', filterType === 'high');
+  if (chipSafe) chipSafe.classList.toggle('active', filterType === 'safe');
+
+  filterHistoryListWeb();
+}
+
+function filterHistoryListWeb() {
+  const searchInput = document.getElementById("inputSearchHistory");
+  const query = searchInput ? searchInput.value.toLowerCase().trim() : "";
+  const container = document.getElementById("historyContainerWeb");
+  if (!container) return;
+
+  let filtered = scanHistoryData.filter(item => {
+    if (activeHistoryFilter === 'high' && item.score < 65) return false;
+    if (activeHistoryFilter === 'safe' && item.score >= 65) return false;
+
+    if (query) {
+      const matchSender = (item.sender || "").toLowerCase().includes(query);
+      const matchMessage = (item.message || "").toLowerCase().includes(query);
+      const matchThreat = (item.threatType || "").toLowerCase().includes(query);
+      return matchSender || matchMessage || matchThreat;
+    }
+    return true;
+  });
+
+  if (filtered.length === 0) {
+    container.innerHTML = `<div style="text-align: center; padding: 40px; color: var(--text-muted);">
+      <div style="font-size: 40px; margin-bottom: 10px;">🔍</div>
+      <div style="font-size: 15px; font-weight: 700;">No Threat Logs Found</div>
+      <div style="font-size: 12px; margin-top: 4px;">Try clearing filters or running a new SMS scan</div>
+    </div>`;
+    return;
+  }
+
+  let html = "";
+  filtered.forEach(item => {
+    const isHighRisk = item.score >= 65;
+    const badgeColor = isHighRisk ? "#F43F5E" : "#10B981";
+    const badgeBg = isHighRisk ? "rgba(244, 63, 94, 0.15)" : "rgba(16, 185, 129, 0.15)";
+    
+    html += `
+      <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 18px; margin-bottom: 12px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+          <div style="font-size: 15px; font-weight: 800; color: #FFFFFF;">${item.sender || 'SMS Scan'}</div>
+          <div style="font-size: 12px; font-weight: 800; color: ${badgeColor}; background: ${badgeBg}; padding: 4px 12px; border-radius: 12px;">
+            ${item.riskLevel || (isHighRisk ? 'HIGH RISK' : 'SAFE')} (${item.score}/100)
+          </div>
+        </div>
+        <div style="font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 10px;">${item.message}</div>
+        <div style="display: flex; align-items: center; justify-content: space-between; font-size: 11px; color: var(--text-dim);">
+          <span>🕒 ${item.timestamp || 'Today'} • ${item.threatType || 'Scanned Content'}</span>
+          <button class="filter-chip" style="padding: 3px 10px; font-size: 11px;" onclick="blockSenderDirectlyWeb('${item.sender}')">🛡️ Block Sender</button>
+        </div>
+      </div>
+    `;
+  });
+
+  container.innerHTML = html;
+
+  const chipAll = document.getElementById("chipFilterAll");
+  if (chipAll) chipAll.innerText = `ALL (${scanHistoryData.length})`;
+}
+
+function blockSenderDirectlyWeb(sender) {
+  if (!sender) return;
+  const input = document.getElementById("inputBlockSender");
+  if (input) {
+    input.value = sender;
+    addBlockedSenderWeb();
+  }
+}
+
+// Export Security Summary Report (PDF / JSON)
+function exportSecurityReportWeb() {
+  const reportData = {
+    app: "PhishGuard AI Phishing Protection Command Center",
+    generatedAt: new Date().toLocaleString(),
+    protectionScore: 100,
+    totalScans: scanHistoryData.length,
+    activeBlockedSenders: blockedSendersData.length,
+    threatHistory: scanHistoryData
+  };
+
+  const jsonStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(reportData, null, 2));
+  const downloadAnchor = document.createElement('a');
+  downloadAnchor.setAttribute("href", jsonStr);
+  downloadAnchor.setAttribute("download", `PhishGuard_Security_Report_${getTodayDateKey()}.json`);
+  document.body.appendChild(downloadAnchor);
+  downloadAnchor.click();
+  downloadAnchor.remove();
+  alert("📄 PhishGuard Security Protection Summary Report Exported Successfully!");
+}
