@@ -838,7 +838,7 @@ function toggleCommunityShieldWeb() {
     }
 
     const communityScammers = [
-      { id: "c1", phoneOrHeader: "+91 98765 43210", reason: "Community Reported KYC Fraud", dateAdded: "Today" },
+      { id: "c1", phoneOrHeader: "AX-BANK-ALERT", reason: "Community Reported KYC Fraud", dateAdded: "Today" },
       { id: "c2", phoneOrHeader: "HDFCBK-LOAN", reason: "Community Reported Fake Loan Trap", dateAdded: "Today" },
       { id: "c3", phoneOrHeader: "VM-BOISTK", reason: "Community Reported OTP Harvest", dateAdded: "Today" },
       { id: "c4", phoneOrHeader: "SBI-ALERT", reason: "Community Reported Banking Phishing", dateAdded: "Today" },
@@ -868,12 +868,12 @@ function toggleCommunityShieldWeb() {
 
 // Render Blocked Senders List (Matching Android App BlockedSendersActivity)
 function renderBlockedListWeb() {
-  const container = document.getElementById("blockedList");
+  const container = document.getElementById("blockedSendersContainerWeb") || document.getElementById("blockedList");
   if (!container) return;
 
   if (blockedSendersData.length === 0) {
     blockedSendersData = [
-      { id: "b1", phoneOrHeader: "+91 98765 43210", reason: "KYC Phishing Fraud", dateAdded: "Today" },
+      { id: "b1", phoneOrHeader: "AX-BANK-ALERT", reason: "KYC Phishing Fraud", dateAdded: "Today" },
       { id: "b2", phoneOrHeader: "HDFCBK-SCAM", reason: "Fake Pre-approved Loan Trap", dateAdded: "Today" },
       { id: "b3", phoneOrHeader: "VM-BOISTK", reason: "Fake Banking OTP Harvest", dateAdded: "Today" }
     ];

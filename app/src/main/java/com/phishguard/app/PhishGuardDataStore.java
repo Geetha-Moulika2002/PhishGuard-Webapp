@@ -116,7 +116,7 @@ public class PhishGuardDataStore {
                         if (error != null || value == null) return;
                         if (value.isEmpty()) {
                             // Seed global_blocked_senders collection so it appears in Firebase Console
-                            String[] initialGlobals = {"+919959215135", "SBI-ALERT", "HDFCBK-LOAN", "PAYTM-KYC", "VM-BOISTK"};
+                            String[] initialGlobals = {"AX-BANK-ALERT", "SBI-ALERT", "HDFCBK-LOAN", "PAYTM-KYC", "VM-BOISTK"};
                             for (String g : initialGlobals) {
                                 Map<String, Object> data = new HashMap<>();
                                 data.put("phoneOrHeader", g);
