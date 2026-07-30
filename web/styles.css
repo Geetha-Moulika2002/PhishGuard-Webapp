@@ -423,6 +423,63 @@ body {
   justify-content: center;
   text-align: center;
 }
+
+/* Glassmorphism Cyber Toast System (Replacing browser alerts) */
+.cyber-toast-container {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.cyber-toast {
+  pointer-events: auto;
+  min-width: 320px;
+  max-width: 480px;
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid var(--border-highlight);
+  border-radius: var(--radius-md);
+  padding: 14px 20px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.85), 0 0 25px rgba(56, 189, 248, 0.25);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: 600;
+  animation: toastSlideDown 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes toastSlideDown {
+  from { opacity: 0; transform: translateY(-20px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.cyber-toast-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.cyber-toast-content {
+  flex: 1;
+  line-height: 1.4;
+}
+
+.cyber-toast-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--primary-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
 .stat-card:hover {
   background: rgba(51, 65, 85, 0.75);
   border-color: var(--primary-blue);
