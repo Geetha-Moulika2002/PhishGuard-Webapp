@@ -17,9 +17,6 @@ if (!firebase.apps.length) {
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-// FORCE NO PERSISTENCE: Opening localhost link ALWAYS requires fresh Sign In / Registration!
-auth.setPersistence(firebase.auth.Auth.Persistence.NONE);
-
 // Glassmorphism Cyber Toast Notification System (Replacing plain browser alerts)
 function showCyberToast(message, icon = "🛡️", title = "PhishGuard System") {
   let container = document.getElementById("cyberToastContainer");
@@ -66,19 +63,14 @@ let blockedUnsubscribe = null;
 document.addEventListener("DOMContentLoaded", () => {
   loadLocalState();
 
-  // Force clean Auth Screen on Page Load / Refresh
-  currentUser = null;
-  auth.signOut();
-  showView("auth");
-
-  // Listen to Auth State Changes
+  // Listen to Auth State Changes cleanly
   auth.onAuthStateChanged((user) => {
     if (user) {
       currentUser = user;
       const userBadge = document.getElementById("userHeaderBadge");
       const userEmailEl = document.getElementById("headerUserEmail");
       const userAvatarEl = document.getElementById("headerUserAvatar");
-      const tvUserEmailEl = document.getElementById("tvUserEmail");
+      const tvUserEmailEl = document.getElementById("tvUserEmailDisplay");
       const bottomNavEl = document.getElementById("bottomNav");
 
       if (userBadge) userBadge.style.display = "flex";

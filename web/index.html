@@ -51,8 +51,8 @@
 
         <!-- Auth Mode Toggle Tabs (Sign In vs Register) -->
         <div style="display: flex; gap: 8px; background: rgba(15, 23, 42, 0.8); padding: 4px; border-radius: var(--radius-md); margin-bottom: 20px; border: 1px solid var(--border-glass);">
-          <button id="tabAuthLogin" class="filter-chip active" style="flex: 1; justify-content: center; height: 36px;" onclick="switchAuthTab('login')">Sign In</button>
-          <button id="tabAuthRegister" class="filter-chip" style="flex: 1; justify-content: center; height: 36px;" onclick="switchAuthTab('register')">Register Account</button>
+          <button type="button" id="tabAuthLogin" class="filter-chip active" style="flex: 1; justify-content: center; height: 36px;" onclick="switchAuthTab('login', event)">Sign In</button>
+          <button type="button" id="tabAuthRegister" class="filter-chip" style="flex: 1; justify-content: center; height: 36px;" onclick="switchAuthTab('register', event)">Register Account</button>
         </div>
 
         <form id="formAuth" onsubmit="handleAuthSubmit(event)">
@@ -73,7 +73,7 @@
             <label class="form-label">Password</label>
             <div style="position: relative;">
               <input type="password" id="authPassword" class="form-input" placeholder="••••••••" required oninput="onPasswordInputRealtime(this.value)" />
-              <button type="button" id="btnTogglePassword" onclick="togglePasswordVisibilityWeb()" style="position: absolute; right: 12px; top: 10px; background: rgba(30, 41, 59, 0.8); border: 1px solid var(--border-glass); border-radius: 6px; padding: 4px 10px; color: var(--primary-blue); font-size: 11px; font-weight: 800; cursor: pointer;">SHOW</button>
+              <button type="button" id="btnTogglePassword" onclick="togglePasswordVisibilityWeb(event)" style="position: absolute; right: 12px; top: 10px; background: rgba(30, 41, 59, 0.8); border: 1px solid var(--border-glass); border-radius: 6px; padding: 4px 10px; color: var(--primary-blue); font-size: 11px; font-weight: 800; cursor: pointer;">SHOW</button>
             </div>
           </div>
 
