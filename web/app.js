@@ -43,10 +43,17 @@ document.addEventListener("DOMContentLoaded", () => {
   auth.onAuthStateChanged((user) => {
     if (user) {
       currentUser = user;
-      document.getElementById("userHeaderBadge").style.display = "flex";
-      document.getElementById("headerUserEmail").innerText = user.email;
-      document.getElementById("tvUserEmail").innerText = user.email;
-      document.getElementById("bottomNav").style.display = "flex";
+      const userBadge = document.getElementById("userHeaderBadge");
+      const userEmailEl = document.getElementById("headerUserEmail");
+      const userAvatarEl = document.getElementById("headerUserAvatar");
+      const tvUserEmailEl = document.getElementById("tvUserEmail");
+      const bottomNavEl = document.getElementById("bottomNav");
+
+      if (userBadge) userBadge.style.display = "flex";
+      if (userEmailEl) userEmailEl.innerText = user.email;
+      if (userAvatarEl) userAvatarEl.innerText = user.email ? user.email.charAt(0).toUpperCase() : "U";
+      if (tvUserEmailEl) tvUserEmailEl.innerText = user.email;
+      if (bottomNavEl) bottomNavEl.style.display = "flex";
       
       // Load user metadata from Firestore
       loadFirestoreUserData(user);
@@ -59,8 +66,12 @@ document.addEventListener("DOMContentLoaded", () => {
       currentUser = null;
       if (scansUnsubscribe) scansUnsubscribe();
       if (blockedUnsubscribe) blockedUnsubscribe();
-      document.getElementById("userHeaderBadge").style.display = "none";
-      document.getElementById("bottomNav").style.display = "none";
+
+      const userBadge = document.getElementById("userHeaderBadge");
+      const bottomNavEl = document.getElementById("bottomNav");
+      if (userBadge) userBadge.style.display = "none";
+      if (bottomNavEl) bottomNavEl.style.display = "none";
+
       showView("auth");
     }
   });
@@ -406,34 +417,40 @@ function toggleAuthModeWeb(e) {
 
 // Handle Sign In / Register Form Submission
 function handleAuthSubmit(e) {
-  e.preventDefault();
-  const mode = document.getElementById("btnAuthSubmit").dataset.mode || "login";
-  const email = document.getElementById("authEmail").value.trim();
-  const password = document.getElementById("authPassword").value;
-  const fullName = document.getElementById("authName").value.trim();
+  if (e) e.preventDefault();
+  const btnSubmit = document.getElementById("btnAuthSubmit");
+  const mode = btnSubmit ? (btnSubmit.dataset.mode || "login") : "login";
+
+  const emailEl = document.getElementById("authEmail");
+  const passwordEl = document.getElementById("authPassword");
+  const nameEl = document.getElementById("authName");
+
+  const email = emailEl ? emailEl.value.trim() : "";
+  const password = passwordEl ? passwordEl.value : "";
+  const fullName = nameEl ? nameEl.value.trim() : "";
 
   if (!email || !password) {
     alert("Please enter both email and password.");
-    return;
+    if (btnSubmit) { btnSubmit.disabled = false; btnSubmit.style.opacity = "1.0"; }
+    return false;
   }
 
-  const btnSubmit = document.getElementById("btnAuthSubmit");
-  btnSubmit.disabled = true;
-  btnSubmit.style.opacity = "0.6";
+  if (btnSubmit) {
+    btnSubmit.disabled = true;
+    btnSubmit.style.opacity = "0.6";
+  }
 
   if (mode === "register") {
     if (!fullName) {
       alert("Please enter your full name.");
-      btnSubmit.disabled = false;
-      btnSubmit.style.opacity = "1.0";
-      return;
+      if (btnSubmit) { btnSubmit.disabled = false; btnSubmit.style.opacity = "1.0"; }
+      return false;
     }
 
     if (!onPasswordInputRealtime(password)) {
       alert("Password must be at least 8 characters and include uppercase, lowercase, number, and special symbol.");
-      btnSubmit.disabled = false;
-      btnSubmit.style.opacity = "1.0";
-      return;
+      if (btnSubmit) { btnSubmit.disabled = false; btnSubmit.style.opacity = "1.0"; }
+      return false;
     }
 
     auth.createUserWithEmailAndPassword(email, password)
@@ -452,13 +469,12 @@ function handleAuthSubmit(e) {
           lastLoginTime: firebase.firestore.FieldValue.serverTimestamp()
         }, { merge: true });
 
-        btnSubmit.disabled = false;
-        btnSubmit.style.opacity = "1.0";
+        if (btnSubmit) { btnSubmit.disabled = false; btnSubmit.style.opacity = "1.0"; }
         alert("Registration Successful! Account created in Firebase.");
+        showView("dashboard");
       })
       .catch((error) => {
-        btnSubmit.disabled = false;
-        btnSubmit.style.opacity = "1.0";
+        if (btnSubmit) { btnSubmit.disabled = false; btnSubmit.style.opacity = "1.0"; }
         alert(error.message || "Registration failed. Please try again.");
       });
 
@@ -472,15 +488,15 @@ function handleAuthSubmit(e) {
           lastLoginTime: firebase.firestore.FieldValue.serverTimestamp()
         }, { merge: true });
 
-        btnSubmit.disabled = false;
-        btnSubmit.style.opacity = "1.0";
+        if (btnSubmit) { btnSubmit.disabled = false; btnSubmit.style.opacity = "1.0"; }
+        showView("dashboard");
       })
       .catch((error) => {
-        btnSubmit.disabled = false;
-        btnSubmit.style.opacity = "1.0";
+        if (btnSubmit) { btnSubmit.disabled = false; btnSubmit.style.opacity = "1.0"; }
         alert(error.message || "Sign in failed. Invalid email or password.");
       });
   }
+  return false;
 }
 
 // View Router
