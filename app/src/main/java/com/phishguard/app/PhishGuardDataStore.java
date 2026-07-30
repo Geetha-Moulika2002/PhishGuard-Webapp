@@ -152,6 +152,35 @@ public class PhishGuardDataStore {
                         saveDataToPrefs();
                         notifyListener();
                     });
+
+            // Collection 3: User Scans Real-time Sync across Mobile & Web
+            if (userEmail != null && !userEmail.isEmpty()) {
+                FirebaseFirestore.getInstance().collection("scans")
+                        .whereEqualTo("userEmail", userEmail)
+                        .addSnapshotListener((value, error) -> {
+                            if (error != null || value == null) return;
+                            for (QueryDocumentSnapshot doc : value) {
+                                String id = doc.getId();
+                                String sender = doc.getString("sender");
+                                String message = doc.getString("message");
+                                Long scoreL = doc.getLong("score");
+                                int score = scoreL != null ? scoreL.intValue() : 0;
+                                String riskLevel = doc.getString("riskLevel");
+                                String timestamp = doc.getString("timestamp");
+                                String threatType = doc.getString("threatType");
+
+                                boolean exists = false;
+                                for (ScanItem item : scanHistory) {
+                                    if (id.equals(item.id)) { exists = true; break; }
+                                }
+                                if (!exists && sender != null && message != null) {
+                                    scanHistory.add(0, new ScanItem(id, sender, message, score, riskLevel != null ? riskLevel : "Scanned", timestamp != null ? timestamp : "Today", getTodayDateKey(), threatType != null ? threatType : "SMS Threat"));
+                                }
+                            }
+                            saveDataToPrefs();
+                            notifyListener();
+                        });
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -278,10 +307,35 @@ public class PhishGuardDataStore {
         return false;
     }
 
-    public void addScan(ScanItem item) {
+    public void addScan(Context context, ScanItem item) {
         scanHistory.add(0, item);
         saveDataToPrefs();
         notifyListener();
+
+        if (context != null) {
+            String userEmail = AuthManager.getUserEmail(context);
+            if (userEmail != null && !userEmail.isEmpty()) {
+                try {
+                    Map<String, Object> data = new HashMap<>();
+                    data.put("sender", item.sender);
+                    data.put("message", item.message);
+                    data.put("score", item.score);
+                    data.put("riskLevel", item.riskLevel);
+                    data.put("timestamp", item.timestamp);
+                    data.put("dateKey", item.dateKey);
+                    data.put("threatType", item.threatType);
+                    data.put("userEmail", userEmail);
+                    data.put("createdAt", FieldValue.serverTimestamp());
+                    FirebaseFirestore.getInstance().collection("scans").add(data);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void addScan(ScanItem item) {
+        addScan(null, item);
     }
 
     public void deleteScanItem(Context context, ScanItem item) {

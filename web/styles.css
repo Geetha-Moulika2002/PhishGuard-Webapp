@@ -392,6 +392,26 @@ body {
 }
 
 /* Stat Counter Cards */
+/* Protection Tool Card (Matching Mobile App Screenshot) */
+.tool-card {
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+}
+.tool-card:hover {
+  background: rgba(51, 65, 85, 0.85);
+  border-color: var(--primary-blue);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 15px var(--primary-blue-glow);
+}
+
 .stat-card {
   background: rgba(30, 41, 59, 0.6);
   border: 1px solid var(--border-glass);

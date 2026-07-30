@@ -176,12 +176,27 @@ function loadFirestoreUserData(user) {
     }
 
     if (document.getElementById("tvUserWelcome")) document.getElementById("tvUserWelcome").innerText = "Welcome Back, " + formattedName;
+    if (document.getElementById("tvUserName")) document.getElementById("tvUserName").innerText = formattedName;
+    if (document.getElementById("tvUserEmailDisplay")) document.getElementById("tvUserEmailDisplay").innerText = user.email;
     if (document.getElementById("profileName")) document.getElementById("profileName").innerText = formattedName;
     if (document.getElementById("profileEmail")) document.getElementById("profileEmail").innerText = user.email;
     if (document.getElementById("profilePhone")) document.getElementById("profilePhone").innerText = userPhone;
     if (document.getElementById("headerUserAvatar")) document.getElementById("headerUserAvatar").innerText = formattedName.charAt(0).toUpperCase();
     if (document.getElementById("profileAvatar")) document.getElementById("profileAvatar").innerText = formattedName.charAt(0).toUpperCase();
   }, err => console.error(err));
+}
+
+// Tool Scroll & Rewards Helpers
+function scrollToSection(secId) {
+  const el = document.getElementById(secId);
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+function showRewardsWeb() {
+  const points = (blockedSendersData.length * 10) + (scanHistoryData.length * 5) + 100;
+  alert(`⭐ PhishGuard Security Rewards Balance: ${points} Points!\n\nEarn 10 points for every blocked scammer & 5 points for every SMS scanned.`);
 }
 
 // Toggle Edit Profile Card Display
