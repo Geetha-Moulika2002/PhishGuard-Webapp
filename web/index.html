@@ -32,7 +32,7 @@
       <div id="userHeaderBadge" class="user-status-badge" style="display: none;">
         <span class="user-avatar" id="headerUserAvatar">U</span>
         <span class="user-email-text" id="headerUserEmail">user@domain.com</span>
-        <button id="btnHeaderLogout" class="btn-logout-icon" title="Sign Out">🚪</button>
+        <button id="btnHeaderLogout" class="btn-logout-icon" onclick="logoutWeb()" title="Sign Out">🚪</button>
       </div>
     </div>
   </header>
@@ -49,26 +49,49 @@
           <p class="auth-subtitle" id="tvSubtitle">Sign in to activate real-time phishing protection</p>
         </div>
 
-        <form id="formAuth" onsubmit="handleAuthSubmitWeb(event)">
-          <div class="form-group">
-            <label class="form-label">Email Address</label>
-            <input type="email" id="inputEmail" class="form-input" placeholder="name@domain.com" required />
+        <!-- Auth Mode Toggle Tabs (Sign In vs Register) -->
+        <div style="display: flex; gap: 8px; background: rgba(15, 23, 42, 0.8); padding: 4px; border-radius: var(--radius-md); margin-bottom: 20px; border: 1px solid var(--border-glass);">
+          <button id="tabAuthLogin" class="filter-chip active" style="flex: 1; justify-content: center; height: 36px;" onclick="switchAuthTab('login')">Sign In</button>
+          <button id="tabAuthRegister" class="filter-chip" style="flex: 1; justify-content: center; height: 36px;" onclick="switchAuthTab('register')">Register Account</button>
+        </div>
+
+        <form id="formAuth" onsubmit="handleAuthSubmit(event)">
+          <!-- Full Name Field (Registration Mode Only) -->
+          <div class="form-group" id="groupName" style="display: none;">
+            <label class="form-label">Full Name</label>
+            <input type="text" id="authName" class="form-input" placeholder="e.g. Mouli Geetha" />
           </div>
 
+          <!-- Email Address -->
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" id="authEmail" class="form-input" placeholder="name@domain.com" required />
+          </div>
+
+          <!-- Password Field + Password Toggle -->
           <div class="form-group">
             <label class="form-label">Password</label>
             <div style="position: relative;">
-              <input type="password" id="inputPassword" class="form-input" placeholder="••••••••" required />
-              <button type="button" onclick="togglePasswordVisibilityWeb()" style="position: absolute; right: 12px; top: 12px; background: transparent; border: none; color: var(--text-muted); cursor: pointer;">👁</button>
+              <input type="password" id="authPassword" class="form-input" placeholder="••••••••" required oninput="onPasswordInputRealtime(this.value)" />
+              <button type="button" id="btnTogglePassword" onclick="togglePasswordVisibilityWeb()" style="position: absolute; right: 12px; top: 10px; background: rgba(30, 41, 59, 0.8); border: 1px solid var(--border-glass); border-radius: 6px; padding: 4px 10px; color: var(--primary-blue); font-size: 11px; font-weight: 800; cursor: pointer;">SHOW</button>
             </div>
           </div>
 
-          <button type="submit" id="btnAuthSubmit" class="btn-primary">Sign In</button>
-        </form>
+          <!-- Password Strength Rules Box (Registration Mode Only) -->
+          <div id="layoutPasswordRules" style="display: none; background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 12px 14px; margin-bottom: 18px; font-size: 11px; line-height: 1.6;">
+            <div style="font-weight: 800; color: var(--text-muted); margin-bottom: 4px;">PASSWORD REQUIREMENTS:</div>
+            <div id="ruleLength" style="color: #EF4444;">✖ At least 8 characters long</div>
+            <div id="ruleCase" style="color: #EF4444;">✖ Contains uppercase (A-Z) &amp; lowercase (a-z)</div>
+            <div id="ruleNumberSymbol" style="color: #EF4444;">✖ Contains a number (0-9) &amp; special symbol (@#$%)</div>
+          </div>
 
-        <div style="text-align: center; margin-top: 16px;">
-          <a href="#" id="linkToggleAuthMode" onclick="toggleAuthModeWeb(event)" style="font-size: 13px; color: var(--primary-blue); text-decoration: none; font-weight: 600;">Don't have an account? Register here</a>
-        </div>
+          <!-- Forgot Password Link -->
+          <div id="rowForgotPassword" style="text-align: right; margin-bottom: 18px;">
+            <a href="#" id="linkForgotPassword" onclick="handleForgotPasswordWeb(event)" style="font-size: 12px; color: var(--primary-blue); text-decoration: none; font-weight: 700;">Forgot Password?</a>
+          </div>
+
+          <button type="submit" id="btnAuthSubmit" class="btn-primary" data-mode="login">Sign In &amp; Continue</button>
+        </form>
       </div>
     </section>
 

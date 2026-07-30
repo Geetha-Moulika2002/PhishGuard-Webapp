@@ -392,6 +392,18 @@ function onPasswordInputRealtime(pwd) {
   return hasLength && hasUpper && hasLower && hasDigit && hasSymbol;
 }
 
+// Alias for handleAuthSubmitWeb and toggleAuthModeWeb
+function handleAuthSubmitWeb(e) {
+  return handleAuthSubmit(e);
+}
+
+function toggleAuthModeWeb(e) {
+  if (e) e.preventDefault();
+  const btnSubmit = document.getElementById("btnAuthSubmit");
+  const currentMode = btnSubmit ? (btnSubmit.dataset.mode || "login") : "login";
+  switchAuthTab(currentMode === "login" ? "register" : "login");
+}
+
 // Handle Sign In / Register Form Submission
 function handleAuthSubmit(e) {
   e.preventDefault();
